@@ -1,0 +1,266 @@
+# SANDSCAPE — offline mirror
+
+Full mirror of the **Sandscape** app shell for the pinned play view
+(https://sandscape.app/play?g=3UpDloEh) — the SPA that plays the published game
+**RALLY ROAD RASH — Off-Road Championship**.
+
+Source: https://sandscape.app/play?g=3UpDloEh
+
+![SANDSCAPE](docs/cover.png)
+
+> **Cover note (2026-10-13).** The image above is the game **mid-race**
+> (LAP 1/3 · PROVING GROUNDS, timer 1:06.00, 10 KM/H on the track). The play
+> view is a route on the Sandscape SPA: the SPA resolves `?g=3UpDloEh` through
+> its live backend to game id `3e1a1e7f-…` and *embeds* it from the external
+> game service. That embed carries `frame-ancestors 'self'
+> https://sandscape.app …` — the game host allows framing only from Sandscape
+> origins, so a loopback mirror cannot render it (Chrome blocks the frame; the
+> boot evidence `docs/boot-2026-10-13.png` shows exactly that: the captured
+> SPA rendering the play route with the embed area empty). The cover was
+> therefore captured from the play view **as served by the origin**, driving
+> the same captured SPA build; the mirror itself reproduces everything except
+> the external game content. The full game is also playable from the live
+> origin — this mirror does not fake it.
+
+## Stack
+
+- **Vite/rolldown production build** — one ~50-chunk runtime graph under
+  `assets/`: the entry chunk (`index-BKDksszn.js`), the rolldown runtime, the
+  React 19 runtime (`react-dom`, `jsx-runtime`), the Vite preload helper and
+  per-route/per-widget chunks loaded at runtime (`Game-…`, `Auth-…`,
+  `Profile-…`, `Create-…`, `History-…`, `ShareMenu-…`, the `dist-…` UI kit
+  chunks, `i18n-…`, `CoinDisplay-…`, …).
+- **React 19 + Radix UI + framer-motion + Tailwind** in the chunk graph — the
+  `proxy-…` chunk is the bundled framer-motion, `AuthService-…` merges
+  `@supabase/supabase-js` with the app's auth facade, `three.module-…` /
+  `three-stdlib-…` / `SceneEditor-…` carry the bundled three.js used by the
+  scene editor and previews.
+- **A live backend by design** — game records, comments, likes, leaderboards
+  and the published game content itself are fetched at runtime from Supabase
+  and the Sandscape game service (external; see below).
+
+## What this is
+
+Sandscape is an AI game-creation platform: users prompt a game, refine it in a
+visual editor, publish it, and play it at `/play?g=<short_code>`. This mirror
+pins the **play view for the short code `3UpDloEh`** — the game page of
+*RALLY ROAD RASH — Off-Road Championship* (an arcade off-road racer: four
+machines, five stages, rockets, drift boosts) — and captures the app shell that
+renders it, byte-exact: the entry document plus the whole same-origin chunk
+graph the runtime actually loads (runtime network log + static scan to
+fixpoint). **124 files, ≈11.5 MB** (`.upstream/manifest.json`).
+
+External at runtime (never captured, never backfilled — documented gaps):
+
+- **Supabase** (`rdfaagiybxrefnekhwrk.supabase.co`) — auth/session, profiles,
+  the `games` table the `?g=` query resolves against, comments, likes, avatars.
+- **Sandscape game service** (`sandscape-prod.fly.dev`) — the published-game
+  backend: the game document
+  (`/api/published/3e1a1e7f-…/index.html`), view counting, play tokens and
+  leaderboards; its response pins `frame-ancestors` to Sandscape origins.
+- **Game asset CDN** (`games.sandscape.app`) — the game's own styles, code
+  (`src/main.js`, three.js, world builders) and art, addressed by the game
+  document's `<base href>`; plus game thumbnails on
+  `gamemedia.sandscape.app`.
+- **Google Fonts** (`fonts.googleapis.com` CSS → `fonts.gstatic.com` woff2) —
+  the entry links the Hanken Grotesk stylesheet; it stays a CDN dependency.
+- **Vercel analytics** — same-origin `/_vercel/insights/*` beacon (excluded
+  from the capture as a telemetry endpoint).
+
+The embedded game's closure (document and assets) is recorded in
+`_mirror-report.json` (`gameClosure`, `externalDependencies`), not captured:
+the fleet rule is that external dependencies stay external.
+
+## Layout
+
+- `index.html` — the entry document as served for `/play` (Vercel rewrites the
+  route onto the built `spa.html`; 8,807 B, byte-exact)
+- `assets/` — the full same-origin chunk graph (113 JS chunks + 1 stylesheet)
+  and the icons/OG images the app loads
+- `.upstream/manifest.json` — sha256 for every captured file
+- `.upstream/runtime-network.json` — every request the live browser session
+  recorded while the pinned view loaded and the game page rendered (86 entries;
+  the closure evidence)
+- `.upstream/unreachable.json` — probed paths the origin does not serve (the
+  SPA rewrite answers them with the SPA document; recorded, never captured)
+- `readable/` — prettified derived layer (pinned prettier 3.9.6): 113 JS
+  pretties + 1 CSS pretty + 2 inline twins from `index.html`; vendor bundles
+  are whole-file entries
+- `src/` + `split-spec.json` — 524 statement-aligned slices of the 103 app
+  chunks with the recorded derivation spec
+- `tools/capture.mjs` — the capture crawler (entry + runtime log seeds →
+  closure to fixpoint; SPA-rewrite fallbacks detected and rejected)
+- `tools/derive.mjs` — rebuild `readable/` + `src/` + `split-spec.json`
+- `tools/update.mjs` — read-only drift probe against the live origin
+- `tools/verify.mjs` — re-hash the capture against the manifest
+- `tools/audit.js` — integrity gate for the derived layers (`AUDIT PASS`)
+- `_mirror-report.json` — capture record (method, 404s, origin variants,
+  external hosts, the game closure's URL family)
+- `docs/cover.png`, `docs/boot-2026-10-13.png` — gameplay cover and mirror boot
+  evidence
+
+## Assets
+
+Category-first inventory of what this repo carries. **The mirror carries the
+app's chrome images, icons and code — not the game's own art/models/audio:**
+those are served live from the external game CDN (`games.sandscape.app`,
+documented gap; the game is user-generated content and its assets are not part
+of the app capture).
+
+- **images — app chrome/branding** — `Sandscape_Logo_White_Large.png`,
+  `ze1_logo_horizontal.png`
+- **images — favicons/PWA icons** — `favicon.png` (100.7 KB),
+  `apple-touch-icon.png`, `android-chrome-192x192.png`,
+  `android-chrome-512x512.png`, `maskable-icon-512x512.png`
+- **images — social/OG** — `22980108-sandscape-ai-generative-game-en-1200x628.jpeg`
+  (the og:image/twitter:image card, 114.8 KB)
+- **data** — `manifest.webmanifest` (PWA manifest)
+- **code (vendor, whole-file in `readable/`)** — `assets/three.module-CvxFRqeD.js`
+  (three.js), `assets/three-stdlib-BJSGSXlY.js` (three-stdlib addons),
+  `assets/react-dom-CWn-H0Rd.js`, `assets/jsx-runtime-BtyjnKZj.js`,
+  `assets/AuthService-CQeU_0bQ.js` (@supabase/supabase-js + auth facade),
+  `assets/proxy-gbdormya.js` (framer-motion),
+  `assets/src-C4EM-vcD.js` (WebCodecs media codec library),
+  `assets/SceneEditor-BPEsa1Sn.js` (~5.4 MB editor bundle: editor runtime +
+  three.js + fflate)
+- **code (app, sliced into `src/`)** — the remaining 103 chunks, e.g.
+  `assets/index-BKDksszn.js` (entry/routes), `assets/Game-QkGXRHTR.js` (the
+  play page: iframe embed, share/likes/leaderboard wiring),
+  `assets/gameCreation-*.js`, `assets/i18n-Ddyvvowz.js` (translation data)
+- **game content** — none on disk; recorded as external
+  (`_mirror-report.json` → `gameClosure`: the RALLY ROAD RASH document,
+  `src/main.js`, its 30 module imports and the art referenced by its
+  `<base href>`)
+
+## Run
+
+Serve the repo root with a static server that falls back to `index.html` for
+unknown routes (the SPA handles `/play` client-side), then open the pinned
+route:
+
+```
+npx serve -s .          # -s = single-page rewrite to index.html
+# then open http://localhost:3000/play?g=3UpDloEh
+```
+
+`/` and `/play?g=3UpDloEh` both serve the same captured shell; the app then
+hydrates and requests the game record from its live backend. The captured UI
+(home, play page, comments/leaderboard shells, share menus, route chunks)
+renders from the mirror; the **game embed cannot render from a loopback
+origin** — the game service allows framing only from Sandscape origins (see
+the cover note above). Everything else the app asks for (Supabase, the game
+service, fonts) is live and external.
+
+## Verify
+
+```
+node tools/verify.mjs     # re-hash the capture against the manifest
+node tools/audit.js       # derived-layer integrity gate (AUDIT PASS)
+```
+
+State as of 2026-10-13: `verify.mjs` → `124 files checked, 0 problems`;
+`audit.js` → `AUDIT PASS — 640 spec sections (524/524 src↔pretty round-trips
+byte-exact, 116/116 pretty sources tiled contiguously, 102/102 skipped
+export-table sections re-verified textually, 524/524 src slices + 113/113
+readable pretties parse standalone, 116/116 pretties re-render byte-exact
+under pinned prettier 3.9.6, 697/700 imports resolve + 3 whitelisted
+machinery)`; `update.mjs` → `up to date: 124 captured files identical
+upstream`. Serve probe (scratch static server, loopback): `/play?g=3UpDloEh`
+and `/` → 200 (8,807 B shell), the entry chunk, the stylesheet, a route chunk
+(`Game-…`), `manifest.webmanifest` and `favicon.png` → 200; listener killed
+(`taskkill`), `netstat` shows no listener and curl refuses the port.
+
+## Updating from upstream
+
+```
+node tools/update.mjs     # read-only drift probe: what changed upstream
+```
+
+The probe never rewrites the capture — a mirror is a point-in-time snapshot.
+It fetches the entry at `/play?g=3UpDloEh` (the route the capture pinned; the
+`?g=` query is client-side state) and reports the origin's intermittent
+prerendered-home variant as a note, not drift. A refresh means re-running
+`node tools/capture.mjs` into a clean tree (copy replaced files to
+`legacy/<date>/` first), re-cutting the manifest, and re-deriving `readable/` +
+`src/` with `node tools/derive.mjs`.
+
+### 2026-10-13 capture + readable/src derivation
+
+- **Capture (network-log-led).** The pinned view was loaded in the opencli
+  browser with `--window foreground` and every request recorded while
+  the game page rendered: 86 entries, 70 same-origin (the rest: fonts, Supabase
+  ×10, the game service ×3, one game thumbnail). Those same-origin requests —
+  plus the entry document and a static scan of every captured file
+  (`import`/`import()`, `__vite__mapDeps` tables, `new URL`, asset-path
+  literals, CSS `url()`, the manifest) iterated to fixpoint — define the
+  capture: **124 files, 11,501,000 bytes**, including the runtime route chunks
+  the entry's `modulepreload` list never mentions (`Game-…`, `ShareMenu-…`,
+  `leaderboard-…`, `Auth-…`, `Profile-…`, `Create-…`, …). The Vercel SPA
+  rewrite answers unknown paths with the SPA document (HTTP 200 + text/html),
+  so the crawler detects and rejects that fallback instead of capturing
+  phantom files (two such probes are recorded as unreachable:
+  `assets/videos/Sandscape_trailer_thumbnail.jpg` from the og:image and
+  `avatar_placeholder/default.png`). Origin variance: `/play` intermittently
+  serves a 59,331 B prerendered-home variant at the edge; the capture pins the
+  canonical 8,807 B shell the browser session recorded.
+- **readable/** — pinned prettier 3.9.6 (module API, default options,
+  format-to-layout fixed point — the build's very long lines settle at pass 2;
+  never the CLI, it respects `.gitignore` and can silently echo its input):
+  113 JS pretties (capture-root-relative names, `assets/` flattened to
+  `assets__`), 1 CSS pretty and 2 inline twins from `index.html` (the theme
+  bootstrap script and the pre-mount style, byte ranges + sha256 in
+  `readable/index-inline-map.json`; the `application/ld+json` block is
+  notRendered). Every pretty is provably not a byte copy of its source.
+- **src/** — 524 statement-aligned slices across the 103 app chunks (exact
+  2-line provenance header `// <tag> NN — <marker>` + `// Lines A-B of
+  <pretty> (statement-aligned).`; ~250-350 line windows, oversized single
+  declarations kept whole): 524/524 parse standalone
+  (`node --input-type=module --check -`) and round-trip byte-exact to their
+  readable line ranges. 102 skipped sections (final `export {…}` tables) and
+  14 wholeFile sections (10 vendor bundles + 2 stylesheets + 2 inline twins)
+  are indexed, never sliced. Vendor rule: React 19 (`react-dom`,
+  `jsx-runtime`), three.js (`three.module`, `three-stdlib`), the
+  Supabase+auth chunk, framer-motion, the WebCodecs codec library and the
+  ~5.4 MB scene-editor bundle are whole-file (same classification vibesail
+  recorded for its Leaflet+MapLibre world chunk); machinery rule: the rolldown
+  runtime and the Vite preload helper are wholeFile.
+- **Gates** — verify → `0 problems`; audit → `AUDIT PASS` (above); serve probe
+  → all 200, listener killed, port proven closed; boot evidence taken from the
+  served mirror (`docs/boot-2026-10-13.png` — the captured SPA rendering the
+  play route, live comment/leaderboard data, and the game-service embed gated
+  by its own CSP); cover captured in-race (see the cover note).
+- **§0.4 fork-over-mirror checked 2026-10-13**: the captured code references
+  only third-party library repos (supabase/supabase-js,
+  suren-atoyan/monaco-loader, syntax-tree/hast-util-to-jsx-runtime,
+  ungap/url-search-params) — library credits, not a project source repo. A
+  GitHub search finds no Sandscape repo (only unrelated projects: Jenkins
+  Sandscape, MIT Tangible Media, architects' sites). No upstream repo to fork,
+  so the mirror stands.
+- Identifier names in `src/` are the bundle's own minified names — the rename
+  campaign (PLAN §5) remains an open task.
+
+## Mirror conventions
+
+- **Capture layer** — the captured files are byte-exact copies of what the
+  origin served; nothing in them is edited.
+- **Vendor rule** — bundled engines/client SDKs (`three.module`, the
+  three-stdlib addons, `react-dom`, `jsx-runtime`, the Supabase client, the
+  codec library, the editor bundle) stay byte-exact as served; `readable/` and
+  `src/` never rewrite vendor bytes.
+- **Readable layer** — `readable/` is derived (prettified) and never shipped
+  to a browser; it exists so the bundle can actually be read.
+- **Provenance** — `.upstream/manifest.json` records sha256 for each captured
+  artifact, `tools/verify.mjs` re-checks it, and
+  `.upstream/runtime-network.json` records the live network closure the
+  capture was derived from.
+- **Drift** — `tools/update.mjs` is read-only: it reports what changed
+  upstream and never rewrites the capture.
+
+## Fleet status
+
+<!-- mirror-status:start — feeds _standard/REPO-INDEX.md. Update ONLY your own mirror's block; never edit the shared index (PLAN §8). Rebuild: node _standard/build-index.mjs -->
+<!-- cols: cls=classification · ver=verify 0 problems · upd=drift probe · man=manifest · rdbl=readable re-derived · src=reversed src · boot=boot test · top=offline-mirror topic · tag=backup tag · staged=staged not committed -->
+| # | repo | cls | ver | upd | man | rdbl | src | boot | top | tag | staged |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | sandscape | mirror | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | — | — |
+<!-- mirror-status:end -->
