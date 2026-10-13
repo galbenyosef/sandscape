@@ -1,0 +1,12 @@
+[
+  {
+    "status": 200,
+    "path": "/assets/videos/Sandscape_trailer_thumbnail.jpg",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/avatar_placeholder/default.png",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  }
+]

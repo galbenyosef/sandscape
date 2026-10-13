@@ -1,0 +1,610 @@
+{
+  "note": "Runtime network log recorded from the opencli browser while https://sandscape.app/play?g=3UpDloEh loaded and the embedded game page rendered (cross-origin iframe resources are not visible to the top-frame recorder; the game content closure is documented in _mirror-report.json externalDependencies).",
+  "capturedAt": "2026-10-13T02:12:07.967Z",
+  "origin": "https://sandscape.app",
+  "view": "https://sandscape.app/play?g=3UpDloEh",
+  "entries": [
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/play?g=3UpDloEh",
+      "status": 200,
+      "ct": "text/html",
+      "size": 8803
+    },
+    {
+      "method": "GET",
+      "url": "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap",
+      "status": 200,
+      "ct": "text/css",
+      "size": 6544
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/index-BKDksszn.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 242175
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/rolldown-runtime-CNC7AqOf.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 879
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/jsx-runtime-BtyjnKZj.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 7115
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/react-dom-CWn-H0Rd.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 132732
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/preload-helper-Czpn1I53.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1196
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/chunk-KS7C4IRE-CgpSK45w.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 41638
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/useToast-QK0Q4gGT.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1240
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-CA4uZW3H.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 5641
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/AuthService-CQeU_0bQ.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 232721
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-DAUR33jS.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 7185
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-p2cW4AiE.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 758
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-C4TAXPHx.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 683
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-BWh9CVbU.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 31194
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/Combination-CJArERGX.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 16611
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-DkIQBCKf.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1757
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-7AcSgfoz.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 534
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/button-Ap3ysi5G.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 2746
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/check-DVcwwxJi.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 114
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dnd-DMxeXGsh.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 10890
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/refresh-cw-CkwJF4P8.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 310
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/triangle-alert-D-SEZi4r.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 254
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/apiConfig-cGsbt6Be.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 753
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/serviceProxy-CZRpABZv.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1222
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-IS-98_QU.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 379
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/CoinDisplay-iWoR0BMU.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 15351
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/crown-NMNJ6-VK.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 352
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/lock-CAG5RccF.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 412
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/user-DD-5DUVW.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 186
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/avatar-ixs41cq5.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 2613
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/proxy-gbdormya.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 121208
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/tour-D03BMTEP.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 19659
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-C7e-qgX5.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 314
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-BKqz_oOH.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 4352
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/gameCreation-7QUnbwLk.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 31473
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/ErrorBoundary-CNubh4T-.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 43719
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/actionsCatalog-BOqBt5wy.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 6366
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/AnalyticsService-BMBbF9S-.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 6488
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/useTranslation-BdauNPOZ.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 3874
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/i18n-Ddyvvowz.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 277205
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/avatarUtils-CBd99uWq.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 188
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/gameUtils-hllMGYPh.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 841
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/creators-BdQ0Kqzc.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 364
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-D8Wfxh48.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 156
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/formatDistanceToNow-DhpKhUbk.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 9682
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/index-CCVDdtPC.css",
+      "status": 200,
+      "ct": "text/css",
+      "size": 143967
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/manifest.webmanifest",
+      "status": 200,
+      "ct": "application/manifest+json",
+      "size": 813
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/Game-QkGXRHTR.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 35059
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/wand-sparkles-DuaVuhfE.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 747
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/thumbs-up-3xlfzfdY.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 540
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/ShareMenu-DgMG0s-m.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 12806
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/clipboard-D18mYxSs.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 6186
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/mail-D0O-liE7.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 205
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/share-2-B1vEkEyU.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 346
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/leaderboards-Bl1Xg4fx.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 2466
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/gameLikes-CVeS3kbw.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1838
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/follow-CUqA0aWI.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1865
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/textarea-D_1TMYK2.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 607
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/card-DLIi0Qe8.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1126
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/confirm-dialog-B_bgaQuk.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1216
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/alert-dialog-BwlBTuHq.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 3854
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/dist-Bhx37s1t.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 5194
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/tabs-Gm5XRVor.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 3640
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/history-BgFRjxWz.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 1129
+    },
+    {
+      "method": "GET",
+      "url": "https://fonts.gstatic.com/s/hankengrotesk/v12/ieVn2YZDLWuGJpnzaiwFXS9tYtpd59A.woff2",
+      "status": 200,
+      "ct": "font/woff2",
+      "size": 46272
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/Sandscape_Logo_White_Large.png",
+      "status": 200,
+      "ct": "image/png",
+      "size": 125464
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/ze1_logo_horizontal.png",
+      "status": 200,
+      "ct": "image/png",
+      "size": 124584
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/_vercel/insights/script.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 4550
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/games?select=id%2Ctitle%2Cdescription%2Cthumbnail_url%2Cpreview_video_url%2Cgame_content_url%2Csession_id%2Cshort_code%2Cvisibility%2Ccreator_id%2Clike_count%2Ccomment_count%2Cview_count%2Ctags%2Cstatus%2Cis_live%2Cis_placeholder%2Cplatform_compat%2Ccreated_at%2Cpublished_at&short_code=eq.3UpDloEh",
+      "status": 200,
+      "ct": "application/json",
+      "size": 1043
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/assets/CookieConsentBanner-BrtZ2LZ4.js",
+      "status": 200,
+      "ct": "application/javascript",
+      "size": 8348
+    },
+    {
+      "method": "POST",
+      "url": "https://sandscape.app/_vercel/insights/view",
+      "status": 200,
+      "ct": "text/plain",
+      "size": 2
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape.app/android-chrome-192x192.png",
+      "status": 200,
+      "ct": "image/png",
+      "size": 60600
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/profiles?select=user_id%2Cusername%2Cavatar_url&user_id=in.%2847730ba9-ca9a-4b42-9483-726118b84e20%29",
+      "status": 200,
+      "ct": "application/json",
+      "size": 145
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/comments?select=id%2Cuser_id%2Cgame_id%2Cparent_comment_id%2Ccontent%2Clike_count%2Ccreated_at&game_id=eq.3e1a1e7f-fe40-42ff-87d3-1bd545b7d05e&order=created_at.desc",
+      "status": 200,
+      "ct": "application/json",
+      "size": 896
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/profiles?select=user_id%2Cusername%2Cavatar_url&user_id=in.%2845bd2631-dc92-4fd5-9ff1-90957bb4b1be%2C47730ba9-ca9a-4b42-9483-726118b84e20%29",
+      "status": 200,
+      "ct": "application/json",
+      "size": 306
+    },
+    {
+      "method": "HEAD",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/game_likes?select=*&game_id=eq.3e1a1e7f-fe40-42ff-87d3-1bd545b7d05e",
+      "status": 200,
+      "ct": "application/json",
+      "size": 0
+    },
+    {
+      "method": "POST",
+      "url": "https://sandscape-prod.fly.dev/api/published/3e1a1e7f-fe40-42ff-87d3-1bd545b7d05e/view",
+      "status": 200,
+      "ct": "application/json",
+      "size": 34
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/games?select=tags&id=eq.3e1a1e7f-fe40-42ff-87d3-1bd545b7d05e",
+      "status": 200,
+      "ct": "application/json",
+      "size": 21
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape-prod.fly.dev/api/published/3e1a1e7f-fe40-42ff-87d3-1bd545b7d05e/index.html?v=1791302198666",
+      "status": 200,
+      "ct": "text/html",
+      "size": 0
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/storage/v1/object/public/avatars/47730ba9-ca9a-4b42-9483-726118b84e20/1761578457859.png",
+      "status": 200,
+      "ct": "image/png",
+      "size": 2907800
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/storage/v1/object/public/avatars/45bd2631-dc92-4fd5-9ff1-90957bb4b1be/1790976075897.jpeg",
+      "status": 0,
+      "ct": "",
+      "size": 0
+    },
+    {
+      "method": "GET",
+      "url": "https://sandscape-prod.fly.dev/api/leaderboards/3e1a1e7f-fe40-42ff-87d3-1bd545b7d05e/boards?limit=10&around_me=true",
+      "status": 200,
+      "ct": "application/json",
+      "size": 3152
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/games?select=id%2Ctitle%2Cshort_code%2Cthumbnail_url%2Cview_count%2Ccreator_id%2Cplatform_compat&id=neq.3e1a1e7f-fe40-42ff-87d3-1bd545b7d05e&status=eq.published&visibility=eq.public&limit=3&order=created_at.desc&platform_compat=in.%28desktop%2Cboth%29&tags=ov.%7BRacing%7D",
+      "status": 200,
+      "ct": "application/json",
+      "size": 253
+    },
+    {
+      "method": "GET",
+      "url": "https://rdfaagiybxrefnekhwrk.supabase.co/rest/v1/profiles?select=user_id%2Cusername%2Cavatar_url&user_id=in.%28b64010db-82ee-46ab-9e8b-440e69fcb717%29",
+      "status": 200,
+      "ct": "application/json",
+      "size": 89
+    },
+    {
+      "method": "GET",
+      "url": "https://gamemedia.sandscape.app/87f95ce7-bf89-4766-bae0-2c282a9b9758/thumbnail.webp",
+      "status": 200,
+      "ct": "image/png",
+      "size": 314292
+    }
+  ]
+}
