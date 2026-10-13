@@ -1,0 +1,19 @@
+/* Pre-mount paint, so the first frame is not a white flash. The theme
+         provider puts `light`/`dark` on <html>, and this follows it: because
+         <html> carries a background of its own, the CANVAS behind the whole
+         page takes that colour, not body's. Left dark-only, a light-mode page
+         showed the dark canvas through as a black band wherever the document
+         scrolled past body's box — and as a grey wash behind the translucent
+         sidebar. The `html.light` selector outranks any later element rule, so
+         the app cannot lose this race whichever order the stylesheets land in. */
+html,
+body {
+  margin: 0;
+  background: hsl(225 33% 2%);
+  color: hsl(0 0% 98%);
+}
+html.light,
+html.light body {
+  background: hsl(0 0% 100%);
+  color: hsl(0 0% 3.9%);
+}

@@ -1,0 +1,808 @@
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { c as r, u as i } from "./chunk-KS7C4IRE-CgpSK45w.js";
+import { t as a } from "./useToast-QK0Q4gGT.js";
+import { l as o } from "./AuthService-CQeU_0bQ.js";
+import { i as s, t as c } from "./button-Ap3ysi5G.js";
+import { t as l } from "./check-DVcwwxJi.js";
+import { t as u } from "./chevron-left-wlBcTn-9.js";
+import { t as d } from "./loader-circle-DBFTFT2k.js";
+import { a as f, c as p, t as ee } from "./ShareMenu-DgMG0s-m.js";
+import { t as te } from "./play-BHRX8EkG.js";
+import { t as ne } from "./send-Bx2TrLH3.js";
+import { t as m } from "./share-2-B1vEkEyU.js";
+import { c as re } from "./AnalyticsService-BMBbF9S-.js";
+import { t as ie } from "./useTranslation-BdauNPOZ.js";
+import { n as ae, r as oe, t as h } from "./gameUtils-hllMGYPh.js";
+import { n as g, r as _, t as se } from "./avatar-ixs41cq5.js";
+import { t as v } from "./formatDistanceToNow-DhpKhUbk.js";
+import {
+  A as y,
+  C as b,
+  E as ce,
+  L as x,
+  T as le,
+  W as S,
+  b as C,
+  et as w,
+  g as T,
+  it as E,
+  q as ue,
+  rt as D,
+  s as de,
+  u as fe,
+  w as pe,
+} from "./index-BKDksszn.js";
+import { a as me, i as he, r as ge } from "./gameLikes-CVeS3kbw.js";
+import { a as _e, i as ve, t as ye } from "./follow-CUqA0aWI.js";
+import {
+  a as O,
+  i as k,
+  n as A,
+  o as j,
+  r as M,
+  s as N,
+  t as P,
+} from "./dist-Bhx37s1t.js";
+import { t as be } from "./textarea-D_1TMYK2.js";
+var F = e(t()),
+  I = n(),
+  xe = P,
+  L = j,
+  R = F.forwardRef(({ className: e, ...t }, n) =>
+    (0, I.jsx)(O, {
+      className: o(
+        `fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0`,
+        e,
+      ),
+      ...t,
+      ref: n,
+    }),
+  );
+R.displayName = O.displayName;
+var Se = s(
+    `fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500`,
+    {
+      variants: {
+        side: {
+          top: `inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top`,
+          bottom: `inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom`,
+          left: `inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm`,
+          right: `inset-y-0 right-0 h-full w-3/4  border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm`,
+        },
+      },
+      defaultVariants: { side: `right` },
+    },
+  ),
+  Ce = F.forwardRef(
+    (
+      {
+        side: e = `right`,
+        className: t,
+        overlayClassName: n,
+        children: r,
+        ...i
+      },
+      a,
+    ) =>
+      (0, I.jsxs)(L, {
+        children: [
+          (0, I.jsx)(R, { className: n }),
+          (0, I.jsxs)(M, {
+            ref: a,
+            className: o(Se({ side: e }), t),
+            ...i,
+            children: [
+              r,
+              (0, I.jsxs)(A, {
+                className: `absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary`,
+                children: [
+                  (0, I.jsx)(ue, { className: `h-4 w-4` }),
+                  (0, I.jsx)(`span`, {
+                    className: `sr-only`,
+                    children: `Close`,
+                  }),
+                ],
+              }),
+            ],
+          }),
+        ],
+      }),
+  );
+Ce.displayName = M.displayName;
+var we = ({ className: e, ...t }) =>
+  (0, I.jsx)(`div`, {
+    className: o(`flex flex-col space-y-2 text-center sm:text-left`, e),
+    ...t,
+  });
+we.displayName = `SheetHeader`;
+var z = ({ className: e, ...t }) =>
+  (0, I.jsx)(`div`, {
+    className: o(
+      `flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2`,
+      e,
+    ),
+    ...t,
+  });
+z.displayName = `SheetFooter`;
+var Te = F.forwardRef(({ className: e, ...t }, n) =>
+  (0, I.jsx)(N, {
+    ref: n,
+    className: o(`text-lg font-semibold text-foreground`, e),
+    ...t,
+  }),
+);
+Te.displayName = N.displayName;
+var Ee = F.forwardRef(({ className: e, ...t }, n) =>
+  (0, I.jsx)(k, {
+    ref: n,
+    className: o(`text-sm text-muted-foreground`, e),
+    ...t,
+  }),
+);
+Ee.displayName = k.displayName;
+var De = 1,
+  Oe = 3,
+  ke = 48,
+  Ae = (e) => e.shortCode || e._id;
+function je({
+  game: e,
+  viewerPlatform: t,
+  isActive: n,
+  shouldMount: r,
+  isLiked: i,
+  likeCount: a,
+  isFollowing: s,
+  canFollow: c,
+  isLikeLoading: u,
+  isFollowLoading: f,
+  onToggleLike: ne,
+  onToggleFollow: re,
+  onOpenComments: v,
+  onPlay: y,
+}) {
+  let { t: b } = ie(),
+    x = (0, F.useRef)(null),
+    [le, S] = (0, F.useState)(!1),
+    C = ae(e.previewVideo),
+    T =
+      e.platformCompat && e.platformCompat !== `both` && e.platformCompat !== t
+        ? e.platformCompat
+        : null;
+  return (
+    (0, F.useEffect)(() => {
+      let e = x.current;
+      e &&
+        (n
+          ? e.play().catch(() => {})
+          : (e.pause(), (e.currentTime = 0), S(!1)));
+    }, [n, r]),
+    (0, I.jsxs)(`div`, {
+      className: `relative h-full w-full shrink-0 snap-start snap-always overflow-hidden bg-black`,
+      children: [
+        e.thumbnail
+          ? (0, I.jsx)(`img`, {
+              src: oe(e.thumbnail),
+              alt: ``,
+              className: `absolute inset-0 h-full w-full object-cover`,
+            })
+          : (0, I.jsx)(`div`, { className: `absolute inset-0 bg-neutral-900` }),
+        r &&
+          C &&
+          (0, I.jsx)(`video`, {
+            ref: x,
+            src: C,
+            muted: !0,
+            loop: !0,
+            playsInline: !0,
+            preload: `none`,
+            onPlaying: () => S(!0),
+            className: o(
+              `absolute inset-0 h-full w-full object-cover transition-opacity duration-300`,
+              le ? `opacity-100` : `opacity-0`,
+            ),
+          }),
+        (0, I.jsx)(`div`, {
+          className: `pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40`,
+        }),
+        (0, I.jsxs)(`div`, {
+          className: `absolute right-3 bottom-[20%] flex flex-col items-center gap-5`,
+          children: [
+            (0, I.jsxs)(`div`, {
+              className: `relative`,
+              children: [
+                (0, I.jsxs)(se, {
+                  className: `h-11 w-11 border-2 border-white`,
+                  children: [
+                    (0, I.jsx)(_, { src: e.creator.avatar }),
+                    (0, I.jsx)(g, { children: e.creator.name?.[0] ?? `?` }),
+                  ],
+                }),
+                c &&
+                  (0, I.jsx)(`button`, {
+                    onClick: re,
+                    disabled: f,
+                    "aria-label": s
+                      ? b(`game.unfollowCreator`, `Unfollow creator`)
+                      : b(`game.followCreator`, `Follow creator`),
+                    className: o(
+                      `absolute -bottom-2 left-1/2 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full border-2 border-black text-white transition-colors disabled:cursor-wait disabled:opacity-70`,
+                      s ? `bg-emerald-500` : `bg-primary`,
+                    ),
+                    children: f
+                      ? (0, I.jsx)(d, { className: `h-3 w-3 animate-spin` })
+                      : s
+                        ? (0, I.jsx)(l, { className: `h-3 w-3` })
+                        : (0, I.jsx)(w, { className: `h-3 w-3` }),
+                  }),
+              ],
+            }),
+            (0, I.jsxs)(`button`, {
+              onClick: ne,
+              disabled: u,
+              "aria-label": i
+                ? b(`game.unlike`, `Unlike`)
+                : b(`game.like`, `Like`),
+              className: `flex flex-col items-center gap-1 text-white disabled:cursor-wait disabled:opacity-70`,
+              children: [
+                (0, I.jsx)(E, {
+                  className: o(
+                    `h-7 w-7 drop-shadow transition-transform active:scale-125`,
+                    i && `fill-red-500 text-red-500`,
+                  ),
+                }),
+                (0, I.jsx)(`span`, {
+                  className: `text-xs font-semibold drop-shadow`,
+                  children: h(a),
+                }),
+              ],
+            }),
+            (0, I.jsxs)(`button`, {
+              onClick: v,
+              "aria-label": b(`game.comments`, `Comments`),
+              className: `flex flex-col items-center gap-1 text-white`,
+              children: [
+                (0, I.jsx)(D, { className: `h-7 w-7 drop-shadow` }),
+                (0, I.jsx)(`span`, {
+                  className: `text-xs font-semibold drop-shadow`,
+                  children: h(e.comments),
+                }),
+              ],
+            }),
+            (0, I.jsx)(ee, {
+              url: `${window.location.origin}${ce(e)}`,
+              title: e.title,
+              text: e.description || e.title,
+              contentClassName: `z-[80]`,
+              trigger: (0, I.jsxs)(`button`, {
+                "aria-label": b(`game.share`, `Share`),
+                className: `flex flex-col items-center gap-1 text-white`,
+                children: [
+                  (0, I.jsx)(m, { className: `h-7 w-7 drop-shadow` }),
+                  (0, I.jsx)(`span`, {
+                    className: `text-xs font-semibold drop-shadow`,
+                    children: b(`game.share`, `Share`),
+                  }),
+                ],
+              }),
+            }),
+          ],
+        }),
+        (0, I.jsxs)(`div`, {
+          className: `absolute bottom-24 left-4 right-20 flex flex-col gap-2 text-white`,
+          children: [
+            (0, I.jsx)(`h1`, {
+              className: `text-xl font-bold drop-shadow line-clamp-2`,
+              children: e.title,
+            }),
+            (0, I.jsxs)(`p`, {
+              className: `text-sm font-medium text-white/80 drop-shadow`,
+              children: [`@`, e.creator.name],
+            }),
+            e.description &&
+              (0, I.jsx)(`p`, {
+                className: `text-sm text-white/70 drop-shadow line-clamp-2`,
+                children: e.description,
+              }),
+            T &&
+              (0, I.jsxs)(`div`, {
+                className: `mt-1 flex items-start gap-2 rounded-lg bg-black/60 px-3 py-2 backdrop-blur-sm`,
+                children: [
+                  (0, I.jsx)(p, { className: `mt-0.5 h-4 w-4 shrink-0` }),
+                  (0, I.jsxs)(`div`, {
+                    className: `space-y-0.5`,
+                    children: [
+                      (0, I.jsx)(`p`, {
+                        className: `text-xs font-semibold`,
+                        children: b(
+                          `game.compat.title`,
+                          `Built for another device`,
+                        ),
+                      }),
+                      (0, I.jsx)(`p`, {
+                        className: `text-xs text-white/80`,
+                        children:
+                          T === `desktop`
+                            ? b(
+                                `game.compat.desktopOnly`,
+                                `This game was made for desktop — it may not run properly on this device.`,
+                              )
+                            : b(
+                                `game.compat.mobileOnly`,
+                                `This game was made for mobile — it may not run properly on this device.`,
+                              ),
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            (0, I.jsxs)(`button`, {
+              onClick: y,
+              className: `mt-1 flex w-fit items-center gap-2 rounded-full bg-white/95 px-6 py-3 font-bold text-neutral-950 shadow-lg transition-transform active:scale-95`,
+              children: [
+                (0, I.jsx)(te, { className: `h-5 w-5 fill-neutral-950` }),
+                b(`game.play`, `Play`),
+              ],
+            }),
+          ],
+        }),
+      ],
+    })
+  );
+}
+function B() {
+  let [e, t] = i(),
+    n = r(),
+    { user: o, isAuthenticated: s } = S(),
+    { toast: l } = a(),
+    { t: p, i18n: ee } = ie(),
+    { trackEvent: te } = x(),
+    m = C(),
+    ae = (0, F.useRef)(e.get(`g`) || ``),
+    oe = (0, F.useRef)(y(e)),
+    w = (0, F.useRef)(``),
+    [E, ue] = (0, F.useState)([]),
+    [D, O] = (0, F.useState)(0),
+    [k, A] = (0, F.useState)(4),
+    [j, M] = (0, F.useState)(!0),
+    [N, P] = (0, F.useState)(null),
+    [L, R] = (0, F.useState)({}),
+    [Se, z] = (0, F.useState)({}),
+    [B, V] = (0, F.useState)({}),
+    [Me, Ne] = (0, F.useState)({}),
+    [Pe, Fe] = (0, F.useState)({}),
+    H = (0, F.useRef)(new Set()),
+    U = (0, F.useRef)(new Set()),
+    [Ie, Le] = (0, F.useState)(!1),
+    [W, G] = (0, F.useState)([]),
+    [Re, ze] = (0, F.useState)(!1),
+    [K, q] = (0, F.useState)(``),
+    [J, Be] = (0, F.useState)(!1),
+    Y = (0, F.useRef)(null),
+    Ve = (0, F.useRef)(!1),
+    X = (0, F.useRef)(null),
+    Z = (0, F.useRef)(null),
+    He = (0, F.useRef)(!1),
+    Q = E[D],
+    Ue = (e) => (e._id === w.current ? oe.current : `game_feed_suggestion`);
+  ((0, F.useEffect)(() => {
+    let e = !1;
+    return (
+      (async () => {
+        (M(!0), P(null));
+        try {
+          let t = ae.current,
+            { games: n } = await le(`all`, void 0, m),
+            r = n,
+            i = r.findIndex((e) => e.shortCode === t || e._id === t);
+          if (i === -1 && t) {
+            let { game: e } = await b(t);
+            ((r = [e, ...r.filter((t) => t._id !== e._id)]), (i = 0));
+          }
+          if (e) return;
+          let a = Math.max(0, i);
+          ((w.current = r[a]?._id || ``),
+            ue(r),
+            O(a),
+            A(Math.max(4, a + Oe)),
+            z(Object.fromEntries(r.map((e) => [e._id, e.likes ?? 0]))));
+        } catch (t) {
+          (console.error(`Error loading game feed:`, t),
+            e || P(p(`game.notFound`, `Game not found`)));
+        } finally {
+          e || M(!1);
+        }
+      })(),
+      () => {
+        e = !0;
+      }
+    );
+  }, [p, m]),
+    (0, F.useLayoutEffect)(() => {
+      if (j || Ve.current || !Y.current) return;
+      let e = Y.current;
+      (D > 0 && (e.scrollTop = e.clientHeight * D), (Ve.current = !0));
+    }, [j, D]));
+  let We = (0, F.useCallback)(() => {
+      X.current === null &&
+        (X.current = window.requestAnimationFrame(() => {
+          X.current = null;
+          let e = Y.current;
+          if (!e || e.clientHeight === 0) return;
+          let t = Math.round(e.scrollTop / e.clientHeight);
+          O((e) => (e === t ? e : t));
+        }));
+    }, []),
+    Ge = (0, F.useCallback)((e) => {
+      let t = Y.current,
+        n = e.touches[0];
+      !t ||
+        !n ||
+        e.touches.length !== 1 ||
+        t.clientHeight === 0 ||
+        (Z.current = {
+          x: n.clientX,
+          y: n.clientY,
+          page: Math.round(t.scrollTop / t.clientHeight),
+        });
+    }, []),
+    Ke = (0, F.useCallback)(
+      (e) => {
+        let t = Y.current,
+          n = Z.current,
+          r = e.changedTouches[0];
+        if (((Z.current = null), !t || !n || !r || t.clientHeight === 0))
+          return;
+        let i = r.clientX - n.x,
+          a = r.clientY - n.y;
+        if (Math.abs(a) < ke || Math.abs(a) <= Math.abs(i)) return;
+        let o = a < 0 ? 1 : -1,
+          s = Math.max(0, Math.min(E.length - 1, n.page + o));
+        t.scrollTo({ top: s * t.clientHeight, behavior: `smooth` });
+      },
+      [E.length],
+    );
+  ((0, F.useEffect)(
+    () => () => {
+      X.current !== null && window.cancelAnimationFrame(X.current);
+    },
+    [],
+  ),
+    (0, F.useEffect)(() => {
+      D + Oe >= k && k < E.length && A((e) => Math.min(E.length, e + 10));
+    }, [D, k, E.length]),
+    (0, F.useEffect)(() => {
+      if (!Q || He.current) return;
+      let n = Ae(Q),
+        r = Ue(Q);
+      n &&
+        (n !== e.get(`g`) || r !== e.get(`game_source`)) &&
+        t({ g: n, game_source: r }, { replace: !0 });
+    }, [Q]),
+    (0, F.useEffect)(() => {
+      if (!Q) return;
+      if (!s) {
+        (R((e) => ({ ...e, [Q._id]: !1 })),
+          Q.creatorId && V((e) => ({ ...e, [Q.creatorId]: !1 })));
+        return;
+      }
+      let e = !1;
+      return (
+        (async () => {
+          try {
+            let t = await ge(Q._id);
+            e || R((e) => ({ ...e, [Q._id]: t }));
+          } catch (e) {
+            console.error(`Error checking like status:`, e);
+          }
+          if (!(!Q.creatorId || Q.creatorId === o?.id))
+            try {
+              let t = await ve(Q.creatorId);
+              e || V((e) => ({ ...e, [Q.creatorId]: t }));
+            } catch (e) {
+              console.error(`Error checking follow status:`, e);
+            }
+        })(),
+        () => {
+          e = !0;
+        }
+      );
+    }, [Q, s, o?.id]));
+  let $ = () => {
+      let e = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      n(fe(e, `play_gate`));
+    },
+    qe = async (e) => {
+      if (!s) {
+        $();
+        return;
+      }
+      if (H.current.has(e._id)) return;
+      (H.current.add(e._id), Ne((t) => ({ ...t, [e._id]: !0 })));
+      let t = !!L[e._id];
+      (R((n) => ({ ...n, [e._id]: !t })),
+        z((n) => ({
+          ...n,
+          [e._id]: Math.max(0, (n[e._id] ?? 0) + (t ? -1 : 1)),
+        })));
+      try {
+        t ? await me(e._id) : await he(e._id);
+      } catch (n) {
+        (console.error(`Error updating like status:`, n),
+          R((n) => ({ ...n, [e._id]: t })),
+          z((n) => ({
+            ...n,
+            [e._id]: Math.max(0, (n[e._id] ?? 0) + (t ? 1 : -1)),
+          })),
+          l({
+            title: p(`game.toast.likeFailed`, `Failed to update like status.`),
+            variant: `destructive`,
+          }));
+      } finally {
+        (H.current.delete(e._id), Ne((t) => ({ ...t, [e._id]: !1 })));
+      }
+    },
+    Je = async (e) => {
+      if (!s) {
+        $();
+        return;
+      }
+      if (!e.creatorId || e.creatorId === o?.id || U.current.has(e.creatorId))
+        return;
+      (U.current.add(e.creatorId), Fe((t) => ({ ...t, [e.creatorId]: !0 })));
+      let t = !!B[e.creatorId];
+      V((n) => ({ ...n, [e.creatorId]: !t }));
+      try {
+        t ? await _e(e.creatorId) : await ye(e.creatorId);
+      } catch (n) {
+        (console.error(`Error updating follow status:`, n),
+          V((n) => ({ ...n, [e.creatorId]: t })),
+          l({
+            title: p(
+              `game.toast.followFailed`,
+              `Failed to update follow status.`,
+            ),
+            variant: `destructive`,
+          }));
+      } finally {
+        (U.current.delete(e.creatorId),
+          Fe((t) => ({ ...t, [e.creatorId]: !1 })));
+      }
+    },
+    Ye = async (e) => {
+      (Le(!0), ze(!0));
+      try {
+        let { comments: t } = await pe(e._id);
+        G(t);
+      } catch (e) {
+        (console.error(`Error loading comments:`, e), G([]));
+      } finally {
+        ze(!1);
+      }
+    },
+    Xe = async () => {
+      if (!(!Q || !K.trim() || J)) {
+        if (!s) {
+          $();
+          return;
+        }
+        Be(!0);
+        try {
+          (await f(Q._id, K.trim()), q(``));
+          let { comments: e } = await pe(Q._id);
+          G(e);
+        } catch (e) {
+          (console.error(`Error posting comment:`, e),
+            l({
+              title: p(`game.toast.commentFailed`, `Failed to post comment.`),
+              variant: `destructive`,
+            }));
+        } finally {
+          Be(!1);
+        }
+      }
+    },
+    Ze = (e) => {
+      He.current = !0;
+      let t = Ue(e);
+      (t === `game_feed_suggestion` &&
+        te(re.events.SELECT_CONTENT, {
+          content_type: `game`,
+          content_id: `game_${e._id}`,
+          game_id: e._id,
+          game_title: e.title,
+          game_source: t,
+          source_game_id: w.current,
+        }),
+        document.documentElement
+          .requestFullscreen?.({ navigationUI: `hide` })
+          ?.catch(() => {}),
+        n(`${ce(e, t)}&play=1`));
+    },
+    Qe = () => {
+      window.history.length > 1 ? n(-1) : n(`/`);
+    },
+    $e = (0, F.useMemo)(() => E.slice(0, k), [E, k]);
+  return j
+    ? (0, I.jsx)(`div`, {
+        className: `fixed inset-0 z-[60] flex items-center justify-center bg-black`,
+        children: (0, I.jsx)(d, {
+          className: `h-8 w-8 animate-spin text-white/70`,
+        }),
+      })
+    : N || E.length === 0
+      ? (0, I.jsxs)(`div`, {
+          className: `fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-black text-white`,
+          children: [
+            (0, I.jsx)(`p`, {
+              children: N ?? p(`game.notFound`, `Game not found`),
+            }),
+            (0, I.jsx)(c, {
+              variant: `secondary`,
+              onClick: () => n(`/`),
+              children: p(`common.back`, `Back`),
+            }),
+          ],
+        })
+      : (0, I.jsxs)(`div`, {
+          className: `fixed inset-0 z-[60] bg-black`,
+          children: [
+            Q &&
+              (0, I.jsx)(T, {
+                title: `${Q.title} | Sandscape`,
+                description: Q.description || Q.title,
+              }),
+            (0, I.jsx)(`button`, {
+              onClick: Qe,
+              "aria-label": p(`common.back`, `Back`),
+              className: `absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur`,
+              children: (0, I.jsx)(u, { className: `h-5 w-5` }),
+            }),
+            (0, I.jsx)(`div`, {
+              ref: Y,
+              onScroll: We,
+              onTouchStart: Ge,
+              onTouchEnd: Ke,
+              onTouchCancel: () => {
+                Z.current = null;
+              },
+              className: `h-full w-full touch-pan-x snap-y snap-mandatory overflow-y-scroll overscroll-contain scrollbar-hide`,
+              children: $e.map((e, t) =>
+                (0, I.jsx)(
+                  je,
+                  {
+                    game: e,
+                    viewerPlatform: m,
+                    isActive: t === D,
+                    shouldMount: Math.abs(t - D) <= De,
+                    isLiked: !!L[e._id],
+                    likeCount: Se[e._id] ?? e.likes ?? 0,
+                    isFollowing: !!B[e.creatorId],
+                    canFollow: !!e.creatorId && e.creatorId !== o?.id,
+                    isLikeLoading: !!Me[e._id],
+                    isFollowLoading: !!Pe[e.creatorId],
+                    onToggleLike: () => qe(e),
+                    onToggleFollow: () => Je(e),
+                    onOpenComments: () => Ye(e),
+                    onPlay: () => Ze(e),
+                  },
+                  e._id,
+                ),
+              ),
+            }),
+            (0, I.jsx)(xe, {
+              open: Ie,
+              onOpenChange: (e) => {
+                (Le(e), e || q(``));
+              },
+              children: (0, I.jsxs)(Ce, {
+                side: `bottom`,
+                overlayClassName: `z-[70]`,
+                className: `z-[71] flex h-[70vh] flex-col p-0`,
+                children: [
+                  (0, I.jsxs)(we, {
+                    className: `border-b border-border px-4 py-3`,
+                    children: [
+                      (0, I.jsxs)(Te, {
+                        children: [
+                          p(`game.comments`, `Comments`),
+                          Q ? ` (${h(W.length)})` : ``,
+                        ],
+                      }),
+                      (0, I.jsx)(Ee, {
+                        className: `sr-only`,
+                        children: p(
+                          `game.commentsDescription`,
+                          `View and add comments for this game`,
+                        ),
+                      }),
+                    ],
+                  }),
+                  (0, I.jsx)(`div`, {
+                    className: `flex-1 space-y-4 overflow-y-auto px-4 py-3`,
+                    children: Re
+                      ? (0, I.jsx)(`div`, {
+                          className: `flex justify-center py-8`,
+                          children: (0, I.jsx)(d, {
+                            className: `h-5 w-5 animate-spin text-muted-foreground`,
+                          }),
+                        })
+                      : W.length === 0
+                        ? (0, I.jsx)(`p`, {
+                            className: `py-8 text-center text-sm text-muted-foreground`,
+                            children: p(`game.noComments`, `No comments yet`),
+                          })
+                        : W.map((e) =>
+                            (0, I.jsxs)(
+                              `div`,
+                              {
+                                className: `flex gap-3`,
+                                children: [
+                                  (0, I.jsxs)(se, {
+                                    className: `h-8 w-8 shrink-0`,
+                                    children: [
+                                      (0, I.jsx)(_, { src: e.user.avatar }),
+                                      (0, I.jsx)(g, {
+                                        children: e.user.name?.[0] ?? `?`,
+                                      }),
+                                    ],
+                                  }),
+                                  (0, I.jsxs)(`div`, {
+                                    className: `min-w-0 flex-1`,
+                                    children: [
+                                      (0, I.jsxs)(`div`, {
+                                        className: `flex items-baseline gap-2`,
+                                        children: [
+                                          (0, I.jsx)(`span`, {
+                                            className: `text-sm font-medium`,
+                                            children: e.user.name,
+                                          }),
+                                          (0, I.jsx)(`span`, {
+                                            className: `text-xs text-muted-foreground`,
+                                            children: v(new Date(e.createdAt), {
+                                              addSuffix: !0,
+                                              locale: de(ee.language),
+                                            }),
+                                          }),
+                                        ],
+                                      }),
+                                      (0, I.jsx)(`p`, {
+                                        className: `break-words text-sm text-muted-foreground`,
+                                        children: e.text,
+                                      }),
+                                    ],
+                                  }),
+                                ],
+                              },
+                              e._id,
+                            ),
+                          ),
+                  }),
+                  (0, I.jsxs)(`div`, {
+                    className: `flex items-end gap-2 border-t border-border p-3`,
+                    children: [
+                      (0, I.jsx)(be, {
+                        value: K,
+                        onChange: (e) => q(e.target.value),
+                        placeholder: p(`game.addComment`, `Add a comment...`),
+                        rows: 1,
+                        className: `max-h-24 min-h-[40px] resize-none`,
+                      }),
+                      (0, I.jsx)(c, {
+                        size: `icon`,
+                        onClick: Xe,
+                        disabled: !K.trim() || J,
+                        "aria-label": p(`game.postComment`, `Post comment`),
+                        children: J
+                          ? (0, I.jsx)(d, { className: `h-4 w-4 animate-spin` })
+                          : (0, I.jsx)(ne, { className: `h-4 w-4` }),
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            }),
+          ],
+        });
+}
+export { B as GameStoryFeed };

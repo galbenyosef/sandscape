@@ -1,0 +1,602 @@
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { t as r } from "./react-dom-CWn-H0Rd.js";
+import { r as i } from "./button-Ap3ysi5G.js";
+var a = i(`ChevronRight`, [[`path`, { d: `m9 18 6-6-6-6`, key: `mthhwq` }]]),
+  o = i(`Circle`, [[`circle`, { cx: `12`, cy: `12`, r: `10`, key: `1mglay` }]]),
+  s = i(`Globe`, [
+    [`circle`, { cx: `12`, cy: `12`, r: `10`, key: `1mglay` }],
+    [
+      `path`,
+      { d: `M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20`, key: `13o1zl` },
+    ],
+    [`path`, { d: `M2 12h20`, key: `9i4pu4` }],
+  ]),
+  c = i(`Moon`, [
+    [`path`, { d: `M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z`, key: `a7tn18` }],
+  ]),
+  l = i(`Paintbrush`, [
+    [`path`, { d: `m14.622 17.897-10.68-2.913`, key: `vj2p1u` }],
+    [
+      `path`,
+      {
+        d: `M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z`,
+        key: `18tc5c`,
+      },
+    ],
+    [
+      `path`,
+      {
+        d: `M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15`,
+        key: `ytzfxy`,
+      },
+    ],
+  ]),
+  u = i(`Palette`, [
+    [
+      `circle`,
+      { cx: `13.5`, cy: `6.5`, r: `.5`, fill: `currentColor`, key: `1okk4w` },
+    ],
+    [
+      `circle`,
+      { cx: `17.5`, cy: `10.5`, r: `.5`, fill: `currentColor`, key: `f64h9f` },
+    ],
+    [
+      `circle`,
+      { cx: `8.5`, cy: `7.5`, r: `.5`, fill: `currentColor`, key: `fotxhn` },
+    ],
+    [
+      `circle`,
+      { cx: `6.5`, cy: `12.5`, r: `.5`, fill: `currentColor`, key: `qy21gx` },
+    ],
+    [
+      `path`,
+      {
+        d: `M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z`,
+        key: `12rzf8`,
+      },
+    ],
+  ]),
+  d = i(`Sun`, [
+    [`circle`, { cx: `12`, cy: `12`, r: `4`, key: `4exip2` }],
+    [`path`, { d: `M12 2v2`, key: `tus03m` }],
+    [`path`, { d: `M12 20v2`, key: `1lh1kg` }],
+    [`path`, { d: `m4.93 4.93 1.41 1.41`, key: `149t6j` }],
+    [`path`, { d: `m17.66 17.66 1.41 1.41`, key: `ptbguv` }],
+    [`path`, { d: `M2 12h2`, key: `1t8f8n` }],
+    [`path`, { d: `M20 12h2`, key: `1q8mjw` }],
+    [`path`, { d: `m6.34 17.66-1.41 1.41`, key: `1m8zz5` }],
+    [`path`, { d: `m19.07 4.93-1.41 1.41`, key: `1shlcs` }],
+  ]),
+  f = e(t(), 1),
+  p = (e) => {
+    let t,
+      n = new Set(),
+      r = (e, r) => {
+        let i = typeof e == `function` ? e(t) : e;
+        if (!Object.is(i, t)) {
+          let e = t;
+          ((t =
+            (r ?? (typeof i != `object` || !i)) ? i : Object.assign({}, t, i)),
+            n.forEach((n) => n(t, e)));
+        }
+      },
+      i = () => t,
+      a = {
+        setState: r,
+        getState: i,
+        getInitialState: () => o,
+        subscribe: (e) => (n.add(e), () => n.delete(e)),
+      },
+      o = (t = e(r, i, a));
+    return a;
+  },
+  m = (e) => (e ? p(e) : p),
+  h = (e) => e;
+function g(e, t = h) {
+  let n = f.useSyncExternalStore(
+    e.subscribe,
+    f.useCallback(() => t(e.getState()), [e, t]),
+    f.useCallback(() => t(e.getInitialState()), [e, t]),
+  );
+  return (f.useDebugValue(n), n);
+}
+var _ = (e) => {
+    let t = m(e),
+      n = (e) => g(t, e);
+    return (Object.assign(n, t), n);
+  },
+  v = (e) => (e ? _(e) : _),
+  y = {
+    active: !1,
+    kind: null,
+    payload: null,
+    pointer: { x: 0, y: 0 },
+    hoveredZoneId: null,
+    canDrop: !1,
+  },
+  b = v((e) => ({
+    ...y,
+    begin: (t, n, r, i) =>
+      e({
+        active: !0,
+        kind: t,
+        payload: n,
+        pointer: { x: r, y: i },
+        hoveredZoneId: null,
+        canDrop: !1,
+      }),
+    setPointer: (t, n) => e({ pointer: { x: t, y: n } }),
+    setHover: (t, n) => e({ hoveredZoneId: t, canDrop: n }),
+    clear: () => e(y),
+  })),
+  x = e(r()),
+  S = n(),
+  C = 14;
+function w() {
+  let e = b((e) => e.active),
+    t = b((e) => e.pointer),
+    n = k();
+  return e
+    ? (0, x.createPortal)(
+        (0, S.jsx)(`div`, {
+          className: `fixed left-0 top-0 z-[100] pointer-events-none`,
+          style: {
+            transform: `translate3d(${t.x + C}px, ${t.y + C}px, 0) scale(1.02)`,
+            opacity: 0.92,
+            filter: `drop-shadow(0 8px 20px rgba(0,0,0,0.55))`,
+            willChange: `transform`,
+          },
+          children: n.current,
+        }),
+        document.body,
+      )
+    : null;
+}
+var T = (0, f.createContext)(null),
+  E = 36,
+  D = 18,
+  O = (0, f.createContext)(null);
+function k() {
+  let e = (0, f.useContext)(O);
+  if (!e) throw Error(`useDragGhost must be used within <DragProvider>`);
+  return e;
+}
+function A() {
+  let e = (0, f.useContext)(T);
+  if (!e) throw Error(`useDragContext must be used within <DragProvider>`);
+  return e;
+}
+function j(e, t) {
+  let n = e;
+  for (; n && n !== document.body && n instanceof HTMLElement;) {
+    let e = getComputedStyle(n),
+      r = t === `y` ? e.overflowY : e.overflowX,
+      i = r === `auto` || r === `scroll`,
+      a =
+        t === `y`
+          ? n.scrollHeight > n.clientHeight
+          : n.scrollWidth > n.clientWidth;
+    if (i && a) return n;
+    n = n.parentElement;
+  }
+  let r = document.scrollingElement;
+  return r &&
+    (t === `y`
+      ? r.scrollHeight > r.clientHeight
+      : r.scrollWidth > r.clientWidth)
+    ? r
+    : null;
+}
+function M(e) {
+  if (e === document.scrollingElement || e === document.documentElement)
+    return {
+      top: 0,
+      bottom: window.innerHeight,
+      left: 0,
+      right: window.innerWidth,
+    };
+  let t = e.getBoundingClientRect();
+  return { top: t.top, bottom: t.bottom, left: t.left, right: t.right };
+}
+function N({ children: e }) {
+  let t = (0, f.useRef)(new Map()),
+    n = (0, f.useRef)(null),
+    r = (0, f.useRef)(null),
+    i = (0, f.useRef)(null),
+    a = (0, f.useRef)(null),
+    o = b,
+    s = (0, f.useCallback)(() => {
+      (i.current !== null &&
+        (cancelAnimationFrame(i.current), (i.current = null)),
+        (a.current = null));
+    }, []),
+    c = (0, f.useCallback)(() => {
+      i.current = null;
+      let e = a.current;
+      if (!e) return;
+      let t = document.elementFromPoint(e.x, e.y),
+        n = j(t, `y`),
+        r = j(t, `x`),
+        o = !1;
+      if (n) {
+        let t = M(n);
+        e.y - t.top < E
+          ? ((n.scrollTop -= D), (o = !0))
+          : t.bottom - e.y < E && ((n.scrollTop += D), (o = !0));
+      }
+      if (r) {
+        let t = M(r);
+        e.x - t.left < E
+          ? ((r.scrollLeft -= D), (o = !0))
+          : t.right - e.x < E && ((r.scrollLeft += D), (o = !0));
+      }
+      o ? (i.current = requestAnimationFrame(c)) : (a.current = null);
+    }, []),
+    l = (0, f.useCallback)(
+      (e, t) => {
+        ((a.current = { x: e, y: t }),
+          i.current === null && (i.current = requestAnimationFrame(c)));
+      },
+      [c],
+    ),
+    u = (0, f.useRef)(null),
+    d = (0, f.useCallback)(() => {
+      let e = u.current;
+      e &&
+        (window.removeEventListener(`pointermove`, e.move),
+        window.removeEventListener(`pointerup`, e.up),
+        window.removeEventListener(`pointercancel`, e.cancel),
+        window.removeEventListener(`keydown`, e.key),
+        (u.current = null));
+    }, []),
+    p = (0, f.useCallback)(() => {
+      ((document.body.style.cursor = ``),
+        (document.body.style.userSelect = ``));
+    }, []),
+    m = (0, f.useCallback)(
+      (e) => {
+        let i = r.current,
+          a = !!i?.active;
+        (i?.lastZoneId && t.current.get(i.lastZoneId)?.onDragLeave?.(),
+          i?.onDragEnd?.(e),
+          (r.current = null),
+          d(),
+          s(),
+          a && (p(), (n.current = null), o.getState().clear()));
+      },
+      [d, s, p, o],
+    ),
+    h = (0, f.useCallback)(
+      (e) => {
+        (r.current && m(!1),
+          (r.current = {
+            data: e.data,
+            onDragEnd: e.onDragEnd,
+            startX: e.startX,
+            startY: e.startY,
+            thresholdPx: e.thresholdPx ?? 5,
+            active: !1,
+            lastZoneId: null,
+          }),
+          (n.current = e.preview));
+        let i = (t, n) => {
+            let i = r.current;
+            !i ||
+              i.active ||
+              ((i.active = !0),
+              (document.body.style.cursor = `grabbing`),
+              (document.body.style.userSelect = `none`),
+              o.getState().begin(i.data.kind, i.data.payload, t, n),
+              e.onActivate?.());
+          },
+          a = (e) => {
+            let n = r.current;
+            if (!n) return;
+            let { clientX: a, clientY: c } = e;
+            if (!n.active) {
+              if (Math.hypot(a - n.startX, c - n.startY) < n.thresholdPx)
+                return;
+              i(a, c);
+            }
+            o.getState().setPointer(a, c);
+            let u = { x: a, y: c },
+              d =
+                document.elementFromPoint(a, c)?.closest(`[data-dnd-zone]`)
+                  ?.dataset.dndZone ?? null,
+              f = d ? (t.current.get(d) ?? null) : null,
+              p = !!f && f.accept(n.data);
+            (d !== n.lastZoneId &&
+              (n.lastZoneId && t.current.get(n.lastZoneId)?.onDragLeave?.(),
+              f && f.onDragEnter?.(),
+              (n.lastZoneId = d)),
+              f?.onDragOver?.(n.data, u),
+              o.getState().setHover(d, p),
+              f && f.autoScroll !== !1 ? l(a, c) : s());
+          },
+          c = (e) => {
+            let n = r.current;
+            if (!n) {
+              (d(), s());
+              return;
+            }
+            let i = !1;
+            if (n.active) {
+              let r = { x: e.clientX, y: e.clientY },
+                a = n.lastZoneId ? t.current.get(n.lastZoneId) : null;
+              a && a.accept(n.data) && (a.onDrop(n.data, r), (i = !0));
+            }
+            m(i);
+          },
+          f = () => m(!1),
+          p = (e) => {
+            e.key === `Escape` &&
+              r.current?.active &&
+              (e.preventDefault(), m(!1));
+          };
+        ((u.current = { move: a, up: c, cancel: f, key: p }),
+          window.addEventListener(`pointermove`, a),
+          window.addEventListener(`pointerup`, c),
+          window.addEventListener(`pointercancel`, f),
+          window.addEventListener(`keydown`, p));
+      },
+      [m, d, l, s, o],
+    ),
+    g = (0, f.useCallback)((e, n) => {
+      t.current.set(e, n);
+    }, []),
+    _ = (0, f.useCallback)((e) => {
+      t.current.delete(e);
+    }, []);
+  (0, f.useEffect)(
+    () => () => {
+      (d(), s(), p());
+    },
+    [d, s, p],
+  );
+  let v = (0, f.useRef)({ registerZone: g, unregisterZone: _, beginDrag: h });
+  return (
+    (v.current.registerZone = g),
+    (v.current.unregisterZone = _),
+    (v.current.beginDrag = h),
+    (0, S.jsx)(T.Provider, {
+      value: v.current,
+      children: (0, S.jsxs)(O.Provider, {
+        value: n,
+        children: [e, (0, S.jsx)(w, {})],
+      }),
+    })
+  );
+}
+var P = { touchAction: `manipulation`, cursor: `grab`, userSelect: `none` },
+  F = 320,
+  I = 8;
+function L(e) {
+  let { beginDrag: t } = A(),
+    n = (0, f.useRef)(e);
+  n.current = e;
+  let [r, i] = (0, f.useState)(!1),
+    a = (0, f.useRef)(null);
+  return (
+    (0, f.useEffect)(
+      () => () => {
+        a.current?.();
+      },
+      [],
+    ),
+    {
+      dragProps: {
+        onPointerDown: (0, f.useCallback)(
+          (e) => {
+            let r = n.current;
+            if (r.disabled || e.button !== 0) return;
+            let o = typeof r.payload == `function` ? r.payload() : r.payload,
+              s = typeof r.preview == `function` ? r.preview() : r.preview,
+              c = e.currentTarget,
+              l = { dragStarted: !1 },
+              u = (e) => {
+                (l.dragStarted && (e.stopPropagation(), e.preventDefault()),
+                  c.removeEventListener(`click`, u, !0));
+              };
+            c.addEventListener(`click`, u, !0);
+            let d = e.pointerType === `touch`,
+              f = e.pointerId,
+              p = e.clientX,
+              m = e.clientY,
+              h = (e) => e.preventDefault(),
+              g = !1,
+              _ = () => {
+                g && ((g = !1), c.removeEventListener(`touchmove`, h));
+              },
+              v = null,
+              y = () => {
+                (r.onDragStart?.(),
+                  t({
+                    data: { kind: r.kind, payload: o },
+                    preview: s,
+                    startX: p,
+                    startY: m,
+                    thresholdPx: d ? 0 : r.thresholdPx,
+                    onActivate: () => {
+                      ((l.dragStarted = !0), i(!0));
+                    },
+                    onDragEnd: (e) => {
+                      (v?.(),
+                        i(!1),
+                        n.current.onDragEnd?.(e),
+                        l.dragStarted
+                          ? setTimeout(
+                              () => c.removeEventListener(`click`, u, !0),
+                              0,
+                            )
+                          : c.removeEventListener(`click`, u, !0));
+                    },
+                  }));
+              };
+            if (!d) {
+              y();
+              return;
+            }
+            if (a.current) return;
+            let b = null,
+              x = !1,
+              S = () => {
+                (b !== null && (window.clearTimeout(b), (b = null)),
+                  window.removeEventListener(`pointermove`, w),
+                  window.removeEventListener(`pointerup`, C),
+                  window.removeEventListener(`pointercancel`, C));
+              };
+            ((v = () => {
+              a.current === v &&
+                ((a.current = null),
+                S(),
+                _(),
+                x || c.removeEventListener(`click`, u, !0));
+            }),
+              (a.current = v));
+            function C(e) {
+              e.pointerId === f && v?.();
+            }
+            function w(e) {
+              e.pointerId === f &&
+                Math.hypot(e.clientX - p, e.clientY - m) > I &&
+                v?.();
+            }
+            (window.addEventListener(`pointermove`, w),
+              window.addEventListener(`pointerup`, C),
+              window.addEventListener(`pointercancel`, C),
+              (b = window.setTimeout(() => {
+                ((b = null),
+                  S(),
+                  (x = !0),
+                  c.addEventListener(`touchmove`, h, { passive: !1 }),
+                  (g = !0),
+                  y());
+              }, F)));
+          },
+          [t],
+        ),
+        style: P,
+        draggable: !1,
+      },
+      isDragging: r,
+    }
+  );
+}
+function R(e, t) {
+  return t
+    ? () => !1
+    : typeof e == `function`
+      ? e
+      : Array.isArray(e)
+        ? (t) => e.includes(t.kind)
+        : (t) => t.kind === e;
+}
+function z(e) {
+  let t = (0, f.useId)(),
+    { registerZone: n, unregisterZone: r } = A(),
+    i = (0, f.useRef)(e);
+  i.current = e;
+  let a = (0, f.useCallback)(
+      (e) => {
+        e
+          ? ((e.dataset.dndZone = t),
+            n(t, {
+              el: e,
+              accept: (e) => R(i.current.accept, i.current.disabled)(e),
+              onDrop: (e, t) => i.current.onDrop(e, t),
+              onDragOver: (e, t) => i.current.onDragOver?.(e, t),
+              onDragEnter: () => i.current.onDragEnter?.(),
+              onDragLeave: () => i.current.onDragLeave?.(),
+              get autoScroll() {
+                return i.current.autoScroll;
+              },
+            }))
+          : r(t);
+      },
+      [t, n, r],
+    ),
+    o = b((e) => e.active),
+    s = b((e) => e.hoveredZoneId),
+    c = b((e) => e.kind),
+    l = b((e) => e.payload);
+  return {
+    dropProps: { ref: a, "data-dnd-zone": t },
+    isOver: o && s === t,
+    activeData: o && c !== null ? { kind: c, payload: l } : null,
+  };
+}
+function B(e) {
+  let {
+      listId: t,
+      index: n,
+      axis: r = `y`,
+      onReorder: i,
+      preview: a,
+      disabled: o,
+    } = e,
+    s = `reorder:${t}`,
+    c = (0, f.useRef)(null),
+    [l, u] = (0, f.useState)(null),
+    { dragProps: d, isDragging: p } = L({
+      kind: s,
+      payload: () => ({ listId: t, index: n }),
+      preview: a,
+      disabled: o,
+    }),
+    m = (0, f.useCallback)(
+      (e) => {
+        let t = c.current;
+        if (!t) return `before`;
+        let n = t.getBoundingClientRect(),
+          i = r === `y` ? n.top + n.height / 2 : n.left + n.width / 2;
+        return (r === `y` ? e.y : e.x) < i ? `before` : `after`;
+      },
+      [r],
+    ),
+    { dropProps: h, isOver: g } = z({
+      accept: (e) => e.kind === s && e.payload?.listId === t,
+      onDragOver: (e, t) => u(m(t)),
+      onDragLeave: () => u(null),
+      onDrop: (e, t) => {
+        let r = e.payload.index,
+          a = m(t) === `before` ? n : n + 1;
+        (r < a && --a, u(null), a !== r && i(r, a));
+      },
+    });
+  return {
+    sortableProps: {
+      ref: (0, f.useCallback)(
+        (e) => {
+          ((c.current = e), h.ref(e));
+        },
+        [h],
+      ),
+      onPointerDown: d.onPointerDown,
+      style: d.style,
+      draggable: !1,
+      "data-dnd-zone": h[`data-dnd-zone`],
+    },
+    isDragging: p,
+    isOver: g,
+    dropSide: g ? l : null,
+  };
+}
+function V() {
+  return { active: b((e) => e.active), kind: b((e) => e.kind) };
+}
+export {
+  N as a,
+  u as c,
+  s as d,
+  o as f,
+  L as i,
+  l,
+  B as n,
+  v as o,
+  a as p,
+  z as r,
+  d as s,
+  V as t,
+  c as u,
+};
