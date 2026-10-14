@@ -9,8 +9,8 @@ var t = (e) => {
         ? (t / 1e3).toFixed(1).replace(`.0`, ``) + `K`
         : t.toString();
   },
-  n = `https://gamemedia.sandscape.app`.replace(/\/$/, ``),
-  r = (e, t) => {
+  GAME_MEDIA_BASE = `https://gamemedia.sandscape.app`.replace(/\/$/, ``),
+  extractStoragePath = (e, t) => {
     if (!e) return ``;
     let n = `/storage/v1/object/public/${t}/`,
       r = e.indexOf(n);
@@ -20,20 +20,20 @@ var t = (e) => {
         : e.replace(/^\/+/, ``)
       : e.slice(r + n.length);
   },
-  i = (t) => {
+  gameThumbnailUrl = (t) => {
     if (!t) return ``;
-    let i = r(t, `gamethumbnails`);
-    return n && !i.startsWith(`http`)
-      ? `${n}/${i}`
+    let i = extractStoragePath(t, `gamethumbnails`);
+    return GAME_MEDIA_BASE && !i.startsWith(`http`)
+      ? `${GAME_MEDIA_BASE}/${i}`
       : t.includes(`storage/v1/object/public/gamethumbnails`)
         ? t
         : e.storage.from(`gamethumbnails`).getPublicUrl(i).data.publicUrl;
   },
-  a = (t) => {
+  gamePreviewUrl = (t) => {
     if (!t) return ``;
-    let i = r(t, `gamepreviews`);
-    return n && !i.startsWith(`http`)
-      ? `${n}/${i}`
+    let i = extractStoragePath(t, `gamepreviews`);
+    return GAME_MEDIA_BASE && !i.startsWith(`http`)
+      ? `${GAME_MEDIA_BASE}/${i}`
       : t.includes(`storage/v1/object/public/gamepreviews`)
         ? t
         : e.storage.from(`gamepreviews`).getPublicUrl(i).data.publicUrl;

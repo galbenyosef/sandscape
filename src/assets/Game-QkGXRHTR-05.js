@@ -1,6 +1,6 @@
 // Game-QkGXRHTR 05 — children
 // Lines 1653-1797 of readable/assets/Game-QkGXRHTR.pretty.js (statement-aligned).
-function Dt({ builtFor: e, onPlayAnyway: t }) {
+function PlatformCompatNotice({ builtFor: e, onPlayAnyway: t }) {
   let { t: n } = k(),
     r =
       e === `desktop`
@@ -45,7 +45,7 @@ function Dt({ builtFor: e, onPlayAnyway: t }) {
     }),
   });
 }
-function Ot({
+function CommentComposer({
   gameId: e,
   onCommentAdded: t,
   parentId: n,

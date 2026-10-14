@@ -1,6 +1,6 @@
 // Game-QkGXRHTR 03 — children
 // Lines 599-775 of readable/assets/Game-QkGXRHTR.pretty.js (statement-aligned).
-function dt({ open: e, mode: t, onClose: n }) {
+function PlayGateModal({ open: e, mode: t, onClose: n }) {
   let a = r(),
     o = i(),
     { t: s } = k();
@@ -86,15 +86,15 @@ function dt({ open: e, mode: t, onClose: n }) {
     }),
   });
 }
-var ft = 1440 * 60 * 1e3,
-  pt = `sandscape-played-games`;
-function mt() {
+var PLAYED_GAMES_WINDOW_MS = 1440 * 60 * 1e3,
+  PLAYED_GAMES_KEY = `sandscape-played-games`;
+function readPlayedGames() {
   try {
-    let e = localStorage.getItem(pt);
+    let e = localStorage.getItem(PLAYED_GAMES_KEY);
     if (!e) return [];
     let t = JSON.parse(e);
     if (!Array.isArray(t)) return [];
-    let n = Date.now() - ft,
+    let n = Date.now() - PLAYED_GAMES_WINDOW_MS,
       r = new Set(),
       i = [];
     for (let e of t) {
@@ -111,26 +111,26 @@ function mt() {
     return [];
   }
 }
-function ht(e) {
+function writePlayedGames(e) {
   try {
-    localStorage.setItem(pt, JSON.stringify(e));
+    localStorage.setItem(PLAYED_GAMES_KEY, JSON.stringify(e));
   } catch {}
 }
-function gt(e) {
-  return mt().some((t) => t.id === e);
+function hasPlayedGame(e) {
+  return readPlayedGames().some((t) => t.id === e);
 }
-function _t() {
-  return mt().length < 3;
+function canPlayFree() {
+  return readPlayedGames().length < 3;
 }
-function vt(e) {
-  let t = mt().filter((t) => t.id !== e);
-  (t.push({ id: e, ts: Date.now() }), ht(t));
+function recordPlayedGame(e) {
+  let t = readPlayedGames().filter((t) => t.id !== e);
+  (t.push({ id: e, ts: Date.now() }), writePlayedGames(t));
 }
-var yt = `sandscape-game-viewer-id`,
-  bt =
+var VIEWER_ID_KEY = `sandscape-game-viewer-id`,
+  UUID_RE =
     /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
-  $ = null;
-function xt() {
+  cachedViewerId = null;
+function generateUuid() {
   if (typeof globalThis.crypto?.randomUUID == `function`)
     return globalThis.crypto.randomUUID();
   let e = new Uint8Array(16);
@@ -143,19 +143,19 @@ function xt() {
   let t = Array.from(e, (e) => e.toString(16).padStart(2, `0`));
   return `${t.slice(0, 4).join(``)}-${t.slice(4, 6).join(``)}-${t.slice(6, 8).join(``)}-${t.slice(8, 10).join(``)}-${t.slice(10).join(``)}`;
 }
-function St() {
-  if ($) return $;
+function getViewerId() {
+  if (cachedViewerId) return cachedViewerId;
   try {
-    let e = window.localStorage.getItem(yt);
-    if (e && bt.test(e)) return (($ = e.toLowerCase()), $);
+    let e = window.localStorage.getItem(VIEWER_ID_KEY);
+    if (e && UUID_RE.test(e)) return ((cachedViewerId = e.toLowerCase()), cachedViewerId);
   } catch {}
-  $ = xt();
+  cachedViewerId = generateUuid();
   try {
-    window.localStorage.setItem(yt, $);
+    window.localStorage.setItem(VIEWER_ID_KEY, cachedViewerId);
   } catch {}
-  return $;
+  return cachedViewerId;
 }
-async function Ct(e, t) {
+async function postGameView(e, t) {
   let n = await fetch(
     `${D.API_BASE_URL}/api/published/${encodeURIComponent(e)}/view`,
     {
@@ -167,8 +167,8 @@ async function Ct(e, t) {
   if (!n.ok) throw Error(`game-view request failed (${n.status})`);
   return n.json();
 }
-var wt = {};
-function Tt(e, t, n) {
+var playTokenCache = {};
+function buildAssetUrl(e, t, n) {
   let r = `${D.API_BASE_URL}${e}`,
     i = () => (r.includes(`?`) ? `&` : `?`);
   return (

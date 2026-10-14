@@ -1,6 +1,6 @@
 // Game-QkGXRHTR 06 — classname
 // Lines 1798-2016 of readable/assets/Game-QkGXRHTR.pretty.js (statement-aligned).
-function kt({
+function CommentThread({
   comment: e,
   gameId: t,
   currentUserId: n,
@@ -149,7 +149,7 @@ function kt({
                     className: `mt-3 space-y-3 border-l-2 border-muted pl-3`,
                     children: [
                       O &&
-                        (0, H.jsx)(Ot, {
+                        (0, H.jsx)(CommentComposer, {
                           gameId: t,
                           parentId: e._id,
                           placeholder: c(`game.replyToPlaceholder`, {
@@ -164,7 +164,7 @@ function kt({
                         }),
                       E.map((e) =>
                         (0, H.jsx)(
-                          kt,
+                          CommentThread,
                           {
                             comment: e,
                             gameId: t,

@@ -64,7 +64,7 @@ import { t as Le } from "./confirm-dialog-B_bgaQuk.js";
 import { i as Re, n as R, r as ze, t as Be } from "./tabs-Gm5XRVor.js";
 import { n as Ve } from "./history-BgFRjxWz.js";
 var z = e(t(), 1);
-function He(e) {
+function formatDurationMs(e) {
   let t = e < 0 ? `-` : ``,
     n = Math.abs(Math.round(e)),
     r = n % 1e3,
@@ -75,11 +75,11 @@ function He(e) {
     c = `${s(i)}.${s(r, 3)}`;
   return o > 0 ? `${t}${o}:${s(a)}:${c}` : `${t}${a}:${c}`;
 }
-function B(e, t, n) {
+function formatMetricValue(e, t, n) {
   if (e == null || !Number.isFinite(e)) return `—`;
   switch (t) {
     case `time_ms`:
-      return He(e);
+      return formatDurationMs(e);
     case `percent`:
       return `${new Intl.NumberFormat(n, { maximumFractionDigits: 1 }).format(e)}%`;
     default:
@@ -88,7 +88,7 @@ function B(e, t, n) {
       }).format(e);
   }
 }
-function V(e) {
+function formatRank(e) {
   return `#${e}`;
 }
 var H = n(),
@@ -293,5 +293,5 @@ var it = z.forwardRef(
 );
 it.displayName = Q.displayName;
 var at = [`all`, `daily`, `weekly`, `monthly`],
-  ot = 10,
-  st = `__default__`;
+  LEADERBOARD_LIMIT = 10,
+  DEFAULT_PERIOD = `__default__`;

@@ -9,14 +9,14 @@
     "css": "parser css, no plugins",
     "json": "parser json, no plugins (inline importmap blocks, if any)"
   },
-  "source": "readable/: 113 JS pretties (102 app chunk(s) sliced, 10 vendor wholeFile, 2 inline twin(s)) + 3 CSS pretties; src/: 524 statement-aligned slices across 102 app chunk(s); 102 skipped section(s); 14 wholeFile section(s); rename: 0 renamed slice(s) (0 word-boundary record(s), 0 indexed name(s) over 0 occurrence(s)); capture: 124 files under .upstream/manifest.json; inline scan: index.html (2 inline content block(s), 1 typed data block(s)).",
+  "source": "readable/: 113 JS pretties (102 app chunk(s) sliced, 10 vendor wholeFile, 2 inline twin(s)) + 3 CSS pretties; src/: 524 statement-aligned slices across 102 app chunk(s); 102 skipped section(s); 14 wholeFile section(s); rename: 10 renamed slice(s) (48 word-boundary record(s), 15 indexed name(s) over 21 occurrence(s)); capture: 124 files under .upstream/manifest.json; inline scan: index.html (2 inline content block(s), 1 typed data block(s)).",
   "rename": {
     "map": "rename-map.json",
     "list": "tools/names.json",
-    "slices": 0,
-    "wordBoundaryNames": 0,
-    "indexedNames": 0,
-    "indexedOccurrences": 0,
+    "slices": 10,
+    "wordBoundaryNames": 48,
+    "indexedNames": 15,
+    "indexedOccurrences": 21,
     "note": "Identifiers in readable/ are the bundle's own minified names (pristine); src/ carries the reviewed semantic names. tools/names.json holds the reviewed list (app rules keyed by capture rel), applied by tools/apply-names.mjs; rename-map.json is recovered mechanically by tools/recover-scoped-map.mjs and re-applied on every re-cut. sources[].renameBindings records, per chunk, the renamed top-level bindings its index-only skipped sections still spell (the (t)(1) reconstruction reach)."
   },
   "inline": {
@@ -116,7 +116,12 @@
       "tag": "apiConfig-cGsbt6Be",
       "slices": 1,
       "derived": "readable + 1 statement-aligned slice(s) + 1 skipped section(s)",
-      "renameBindings": {}
+      "renameBindings": {
+        "n": "apiConfig",
+        "r": "tourApiBase",
+        "i": "authHeaders",
+        "a": "getAccessToken"
+      }
     },
     {
       "sourceFile": "readable/assets/arrow-left-CDrX27jn.pretty.js",
@@ -731,7 +736,13 @@
       "tag": "follow-CUqA0aWI",
       "slices": 1,
       "derived": "readable + 1 statement-aligned slice(s) + 1 skipped section(s)",
-      "renameBindings": {}
+      "renameBindings": {
+        "t": "isFollowing",
+        "n": "followUser",
+        "r": "unfollowUser",
+        "i": "listFollowers",
+        "a": "listFollowing"
+      }
     },
     {
       "sourceFile": "readable/assets/Followers-CGbahiF2.pretty.js",
@@ -791,7 +802,9 @@
       "tag": "Game-QkGXRHTR",
       "slices": 6,
       "derived": "readable + 6 statement-aligned slice(s) + 1 skipped section(s)",
-      "renameBindings": {}
+      "renameBindings": {
+        "Et": "GamePage"
+      }
     },
     {
       "sourceFile": "readable/assets/gameCreation-7QUnbwLk.pretty.js",
@@ -821,7 +834,13 @@
       "tag": "gameLikes-CVeS3kbw",
       "slices": 1,
       "derived": "readable + 1 statement-aligned slice(s) + 1 skipped section(s)",
-      "renameBindings": {}
+      "renameBindings": {
+        "n": "likeGame",
+        "r": "unlikeGame",
+        "i": "hasLikedGame",
+        "a": "countGameLikes",
+        "o": "listLikedGames"
+      }
     },
     {
       "sourceFile": "readable/assets/GameStoryFeed-DptcNIuk.pretty.js",
@@ -851,7 +870,12 @@
       "tag": "gameUtils-hllMGYPh",
       "slices": 1,
       "derived": "readable + 1 statement-aligned slice(s) + 1 skipped section(s)",
-      "renameBindings": {}
+      "renameBindings": {
+        "n": "GAME_MEDIA_BASE",
+        "r": "extractStoragePath",
+        "i": "gameThumbnailUrl",
+        "a": "gamePreviewUrl"
+      }
     },
     {
       "sourceFile": "readable/assets/history-BgFRjxWz.pretty.js",
@@ -2121,8 +2145,8 @@
     },
     {
       "file": "assets/apiConfig-cGsbt6Be-01.js",
-      "title": "apiConfig-cGsbt6Be 01 — access_token",
-      "desc": "Lines 1-34. Markers: access_token(2), auth(2).",
+      "title": "apiConfig-cGsbt6Be 01 — tourapibase",
+      "desc": "Lines 1-34. Markers: tourapibase(3), access_token(2). Range re-cut through the recorded semantic rename map.",
       "startLine": 1,
       "endLine": 34,
       "sourceFile": "readable/assets/apiConfig-cGsbt6Be.pretty.js"
@@ -5661,7 +5685,7 @@
     {
       "file": "assets/follow-CUqA0aWI-01.js",
       "title": "follow-CUqA0aWI 01 — data",
-      "desc": "Lines 1-82. Markers: data(15), error(12).",
+      "desc": "Lines 1-82. Markers: data(15), error(12). Range re-cut through the recorded semantic rename map.",
       "startLine": 1,
       "endLine": 82,
       "sourceFile": "readable/assets/follow-CUqA0aWI.pretty.js"
@@ -5753,7 +5777,7 @@
     {
       "file": "assets/Game-QkGXRHTR-01.js",
       "title": "Game-QkGXRHTR 01 — jsx",
-      "desc": "Lines 1-295. Markers: jsx(19), ref(14).",
+      "desc": "Lines 1-295. Markers: jsx(19), ref(14). Range re-cut through the recorded semantic rename map.",
       "startLine": 1,
       "endLine": 295,
       "sourceFile": "readable/assets/Game-QkGXRHTR.pretty.js"
@@ -5761,7 +5785,7 @@
     {
       "file": "assets/Game-QkGXRHTR-02.js",
       "title": "Game-QkGXRHTR 02 — classname",
-      "desc": "Lines 296-598. Markers: classname(39), children(37).",
+      "desc": "Lines 296-598. Markers: classname(39), children(37). Range re-cut through the recorded semantic rename map.",
       "startLine": 296,
       "endLine": 598,
       "sourceFile": "readable/assets/Game-QkGXRHTR.pretty.js"
@@ -5769,7 +5793,7 @@
     {
       "file": "assets/Game-QkGXRHTR-03.js",
       "title": "Game-QkGXRHTR 03 — children",
-      "desc": "Lines 599-775. Markers: children(10), classname(10).",
+      "desc": "Lines 599-775. Markers: children(10), classname(10). Range re-cut through the recorded semantic rename map.",
       "startLine": 599,
       "endLine": 775,
       "sourceFile": "readable/assets/Game-QkGXRHTR.pretty.js"
@@ -5777,7 +5801,7 @@
     {
       "file": "assets/Game-QkGXRHTR-04.js",
       "title": "Game-QkGXRHTR 04 — classname",
-      "desc": "Oversized single declaration (kept whole). Lines 776-1652. Markers: classname(85), jsx(77).",
+      "desc": "Oversized single declaration (kept whole). Lines 776-1652. Markers: classname(85), jsx(77). Range re-cut through the recorded semantic rename map.",
       "startLine": 776,
       "endLine": 1652,
       "sourceFile": "readable/assets/Game-QkGXRHTR.pretty.js"
@@ -5785,7 +5809,7 @@
     {
       "file": "assets/Game-QkGXRHTR-05.js",
       "title": "Game-QkGXRHTR 05 — children",
-      "desc": "Lines 1653-1797. Markers: children(14), classname(13).",
+      "desc": "Lines 1653-1797. Markers: children(14), classname(13). Range re-cut through the recorded semantic rename map.",
       "startLine": 1653,
       "endLine": 1797,
       "sourceFile": "readable/assets/Game-QkGXRHTR.pretty.js"
@@ -5793,7 +5817,7 @@
     {
       "file": "assets/Game-QkGXRHTR-06.js",
       "title": "Game-QkGXRHTR 06 — classname",
-      "desc": "Lines 1798-2016. Markers: classname(17), children(15).",
+      "desc": "Lines 1798-2016. Markers: classname(17), children(15). Range re-cut through the recorded semantic rename map.",
       "startLine": 1798,
       "endLine": 2016,
       "sourceFile": "readable/assets/Game-QkGXRHTR.pretty.js"
@@ -5863,7 +5887,7 @@
     {
       "file": "assets/gameLikes-CVeS3kbw-01.js",
       "title": "gameLikes-CVeS3kbw 01 — data",
-      "desc": "Lines 1-88. Markers: data(12), error(10).",
+      "desc": "Lines 1-88. Markers: data(12), error(10). Range re-cut through the recorded semantic rename map.",
       "startLine": 1,
       "endLine": 88,
       "sourceFile": "readable/assets/gameLikes-CVeS3kbw.pretty.js"
@@ -5917,7 +5941,7 @@
     {
       "file": "assets/gameUtils-hllMGYPh-01.js",
       "title": "gameUtils-hllMGYPh 01 — replace",
-      "desc": "Lines 1-38. Markers: replace(4), startswith(3).",
+      "desc": "Lines 1-38. Markers: replace(4), extractstoragepath(3). Range re-cut through the recorded semantic rename map.",
       "startLine": 1,
       "endLine": 38,
       "sourceFile": "readable/assets/gameUtils-hllMGYPh.pretty.js"

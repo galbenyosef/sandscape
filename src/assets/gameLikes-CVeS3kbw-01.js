@@ -2,7 +2,7 @@
 // Lines 1-88 of readable/assets/gameLikes-CVeS3kbw.pretty.js (statement-aligned).
 import { n as e } from "./AuthService-CQeU_0bQ.js";
 import { t } from "./creators-BdQ0Kqzc.js";
-async function n(t) {
+async function likeGame(t) {
   let n = await e.auth.getUser();
   if (!n.data.user) throw Error(`Not authenticated`);
   let { data: r, error: i } = await e
@@ -22,7 +22,7 @@ async function n(t) {
   ]);
   if (a) throw a;
 }
-async function r(t) {
+async function unlikeGame(t) {
   let n = await e.auth.getUser();
   if (!n.data.user) throw Error(`Not authenticated`);
   let { error: r } = await e
@@ -32,7 +32,7 @@ async function r(t) {
     .eq(`game_id`, t);
   if (r) throw r;
 }
-async function i(t) {
+async function hasLikedGame(t) {
   let n = await e.auth.getUser();
   if (!n.data.user) return !1;
   let { data: r, error: i } = await e
@@ -44,7 +44,7 @@ async function i(t) {
   if (i) throw i;
   return !!r;
 }
-async function a(t) {
+async function countGameLikes(t) {
   let { count: n, error: r } = await e
     .from(`game_likes`)
     .select(`*`, { count: `exact`, head: !0 })
@@ -52,7 +52,7 @@ async function a(t) {
   if (r) throw r;
   return n || 0;
 }
-async function o(n = 50, r = 0) {
+async function listLikedGames(n = 50, r = 0) {
   let i = await e.auth.getUser();
   if (!i.data.user) throw Error(`Not authenticated`);
   let { data: a, error: o } = await e

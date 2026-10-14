@@ -1,0 +1,61 @@
+{
+  "note": "Reviewed semantic rename list for the sandscape identifier-rename campaign (PLAN §5, closed 2026-10-14). `app` renames PROGRAM-scope bindings of each chunk, keyed by CAPTURE REL (the capture is a flat Vite/rolldown production ESM build — 112 JS chunks, each one module scope — so a name is renamed only inside its own chunk; target uniqueness is enforced PER CHUNK, proposal (ad)). The campaign's priority is the app's semantic core as it appears in the captured closure: the /play page (assets/Game-QkGXRHTR.js — the game route: the iframe embed of the external game service, the play gate, likes, follow, leaderboard, comments, view/play-token plumbing) and its service layer (apiConfig, gameUtils, avatarUtils, gameLikes, follow, creators). Evidence per name is the captured body itself: Game's He formats a `time_ms` leaderboard metric and B dispatches `time_ms`/`percent` (He/B/V the leaderboard metric+rank formatters); dt renders the `playGate.*` modal (placeholderTitle/limitTitle/comingSoonTitle); ft=1440*60*1000 is the played-games window; pt is the localStorage key `sandscape-played-games`; mt/ht/gt/_t/vt read/write/has/can/record played games; yt is `sandscape-game-viewer-id`; bt is the UUID regex; xt/St generate/read the viewer id; Ct POSTs `/api/published/<id>/view`; Tt builds `${API_BASE_URL}<path>?v=<publishedAt>&pt=<playToken>` (the embed src); wt is the play-token cache; Et is the default-exported component (the tail is `export { Et as Game }`) that renders the `g` route param game; Dt renders `game.compat.*` (desktop/mobile); Ot is the comment composer; kt the recursive comment thread; ct/lt/ut the leaderboard section/table/row; ot=10 is the leaderboard `limit`; st=`__default__` the default period sentinel. apiConfig: n is the config object with the API_BASE_URL/WS_BASE_URL getters (the fly.dev vs localhost:8022 base), r the /tour-api override reader, i the auth-header builder, a the access-token reader. gameUtils: t=formatCount (1e6→M / 1e3→K), n=`https://gamemedia.sandscape.app`, r the storage-path extractor, i/a the gamethumbnails/gamepreviews URL builders. avatarUtils: t the avatar public-URL builder. gameLikes: n/r/i/a/o = like/unlike/hasLiked/count/listLikedGames over the `game_likes` table. follow: t/n/r/i/a = isFollowing/followUser/unfollowUser/listFollowers/listFollowing over `followers`+`profiles`. creators: t = fetchCreatorProfiles over `profiles`. VENDOR rule (never renamed): the wholeFile bands (React 19 react-dom+jsx-runtime, three.js three.module+three-stdlib, the Supabase+auth chunk, framer-motion, the WebCodecs codec library, the ~5.4 MB scene-editor bundle, the rolldown runtime, the Vite preload helper) AND the minifier-merged bundled UI-kit code inside app chunks (e.g. the Radix UI Toggle/ToggleGroup component graph merged into assets/Game-QkGXRHTR.js, and the GTM/GA machinery inside assets/AnalyticsService-*.js) stay minified — third-party bytes inside app statements, not app code. Names remaining below the review frontier (the remaining ~95 app chunks: Create/Publish/Profile/Settings/SceneEditorTest/i18n data/dist UI-kit chunks, …) keep the minifier's names (annotated as the next sub-task, the fleet precedent). Candidates were enumerated with `node tools/apply-names.mjs --list <capture rel>` (the writer's own preflight): Game 57/57 ELIGIBLE, apiConfig 4/4, gameUtils 5/5, gameLikes 5/5, follow 5/5. Three candidate chunks were dropped by the unaliased-public-export refusal (their local IS the public name a token rename cannot reach): assets/avatarUtils-CBd99uWq.js and assets/creators-BdQ0Kqzc.js export their single binding unaliased (`export { t }`), and assets/gameUtils-hllMGYPh.js exports `t` unaliased in `export { a as n, i as r, t }` — those locals keep their minified names. Guards (the canonical family): marked FunctionDeclaration/ClassDeclaration ids + shorthand-property refusal at preflight (kowloon (p) fixes), brace-depth template scanning (vanta7 (r)), program-scope occurrences in wholeFile vendor bands refused + per-source line cache (pelota (s)), index-only skipped sections reached via sources[].renameBindings (turfwar (t)(1)), `of`/`in` keyword guard in the reconstruction binding map (dune-arrakis (x)), token-based specifier extraction (embervale (ab)), and per-chunk target uniqueness (proposal (ad)). Apply with tools/apply-names.mjs (pipeline: apply -> recover -> derive -> gates).",
+  "app": {
+    "assets/Game-QkGXRHTR.js": {
+      "He": "formatDurationMs",
+      "B": "formatMetricValue",
+      "V": "formatRank",
+      "ct": "LeaderboardSection",
+      "lt": "LeaderboardTable",
+      "ut": "LeaderboardRow",
+      "ot": "LEADERBOARD_LIMIT",
+      "st": "DEFAULT_PERIOD",
+      "dt": "PlayGateModal",
+      "ft": "PLAYED_GAMES_WINDOW_MS",
+      "pt": "PLAYED_GAMES_KEY",
+      "mt": "readPlayedGames",
+      "ht": "writePlayedGames",
+      "gt": "hasPlayedGame",
+      "_t": "canPlayFree",
+      "vt": "recordPlayedGame",
+      "yt": "VIEWER_ID_KEY",
+      "bt": "UUID_RE",
+      "$": "cachedViewerId",
+      "xt": "generateUuid",
+      "St": "getViewerId",
+      "Ct": "postGameView",
+      "wt": "playTokenCache",
+      "Tt": "buildAssetUrl",
+      "Et": "GamePage",
+      "Dt": "PlatformCompatNotice",
+      "Ot": "CommentComposer",
+      "kt": "CommentThread"
+    },
+    "assets/apiConfig-cGsbt6Be.js": {
+      "n": "apiConfig",
+      "r": "tourApiBase",
+      "i": "authHeaders",
+      "a": "getAccessToken"
+    },
+    "assets/gameUtils-hllMGYPh.js": {
+      "n": "GAME_MEDIA_BASE",
+      "r": "extractStoragePath",
+      "i": "gameThumbnailUrl",
+      "a": "gamePreviewUrl"
+    },
+    "assets/gameLikes-CVeS3kbw.js": {
+      "n": "likeGame",
+      "r": "unlikeGame",
+      "i": "hasLikedGame",
+      "a": "countGameLikes",
+      "o": "listLikedGames"
+    },
+    "assets/follow-CUqA0aWI.js": {
+      "t": "isFollowing",
+      "n": "followUser",
+      "r": "unfollowUser",
+      "i": "listFollowers",
+      "a": "listFollowing"
+    }
+  }
+}

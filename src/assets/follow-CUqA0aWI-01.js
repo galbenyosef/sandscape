@@ -1,7 +1,7 @@
 // follow-CUqA0aWI 01 — data
 // Lines 1-82 of readable/assets/follow-CUqA0aWI.pretty.js (statement-aligned).
 import { n as e } from "./AuthService-CQeU_0bQ.js";
-async function t(t) {
+async function isFollowing(t) {
   let n = await e.auth.getUser();
   if (!n.data.user || n.data.user.id === t) return !1;
   let { data: r, error: i } = await e
@@ -13,7 +13,7 @@ async function t(t) {
   if (i) throw i;
   return !!r;
 }
-async function n(t) {
+async function followUser(t) {
   let n = await e.auth.getUser();
   if (!n.data.user) throw Error(`Not authenticated`);
   if (n.data.user.id === t) throw Error(`Cannot follow yourself`);
@@ -34,7 +34,7 @@ async function n(t) {
   ]);
   if (a) throw a;
 }
-async function r(t) {
+async function unfollowUser(t) {
   let n = await e.auth.getUser();
   if (!n.data.user) throw Error(`Not authenticated`);
   let { error: r } = await e
@@ -44,7 +44,7 @@ async function r(t) {
     .eq(`followed_user_id`, t);
   if (r) throw r;
 }
-async function i(t) {
+async function listFollowers(t) {
   let { data: n, error: r } = await e
     .from(`followers`)
     .select(`following_user_id`)
@@ -63,7 +63,7 @@ async function i(t) {
     avatar_url: e.avatar_url,
   }));
 }
-async function a(t) {
+async function listFollowing(t) {
   let { data: n, error: r } = await e
     .from(`followers`)
     .select(`followed_user_id`)

@@ -1,6 +1,6 @@
 // Game-QkGXRHTR 04 — classname
 // Lines 776-1652 of readable/assets/Game-QkGXRHTR.pretty.js (statement-aligned).
-function Et() {
+function GamePage() {
   let [e] = a(),
     t = r(),
     n = e.get(`g`),
@@ -115,7 +115,7 @@ function Et() {
       if (!b) return;
       (We(null), G(!1));
       let e = b._id || b.id || ``;
-      if ((u || (delete wt[e], Ke(null)), b.isPlaceholder)) {
+      if ((u || (delete playTokenCache[e], Ke(null)), b.isPlaceholder)) {
         (We(u ? `coming-soon` : `register-placeholder`), G(!0));
         return;
       }
@@ -124,7 +124,7 @@ function Et() {
           b.gameContentUrl &&
           !qe.current.has(e) &&
           (qe.current.add(e), Ve(e));
-        let t = wt[e];
+        let t = playTokenCache[e];
         if (t) {
           Ke(t);
           return;
@@ -141,7 +141,7 @@ function Et() {
                 });
               if (!r.ok) throw Error(`play-token request failed (${r.status})`);
               let i = (await r.json())?.token;
-              i && !n && ((wt[e] = i), Ke(i));
+              i && !n && ((playTokenCache[e] = i), Ke(i));
             } catch (e) {
               console.error(`Error fetching play-token:`, e);
             }
@@ -151,20 +151,20 @@ function Et() {
           }
         );
       }
-      if (!gt(e) && !_t()) {
+      if (!hasPlayedGame(e) && !canPlayFree()) {
         (We(`register-limit`), G(!0));
         return;
       }
-      X || vt(e);
+      X || recordPlayedGame(e);
     }, [b, u, X]),
     (0, z.useEffect)(() => {
       if (!b || b.isPlaceholder || !b.gameContentUrl || X) return;
       let e = b._id || b.id || ``;
       !e ||
         J.current.has(e) ||
-        (!u && !gt(e) && !_t()) ||
+        (!u && !hasPlayedGame(e) && !canPlayFree()) ||
         (J.current.add(e),
-        Ct(e, St())
+        postGameView(e, getViewerId())
           .then((t) => {
             Y.current === e && Pe(t.view_count);
           })
@@ -213,7 +213,7 @@ function Et() {
       let e = b._id || b.id || ``;
       !e ||
         Je.current.has(e) ||
-        (!u && !gt(e) && !_t()) ||
+        (!u && !hasPlayedGame(e) && !canPlayFree()) ||
         (Je.current.add(e),
         v(O.events.GAME_PLAY, {
           content_type: `game`,
@@ -344,7 +344,7 @@ function Et() {
             ? (0, H.jsxs)(H.Fragment, {
                 children: [
                   U &&
-                    (0, H.jsx)(dt, {
+                    (0, H.jsx)(PlayGateModal, {
                       open: W,
                       mode: U,
                       onClose: () => {
@@ -362,14 +362,14 @@ function Et() {
                             }),
                           })
                         : X
-                          ? (0, H.jsx)(Dt, {
+                          ? (0, H.jsx)(PlatformCompatNotice, {
                               builtFor: b.platformCompat,
                               onPlayAnyway: () => q(!0),
                             })
                           : b.gameContentUrl
                             ? (0, H.jsx)(`iframe`, {
                                 ref: Le,
-                                src: Tt(b.gameContentUrl, b.publishedAt, Ge),
+                                src: buildAssetUrl(b.gameContentUrl, b.publishedAt, Ge),
                                 className: `h-full w-full border-0`,
                                 title: b.title || `Game`,
                                 allow: `fullscreen`,
@@ -416,7 +416,7 @@ function Et() {
                       noindex: !0,
                     }),
                   U &&
-                    (0, H.jsx)(dt, {
+                    (0, H.jsx)(PlayGateModal, {
                       open: W,
                       mode: U,
                       onClose: () => {
@@ -438,14 +438,14 @@ function Et() {
                                   }),
                                 })
                               : X
-                                ? (0, H.jsx)(Dt, {
+                                ? (0, H.jsx)(PlatformCompatNotice, {
                                     builtFor: b.platformCompat,
                                     onPlayAnyway: () => q(!0),
                                   })
                                 : b.gameContentUrl
                                   ? (0, H.jsx)(`iframe`, {
                                       ref: Le,
-                                      src: Tt(
+                                      src: buildAssetUrl(
                                         b.gameContentUrl,
                                         b.publishedAt,
                                         Ge,
@@ -709,7 +709,7 @@ function Et() {
                         className: `pb-2`,
                         children: (0, H.jsx)(`div`, {
                           className: `px-4 sm:px-6 md:px-8`,
-                          children: (0, H.jsx)(ct, {
+                          children: (0, H.jsx)(LeaderboardSection, {
                             gameId: b._id || b.id || ``,
                             currentUserId: c?.id,
                           }),
@@ -729,7 +729,7 @@ function Et() {
                                     className: `text-xl font-semibold`,
                                     children: d(`game.comments`, `Comments`),
                                   }),
-                                  (0, H.jsx)(Ot, {
+                                  (0, H.jsx)(CommentComposer, {
                                     gameId: b._id,
                                     onCommentAdded: (e) => ee((t) => [e, ...t]),
                                   }),
@@ -746,7 +746,7 @@ function Et() {
                                           })
                                         : S.map((e) =>
                                             (0, H.jsx)(
-                                              kt,
+                                              CommentThread,
                                               {
                                                 comment: e,
                                                 gameId: b._id,

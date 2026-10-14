@@ -1,6 +1,6 @@
 // Game-QkGXRHTR 02 — classname
 // Lines 296-598 of readable/assets/Game-QkGXRHTR.pretty.js (statement-aligned).
-function ct({ gameId: e, currentUserId: t, className: n }) {
+function LeaderboardSection({ gameId: e, currentUserId: t, className: n }) {
   let { t: r, i18n: i } = k(),
     [a, o] = (0, z.useState)(null),
     [s, c] = (0, z.useState)(null),
@@ -16,7 +16,7 @@ function ct({ gameId: e, currentUserId: t, className: n }) {
       try {
         let n = await T(e, {
           ...(a ? { period: a } : {}),
-          limit: ot,
+          limit: LEADERBOARD_LIMIT,
           aroundMe: !0,
         });
         if (t !== y.current) return;
@@ -79,12 +79,12 @@ function ct({ gameId: e, currentUserId: t, className: n }) {
                   children: [
                     (0, H.jsxs)(rt, {
                       type: `single`,
-                      value: a ?? st,
-                      onValueChange: (e) => o(!e || e === st ? null : e),
+                      value: a ?? DEFAULT_PERIOD,
+                      onValueChange: (e) => o(!e || e === DEFAULT_PERIOD ? null : e),
                       "aria-label": r(`leaderboard.periodLabel`, `Time range`),
                       children: [
                         (0, H.jsx)(it, {
-                          value: st,
+                          value: DEFAULT_PERIOD,
                           size: `sm`,
                           className: `text-xs`,
                           children: r(`leaderboard.period.default`, `Default`),
@@ -126,7 +126,7 @@ function ct({ gameId: e, currentUserId: t, className: n }) {
                   ),
                 })
               : s.length === 1
-                ? (0, H.jsx)(lt, {
+                ? (0, H.jsx)(LeaderboardTable, {
                     board: s[0],
                     currentUserId: t,
                     locale: i.language,
@@ -156,7 +156,7 @@ function ct({ gameId: e, currentUserId: t, className: n }) {
                           {
                             value: e.slug,
                             className: `mt-0`,
-                            children: (0, H.jsx)(lt, {
+                            children: (0, H.jsx)(LeaderboardTable, {
                               board: e,
                               currentUserId: t,
                               locale: i.language,
@@ -171,7 +171,7 @@ function ct({ gameId: e, currentUserId: t, className: n }) {
         }),
       });
 }
-function lt({ board: e, currentUserId: t, locale: n }) {
+function LeaderboardTable({ board: e, currentUserId: t, locale: n }) {
   let { t: r } = k();
   if (e.rows.length === 0)
     return (0, H.jsx)(`p`, {
@@ -210,7 +210,7 @@ function lt({ board: e, currentUserId: t, locale: n }) {
           (0, H.jsx)(`tbody`, {
             children: e.rows.map((r) =>
               (0, H.jsx)(
-                ut,
+                LeaderboardRow,
                 {
                   row: r,
                   board: e,
@@ -233,16 +233,16 @@ function lt({ board: e, currentUserId: t, locale: n }) {
             ` `,
             (0, H.jsx)(`span`, {
               className: `font-medium text-foreground`,
-              children: V(e.me.rank),
+              children: formatRank(e.me.rank),
             }),
             ` · `,
-            B(e.me.value, e.format, n),
+            formatMetricValue(e.me.value, e.format, n),
           ],
         }),
     ],
   });
 }
-function ut({ row: e, board: t, locale: n, highlighted: r }) {
+function LeaderboardRow({ row: e, board: t, locale: n, highlighted: r }) {
   let { t: i } = k(),
     a = t.group_by === `player`,
     o = a
@@ -256,7 +256,7 @@ function ut({ row: e, board: t, locale: n, highlighted: r }) {
     children: [
       (0, H.jsx)(`td`, {
         className: `py-2 pr-2 font-mono text-xs text-muted-foreground`,
-        children: V(e.rank),
+        children: formatRank(e.rank),
       }),
       (0, H.jsx)(`td`, {
         className: `py-2 pr-2`,
@@ -298,7 +298,7 @@ function ut({ row: e, board: t, locale: n, highlighted: r }) {
       }),
       (0, H.jsx)(`td`, {
         className: `py-2 pl-2 text-right font-medium tabular-nums text-foreground`,
-        children: B(e.value, t.format, n),
+        children: formatMetricValue(e.value, t.format, n),
       }),
     ],
   });
