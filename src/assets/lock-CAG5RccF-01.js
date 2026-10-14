@@ -1,0 +1,34 @@
+// lock-CAG5RccF 01 — key
+// Lines 1-32 of readable/assets/lock-CAG5RccF.pretty.js (statement-aligned).
+import { r as e } from "./button-Ap3ysi5G.js";
+var t = e(`Image`, [
+    [
+      `rect`,
+      {
+        width: `18`,
+        height: `18`,
+        x: `3`,
+        y: `3`,
+        rx: `2`,
+        ry: `2`,
+        key: `1m3agn`,
+      },
+    ],
+    [`circle`, { cx: `9`, cy: `9`, r: `2`, key: `af1f0g` }],
+    [`path`, { d: `m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21`, key: `1xmnt7` }],
+  ]),
+  n = e(`Lock`, [
+    [
+      `rect`,
+      {
+        width: `18`,
+        height: `11`,
+        x: `3`,
+        y: `11`,
+        rx: `2`,
+        ry: `2`,
+        key: `1w4ew1`,
+      },
+    ],
+    [`path`, { d: `M7 11V7a5 5 0 0 1 10 0v4`, key: `fwvmzm` }],
+  ]);

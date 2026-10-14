@@ -1,0 +1,203 @@
+// SceneEditorTest-CsA4EpZw 01 — children
+// Lines 1-201 of readable/assets/SceneEditorTest-CsA4EpZw.pretty.js (statement-aligned).
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { t as r } from "./button-Ap3ysi5G.js";
+import { t as i } from "./SceneEditor-BPEsa1Sn.js";
+import { t as a } from "./refresh-cw-CkwJF4P8.js";
+import { T as o } from "./gameCreation-7QUnbwLk.js";
+import { ot as s } from "./index-BKDksszn.js";
+var c = e(t()),
+  l = n(),
+  u = `interactive_workflow_artifacts/portal`;
+function d() {
+  let [e, t] = (0, c.useState)([]),
+    [n, d] = (0, c.useState)(!0),
+    [f, p] = (0, c.useState)(null),
+    m = async () => {
+      try {
+        (d(!0), p(null));
+        let e = await o.getScenes(u);
+        e.success
+          ? (t(e.scenes), console.log(`Loaded scenes:`, e.scenes))
+          : p(`Failed to load scenes`);
+      } catch (e) {
+        (console.error(`Error loading scenes:`, e),
+          p(e instanceof Error ? e.message : `Unknown error`));
+      } finally {
+        d(!1);
+      }
+    };
+  return (
+    (0, c.useEffect)(() => {
+      m();
+    }, []),
+    n
+      ? (0, l.jsx)(`div`, {
+          className: `h-screen flex items-center justify-center bg-[#0f0a18] text-white`,
+          children: (0, l.jsxs)(`div`, {
+            className: `text-center`,
+            children: [
+              (0, l.jsx)(a, { className: `h-8 w-8 mx-auto mb-4 animate-spin` }),
+              (0, l.jsx)(`p`, { children: `Loading portal session...` }),
+            ],
+          }),
+        })
+      : f
+        ? (0, l.jsx)(`div`, {
+            className: `h-screen flex items-center justify-center bg-[#0f0a18] text-white`,
+            children: (0, l.jsxs)(`div`, {
+              className: `text-center`,
+              children: [
+                (0, l.jsxs)(`div`, {
+                  className: `text-red-400 mb-4`,
+                  children: [`Error: `, f],
+                }),
+                (0, l.jsxs)(r, {
+                  onClick: m,
+                  variant: `outline`,
+                  children: [
+                    (0, l.jsx)(a, { className: `h-4 w-4 mr-2` }),
+                    `Retry`,
+                  ],
+                }),
+              ],
+            }),
+          })
+        : (0, l.jsxs)(`div`, {
+            className: `h-screen bg-[#0f0a18] text-white flex flex-col`,
+            children: [
+              (0, l.jsx)(`div`, {
+                className: `p-4 border-b border-primary/20 bg-[#1a1424]`,
+                children: (0, l.jsxs)(`div`, {
+                  className: `flex items-center justify-between`,
+                  children: [
+                    (0, l.jsxs)(`div`, {
+                      className: `flex items-center gap-3`,
+                      children: [
+                        (0, l.jsx)(s, { className: `h-6 w-6 text-primary` }),
+                        (0, l.jsxs)(`div`, {
+                          children: [
+                            (0, l.jsx)(`h1`, {
+                              className: `text-xl font-semibold`,
+                              children: `Scene Editor Test`,
+                            }),
+                            (0, l.jsxs)(`p`, {
+                              className: `text-sm text-gray-400`,
+                              children: [`Portal Session: `, u],
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    (0, l.jsxs)(`div`, {
+                      className: `flex gap-2`,
+                      children: [
+                        (0, l.jsxs)(r, {
+                          onClick: m,
+                          variant: `outline`,
+                          size: `sm`,
+                          children: [
+                            (0, l.jsx)(a, { className: `h-4 w-4 mr-2` }),
+                            `Reload`,
+                          ],
+                        }),
+                        (0, l.jsx)(r, {
+                          onClick: () =>
+                            window.open(`/create?session=portal`, `_blank`),
+                          variant: `default`,
+                          size: `sm`,
+                          children: `Open Full App`,
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              }),
+              (0, l.jsx)(`div`, {
+                className: `flex-1 overflow-hidden`,
+                children: (0, l.jsx)(i, {
+                  scenes: e,
+                  sessionDir: u,
+                  onLoadScene: async (e, t) => {
+                    try {
+                      console.log(`Loading scene:`, e);
+                      let n = await o.loadScene(u, e, t);
+                      return (console.log(`Scene load result:`, n), n);
+                    } catch (e) {
+                      return (
+                        console.error(`Error in handleLoadScene:`, e),
+                        {
+                          success: !1,
+                          error:
+                            e instanceof Error ? e.message : `Unknown error`,
+                        }
+                      );
+                    }
+                  },
+                  onSaveScene: async (e, t, n) => {
+                    try {
+                      console.log(`Saving scene:`, e, t, n);
+                      let r = await o.saveScene(u, e, t, n);
+                      return (console.log(`Scene save result:`, r), r);
+                    } catch (e) {
+                      return (
+                        console.error(`Error in handleSaveScene:`, e),
+                        {
+                          success: !1,
+                          error:
+                            e instanceof Error ? e.message : `Unknown error`,
+                        }
+                      );
+                    }
+                  },
+                }),
+              }),
+              (0, l.jsx)(`div`, {
+                className: `p-4 border-t border-primary/20 bg-[#1a1424] text-xs`,
+                children: (0, l.jsxs)(`div`, {
+                  className: `flex gap-4`,
+                  children: [
+                    (0, l.jsxs)(`div`, {
+                      children: [
+                        (0, l.jsx)(`span`, {
+                          className: `text-gray-400`,
+                          children: `Scenes loaded:`,
+                        }),
+                        (0, l.jsx)(`span`, {
+                          className: `ml-2 text-white`,
+                          children: e.length,
+                        }),
+                      ],
+                    }),
+                    (0, l.jsxs)(`div`, {
+                      children: [
+                        (0, l.jsx)(`span`, {
+                          className: `text-gray-400`,
+                          children: `Selected scene:`,
+                        }),
+                        (0, l.jsx)(`span`, {
+                          className: `ml-2 text-white`,
+                          children: `See sidebar`,
+                        }),
+                      ],
+                    }),
+                    (0, l.jsxs)(`div`, {
+                      children: [
+                        (0, l.jsx)(`span`, {
+                          className: `text-gray-400`,
+                          children: `Session dir:`,
+                        }),
+                        (0, l.jsx)(`span`, {
+                          className: `ml-2 text-white font-mono`,
+                          children: u,
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              }),
+            ],
+          })
+  );
+}

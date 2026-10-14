@@ -1,0 +1,54 @@
+// card-DLIi0Qe8 01 — classname
+// Lines 1-52 of readable/assets/card-DLIi0Qe8.pretty.js (statement-aligned).
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { l as r } from "./AuthService-CQeU_0bQ.js";
+var i = e(t()),
+  a = n(),
+  o = i.forwardRef(({ className: e, ...t }, n) =>
+    (0, a.jsx)(`div`, {
+      ref: n,
+      className: r(
+        `rounded-lg border bg-card text-card-foreground shadow-sm`,
+        e,
+      ),
+      ...t,
+    }),
+  );
+o.displayName = `Card`;
+var s = i.forwardRef(({ className: e, ...t }, n) =>
+  (0, a.jsx)(`div`, {
+    ref: n,
+    className: r(`flex flex-col space-y-1.5 p-6`, e),
+    ...t,
+  }),
+);
+s.displayName = `CardHeader`;
+var c = i.forwardRef(({ className: e, ...t }, n) =>
+  (0, a.jsx)(`div`, {
+    ref: n,
+    className: r(`text-2xl font-semibold leading-none tracking-tight`, e),
+    ...t,
+  }),
+);
+c.displayName = `CardTitle`;
+var l = i.forwardRef(({ className: e, ...t }, n) =>
+  (0, a.jsx)(`div`, {
+    ref: n,
+    className: r(`text-sm text-muted-foreground`, e),
+    ...t,
+  }),
+);
+l.displayName = `CardDescription`;
+var u = i.forwardRef(({ className: e, ...t }, n) =>
+  (0, a.jsx)(`div`, { ref: n, className: r(`p-6 pt-0`, e), ...t }),
+);
+u.displayName = `CardContent`;
+var d = i.forwardRef(({ className: e, ...t }, n) =>
+  (0, a.jsx)(`div`, {
+    ref: n,
+    className: r(`flex items-center p-6 pt-0`, e),
+    ...t,
+  }),
+);
+d.displayName = `CardFooter`;

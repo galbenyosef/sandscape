@@ -1,0 +1,984 @@
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { t as r } from "./react-dom-CWn-H0Rd.js";
+import { n as i, r as a } from "./dist-CA4uZW3H.js";
+import { c as o, m as s, o as c, s as l } from "./AuthService-CQeU_0bQ.js";
+import { t as u } from "./dist-p2cW4AiE.js";
+var d = e(t(), 1),
+  f = e(r(), 1),
+  p = n(),
+  m = Object.defineProperty,
+  h = d.forwardRef(
+    ((e, t) => m(e, `name`, { value: t, configurable: !0 }))(function (e, t) {
+      let { container: n, ...r } = e,
+        [a, o] = d.useState(!1);
+      i(() => o(!0), []);
+      let s = n || (a && globalThis?.document?.body);
+      return s ? f.createPortal((0, p.jsx)(u.div, { ...r, ref: t }), s) : null;
+    }, `Portal`),
+  ),
+  g = Object.defineProperty,
+  _ = (e, t) => g(e, `name`, { value: t, configurable: !0 }),
+  v = 0,
+  y = null;
+function b(e) {
+  return (x(), e.children);
+}
+_(b, `FocusGuards`);
+function x() {
+  d.useEffect(() => {
+    y ||= { start: S(), end: S() };
+    let { start: e, end: t } = y;
+    return (
+      document.body.firstElementChild !== e &&
+        document.body.insertAdjacentElement(`afterbegin`, e),
+      document.body.lastElementChild !== t &&
+        document.body.insertAdjacentElement(`beforeend`, t),
+      v++,
+      () => {
+        (v === 1 && (y?.start.remove(), y?.end.remove(), (y = null)),
+          (v = Math.max(0, v - 1)));
+      }
+    );
+  }, []);
+}
+_(x, `useFocusGuards`);
+function S() {
+  let e = document.createElement(`span`);
+  return (
+    e.setAttribute(`data-radix-focus-guard`, ``),
+    (e.tabIndex = 0),
+    (e.style.outline = `none`),
+    (e.style.opacity = `0`),
+    (e.style.position = `fixed`),
+    (e.style.pointerEvents = `none`),
+    e
+  );
+}
+_(S, `createFocusGuard`);
+var ee = Object.defineProperty,
+  C = (e, t) => ee(e, `name`, { value: t, configurable: !0 }),
+  w = `focusScope.autoFocusOnMount`,
+  T = `focusScope.autoFocusOnUnmount`,
+  te = { bubbles: !1, cancelable: !0 },
+  ne = d.forwardRef(
+    C(function (e, t) {
+      let {
+          loop: n = !1,
+          trapped: r = !1,
+          onMountAutoFocus: i,
+          onUnmountAutoFocus: o,
+          ...c
+        } = e,
+        [l, f] = d.useState(null),
+        m = a(i),
+        h = a(o),
+        g = d.useRef(null),
+        _ = s(t, f),
+        v = d.useRef({
+          paused: !1,
+          pause() {
+            this.paused = !0;
+          },
+          resume() {
+            this.paused = !1;
+          },
+        }).current;
+      (d.useEffect(() => {
+        if (r) {
+          let e = function (e) {
+              if (v.paused || !l) return;
+              let t = e.target;
+              l.contains(t) ? (g.current = t) : k(g.current, { select: !0 });
+            },
+            t = function (e) {
+              if (v.paused || !l) return;
+              let t = e.relatedTarget;
+              t !== null && (l.contains(t) || k(g.current, { select: !0 }));
+            },
+            n = function (e) {
+              if (document.activeElement === document.body)
+                for (let t of e) t.removedNodes.length > 0 && k(l);
+            };
+          (C(e, `handleFocusIn`),
+            C(t, `handleFocusOut`),
+            C(n, `handleMutations`),
+            document.addEventListener(`focusin`, e),
+            document.addEventListener(`focusout`, t));
+          let r = new MutationObserver(n);
+          return (
+            l && r.observe(l, { childList: !0, subtree: !0 }),
+            () => {
+              (document.removeEventListener(`focusin`, e),
+                document.removeEventListener(`focusout`, t),
+                r.disconnect());
+            }
+          );
+        }
+      }, [r, l, v.paused]),
+        d.useEffect(() => {
+          if (l) {
+            A.add(v);
+            let e = document.activeElement;
+            if (!l.contains(e)) {
+              let t = new CustomEvent(w, te);
+              (l.addEventListener(w, m),
+                l.dispatchEvent(t),
+                t.defaultPrevented ||
+                  (re(oe(E(l)), { select: !0 }),
+                  document.activeElement === e && k(l)));
+            }
+            return () => {
+              (l.removeEventListener(w, m),
+                setTimeout(() => {
+                  let t = new CustomEvent(T, te);
+                  (l.addEventListener(T, h),
+                    l.dispatchEvent(t),
+                    t.defaultPrevented || k(e ?? document.body, { select: !0 }),
+                    l.removeEventListener(T, h),
+                    A.remove(v));
+                }, 0));
+            };
+          }
+        }, [l, m, h, v]));
+      let y = d.useCallback(
+        (e) => {
+          if ((!n && !r) || v.paused) return;
+          let t = e.key === `Tab` && !e.altKey && !e.ctrlKey && !e.metaKey,
+            i = document.activeElement;
+          if (t && i) {
+            let t = e.currentTarget,
+              [r, a] = ie(t);
+            r && a
+              ? !e.shiftKey && i === a
+                ? (e.preventDefault(), n && k(r, { select: !0 }))
+                : e.shiftKey &&
+                  i === r &&
+                  (e.preventDefault(), n && k(a, { select: !0 }))
+              : i === t && e.preventDefault();
+          }
+        },
+        [n, r, v.paused],
+      );
+      return (0, p.jsx)(u.div, { tabIndex: -1, ...c, ref: _, onKeyDown: y });
+    }, `FocusScope`),
+  );
+function re(e, { select: t = !1 } = {}) {
+  let n = document.activeElement;
+  for (let r of e)
+    if ((k(r, { select: t }), document.activeElement !== n)) return;
+}
+C(re, `focusFirst`);
+function ie(e) {
+  let t = E(e);
+  return [D(t, e), D(t.reverse(), e)];
+}
+C(ie, `getTabbableEdges`);
+function E(e) {
+  let t = [],
+    n = document.createTreeWalker(e, NodeFilter.SHOW_ELEMENT, {
+      acceptNode: C((e) => {
+        let t = e.tagName === `INPUT` && e.type === `hidden`;
+        return e.disabled || e.hidden || t
+          ? NodeFilter.FILTER_SKIP
+          : e.tabIndex >= 0
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_SKIP;
+      }, `acceptNode`),
+    });
+  for (; n.nextNode();) t.push(n.currentNode);
+  return t;
+}
+C(E, `getTabbableCandidates`);
+function D(e, t) {
+  let n =
+    typeof t.checkVisibility == `function` &&
+    t.checkVisibility({ checkVisibilityCSS: !0 });
+  for (let r of e)
+    if (
+      !(n ? !r.checkVisibility({ checkVisibilityCSS: !0 }) : ae(r, { upTo: t }))
+    )
+      return r;
+}
+C(D, `findVisible`);
+function ae(e, { upTo: t }) {
+  if (getComputedStyle(e).visibility === `hidden`) return !0;
+  for (; e;) {
+    if (t !== void 0 && e === t) return !1;
+    if (getComputedStyle(e).display === `none`) return !0;
+    e = e.parentElement;
+  }
+  return !1;
+}
+C(ae, `isHidden`);
+function O(e) {
+  return e instanceof HTMLInputElement && `select` in e;
+}
+C(O, `isSelectableInput`);
+function k(e, { select: t = !1 } = {}) {
+  if (e && e.focus) {
+    let n = document.activeElement;
+    (e.focus({ preventScroll: !0 }), e !== n && O(e) && t && e.select());
+  }
+}
+C(k, `focus`);
+var A = j();
+function j() {
+  let e = [];
+  return {
+    add(t) {
+      let n = e[0];
+      (t !== n && n?.pause(), (e = M(e, t)), e.unshift(t));
+    },
+    remove(t) {
+      ((e = M(e, t)), e[0]?.resume());
+    },
+  };
+}
+C(j, `createFocusScopesStack`);
+function M(e, t) {
+  let n = [...e],
+    r = n.indexOf(t);
+  return (r !== -1 && n.splice(r, 1), n);
+}
+C(M, `arrayRemove`);
+function oe(e) {
+  return e.filter((e) => e.tagName !== `A`);
+}
+C(oe, `removeLinks`);
+var se = function (e) {
+    return typeof document > `u`
+      ? null
+      : (Array.isArray(e) ? e[0] : e).ownerDocument.body;
+  },
+  N = new WeakMap(),
+  P = new WeakMap(),
+  F = {},
+  I = 0,
+  ce = function (e) {
+    return e && (e.host || ce(e.parentNode));
+  },
+  le = function (e, t) {
+    return t
+      .map(function (t) {
+        if (e.contains(t)) return t;
+        var n = ce(t);
+        return n && e.contains(n)
+          ? n
+          : (console.error(
+              `aria-hidden`,
+              t,
+              `in not contained inside`,
+              e,
+              `. Doing nothing`,
+            ),
+            null);
+      })
+      .filter(function (e) {
+        return !!e;
+      });
+  },
+  ue = function (e, t, n, r) {
+    var i = le(t, Array.isArray(e) ? e : [e]);
+    F[n] || (F[n] = new WeakMap());
+    var a = F[n],
+      o = [],
+      s = new Set(),
+      c = new Set(i),
+      l = function (e) {
+        !e || s.has(e) || (s.add(e), l(e.parentNode));
+      };
+    i.forEach(l);
+    var u = function (e) {
+      !e ||
+        c.has(e) ||
+        Array.prototype.forEach.call(e.children, function (e) {
+          if (s.has(e)) u(e);
+          else
+            try {
+              var t = e.getAttribute(r),
+                i = t !== null && t !== `false`,
+                c = (N.get(e) || 0) + 1,
+                l = (a.get(e) || 0) + 1;
+              (N.set(e, c),
+                a.set(e, l),
+                o.push(e),
+                c === 1 && i && P.set(e, !0),
+                l === 1 && e.setAttribute(n, `true`),
+                i || e.setAttribute(r, `true`));
+            } catch (t) {
+              console.error(`aria-hidden: cannot operate on `, e, t);
+            }
+        });
+    };
+    return (
+      u(t),
+      s.clear(),
+      I++,
+      function () {
+        (o.forEach(function (e) {
+          var t = N.get(e) - 1,
+            i = a.get(e) - 1;
+          (N.set(e, t),
+            a.set(e, i),
+            t || (P.has(e) || e.removeAttribute(r), P.delete(e)),
+            i || e.removeAttribute(n));
+        }),
+          I--,
+          I ||
+            ((N = new WeakMap()),
+            (N = new WeakMap()),
+            (P = new WeakMap()),
+            (F = {})));
+      }
+    );
+  },
+  de = function (e, t, n) {
+    n === void 0 && (n = `data-aria-hidden`);
+    var r = Array.from(Array.isArray(e) ? e : [e]),
+      i = t || se(e);
+    return i
+      ? (r.push.apply(r, Array.from(i.querySelectorAll(`[aria-live], script`))),
+        ue(r, i, n, `aria-hidden`))
+      : function () {
+          return null;
+        };
+  },
+  L = `right-scroll-bar-position`,
+  R = `width-before-scroll-bar`,
+  fe = `with-scroll-bars-hidden`,
+  pe = `--removed-body-scroll-bar-size`;
+function z(e, t) {
+  return (typeof e == `function` ? e(t) : e && (e.current = t), e);
+}
+function me(e, t) {
+  var n = (0, d.useState)(function () {
+    return {
+      value: e,
+      callback: t,
+      facade: {
+        get current() {
+          return n.value;
+        },
+        set current(e) {
+          var t = n.value;
+          t !== e && ((n.value = e), n.callback(e, t));
+        },
+      },
+    };
+  })[0];
+  return ((n.callback = t), n.facade);
+}
+var he = typeof window < `u` ? d.useLayoutEffect : d.useEffect,
+  B = new WeakMap();
+function ge(e, t) {
+  var n = me(t || null, function (t) {
+    return e.forEach(function (e) {
+      return z(e, t);
+    });
+  });
+  return (
+    he(
+      function () {
+        var t = B.get(n);
+        if (t) {
+          var r = new Set(t),
+            i = new Set(e),
+            a = n.current;
+          (r.forEach(function (e) {
+            i.has(e) || z(e, null);
+          }),
+            i.forEach(function (e) {
+              r.has(e) || z(e, a);
+            }));
+        }
+        B.set(n, e);
+      },
+      [e],
+    ),
+    n
+  );
+}
+function _e(e) {
+  return e;
+}
+function ve(e, t) {
+  t === void 0 && (t = _e);
+  var n = [],
+    r = !1;
+  return {
+    read: function () {
+      if (r)
+        throw Error(
+          "Sidecar: could not `read` from an `assigned` medium. `read` could be used only with `useMedium`.",
+        );
+      return n.length ? n[n.length - 1] : e;
+    },
+    useMedium: function (e) {
+      var i = t(e, r);
+      return (
+        n.push(i),
+        function () {
+          n = n.filter(function (e) {
+            return e !== i;
+          });
+        }
+      );
+    },
+    assignSyncMedium: function (e) {
+      for (r = !0; n.length;) {
+        var t = n;
+        ((n = []), t.forEach(e));
+      }
+      n = {
+        push: function (t) {
+          return e(t);
+        },
+        filter: function () {
+          return n;
+        },
+      };
+    },
+    assignMedium: function (e) {
+      r = !0;
+      var t = [];
+      if (n.length) {
+        var i = n;
+        ((n = []), i.forEach(e), (t = n));
+      }
+      var a = function () {
+          var n = t;
+          ((t = []), n.forEach(e));
+        },
+        o = function () {
+          return Promise.resolve().then(a);
+        };
+      (o(),
+        (n = {
+          push: function (e) {
+            (t.push(e), o());
+          },
+          filter: function (e) {
+            return ((t = t.filter(e)), n);
+          },
+        }));
+    },
+  };
+}
+function ye(e) {
+  e === void 0 && (e = {});
+  var t = ve(null);
+  return ((t.options = c({ async: !0, ssr: !1 }, e)), t);
+}
+var V = function (e) {
+  var t = e.sideCar,
+    n = l(e, [`sideCar`]);
+  if (!t)
+    throw Error(
+      "Sidecar: please provide `sideCar` property to import the right car",
+    );
+  var r = t.read();
+  if (!r) throw Error(`Sidecar medium not found`);
+  return d.createElement(r, c({}, n));
+};
+V.isSideCarExport = !0;
+function be(e, t) {
+  return (e.useMedium(t), V);
+}
+var H = ye(),
+  U = function () {},
+  W = d.forwardRef(function (e, t) {
+    var n = d.useRef(null),
+      r = d.useState({
+        onScrollCapture: U,
+        onWheelCapture: U,
+        onTouchMoveCapture: U,
+      }),
+      i = r[0],
+      a = r[1],
+      o = e.forwardProps,
+      s = e.children,
+      u = e.className,
+      f = e.removeScrollBar,
+      p = e.enabled,
+      m = e.shards,
+      h = e.sideCar,
+      g = e.noRelative,
+      _ = e.noIsolation,
+      v = e.inert,
+      y = e.allowPinchZoom,
+      b = e.as,
+      x = b === void 0 ? `div` : b,
+      S = e.gapMode,
+      ee = l(e, [
+        `forwardProps`,
+        `children`,
+        `className`,
+        `removeScrollBar`,
+        `enabled`,
+        `shards`,
+        `sideCar`,
+        `noRelative`,
+        `noIsolation`,
+        `inert`,
+        `allowPinchZoom`,
+        `as`,
+        `gapMode`,
+      ]),
+      C = h,
+      w = ge([n, t]),
+      T = c(c({}, ee), i);
+    return d.createElement(
+      d.Fragment,
+      null,
+      p &&
+        d.createElement(C, {
+          sideCar: H,
+          removeScrollBar: f,
+          shards: m,
+          noRelative: g,
+          noIsolation: _,
+          inert: v,
+          setCallbacks: a,
+          allowPinchZoom: !!y,
+          lockRef: n,
+          gapMode: S,
+        }),
+      o
+        ? d.cloneElement(d.Children.only(s), c(c({}, T), { ref: w }))
+        : d.createElement(x, c({}, T, { className: u, ref: w }), s),
+    );
+  });
+((W.defaultProps = { enabled: !0, removeScrollBar: !0, inert: !1 }),
+  (W.classNames = { fullWidth: R, zeroRight: L }));
+var xe,
+  Se = function () {
+    if (xe) return xe;
+    if (typeof __webpack_nonce__ < `u`) return __webpack_nonce__;
+  };
+function Ce() {
+  if (!document) return null;
+  var e = document.createElement(`style`);
+  e.type = `text/css`;
+  var t = Se();
+  return (t && e.setAttribute(`nonce`, t), e);
+}
+function we(e, t) {
+  e.styleSheet
+    ? (e.styleSheet.cssText = t)
+    : e.appendChild(document.createTextNode(t));
+}
+function Te(e) {
+  (document.head || document.getElementsByTagName(`head`)[0]).appendChild(e);
+}
+var Ee = function () {
+    var e = 0,
+      t = null;
+    return {
+      add: function (n) {
+        (e == 0 && (t = Ce()) && (we(t, n), Te(t)), e++);
+      },
+      remove: function () {
+        (e--,
+          !e && t && (t.parentNode && t.parentNode.removeChild(t), (t = null)));
+      },
+    };
+  },
+  De = function () {
+    var e = Ee();
+    return function (t, n) {
+      d.useEffect(
+        function () {
+          return (
+            e.add(t),
+            function () {
+              e.remove();
+            }
+          );
+        },
+        [t && n],
+      );
+    };
+  },
+  Oe = function () {
+    var e = De();
+    return function (t) {
+      var n = t.styles,
+        r = t.dynamic;
+      return (e(n, r), null);
+    };
+  },
+  ke = { left: 0, top: 0, right: 0, gap: 0 },
+  G = function (e) {
+    return parseInt(e || ``, 10) || 0;
+  },
+  Ae = function (e) {
+    var t = window.getComputedStyle(document.body),
+      n = t[e === `padding` ? `paddingLeft` : `marginLeft`],
+      r = t[e === `padding` ? `paddingTop` : `marginTop`],
+      i = t[e === `padding` ? `paddingRight` : `marginRight`];
+    return [G(n), G(r), G(i)];
+  },
+  je = function (e) {
+    if ((e === void 0 && (e = `margin`), typeof window > `u`)) return ke;
+    var t = Ae(e),
+      n = document.documentElement.clientWidth,
+      r = window.innerWidth;
+    return {
+      left: t[0],
+      top: t[1],
+      right: t[2],
+      gap: Math.max(0, r - n + t[2] - t[0]),
+    };
+  },
+  Me = Oe(),
+  K = `data-scroll-locked`,
+  Ne = function (e, t, n, r) {
+    var i = e.left,
+      a = e.top,
+      o = e.right,
+      s = e.gap;
+    return (
+      n === void 0 && (n = `margin`),
+      `
+  .${fe} {
+   overflow: hidden ${r};
+   padding-right: ${s}px ${r};
+  }
+  body[${K}] {
+    overflow: hidden ${r};
+    overscroll-behavior: contain;
+    ${[
+      t && `position: relative ${r};`,
+      n === `margin` &&
+        `
+    padding-left: ${i}px;
+    padding-top: ${a}px;
+    padding-right: ${o}px;
+    margin-left:0;
+    margin-top:0;
+    margin-right: ${s}px ${r};
+    `,
+      n === `padding` && `padding-right: ${s}px ${r};`,
+    ]
+      .filter(Boolean)
+      .join(``)}
+  }
+  
+  .${L} {
+    right: ${s}px ${r};
+  }
+  
+  .${R} {
+    margin-right: ${s}px ${r};
+  }
+  
+  .${L} .${L} {
+    right: 0 ${r};
+  }
+  
+  .${R} .${R} {
+    margin-right: 0 ${r};
+  }
+  
+  body[${K}] {
+    ${pe}: ${s}px;
+  }
+`
+    );
+  },
+  Pe = function () {
+    var e = parseInt(
+      document.body.getAttribute(`data-scroll-locked`) || `0`,
+      10,
+    );
+    return isFinite(e) ? e : 0;
+  },
+  Fe = function () {
+    d.useEffect(function () {
+      return (
+        document.body.setAttribute(K, (Pe() + 1).toString()),
+        function () {
+          var e = Pe() - 1;
+          e <= 0
+            ? document.body.removeAttribute(K)
+            : document.body.setAttribute(K, e.toString());
+        }
+      );
+    }, []);
+  },
+  Ie = function (e) {
+    var t = e.noRelative,
+      n = e.noImportant,
+      r = e.gapMode,
+      i = r === void 0 ? `margin` : r;
+    Fe();
+    var a = d.useMemo(
+      function () {
+        return je(i);
+      },
+      [i],
+    );
+    return d.createElement(Me, { styles: Ne(a, !t, i, n ? `` : `!important`) });
+  },
+  q = !1;
+if (typeof window < `u`)
+  try {
+    var J = Object.defineProperty({}, "passive", {
+      get: function () {
+        return ((q = !0), !0);
+      },
+    });
+    (window.addEventListener(`test`, J, J),
+      window.removeEventListener(`test`, J, J));
+  } catch {
+    q = !1;
+  }
+var Y = q ? { passive: !1 } : !1,
+  Le = function (e) {
+    return e.tagName === `TEXTAREA`;
+  },
+  Re = function (e, t) {
+    if (!(e instanceof Element)) return !1;
+    var n = window.getComputedStyle(e);
+    return (
+      n[t] !== `hidden` &&
+      !(n.overflowY === n.overflowX && !Le(e) && n[t] === `visible`)
+    );
+  },
+  ze = function (e) {
+    return Re(e, `overflowY`);
+  },
+  Be = function (e) {
+    return Re(e, `overflowX`);
+  },
+  Ve = function (e, t) {
+    var n = t.ownerDocument,
+      r = t;
+    do {
+      if (
+        (typeof ShadowRoot < `u` && r instanceof ShadowRoot && (r = r.host),
+        We(e, r))
+      ) {
+        var i = X(e, r);
+        if (i[1] > i[2]) return !0;
+      }
+      r = r.parentNode;
+    } while (r && r !== n.body);
+    return !1;
+  },
+  He = function (e) {
+    return [e.scrollTop, e.scrollHeight, e.clientHeight];
+  },
+  Ue = function (e) {
+    return [e.scrollLeft, e.scrollWidth, e.clientWidth];
+  },
+  We = function (e, t) {
+    return e === `v` ? ze(t) : Be(t);
+  },
+  X = function (e, t) {
+    return e === `v` ? He(t) : Ue(t);
+  },
+  Ge = function (e, t) {
+    return e === `h` && t === `rtl` ? -1 : 1;
+  },
+  Ke = function (e, t, n, r, i) {
+    var a = Ge(e, window.getComputedStyle(t).direction),
+      o = a * r,
+      s = n.target,
+      c = t.contains(s),
+      l = !1,
+      u = o > 0,
+      d = 0,
+      f = 0;
+    do {
+      if (!s) break;
+      var p = X(e, s),
+        m = p[0],
+        h = p[1] - p[2] - a * m;
+      (m || h) && We(e, s) && ((d += h), (f += m));
+      var g = s.parentNode;
+      s = g && g.nodeType === Node.DOCUMENT_FRAGMENT_NODE ? g.host : g;
+    } while ((!c && s !== document.body) || (c && (t.contains(s) || t === s)));
+    return (
+      ((u && ((i && Math.abs(d) < 1) || (!i && o > d))) ||
+        (!u && ((i && Math.abs(f) < 1) || (!i && -o > f)))) &&
+        (l = !0),
+      l
+    );
+  },
+  Z = function (e) {
+    return `changedTouches` in e
+      ? [e.changedTouches[0].clientX, e.changedTouches[0].clientY]
+      : [0, 0];
+  },
+  qe = function (e) {
+    return [e.deltaX, e.deltaY];
+  },
+  Je = function (e) {
+    return e && `current` in e ? e.current : e;
+  },
+  Ye = function (e, t) {
+    return e[0] === t[0] && e[1] === t[1];
+  },
+  Xe = function (e) {
+    return `
+  .block-interactivity-${e} {pointer-events: none;}
+  .allow-interactivity-${e} {pointer-events: all;}
+`;
+  },
+  Ze = 0,
+  Q = [];
+function Qe(e) {
+  var t = d.useRef([]),
+    n = d.useRef([0, 0]),
+    r = d.useRef(),
+    i = d.useState(Ze++)[0],
+    a = d.useState(Oe)[0],
+    s = d.useRef(e);
+  (d.useEffect(
+    function () {
+      s.current = e;
+    },
+    [e],
+  ),
+    d.useEffect(
+      function () {
+        if (e.inert) {
+          document.body.classList.add(`block-interactivity-${i}`);
+          var t = o([e.lockRef.current], (e.shards || []).map(Je), !0).filter(
+            Boolean,
+          );
+          return (
+            t.forEach(function (e) {
+              return e.classList.add(`allow-interactivity-${i}`);
+            }),
+            function () {
+              (document.body.classList.remove(`block-interactivity-${i}`),
+                t.forEach(function (e) {
+                  return e.classList.remove(`allow-interactivity-${i}`);
+                }));
+            }
+          );
+        }
+      },
+      [e.inert, e.lockRef.current, e.shards],
+    ));
+  var c = d.useCallback(function (e, t) {
+      if (
+        (`touches` in e && e.touches.length === 2) ||
+        (e.type === `wheel` && e.ctrlKey)
+      )
+        return !s.current.allowPinchZoom;
+      var i = Z(e),
+        a = n.current,
+        o = `deltaX` in e ? e.deltaX : a[0] - i[0],
+        c = `deltaY` in e ? e.deltaY : a[1] - i[1],
+        l,
+        u = e.target,
+        d = Math.abs(o) > Math.abs(c) ? `h` : `v`;
+      if (`touches` in e && d === `h` && u.type === `range`) return !1;
+      var f = window.getSelection(),
+        p = f && f.anchorNode;
+      if (p && (p === u || p.contains(u))) return !1;
+      var m = Ve(d, u);
+      if (!m) return !0;
+      if ((m ? (l = d) : ((l = d === `v` ? `h` : `v`), (m = Ve(d, u))), !m))
+        return !1;
+      if (
+        (!r.current && `changedTouches` in e && (o || c) && (r.current = l), !l)
+      )
+        return !0;
+      var h = r.current || l;
+      return Ke(h, t, e, h === `h` ? o : c, !0);
+    }, []),
+    l = d.useCallback(function (e) {
+      var n = e;
+      if (!(!Q.length || Q[Q.length - 1] !== a)) {
+        var r = `deltaY` in n ? qe(n) : Z(n),
+          i = t.current.filter(function (e) {
+            return (
+              e.name === n.type &&
+              (e.target === n.target || n.target === e.shadowParent) &&
+              Ye(e.delta, r)
+            );
+          })[0];
+        if (i && i.should) {
+          n.cancelable && n.preventDefault();
+          return;
+        }
+        if (!i) {
+          var o = (s.current.shards || [])
+            .map(Je)
+            .filter(Boolean)
+            .filter(function (e) {
+              return e.contains(n.target);
+            });
+          (o.length > 0 ? c(n, o[0]) : !s.current.noIsolation) &&
+            n.cancelable &&
+            n.preventDefault();
+        }
+      }
+    }, []),
+    u = d.useCallback(function (e, n, r, i) {
+      var a = { name: e, delta: n, target: r, should: i, shadowParent: $e(r) };
+      (t.current.push(a),
+        setTimeout(function () {
+          t.current = t.current.filter(function (e) {
+            return e !== a;
+          });
+        }, 1));
+    }, []),
+    f = d.useCallback(function (e) {
+      ((n.current = Z(e)), (r.current = void 0));
+    }, []),
+    p = d.useCallback(function (t) {
+      u(t.type, qe(t), t.target, c(t, e.lockRef.current));
+    }, []),
+    m = d.useCallback(function (t) {
+      u(t.type, Z(t), t.target, c(t, e.lockRef.current));
+    }, []);
+  d.useEffect(function () {
+    return (
+      Q.push(a),
+      e.setCallbacks({
+        onScrollCapture: p,
+        onWheelCapture: p,
+        onTouchMoveCapture: m,
+      }),
+      document.addEventListener(`wheel`, l, Y),
+      document.addEventListener(`touchmove`, l, Y),
+      document.addEventListener(`touchstart`, f, Y),
+      function () {
+        ((Q = Q.filter(function (e) {
+          return e !== a;
+        })),
+          document.removeEventListener(`wheel`, l, Y),
+          document.removeEventListener(`touchmove`, l, Y),
+          document.removeEventListener(`touchstart`, f, Y));
+      }
+    );
+  }, []);
+  var h = e.removeScrollBar,
+    g = e.inert;
+  return d.createElement(
+    d.Fragment,
+    null,
+    g ? d.createElement(a, { styles: Xe(i) }) : null,
+    h
+      ? d.createElement(Ie, { noRelative: e.noRelative, gapMode: e.gapMode })
+      : null,
+  );
+}
+function $e(e) {
+  for (var t = null; e !== null;)
+    (e instanceof ShadowRoot && ((t = e.host), (e = e.host)),
+      (e = e.parentNode));
+  return t;
+}
+var et = be(H, Qe),
+  $ = d.forwardRef(function (e, t) {
+    return d.createElement(W, c({}, e, { ref: t, sideCar: et }));
+  });
+$.classNames = W.classNames;
+export { h as a, x as i, de as n, ne as r, $ as t };

@@ -1,0 +1,265 @@
+// checkbox-BdSkwnAQ 01 — current
+// Lines 1-263 of readable/assets/checkbox-BdSkwnAQ.pretty.js (statement-aligned).
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { a as r, i, t as a } from "./dist-CA4uZW3H.js";
+import { l as o, m as s } from "./AuthService-CQeU_0bQ.js";
+import { t as c } from "./dist-p2cW4AiE.js";
+import { t as l } from "./dist-DkIQBCKf.js";
+import { r as u } from "./button-Ap3ysi5G.js";
+import { t as d } from "./check-DVcwwxJi.js";
+import { t as f } from "./dist-C4TAXPHx.js";
+var p = u(`UserRound`, [
+    [`circle`, { cx: `12`, cy: `8`, r: `5`, key: `1hypcn` }],
+    [`path`, { d: `M20 21a8 8 0 0 0-16 0`, key: `rfgkzh` }],
+  ]),
+  m = e(t(), 1),
+  h = n(),
+  g = Object.defineProperty,
+  _ = (e, t) => g(e, `name`, { value: t, configurable: !0 }),
+  v = `Checkbox`,
+  [y, b] = i(v),
+  [x, S] = y(v);
+function C(e) {
+  let {
+      __scopeCheckbox: t,
+      checked: n,
+      children: r,
+      defaultChecked: i,
+      disabled: a,
+      form: o,
+      name: s,
+      onCheckedChange: c,
+      required: u,
+      value: d = `on`,
+      internal_do_not_use_render: f,
+    } = e,
+    [p, g] = l({ prop: n, defaultProp: i ?? !1, onChange: c, caller: v }),
+    [_, y] = m.useState(null),
+    [b, S] = m.useState(null),
+    C = m.useRef(!1),
+    [w, T] = m.useReducer((e) => e + 1, 0),
+    E = !_ || !!o || !!_.closest(`form`),
+    D = {
+      checked: p,
+      disabled: a,
+      setChecked: g,
+      control: _,
+      setControl: y,
+      name: s,
+      form: o,
+      value: d,
+      hasConsumerStoppedPropagationRef: C,
+      userInteractionCount: w,
+      onUserInteraction: T,
+      required: u,
+      defaultChecked: !M(i) && i,
+      isFormControl: E,
+      bubbleInput: b,
+      setBubbleInput: S,
+    };
+  return (0, h.jsx)(x, { scope: t, ...D, children: j(f) ? f(D) : r });
+}
+_(C, `CheckboxProvider`);
+var w = `CheckboxTrigger`,
+  T = m.forwardRef(
+    _(function ({ __scopeCheckbox: e, onKeyDown: t, onClick: n, ...i }, a) {
+      let {
+          control: o,
+          value: l,
+          disabled: u,
+          checked: d,
+          required: f,
+          setControl: p,
+          setChecked: g,
+          hasConsumerStoppedPropagationRef: v,
+          onUserInteraction: y,
+          isFormControl: b,
+          bubbleInput: x,
+        } = S(w, e),
+        C = s(a, p),
+        T = m.useRef(d);
+      return (
+        m.useEffect(() => {
+          let e = o?.form;
+          if (e) {
+            let t = _(() => g(T.current), `reset`);
+            return (
+              e.addEventListener(`reset`, t),
+              () => e.removeEventListener(`reset`, t)
+            );
+          }
+        }, [o, g]),
+        (0, h.jsx)(c.button, {
+          type: `button`,
+          role: `checkbox`,
+          "aria-checked": M(d) ? `mixed` : d,
+          "aria-required": f,
+          "data-state": N(d),
+          "data-disabled": u ? `` : void 0,
+          disabled: u,
+          value: l,
+          ...i,
+          ref: C,
+          onKeyDown: r(t, (e) => {
+            e.key === `Enter` && e.preventDefault();
+          }),
+          onClick: r(n, (e) => {
+            (y(),
+              g((e) => (M(e) ? !0 : !e)),
+              x &&
+                b &&
+                ((v.current = e.isPropagationStopped()),
+                v.current || e.stopPropagation()));
+          }),
+        })
+      );
+    }, `CheckboxTrigger`),
+  ),
+  E = m.forwardRef(
+    _(function (e, t) {
+      let {
+        __scopeCheckbox: n,
+        name: r,
+        checked: i,
+        defaultChecked: a,
+        required: o,
+        disabled: s,
+        value: c,
+        onCheckedChange: l,
+        form: u,
+        ...d
+      } = e;
+      return (0, h.jsx)(C, {
+        __scopeCheckbox: n,
+        checked: i,
+        defaultChecked: a,
+        disabled: s,
+        required: o,
+        onCheckedChange: l,
+        name: r,
+        form: u,
+        value: c,
+        internal_do_not_use_render: ({ isFormControl: e }) =>
+          (0, h.jsxs)(h.Fragment, {
+            children: [
+              (0, h.jsx)(T, { ...d, ref: t, __scopeCheckbox: n }),
+              e && (0, h.jsx)(A, { __scopeCheckbox: n }),
+            ],
+          }),
+      });
+    }, `Checkbox`),
+  ),
+  D = `CheckboxIndicator`,
+  O = m.forwardRef(
+    _(function (e, t) {
+      let { __scopeCheckbox: n, forceMount: r, ...i } = e,
+        o = S(D, n);
+      return (0, h.jsx)(a, {
+        present: r || M(o.checked) || o.checked === !0,
+        children: (0, h.jsx)(c.span, {
+          "data-state": N(o.checked),
+          "data-disabled": o.disabled ? `` : void 0,
+          ...i,
+          ref: t,
+          style: { pointerEvents: `none`, ...e.style },
+        }),
+      });
+    }, `CheckboxIndicator`),
+  ),
+  k = `CheckboxBubbleInput`,
+  A = m.forwardRef(
+    _(function ({ __scopeCheckbox: e, onClick: t, ...n }, i) {
+      let {
+          control: a,
+          hasConsumerStoppedPropagationRef: o,
+          userInteractionCount: l,
+          checked: u,
+          defaultChecked: d,
+          required: p,
+          disabled: g,
+          name: _,
+          value: v,
+          form: y,
+          bubbleInput: b,
+          setBubbleInput: x,
+        } = S(k, e),
+        C = s(i, x),
+        w = f(a),
+        T = m.useRef(!1),
+        E = m.useRef(u),
+        D = m.useRef(l);
+      m.useEffect(() => {
+        let e = b;
+        if (!e) return;
+        let t = window.HTMLInputElement.prototype,
+          n = Object.getOwnPropertyDescriptor(t, `checked`).set,
+          r = l !== D.current;
+        D.current = l;
+        let i = E.current !== u;
+        E.current = u;
+        let a = !(r && o.current);
+        if (i && n) {
+          T.current = !r;
+          let t = new Event(`click`, { bubbles: a });
+          ((e.indeterminate = M(u)),
+            n.call(e, !M(u) && u),
+            e.dispatchEvent(t),
+            (T.current = !1));
+        }
+      }, [b, u, o, l]);
+      let O = m.useRef(!M(u) && u);
+      return (0, h.jsx)(c.input, {
+        type: `checkbox`,
+        "aria-hidden": !0,
+        defaultChecked: d ?? O.current,
+        required: p,
+        disabled: g,
+        name: _,
+        value: v,
+        form: y,
+        ...n,
+        tabIndex: -1,
+        ref: C,
+        onClick: r(t, (e) => {
+          T.current && e.stopPropagation();
+        }),
+        style: {
+          ...n.style,
+          ...w,
+          position: `absolute`,
+          pointerEvents: `none`,
+          opacity: 0,
+          margin: 0,
+          transform: `translateX(-100%)`,
+        },
+      });
+    }, `CheckboxBubbleInput`),
+  );
+function j(e) {
+  return typeof e == `function`;
+}
+_(j, `isFunction`);
+function M(e) {
+  return e === `indeterminate`;
+}
+_(M, `isIndeterminate`);
+function N(e) {
+  return M(e) ? `indeterminate` : e ? `checked` : `unchecked`;
+}
+_(N, `getState`);
+var P = m.forwardRef(({ className: e, ...t }, n) =>
+  (0, h.jsx)(E, {
+    ref: n,
+    className: o(
+      `peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground`,
+      e,
+    ),
+    ...t,
+    children: (0, h.jsx)(O, {
+      className: o(`flex items-center justify-center text-current`),
+      children: (0, h.jsx)(d, { className: `h-4 w-4` }),
+    }),
+  }),
+);
+P.displayName = E.displayName;

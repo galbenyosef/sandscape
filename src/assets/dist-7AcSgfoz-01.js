@@ -1,0 +1,26 @@
+// dist-7AcSgfoz 01 — style
+// Lines 1-24 of readable/assets/dist-7AcSgfoz.pretty.js (statement-aligned).
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { t as r } from "./dist-p2cW4AiE.js";
+var i = e(t(), 1),
+  a = n(),
+  o = Object.defineProperty,
+  s = (e, t) => o(e, `name`, { value: t, configurable: !0 }),
+  c = Object.freeze({
+    position: `absolute`,
+    border: 0,
+    width: 1,
+    height: 1,
+    padding: 0,
+    margin: -1,
+    overflow: `hidden`,
+    clip: `rect(0, 0, 0, 0)`,
+    whiteSpace: `nowrap`,
+    wordWrap: `normal`,
+  }),
+  l = i.forwardRef(
+    s(function (e, t) {
+      return (0, a.jsx)(r.span, { ...e, ref: t, style: { ...c, ...e.style } });
+    }, `VisuallyHidden`),
+  );

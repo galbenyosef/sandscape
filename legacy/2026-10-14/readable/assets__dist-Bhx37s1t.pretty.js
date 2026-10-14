@@ -1,0 +1,291 @@
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { a as r, i, n as a, t as o } from "./dist-CA4uZW3H.js";
+import { f as s, m as c } from "./AuthService-CQeU_0bQ.js";
+import { t as l } from "./dist-p2cW4AiE.js";
+import { a as u, s as d } from "./dist-BWh9CVbU.js";
+import {
+  a as f,
+  i as p,
+  n as m,
+  r as h,
+  t as g,
+} from "./Combination-CJArERGX.js";
+import { t as _ } from "./dist-DkIQBCKf.js";
+import { t as v } from "./dist-IS-98_QU.js";
+var y = e(t(), 1),
+  b = n(),
+  x = Object.defineProperty,
+  S = (e, t) => x(e, `name`, { value: t, configurable: !0 }),
+  C = `Dialog`,
+  [w, T] = i(C),
+  [E, D] = w(C),
+  O = S((e) => {
+    let {
+        __scopeDialog: t,
+        children: n,
+        open: r,
+        defaultOpen: i,
+        onOpenChange: a,
+        modal: o = !0,
+      } = e,
+      s = y.useRef(null),
+      c = y.useRef(null),
+      [l, u] = _({ prop: r, defaultProp: i ?? !1, onChange: a, caller: C }),
+      [d, f] = y.useState(0),
+      [p, m] = y.useState(0);
+    return (0, b.jsx)(E, {
+      scope: t,
+      triggerRef: s,
+      contentRef: c,
+      contentId: v(),
+      titleId: v(),
+      descriptionId: v(),
+      titlePresent: d > 0,
+      descriptionPresent: p > 0,
+      setTitleCount: f,
+      setDescriptionCount: m,
+      open: l,
+      onOpenChange: u,
+      onOpenToggle: y.useCallback(() => u((e) => !e), [u]),
+      modal: o,
+      children: n,
+    });
+  }, `Dialog`),
+  k = `DialogTrigger`,
+  A = y.forwardRef(
+    S(function (e, t) {
+      let { __scopeDialog: n, ...i } = e,
+        a = D(k, n),
+        o = c(t, a.triggerRef);
+      return (0, b.jsx)(l.button, {
+        type: `button`,
+        "aria-haspopup": `dialog`,
+        "aria-expanded": a.open,
+        "aria-controls": a.open ? a.contentId : void 0,
+        "data-state": Y(a.open),
+        ...i,
+        ref: o,
+        onClick: r(e.onClick, a.onOpenToggle),
+      });
+    }, `DialogTrigger`),
+  ),
+  j = `DialogPortal`,
+  [M, N] = w(j, { forceMount: void 0 }),
+  P = S((e) => {
+    let { __scopeDialog: t, forceMount: n, children: r, container: i } = e,
+      a = D(j, t);
+    return (0, b.jsx)(M, {
+      scope: t,
+      forceMount: n,
+      children: y.Children.map(r, (e) =>
+        (0, b.jsx)(o, {
+          present: n || a.open,
+          children: (0, b.jsx)(f, { asChild: !0, container: i, children: e }),
+        }),
+      ),
+    });
+  }, `DialogPortal`),
+  F = `DialogOverlay`,
+  I = y.forwardRef(
+    S(function (e, t) {
+      let n = N(F, e.__scopeDialog),
+        { forceMount: r = n.forceMount, ...i } = e,
+        a = D(F, e.__scopeDialog);
+      return a.modal
+        ? (0, b.jsx)(o, {
+            present: r || a.open,
+            children: (0, b.jsx)(R, { ...i, ref: t }),
+          })
+        : null;
+    }, `DialogOverlay`),
+  ),
+  L = s(`DialogOverlay.RemoveScroll`),
+  R = y.forwardRef(
+    S(function (e, t) {
+      let { __scopeDialog: n, ...r } = e,
+        i = D(F, n),
+        a = c(t, d());
+      return (0, b.jsx)(g, {
+        as: L,
+        allowPinchZoom: !0,
+        shards: [i.contentRef],
+        children: (0, b.jsx)(l.div, {
+          "data-state": Y(i.open),
+          ...r,
+          ref: a,
+          style: { pointerEvents: `auto`, ...r.style },
+        }),
+      });
+    }, `DialogOverlayImpl`),
+  ),
+  z = `DialogContent`,
+  B = y.forwardRef(
+    S(function (e, t) {
+      let n = N(z, e.__scopeDialog),
+        { forceMount: r = n.forceMount, ...i } = e,
+        a = D(z, e.__scopeDialog);
+      return (0, b.jsx)(o, {
+        present: r || a.open,
+        children: a.modal
+          ? (0, b.jsx)(V, { ...i, ref: t })
+          : (0, b.jsx)(H, { ...i, ref: t }),
+      });
+    }, `DialogContent`),
+  ),
+  V = y.forwardRef(
+    S(function (e, t) {
+      let n = D(z, e.__scopeDialog),
+        i = y.useRef(null),
+        a = c(t, n.contentRef, i);
+      return (
+        y.useEffect(() => {
+          let e = i.current;
+          if (e) return m(e);
+        }, []),
+        (0, b.jsx)(U, {
+          ...e,
+          ref: a,
+          trapFocus: n.open,
+          disableOutsidePointerEvents: n.open,
+          onCloseAutoFocus: r(e.onCloseAutoFocus, (e) => {
+            (e.preventDefault(), n.triggerRef.current?.focus());
+          }),
+          onPointerDownOutside: r(e.onPointerDownOutside, (e) => {
+            let t = e.detail.originalEvent,
+              n = t.button === 0 && t.ctrlKey === !0;
+            (t.button === 2 || n) && e.preventDefault();
+          }),
+          onFocusOutside: r(e.onFocusOutside, (e) => e.preventDefault()),
+        })
+      );
+    }, `DialogContentModal`),
+  ),
+  H = y.forwardRef(
+    S(function (e, t) {
+      let n = D(z, e.__scopeDialog),
+        r = y.useRef(!1),
+        i = y.useRef(!1);
+      return (0, b.jsx)(U, {
+        ...e,
+        ref: t,
+        trapFocus: !1,
+        disableOutsidePointerEvents: !1,
+        onCloseAutoFocus: (t) => {
+          (e.onCloseAutoFocus?.(t),
+            t.defaultPrevented ||
+              (r.current || n.triggerRef.current?.focus(), t.preventDefault()),
+            (r.current = !1),
+            (i.current = !1));
+        },
+        onInteractOutside: (t) => {
+          (e.onInteractOutside?.(t),
+            t.defaultPrevented ||
+              ((r.current = !0),
+              t.detail.originalEvent.type === `pointerdown` &&
+                (i.current = !0)));
+          let a = t.target;
+          (n.triggerRef.current?.contains(a) && t.preventDefault(),
+            t.detail.originalEvent.type === `focusin` &&
+              i.current &&
+              t.preventDefault());
+        },
+      });
+    }, `DialogContentNonModal`),
+  ),
+  U = y.forwardRef(
+    S(function (e, t) {
+      let {
+          __scopeDialog: n,
+          trapFocus: r,
+          onOpenAutoFocus: i,
+          onCloseAutoFocus: a,
+          "aria-describedby": o,
+          ...s
+        } = e,
+        c = D(z, n);
+      return (
+        p(),
+        (0, b.jsx)(b.Fragment, {
+          children: (0, b.jsx)(h, {
+            asChild: !0,
+            loop: !0,
+            trapped: r,
+            onMountAutoFocus: i,
+            onUnmountAutoFocus: a,
+            children: (0, b.jsx)(u, {
+              role: `dialog`,
+              id: c.contentId,
+              "aria-labelledby": c.titlePresent ? c.titleId : void 0,
+              "aria-describedby": c.descriptionPresent
+                ? J(o, c.descriptionId)
+                : o,
+              "data-state": Y(c.open),
+              ...s,
+              ref: t,
+              deferPointerDownOutside: !0,
+              onDismiss: () => c.onOpenChange(!1),
+            }),
+          }),
+        })
+      );
+    }, `DialogContentImpl`),
+  ),
+  W = y.forwardRef(
+    S(function (e, t) {
+      let { __scopeDialog: n, ...r } = e,
+        i = D(`DialogTitle`, n),
+        { setTitleCount: o } = i;
+      return (
+        a(() => (o((e) => e + 1), () => o((e) => e - 1)), [o]),
+        (0, b.jsx)(l.h2, { id: i.titleId, ...r, ref: t })
+      );
+    }, `DialogTitle`),
+  ),
+  G = y.forwardRef(
+    S(function (e, t) {
+      let { __scopeDialog: n, ...r } = e,
+        i = D(`DialogDescription`, n),
+        { setDescriptionCount: o } = i;
+      return (
+        a(() => (o((e) => e + 1), () => o((e) => e - 1)), [o]),
+        (0, b.jsx)(l.p, { id: i.descriptionId, ...r, ref: t })
+      );
+    }, `DialogDescription`),
+  ),
+  K = `DialogClose`,
+  q = y.forwardRef(
+    S(function (e, t) {
+      let { __scopeDialog: n, ...i } = e,
+        a = D(K, n);
+      return (0, b.jsx)(l.button, {
+        type: `button`,
+        ...i,
+        ref: t,
+        onClick: r(e.onClick, () => a.onOpenChange(!1)),
+      });
+    }, `DialogClose`),
+  );
+function J(...e) {
+  let t = new Set();
+  for (let n of e)
+    if (typeof n == `string`)
+      for (let e of String(n).trim().split(/\s+/)) e && t.add(e);
+  return t.size > 0 ? Array.from(t).join(` `) : void 0;
+}
+S(J, `concatAriaDescribedby`);
+function Y(e) {
+  return e ? `open` : `closed`;
+}
+S(Y, `getState`);
+export {
+  I as a,
+  A as c,
+  G as i,
+  T as l,
+  q as n,
+  P as o,
+  B as r,
+  W as s,
+  O as t,
+};
