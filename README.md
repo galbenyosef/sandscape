@@ -75,7 +75,7 @@ the fleet rule is that external dependencies stay external.
 
 - `index.html` — the entry document as served for `/play` (Vercel rewrites the
   route onto the built `spa.html`; 8,807 B, byte-exact)
-- `assets/` — the full same-origin chunk graph (113 JS chunks + 1 stylesheet)
+- `assets/` — the full same-origin chunk graph (112 JS chunks + 2 stylesheets)
   and the icons/OG images the app loads
 - `.upstream/manifest.json` — sha256 for every captured file
 - `.upstream/runtime-network.json` — every request the live browser session
@@ -83,17 +83,29 @@ the fleet rule is that external dependencies stay external.
   the closure evidence)
 - `.upstream/unreachable.json` — probed paths the origin does not serve (the
   SPA rewrite answers them with the SPA document; recorded, never captured)
-- `readable/` — prettified derived layer (pinned prettier 3.9.6): 113 JS
-  pretties + 1 CSS pretty + 2 inline twins from `index.html`; vendor bundles
-  are whole-file entries
-- `src/` + `split-spec.json` — 524 statement-aligned slices of the 103 app
-  chunks with the recorded derivation spec
+- `readable/assets/` — prettified derived layer (pinned prettier 3.9.6), the
+  served path mirrored: 112 JS pretties + 2 CSS pretties, plus 2 inline twins
+  from `index.html` at the `readable/` root; vendor bundles are whole-file
+  entries
+- `src/assets/` + `split-spec.json` — 524 statement-aligned slices of the 102
+  app chunks, served filenames (hash included) kept with the `-NN` slice
+  suffix, with the recorded derivation spec
+- `rename-map.json` + `tools/names.json` — the closed identifier-rename
+  campaign: the reviewed semantic list and the mechanically recovered map that
+  `src/` is re-cut through on every derivation
 - `tools/capture.mjs` — the capture crawler (entry + runtime log seeds →
   closure to fixpoint; SPA-rewrite fallbacks detected and rejected)
 - `tools/derive.mjs` — rebuild `readable/` + `src/` + `split-spec.json`
+  (re-applies the recorded rename map; `--check` diffs a fresh render)
+- `tools/apply-names.mjs` + `tools/recover-scoped-map.mjs` — the rename-campaign
+  writer and the mechanical map recoverer; `tools/verify-rename.mjs` +
+  `tools/check-chunk.mjs` are the campaign gates
 - `tools/update.mjs` — read-only drift probe against the live origin
 - `tools/verify.mjs` — re-hash the capture against the manifest
+- `tools/record-manifest.mjs` — re-cut / `--check` the capture manifest
 - `tools/audit.js` — integrity gate for the derived layers (`AUDIT PASS`)
+- `tools/serve.mjs` — the loopback static server used for the serve probe /
+  boot test (SPA rewrite, asset paths 404 honestly)
 - `_mirror-report.json` — capture record (method, 404s, origin variants,
   external hosts, the game closure's URL family)
 - `docs/cover.png`, `docs/boot-2026-10-13.png` — gameplay cover and mirror boot
@@ -123,7 +135,7 @@ of the app capture).
   `assets/src-C4EM-vcD.js` (WebCodecs media codec library),
   `assets/SceneEditor-BPEsa1Sn.js` (~5.4 MB editor bundle: editor runtime +
   three.js + fflate)
-- **code (app, sliced into `src/`)** — the remaining 103 chunks, e.g.
+- **code (app, sliced into `src/`)** — the remaining 102 chunks, e.g.
   `assets/index-BKDksszn.js` (entry/routes), `assets/Game-QkGXRHTR.js` (the
   play page: iframe embed, share/likes/leaderboard wiring),
   `assets/gameCreation-*.js`, `assets/i18n-Ddyvvowz.js` (translation data)
@@ -158,17 +170,30 @@ node tools/verify.mjs     # re-hash the capture against the manifest
 node tools/audit.js       # derived-layer integrity gate (AUDIT PASS)
 ```
 
-State as of 2026-10-13: `verify.mjs` → `124 files checked, 0 problems`;
+State as of 2026-10-14: `verify.mjs` → `124 files checked, 0 problems`;
 `audit.js` → `AUDIT PASS — 640 spec sections (524/524 src↔pretty round-trips
-byte-exact, 116/116 pretty sources tiled contiguously, 102/102 skipped
-export-table sections re-verified textually, 524/524 src slices + 113/113
-readable pretties parse standalone, 116/116 pretties re-render byte-exact
-under pinned prettier 3.9.6, 697/700 imports resolve + 3 whitelisted
-machinery)`; `update.mjs` → `up to date: 124 captured files identical
-upstream`. Serve probe (scratch static server, loopback): `/play?g=3UpDloEh`
-and `/` → 200 (8,807 B shell), the entry chunk, the stylesheet, a route chunk
-(`Game-…`), `manifest.webmanifest` and `favicon.png` → 200; listener killed
-(`taskkill`), `netstat` shows no listener and curl refuses the port.
+byte-exact, 10 through the recorded rename map, 116/116 pretty sources tiled
+contiguously, 102/102 skipped export-table sections re-verified textually,
+524/524 src slices + 113/113 readable/*.pretty.js parse standalone
+(node --input-type=module --check -), 116/116 pretties provably distinct from
+their capture source, 116/116 sources provenanced, 116 index-only
+wholeFile/skipped sections carry no src file, 2 inline content block(s) (twins
++ index-inline-map.json cross-checked), 671/671 imports resolve inside the
+capture (0 whitelisted machinery), 19/19 renameBindings name(s) re-found in
+skipped sections + binding map applies, 116/116 pretties re-render byte-exact
+under pinned prettier 3.9.6 (fixed point), capture manifest free of derived
+layers)`; the rename-campaign gates → `verify-rename: 524/524 slice(s)
+reproduce byte-exact, 10 renamed slice(s) (21 indexed occurrence(s)), 102/102
+chunk(s) references+bindings YES` and `check-chunk: 102 chunk(s), 524 slice
+body(ies) substituted — all cross-slice calls resolve`; `derive.mjs --check` →
+`PASS — a fresh render matches the committed derived layers byte-for-byte`;
+`record-manifest.mjs --check` → `PASS — 124 capture file(s) recorded, walk
+agrees byte-for-byte, no derived path leaked`; `update.mjs` → `up to date: 124
+captured files identical upstream`. Serve probe (`tools/serve.mjs`, loopback
+127.0.0.1:4326): `/play?g=3UpDloEh` and `/` → 200 (8,807 B shell), the entry
+chunk, the stylesheet, a route chunk (`Game-…`), `manifest.webmanifest` and
+`favicon.png` → 200; listener killed (`taskkill`), `netstat` shows no
+LISTENING socket and curl refuses the port.
 
 ## Updating from upstream
 
@@ -182,9 +207,19 @@ It fetches the entry at `/play?g=3UpDloEh` (the route the capture pinned; the
 prerendered-home variant as a note, not drift. A refresh means re-running
 `node tools/capture.mjs` into a clean tree (copy replaced files to
 `legacy/<date>/` first), re-cutting the manifest, and re-deriving `readable/` +
-`src/` with `node tools/derive.mjs`.
+`src/` with `node tools/derive.mjs` — which re-applies the recorded
+`rename-map.json` and archives every superseded derived file to `legacy/<date>/`
+(proposal (o): both the superseded `src/` and `readable/` layers). If the
+refreshed bundle renames its chunks, re-run the rename campaign
+(`apply-names.mjs` -> `recover-scoped-map.mjs`) against the new capture.
 
 ### 2026-10-13 capture + readable/src derivation
+
+> The **capture** described here still stands — the 124 files are unchanged and
+> `verify.mjs` re-hashes them byte-for-byte. The `readable/` + `src/` bullets
+> below describe the *first* derivation (flat `assets__` names); they were
+> **superseded on 2026-10-14** by the served-path structure + rename pass in the
+> next section (the flat layers are archived under `legacy/2026-10-14/`).
 
 - **Capture (network-log-led).** The pinned view was loaded in the opencli
   browser with `--window foreground` and every request recorded while
@@ -211,7 +246,7 @@ prerendered-home variant as a note, not drift. A refresh means re-running
   bootstrap script and the pre-mount style, byte ranges + sha256 in
   `readable/index-inline-map.json`; the `application/ld+json` block is
   notRendered). Every pretty is provably not a byte copy of its source.
-- **src/** — 524 statement-aligned slices across the 103 app chunks (exact
+- **src/** — 524 statement-aligned slices across the 102 app chunks (exact
   2-line provenance header `// <tag> NN — <marker>` + `// Lines A-B of
   <pretty> (statement-aligned).`; ~250-350 line windows, oversized single
   declarations kept whole): 524/524 parse standalone
@@ -236,8 +271,59 @@ prerendered-home variant as a note, not drift. A refresh means re-running
   GitHub search finds no Sandscape repo (only unrelated projects: Jenkins
   Sandscape, MIT Tangible Media, architects' sites). No upstream repo to fork,
   so the mirror stands.
-- Identifier names in `src/` are the bundle's own minified names — the rename
-  campaign (PLAN §5) remains an open task.
+- Identifier names in `src/` were, at that point, the bundle's own minified
+  names — the rename campaign (PLAN §5) was recorded as an open task and was
+  closed on 2026-10-14 (below).
+
+### 2026-10-14 structure + rename campaign (PLAN §2/§5)
+
+- **Structure decided from the bytes.** `node tools/probe-structure.mjs` over
+  the capture: 112 JS files carry an ESM surface (from-import / bare import /
+  export table), **zero** `__webpack_require__`/Turbopack factory signatures
+  and no `sourceMappingURL` or `*.map` files — a **flat Vite/rolldown
+  production ESM build**. The capture preserves the served URL structure
+  (`index.html` at the root, every chunk under `assets/`), so the derived
+  layers now **mirror the served path** (PLAN §5 served-path rule; the
+  taipei-rush-tokyo / aetherfall precedent): `readable/assets/<name>.pretty.js|css`
+  and `src/assets/<name>-NN.js` (the served filename, hash included, is the
+  truth; `-NN` marks multi-part slices). `tools/derive.mjs` and `tools/audit.js`
+  were adapted for the nested paths; the superseded flat layers
+  (`readable/assets__*.pretty.*`, `src/assets__*-NN.js` — 638 files) were
+  archived to `legacy/2026-10-14/` (proposal (o)).
+- **Rename campaign — closed on the captured app closure.** `tools/names.json`
+  is the reviewed semantic list; `node tools/apply-names.mjs --all` wrote it
+  into the committed `src/` bodies, `node tools/recover-scoped-map.mjs`
+  recovered `rename-map.json` mechanically (token alignment), and
+  `node tools/derive.mjs` re-cuts `src/` through that map on every derivation
+  (so re-deriving is a function of the map alone). Scope: the app's semantic
+  core — the `/play` route chunk `assets/Game-QkGXRHTR.js` (28 names: the
+  `GamePage` route component, the `PlayGateModal`, `PlatformCompatNotice`,
+  `CommentComposer`/`CommentThread`, `LeaderboardSection`/`Table`/`Row`, the
+  played-games/viewer-id helpers, `postGameView`, `playTokenCache`,
+  `buildAssetUrl` — the iframe-embed `src` builder) plus the service layer
+  (`apiConfig`, `gameUtils`, `gameLikes`, `follow`): **46 program-scope names
+  over 5 chunks, 107 identifier splices, 10 renamed slices** (48 word-boundary
+  records, 15 indexed names over 21 occurrences). The reconstruction reach
+  (`sources[].renameBindings`, (t)(1)) covers 19 names in the 5 chunks'
+  index-only export tables. Vendor rule: the wholeFile bands (React 19, three.js,
+  the Supabase+auth chunk, framer-motion, the codec library, the scene-editor
+  bundle, the rolldown runtime, the preload helper) **and** the minifier-merged
+  bundled UI-kit code inside app chunks (the Radix UI Toggle/ToggleGroup graph
+  in `Game`, the GTM/GA machinery in `AnalyticsService`) stay minified — they
+  are third-party bytes inside app statements, not app code. `avatarUtils`,
+  `creators` and `gameUtils`'s `t` were refused by the unaliased-public-export
+  guard (their local IS the exported public name a token rename cannot reach).
+  **Frontier:** the remaining ~95 app chunks (Create/Publish/Profile/Settings/
+  SceneEditorTest, the `dist-*` UI kit, `i18n` data) keep the minifier's names
+  — the documented next sub-task, not a claimed result.
+- **Gates** — `verify-rename --all` 524/524 slices reproduce byte-exact, 10
+  renamed, 102/102 chunks references+bindings YES; `check-chunk --all` 102
+  chunks, all cross-slice calls resolve; `audit.js` `AUDIT PASS` (above);
+  `verify.mjs` `124 files checked, 0 problems`; `derive.mjs --check`
+  byte-identical; `record-manifest.mjs --check` PASS. The rename map is a
+  derivation record, not capture content — `record-manifest.mjs` and
+  `audit.js` both prove no `rename-map.json` / `split-spec.json` /
+  `index-inline-map.json` / derived path leaks into the capture sums.
 
 ## Mirror conventions
 
@@ -249,6 +335,13 @@ prerendered-home variant as a note, not drift. A refresh means re-running
   `src/` never rewrite vendor bytes.
 - **Readable layer** — `readable/` is derived (prettified) and never shipped
   to a browser; it exists so the bundle can actually be read.
+- **Rename layer** — `readable/` stays pristine (the bundle's own minified
+  names); only `src/` carries the reviewed semantic names. `tools/names.json`
+  is the reviewed list, `rename-map.json` is the mechanically recovered map,
+  and `tools/derive.mjs` re-applies the map on every re-cut, so a slice is
+  exactly its readable range with identifiers substituted. `verify-rename.mjs`,
+  `check-chunk.mjs` and `audit.js` prove the map reproduces the committed
+  slices and keeps every reference, binding and cross-slice call intact.
 - **Provenance** — `.upstream/manifest.json` records sha256 for each captured
   artifact, `tools/verify.mjs` re-checks it, and
   `.upstream/runtime-network.json` records the live network closure the
