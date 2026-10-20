@@ -168,6 +168,7 @@ service, fonts) is live and external.
 ```
 node tools/verify.mjs     # re-hash the capture against the manifest
 node tools/audit.js       # derived-layer integrity gate (AUDIT PASS)
+node tools/check-exports.mjs   # the derived layer still exports every public name
 ```
 
 State as of 2026-10-14: `verify.mjs` → `124 files checked, 0 problems`;
