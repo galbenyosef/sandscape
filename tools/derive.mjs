@@ -177,6 +177,42 @@ function markers(text, n = 2) {
 }
 const markerText = (ms) => ms.map(([w, c]) => `${w}(${c})`).join(", ");
 
+// ── the SERVED chunk's own export statement ─────────────────────────────
+// A chunk's final `export { … }` table is an index-only tail: its bindings
+// live in the earlier slices, so the table cannot parse standalone and no
+// src slice carries it. The public export names of every served chunk were
+// therefore enumerated by the export gate and compared with NOTHING.
+//
+// The served capture DOES carry the table — in its own minified rendering.
+// That rendering is the text the reading copy's table must still match, and
+// it is a DIFFERENT text from the reading copy's lines, so the gate's
+// comparison is real and not a tautology. The gate applies the recorded
+// rename map to it, so a rename that moved a public export name is caught.
+//
+// The clause of an export statement holds no braces, so the served statement
+// is the last `export { … }` in the capture.
+function servedExportStatement(text) {
+  const re = /export\s*\{([^}]*)\}/g;
+  let m,
+    last = null;
+  while ((m = re.exec(text))) last = m;
+  return last ? last[0] : null;
+}
+
+// the PUBLIC names of an export statement: `a as b` exports b, `a` exports a
+function exportClauseNames(statement) {
+  const m = statement.match(/export\s*\{([^}]*)\}/);
+  if (!m) return [];
+  const out = [];
+  for (const part of m[1].split(",")) {
+    const seg = part.trim();
+    if (!seg) continue;
+    const as = seg.split(/\s+as\s+/);
+    out.push(as.length === 2 ? as[1].trim() : seg);
+  }
+  return out;
+}
+
 // ── windowize: cut only at statement starts; ≤350 lines, a single ───────
 // ── oversized declaration is a window of its own ────────────────────────
 function windowize(stmts) {
@@ -480,6 +516,10 @@ async function main() {
         slices: 0,
         derived: "readable only (vendor bundle, wholeFile)",
         what: cls.what,
+        // the reading copy's own export table belongs to no src slice either
+        // (the whole bundle is indexed whole), so it is compared with the
+        // served bundle's whole-file rendering
+        wholeFileSection: { file: rel },
       });
       console.log(`derive: ${rel} -> ${sourceFile} (${lines.length} lines, wholeFile vendor)`);
       continue;
@@ -518,11 +558,21 @@ async function main() {
       /^export\s*\{[\s\S]*\}\s*;?$/.test(lastStmt.text.trim()) &&
       !/\bfrom\b/.test(lastStmt.text)
     ) {
+      // the SERVED chunk's own export statement: the table belongs to no src
+      // slice, so the export gate had no derived text for it — this is the
+      // text it compares the reading copy's table with
+      const served = servedExportStatement(text);
+      if (!served) throw new Error(`${rel}: the served capture carries no export statement`);
+      const want = exportClauseNames(lastStmt.text).join(" ");
+      const got = exportClauseNames(served).join(" ");
+      if (want !== got)
+        throw new Error(`${rel}: the served export statement exports [${got}] but the reading copy's table exports [${want}]`);
       claim(stmts.length - 1, stmts.length - 1, {
         kind: "skip",
         file: `${stem}-tail-export.js`,
         title: `${tag} — final export table (not sliced)`,
-        desc: `Lines ${lastStmt.startLine}-${lastStmt.endLine}. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time.`,
+        desc: `Lines ${lastStmt.startLine}-${lastStmt.endLine}. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded \`text\` is the served chunk's own export statement, the statement the reading copy's table must still match.`,
+        text: served,
       });
     }
 
@@ -614,6 +664,9 @@ async function main() {
           sourceFile,
           firstLine: lines[b.A - 1],
           lastLine: lines[b.B - 1],
+          // the served chunk's own export statement — the text the reading
+          // copy's table must still match (the export gate compares them)
+          ...(b.text ? { text: b.text } : {}),
         });
       }
     }
