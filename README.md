@@ -254,8 +254,12 @@ refreshed bundle renames its chunks, re-run the rename campaign
   (`node --input-type=module --check -`) and round-trip byte-exact to their
   readable line ranges. 102 skipped sections (final `export {…}` tables) and
   14 wholeFile sections (10 vendor bundles + 2 stylesheets + 2 inline twins)
-  are indexed, never sliced. Vendor rule: React 19 (`react-dom`,
-  `jsx-runtime`), three.js (`three.module`, `three-stdlib`), the
+  are indexed, never sliced. Each skipped tail records the SERVED chunk's own
+  export statement as its text (the capture's minified `export{…}`, matched by
+  public names), so the export gate compares two genuinely different files —
+  the reading copy's rendered table against the served chunk's statement —
+  rather than the reading copy with itself. Vendor rule: React 19
+  (`react-dom`, `jsx-runtime`), three.js (`three.module`, `three-stdlib`), the
   Supabase+auth chunk, framer-motion, the WebCodecs codec library and the
   ~5.4 MB scene-editor bundle are whole-file (same classification vibesail
   recorded for its Leaflet+MapLibre world chunk); machinery rule: the rolldown

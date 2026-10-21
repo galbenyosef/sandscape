@@ -190,13 +190,20 @@ const markerText = (ms) => ms.map(([w, c]) => `${w}(${c})`).join(", ");
 // rename map to it, so a rename that moved a public export name is caught.
 //
 // The clause of an export statement holds no braces, so the served statement
-// is the last `export { … }` in the capture.
-function servedExportStatement(text) {
-  const re = /export\s*\{([^}]*)\}/g;
-  let m,
-    last = null;
-  while ((m = re.exec(text))) last = m;
-  return last ? last[0] : null;
+// is found by its PUBLIC NAMES: every `export { … }` in the capture is a
+// candidate, and the one whose public names are the tail's own is the served
+// chunk's statement. Matching by public names (rather than by position) means
+// a fragment of a string that happens to contain `export {` is never mistaken
+// for it, and nothing is invented.
+function servedExportStatement(captureText, want) {
+  let found = null;
+  for (const m of captureText.matchAll(/export\s*\{[^}]*\}/g)) {
+    const names = exportClauseNames(m[0]);
+    if (names.length !== want.length) continue;
+    if (!want.every((n) => names.includes(n))) continue;
+    found = m[0];
+  }
+  return found;
 }
 
 // the PUBLIC names of an export statement: `a as b` exports b, `a` exports a
@@ -560,19 +567,22 @@ async function main() {
     ) {
       // the SERVED chunk's own export statement: the table belongs to no src
       // slice, so the export gate had no derived text for it — this is the
-      // text it compares the reading copy's table with
-      const served = servedExportStatement(text);
-      if (!served) throw new Error(`${rel}: the served capture carries no export statement`);
-      const want = exportClauseNames(lastStmt.text).join(" ");
-      const got = exportClauseNames(served).join(" ");
-      if (want !== got)
-        throw new Error(`${rel}: the served export statement exports [${got}] but the reading copy's table exports [${want}]`);
+      // text it compares the reading copy's table with. It is found by the
+      // PUBLIC NAMES the reading copy's table exports, so a fragment of a
+      // string that happens to contain `export {` is never mistaken for it.
+      const want = exportClauseNames(lastStmt.text);
+      const served = servedExportStatement(text, want);
+      if (!served)
+        throw new Error(
+          `${rel}: the served capture carries no export statement exporting [${want.join(" ")}]`,
+        );
       claim(stmts.length - 1, stmts.length - 1, {
         kind: "skip",
         file: `${stem}-tail-export.js`,
         title: `${tag} — final export table (not sliced)`,
-        desc: `Lines ${lastStmt.startLine}-${lastStmt.endLine}. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded \`text\` is the served chunk's own export statement, the statement the reading copy's table must still match.`,
+        desc: `Lines ${lastStmt.startLine}-${lastStmt.endLine}. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded \`text\` is the served chunk's own export statement (${rel}), matched by public names — the statement the reading copy's table must still match.`,
         text: served,
+        capture: rel,
       });
     }
 
@@ -667,6 +677,8 @@ async function main() {
           // the served chunk's own export statement — the text the reading
           // copy's table must still match (the export gate compares them)
           ...(b.text ? { text: b.text } : {}),
+          // the served chunk the statement came from
+          ...(b.text ? { capture: rel } : {}),
         });
       }
     }

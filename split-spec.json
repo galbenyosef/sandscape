@@ -2090,13 +2090,14 @@
       "file": "assets/index-BKDksszn-tail-export.js",
       "skipped": true,
       "title": "index-BKDksszn — final export table (not sliced)",
-      "desc": "Lines 12090-12159. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 12090-12159. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/index-BKDksszn.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 12090,
       "endLine": 12159,
       "sourceFile": "readable/assets/index-BKDksszn.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{xn as $,Va as A,ii as B,Ya as C,Wa as D,Ha as E,Ai as F,Xn as G,Er as H,ji as I,Dn as J,Nn as K,li as L,ki as M,Bi as N,Za as O,zi as P,Sn as Q,$r as R,ro as S,Ga as T,Tr as U,Ar as V,Sr as W,Tn as X,En as Y,Cn as Z,ho as _,nl as a,fn as at,oo as b,zs as c,cn as ct,Yo as d,rn as dt,bn as et,Qo as f,nn as ft,go as g,Jo as h,Xc as i,pn as it,Ui as j,$a as k,Zo as l,sn as lt,Go as m,ft as mt,Zc as n,vn as nt,Kc as o,dn as ot,Ko as p,pt,On as q,Qc as r,_n as rt,Wc as s,un as st,rl as t,yn as tt,Xo as u,an as ut,so as v,Xa as w,to as x,ao as y,ai as z}"
+      "text": "export{xn as $,Va as A,ii as B,Ya as C,Wa as D,Ha as E,Ai as F,Xn as G,Er as H,ji as I,Dn as J,Nn as K,li as L,ki as M,Bi as N,Za as O,zi as P,Sn as Q,$r as R,ro as S,Ga as T,Tr as U,Ar as V,Sr as W,Tn as X,En as Y,Cn as Z,ho as _,nl as a,fn as at,oo as b,zs as c,cn as ct,Yo as d,rn as dt,bn as et,Qo as f,nn as ft,go as g,Jo as h,Xc as i,pn as it,Ui as j,$a as k,Zo as l,sn as lt,Go as m,ft as mt,Zc as n,vn as nt,Kc as o,dn as ot,Ko as p,pt,On as q,Qc as r,_n as rt,Wc as s,un as st,rl as t,yn as tt,Xo as u,an as ut,so as v,Xa as w,to as x,ao as y,ai as z}",
+      "capture": "assets/index-BKDksszn.js"
     },
     {
       "file": "assets/actionsCatalog-BOqBt5wy-01.js",
@@ -2110,13 +2111,14 @@
       "file": "assets/actionsCatalog-BOqBt5wy-tail-export.js",
       "skipped": true,
       "title": "actionsCatalog-BOqBt5wy — final export table (not sliced)",
-      "desc": "Lines 317-336. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 317-336. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/actionsCatalog-BOqBt5wy.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 317,
       "endLine": 336,
       "sourceFile": "readable/assets/actionsCatalog-BOqBt5wy.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{i as _,A as a,S as c,j as d,C as f,h as g,w as h,E as i,_ as l,M as m,b as n,s as o,D as p,T as r,N as s,o as t,g as u,a as v}"
+      "text": "export{i as _,A as a,S as c,j as d,C as f,h as g,w as h,E as i,_ as l,M as m,b as n,s as o,D as p,T as r,N as s,o as t,g as u,a as v}",
+      "capture": "assets/actionsCatalog-BOqBt5wy.js"
     },
     {
       "file": "assets/Activate-BF9W00Ke-01.js",
@@ -2130,13 +2132,14 @@
       "file": "assets/Activate-BF9W00Ke-tail-export.js",
       "skipped": true,
       "title": "Activate-BF9W00Ke — final export table (not sliced)",
-      "desc": "Lines 247-247. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 247-247. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Activate-BF9W00Ke.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 247,
       "endLine": 247,
       "sourceFile": "readable/assets/Activate-BF9W00Ke.pretty.js",
       "firstLine": "export { E as Activate };",
       "lastLine": "export { E as Activate };",
-      "text": "export{E as Activate}"
+      "text": "export{E as Activate}",
+      "capture": "assets/Activate-BF9W00Ke.js"
     },
     {
       "file": "assets/alert-dialog-BwlBTuHq-01.js",
@@ -2150,13 +2153,14 @@
       "file": "assets/alert-dialog-BwlBTuHq-tail-export.js",
       "skipped": true,
       "title": "alert-dialog-BwlBTuHq — final export table (not sliced)",
-      "desc": "Lines 172-182. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 172-182. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/alert-dialog-BwlBTuHq.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 172,
       "endLine": 182,
       "sourceFile": "readable/assets/alert-dialog-BwlBTuHq.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{W as a,U as c,B as i,L as l,G as n,H as o,K as r,V as s,I as t}"
+      "text": "export{W as a,U as c,B as i,L as l,G as n,H as o,K as r,V as s,I as t}",
+      "capture": "assets/alert-dialog-BwlBTuHq.js"
     },
     {
       "file": "assets/AnalyticsService-BMBbF9S--01.js",
@@ -2170,13 +2174,14 @@
       "file": "assets/AnalyticsService-BMBbF9S--tail-export.js",
       "skipped": true,
       "title": "AnalyticsService-BMBbF9S- — final export table (not sliced)",
-      "desc": "Lines 336-336. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 336-336. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/AnalyticsService-BMBbF9S-.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 336,
       "endLine": 336,
       "sourceFile": "readable/assets/AnalyticsService-BMBbF9S-.pretty.js",
       "firstLine": "export { R as a, i as c, W as i, l as n, G as o, E as r, V as s, K as t };",
       "lastLine": "export { R as a, i as c, W as i, l as n, G as o, E as r, V as s, K as t };",
-      "text": "export{R as a,i as c,W as i,l as n,G as o,E as r,V as s,K as t}"
+      "text": "export{R as a,i as c,W as i,l as n,G as o,E as r,V as s,K as t}",
+      "capture": "assets/AnalyticsService-BMBbF9S-.js"
     },
     {
       "file": "assets/apiConfig-cGsbt6Be-01.js",
@@ -2190,13 +2195,14 @@
       "file": "assets/apiConfig-cGsbt6Be-tail-export.js",
       "skipped": true,
       "title": "apiConfig-cGsbt6Be — final export table (not sliced)",
-      "desc": "Lines 35-35. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 35-35. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/apiConfig-cGsbt6Be.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 35,
       "endLine": 35,
       "sourceFile": "readable/assets/apiConfig-cGsbt6Be.pretty.js",
       "firstLine": "export { i as n, a as r, n as t };",
       "lastLine": "export { i as n, a as r, n as t };",
-      "text": "export{i as n,a as r,n as t}"
+      "text": "export{i as n,a as r,n as t}",
+      "capture": "assets/apiConfig-cGsbt6Be.js"
     },
     {
       "file": "assets/arrow-left-CDrX27jn-01.js",
@@ -2210,13 +2216,14 @@
       "file": "assets/arrow-left-CDrX27jn-tail-export.js",
       "skipped": true,
       "title": "arrow-left-CDrX27jn — final export table (not sliced)",
-      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/arrow-left-CDrX27jn.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 6,
       "endLine": 6,
       "sourceFile": "readable/assets/arrow-left-CDrX27jn.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/arrow-left-CDrX27jn.js"
     },
     {
       "file": "assets/Auth-D5wV77IC-01.js",
@@ -2262,13 +2269,14 @@
       "file": "assets/Auth-D5wV77IC-tail-export.js",
       "skipped": true,
       "title": "Auth-D5wV77IC — final export table (not sliced)",
-      "desc": "Lines 1720-1720. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1720-1720. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Auth-D5wV77IC.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1720,
       "endLine": 1720,
       "sourceFile": "readable/assets/Auth-D5wV77IC.pretty.js",
       "firstLine": "export { Le as AuthPage, Le as default };",
       "lastLine": "export { Le as AuthPage, Le as default };",
-      "text": "export{Le as AuthPage,Le as default}"
+      "text": "export{Le as AuthPage,Le as default}",
+      "capture": "assets/Auth-D5wV77IC.js"
     },
     {
       "file": "assets/AuthCallback-DqVxfP13-01.js",
@@ -2282,13 +2290,14 @@
       "file": "assets/AuthCallback-DqVxfP13-tail-export.js",
       "skipped": true,
       "title": "AuthCallback-DqVxfP13 — final export table (not sliced)",
-      "desc": "Lines 171-171. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 171-171. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/AuthCallback-DqVxfP13.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 171,
       "endLine": 171,
       "sourceFile": "readable/assets/AuthCallback-DqVxfP13.pretty.js",
       "firstLine": "export { x as AuthCallback, x as default };",
       "lastLine": "export { x as AuthCallback, x as default };",
-      "text": "export{x as AuthCallback,x as default}"
+      "text": "export{x as AuthCallback,x as default}",
+      "capture": "assets/AuthCallback-DqVxfP13.js"
     },
     {
       "file": "assets/authErrors-DEBvXlic-01.js",
@@ -2302,13 +2311,14 @@
       "file": "assets/authErrors-DEBvXlic-tail-export.js",
       "skipped": true,
       "title": "authErrors-DEBvXlic — final export table (not sliced)",
-      "desc": "Lines 48-48. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 48-48. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/authErrors-DEBvXlic.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 48,
       "endLine": 48,
       "sourceFile": "readable/assets/authErrors-DEBvXlic.pretty.js",
       "firstLine": "export { e as t };",
       "lastLine": "export { e as t };",
-      "text": "export{e as t}"
+      "text": "export{e as t}",
+      "capture": "assets/authErrors-DEBvXlic.js"
     },
     {
       "file": "assets/avatar-ixs41cq5-01.js",
@@ -2322,13 +2332,14 @@
       "file": "assets/avatar-ixs41cq5-tail-export.js",
       "skipped": true,
       "title": "avatar-ixs41cq5 — final export table (not sliced)",
-      "desc": "Lines 147-147. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 147-147. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/avatar-ixs41cq5.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 147,
       "endLine": 147,
       "sourceFile": "readable/assets/avatar-ixs41cq5.pretty.js",
       "firstLine": "export { k as n, O as r, D as t };",
       "lastLine": "export { k as n, O as r, D as t };",
-      "text": "export{k as n,O as r,D as t}"
+      "text": "export{k as n,O as r,D as t}",
+      "capture": "assets/avatar-ixs41cq5.js"
     },
     {
       "file": "assets/avatarUtils-CBd99uWq-01.js",
@@ -2342,13 +2353,14 @@
       "file": "assets/avatarUtils-CBd99uWq-tail-export.js",
       "skipped": true,
       "title": "avatarUtils-CBd99uWq — final export table (not sliced)",
-      "desc": "Lines 8-8. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 8-8. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/avatarUtils-CBd99uWq.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 8,
       "endLine": 8,
       "sourceFile": "readable/assets/avatarUtils-CBd99uWq.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/avatarUtils-CBd99uWq.js"
     },
     {
       "file": "assets/badge-B4-vVyqh-01.js",
@@ -2362,13 +2374,14 @@
       "file": "assets/badge-B4-vVyqh-tail-export.js",
       "skipped": true,
       "title": "badge-B4-vVyqh — final export table (not sliced)",
-      "desc": "Lines 24-24. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 24-24. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/badge-B4-vVyqh.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 24,
       "endLine": 24,
       "sourceFile": "readable/assets/badge-B4-vVyqh.pretty.js",
       "firstLine": "export { o as t };",
       "lastLine": "export { o as t };",
-      "text": "export{o as t}"
+      "text": "export{o as t}",
+      "capture": "assets/badge-B4-vVyqh.js"
     },
     {
       "file": "assets/button-Ap3ysi5G-01.js",
@@ -2382,13 +2395,14 @@
       "file": "assets/button-Ap3ysi5G-tail-export.js",
       "skipped": true,
       "title": "button-Ap3ysi5G — final export table (not sliced)",
-      "desc": "Lines 133-133. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 133-133. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/button-Ap3ysi5G.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 133,
       "endLine": 133,
       "sourceFile": "readable/assets/button-Ap3ysi5G.pretty.js",
       "firstLine": "export { l as i, g as n, m as r, _ as t };",
       "lastLine": "export { l as i, g as n, m as r, _ as t };",
-      "text": "export{l as i,g as n,m as r,_ as t}"
+      "text": "export{l as i,g as n,m as r,_ as t}",
+      "capture": "assets/button-Ap3ysi5G.js"
     },
     {
       "file": "assets/card-DLIi0Qe8-01.js",
@@ -2402,13 +2416,14 @@
       "file": "assets/card-DLIi0Qe8-tail-export.js",
       "skipped": true,
       "title": "card-DLIi0Qe8 — final export table (not sliced)",
-      "desc": "Lines 53-53. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 53-53. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/card-DLIi0Qe8.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 53,
       "endLine": 53,
       "sourceFile": "readable/assets/card-DLIi0Qe8.pretty.js",
       "firstLine": "export { s as a, d as i, u as n, c as o, l as r, o as t };",
       "lastLine": "export { s as a, d as i, u as n, c as o, l as r, o as t };",
-      "text": "export{s as a,d as i,u as n,c as o,l as r,o as t}"
+      "text": "export{s as a,d as i,u as n,c as o,l as r,o as t}",
+      "capture": "assets/card-DLIi0Qe8.js"
     },
     {
       "file": "assets/ChatInput-Bh7UOK0U-01.js",
@@ -2446,13 +2461,14 @@
       "file": "assets/ChatInput-Bh7UOK0U-tail-export.js",
       "skipped": true,
       "title": "ChatInput-Bh7UOK0U — final export table (not sliced)",
-      "desc": "Lines 1175-1186. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1175-1186. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/ChatInput-Bh7UOK0U.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1175,
       "endLine": 1186,
       "sourceFile": "readable/assets/ChatInput-Bh7UOK0U.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{N as a,E as c,P as i,T as l,L as n,O as o,I as r,D as s,q as t,w as u}"
+      "text": "export{N as a,E as c,P as i,T as l,L as n,O as o,I as r,D as s,q as t,w as u}",
+      "capture": "assets/ChatInput-Bh7UOK0U.js"
     },
     {
       "file": "assets/check-DVcwwxJi-01.js",
@@ -2466,13 +2482,14 @@
       "file": "assets/check-DVcwwxJi-tail-export.js",
       "skipped": true,
       "title": "check-DVcwwxJi — final export table (not sliced)",
-      "desc": "Lines 3-3. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 3-3. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/check-DVcwwxJi.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 3,
       "endLine": 3,
       "sourceFile": "readable/assets/check-DVcwwxJi.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/check-DVcwwxJi.js"
     },
     {
       "file": "assets/checkbox-BdSkwnAQ-01.js",
@@ -2486,13 +2503,14 @@
       "file": "assets/checkbox-BdSkwnAQ-tail-export.js",
       "skipped": true,
       "title": "checkbox-BdSkwnAQ — final export table (not sliced)",
-      "desc": "Lines 264-264. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 264-264. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/checkbox-BdSkwnAQ.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 264,
       "endLine": 264,
       "sourceFile": "readable/assets/checkbox-BdSkwnAQ.pretty.js",
       "firstLine": "export { p as n, P as t };",
       "lastLine": "export { p as n, P as t };",
-      "text": "export{p as n,P as t}"
+      "text": "export{p as n,P as t}",
+      "capture": "assets/checkbox-BdSkwnAQ.js"
     },
     {
       "file": "assets/chevron-left-wlBcTn-9-01.js",
@@ -2506,13 +2524,14 @@
       "file": "assets/chevron-left-wlBcTn-9-tail-export.js",
       "skipped": true,
       "title": "chevron-left-wlBcTn-9 — final export table (not sliced)",
-      "desc": "Lines 3-3. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 3-3. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/chevron-left-wlBcTn-9.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 3,
       "endLine": 3,
       "sourceFile": "readable/assets/chevron-left-wlBcTn-9.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/chevron-left-wlBcTn-9.js"
     },
     {
       "file": "assets/chunk-KS7C4IRE-CgpSK45w-01.js",
@@ -2574,13 +2593,14 @@
       "file": "assets/chunk-KS7C4IRE-CgpSK45w-tail-export.js",
       "skipped": true,
       "title": "chunk-KS7C4IRE-CgpSK45w — final export table (not sliced)",
-      "desc": "Lines 2311-2322. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 2311-2322. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/chunk-KS7C4IRE-CgpSK45w.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 2311,
       "endLine": 2322,
       "sourceFile": "readable/assets/chunk-KS7C4IRE-CgpSK45w.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{mt as a,V as c,pt as i,Ge as l,en as n,gt as o,ft as r,B as s,Qt as t,ln as u}"
+      "text": "export{mt as a,V as c,pt as i,Ge as l,en as n,gt as o,ft as r,B as s,Qt as t,ln as u}",
+      "capture": "assets/chunk-KS7C4IRE-CgpSK45w.js"
     },
     {
       "file": "assets/circle-check-BVtsIJ9N-01.js",
@@ -2594,13 +2614,14 @@
       "file": "assets/circle-check-BVtsIJ9N-tail-export.js",
       "skipped": true,
       "title": "circle-check-BVtsIJ9N — final export table (not sliced)",
-      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/circle-check-BVtsIJ9N.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 6,
       "endLine": 6,
       "sourceFile": "readable/assets/circle-check-BVtsIJ9N.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/circle-check-BVtsIJ9N.js"
     },
     {
       "file": "assets/clipboard-D18mYxSs-01.js",
@@ -2614,13 +2635,14 @@
       "file": "assets/clipboard-D18mYxSs-tail-export.js",
       "skipped": true,
       "title": "clipboard-D18mYxSs — final export table (not sliced)",
-      "desc": "Lines 302-302. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 302-302. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/clipboard-D18mYxSs.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 302,
       "endLine": 302,
       "sourceFile": "readable/assets/clipboard-D18mYxSs.pretty.js",
       "firstLine": "export { C as a, X as i, Y as n, Z as r, Q as t };",
       "lastLine": "export { C as a, X as i, Y as n, Z as r, Q as t };",
-      "text": "export{C as a,X as i,Y as n,Z as r,Q as t}"
+      "text": "export{C as a,X as i,Y as n,Z as r,Q as t}",
+      "capture": "assets/clipboard-D18mYxSs.js"
     },
     {
       "file": "assets/CoinDisplay-iWoR0BMU-01.js",
@@ -2650,13 +2672,14 @@
       "file": "assets/CoinDisplay-iWoR0BMU-tail-export.js",
       "skipped": true,
       "title": "CoinDisplay-iWoR0BMU — final export table (not sliced)",
-      "desc": "Lines 816-827. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 816-827. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/CoinDisplay-iWoR0BMU.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 816,
       "endLine": 827,
       "sourceFile": "readable/assets/CoinDisplay-iWoR0BMU.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{X as a,k as c,$ as i,T as l,ge as n,Q as o,Z as r,O as s,he as t,C as u}"
+      "text": "export{X as a,k as c,$ as i,T as l,ge as n,Q as o,Z as r,O as s,he as t,C as u}",
+      "capture": "assets/CoinDisplay-iWoR0BMU.js"
     },
     {
       "file": "assets/Combination-CJArERGX-01.js",
@@ -2694,13 +2717,14 @@
       "file": "assets/Combination-CJArERGX-tail-export.js",
       "skipped": true,
       "title": "Combination-CJArERGX — final export table (not sliced)",
-      "desc": "Lines 984-984. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 984-984. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Combination-CJArERGX.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 984,
       "endLine": 984,
       "sourceFile": "readable/assets/Combination-CJArERGX.pretty.js",
       "firstLine": "export { h as a, x as i, de as n, ne as r, $ as t };",
       "lastLine": "export { h as a, x as i, de as n, ne as r, $ as t };",
-      "text": "export{h as a,x as i,de as n,ne as r,$ as t}"
+      "text": "export{h as a,x as i,de as n,ne as r,$ as t}",
+      "capture": "assets/Combination-CJArERGX.js"
     },
     {
       "file": "assets/confirm-dialog-B_bgaQuk-01.js",
@@ -2714,13 +2738,14 @@
       "file": "assets/confirm-dialog-B_bgaQuk-tail-export.js",
       "skipped": true,
       "title": "confirm-dialog-B_bgaQuk — final export table (not sliced)",
-      "desc": "Lines 84-84. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 84-84. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/confirm-dialog-B_bgaQuk.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 84,
       "endLine": 84,
       "sourceFile": "readable/assets/confirm-dialog-B_bgaQuk.pretty.js",
       "firstLine": "export { d as t };",
       "lastLine": "export { d as t };",
-      "text": "export{d as t}"
+      "text": "export{d as t}",
+      "capture": "assets/confirm-dialog-B_bgaQuk.js"
     },
     {
       "file": "assets/CookieConsentBanner-BrtZ2LZ4-01.js",
@@ -2750,13 +2775,14 @@
       "file": "assets/CookieConsentBanner-BrtZ2LZ4-tail-export.js",
       "skipped": true,
       "title": "CookieConsentBanner-BrtZ2LZ4 — final export table (not sliced)",
-      "desc": "Lines 465-465. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 465-465. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/CookieConsentBanner-BrtZ2LZ4.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 465,
       "endLine": 465,
       "sourceFile": "readable/assets/CookieConsentBanner-BrtZ2LZ4.pretty.js",
       "firstLine": "export { x as CookieConsentBanner };",
       "lastLine": "export { x as CookieConsentBanner };",
-      "text": "export{x as CookieConsentBanner}"
+      "text": "export{x as CookieConsentBanner}",
+      "capture": "assets/CookieConsentBanner-BrtZ2LZ4.js"
     },
     {
       "file": "assets/Create-ea24k1TY-01.js",
@@ -5234,13 +5260,14 @@
       "file": "assets/Create-ea24k1TY-tail-export.js",
       "skipped": true,
       "title": "Create-ea24k1TY — final export table (not sliced)",
-      "desc": "Lines 109235-109235. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 109235-109235. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Create-ea24k1TY.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 109235,
       "endLine": 109235,
       "sourceFile": "readable/assets/Create-ea24k1TY.pretty.js",
       "firstLine": "export { Uye as Create };",
       "lastLine": "export { Uye as Create };",
-      "text": "export{Uye as Create}"
+      "text": "export{Uye as Create}",
+      "capture": "assets/Create-ea24k1TY.js"
     },
     {
       "file": "assets/CreatePrompt-BAYFUPVf-01.js",
@@ -5286,13 +5313,14 @@
       "file": "assets/CreatePrompt-BAYFUPVf-tail-export.js",
       "skipped": true,
       "title": "CreatePrompt-BAYFUPVf — final export table (not sliced)",
-      "desc": "Lines 1565-1565. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1565-1565. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/CreatePrompt-BAYFUPVf.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1565,
       "endLine": 1565,
       "sourceFile": "readable/assets/CreatePrompt-BAYFUPVf.pretty.js",
       "firstLine": "export { He as CreatePrompt };",
       "lastLine": "export { He as CreatePrompt };",
-      "text": "export{He as CreatePrompt}"
+      "text": "export{He as CreatePrompt}",
+      "capture": "assets/CreatePrompt-BAYFUPVf.js"
     },
     {
       "file": "assets/creators-BdQ0Kqzc-01.js",
@@ -5306,13 +5334,14 @@
       "file": "assets/creators-BdQ0Kqzc-tail-export.js",
       "skipped": true,
       "title": "creators-BdQ0Kqzc — final export table (not sliced)",
-      "desc": "Lines 14-14. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 14-14. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/creators-BdQ0Kqzc.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 14,
       "endLine": 14,
       "sourceFile": "readable/assets/creators-BdQ0Kqzc.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/creators-BdQ0Kqzc.js"
     },
     {
       "file": "assets/crown-NMNJ6-VK-01.js",
@@ -5326,13 +5355,14 @@
       "file": "assets/crown-NMNJ6-VK-tail-export.js",
       "skipped": true,
       "title": "crown-NMNJ6-VK — final export table (not sliced)",
-      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/crown-NMNJ6-VK.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 12,
       "endLine": 12,
       "sourceFile": "readable/assets/crown-NMNJ6-VK.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/crown-NMNJ6-VK.js"
     },
     {
       "file": "assets/dialog-B1UXjCvB-01.js",
@@ -5346,13 +5376,14 @@
       "file": "assets/dialog-B1UXjCvB-tail-export.js",
       "skipped": true,
       "title": "dialog-B1UXjCvB — final export table (not sliced)",
-      "desc": "Lines 86-86. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 86-86. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dialog-B1UXjCvB.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 86,
       "endLine": 86,
       "sourceFile": "readable/assets/dialog-B1UXjCvB.pretty.js",
       "firstLine": "export { v as a, y as i, _ as n, b as o, x as r, m as t };",
       "lastLine": "export { v as a, y as i, _ as n, b as o, x as r, m as t };",
-      "text": "export{v as a,y as i,_ as n,b as o,x as r,m as t}"
+      "text": "export{v as a,y as i,_ as n,b as o,x as r,m as t}",
+      "capture": "assets/dialog-B1UXjCvB.js"
     },
     {
       "file": "assets/dist-7AcSgfoz-01.js",
@@ -5366,13 +5397,14 @@
       "file": "assets/dist-7AcSgfoz-tail-export.js",
       "skipped": true,
       "title": "dist-7AcSgfoz — final export table (not sliced)",
-      "desc": "Lines 25-25. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 25-25. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-7AcSgfoz.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 25,
       "endLine": 25,
       "sourceFile": "readable/assets/dist-7AcSgfoz.pretty.js",
       "firstLine": "export { l as n, c as t };",
       "lastLine": "export { l as n, c as t };",
-      "text": "export{l as n,c as t}"
+      "text": "export{l as n,c as t}",
+      "capture": "assets/dist-7AcSgfoz.js"
     },
     {
       "file": "assets/dist-Bhx37s1t-01.js",
@@ -5386,13 +5418,14 @@
       "file": "assets/dist-Bhx37s1t-tail-export.js",
       "skipped": true,
       "title": "dist-Bhx37s1t — final export table (not sliced)",
-      "desc": "Lines 281-291. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 281-291. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-Bhx37s1t.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 281,
       "endLine": 291,
       "sourceFile": "readable/assets/dist-Bhx37s1t.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{I as a,A as c,G as i,T as l,q as n,P as o,B as r,W as s,O as t}"
+      "text": "export{I as a,A as c,G as i,T as l,q as n,P as o,B as r,W as s,O as t}",
+      "capture": "assets/dist-Bhx37s1t.js"
     },
     {
       "file": "assets/dist-BKqz_oOH-01.js",
@@ -5406,13 +5439,14 @@
       "file": "assets/dist-BKqz_oOH-tail-export.js",
       "skipped": true,
       "title": "dist-BKqz_oOH — final export table (not sliced)",
-      "desc": "Lines 248-248. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 248-248. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-BKqz_oOH.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 248,
       "endLine": 248,
       "sourceFile": "readable/assets/dist-BKqz_oOH.pretty.js",
       "firstLine": "export { R as n, M as r, F as t };",
       "lastLine": "export { R as n, M as r, F as t };",
-      "text": "export{R as n,M as r,F as t}"
+      "text": "export{R as n,M as r,F as t}",
+      "capture": "assets/dist-BKqz_oOH.js"
     },
     {
       "file": "assets/dist-BWh9CVbU-01.js",
@@ -5466,13 +5500,14 @@
       "file": "assets/dist-BWh9CVbU-tail-export.js",
       "skipped": true,
       "title": "dist-BWh9CVbU — final export table (not sliced)",
-      "desc": "Lines 1878-1878. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1878-1878. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-BWh9CVbU.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1878,
       "endLine": 1878,
       "sourceFile": "readable/assets/dist-BWh9CVbU.pretty.js",
       "firstLine": "export { x as a, Gt as i, Xt as n, S as o, en as r, C as s, Jt as t };",
       "lastLine": "export { x as a, Gt as i, Xt as n, S as o, en as r, C as s, Jt as t };",
-      "text": "export{x as a,Gt as i,Xt as n,S as o,en as r,C as s,Jt as t}"
+      "text": "export{x as a,Gt as i,Xt as n,S as o,en as r,C as s,Jt as t}",
+      "capture": "assets/dist-BWh9CVbU.js"
     },
     {
       "file": "assets/dist-C4TAXPHx-01.js",
@@ -5486,13 +5521,14 @@
       "file": "assets/dist-C4TAXPHx-tail-export.js",
       "skipped": true,
       "title": "dist-C4TAXPHx — final export table (not sliced)",
-      "desc": "Lines 32-32. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 32-32. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-C4TAXPHx.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 32,
       "endLine": 32,
       "sourceFile": "readable/assets/dist-C4TAXPHx.pretty.js",
       "firstLine": "export { o as t };",
       "lastLine": "export { o as t };",
-      "text": "export{o as t}"
+      "text": "export{o as t}",
+      "capture": "assets/dist-C4TAXPHx.js"
     },
     {
       "file": "assets/dist-C7e-qgX5-01.js",
@@ -5506,13 +5542,14 @@
       "file": "assets/dist-C7e-qgX5-tail-export.js",
       "skipped": true,
       "title": "dist-C7e-qgX5 — final export table (not sliced)",
-      "desc": "Lines 13-13. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 13-13. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-C7e-qgX5.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 13,
       "endLine": 13,
       "sourceFile": "readable/assets/dist-C7e-qgX5.pretty.js",
       "firstLine": "export { s as t };",
       "lastLine": "export { s as t };",
-      "text": "export{s as t}"
+      "text": "export{s as t}",
+      "capture": "assets/dist-C7e-qgX5.js"
     },
     {
       "file": "assets/dist-CA4uZW3H-01.js",
@@ -5526,13 +5563,14 @@
       "file": "assets/dist-CA4uZW3H-tail-export.js",
       "skipped": true,
       "title": "dist-CA4uZW3H — final export table (not sliced)",
-      "desc": "Lines 268-268. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 268-268. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-CA4uZW3H.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 268,
       "endLine": 268,
       "sourceFile": "readable/assets/dist-CA4uZW3H.pretty.js",
       "firstLine": "export { o as a, g as i, x as n, b as r, T as t };",
       "lastLine": "export { o as a, g as i, x as n, b as r, T as t };",
-      "text": "export{o as a,g as i,x as n,b as r,T as t}"
+      "text": "export{o as a,g as i,x as n,b as r,T as t}",
+      "capture": "assets/dist-CA4uZW3H.js"
     },
     {
       "file": "assets/dist-D8Wfxh48-01.js",
@@ -5546,13 +5584,14 @@
       "file": "assets/dist-D8Wfxh48-tail-export.js",
       "skipped": true,
       "title": "dist-D8Wfxh48 — final export table (not sliced)",
-      "desc": "Lines 7-7. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 7-7. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-D8Wfxh48.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 7,
       "endLine": 7,
       "sourceFile": "readable/assets/dist-D8Wfxh48.pretty.js",
       "firstLine": "export { n as t };",
       "lastLine": "export { n as t };",
-      "text": "export{n as t}"
+      "text": "export{n as t}",
+      "capture": "assets/dist-D8Wfxh48.js"
     },
     {
       "file": "assets/dist-DAUR33jS-01.js",
@@ -5574,13 +5613,14 @@
       "file": "assets/dist-DAUR33jS-tail-export.js",
       "skipped": true,
       "title": "dist-DAUR33jS — final export table (not sliced)",
-      "desc": "Lines 438-438. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 438-438. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-DAUR33jS.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 438,
       "endLine": 438,
       "sourceFile": "readable/assets/dist-DAUR33jS.pretty.js",
       "firstLine": "export { u as t };",
       "lastLine": "export { u as t };",
-      "text": "export{u as t}"
+      "text": "export{u as t}",
+      "capture": "assets/dist-DAUR33jS.js"
     },
     {
       "file": "assets/dist-DkIQBCKf-01.js",
@@ -5594,13 +5634,14 @@
       "file": "assets/dist-DkIQBCKf-tail-export.js",
       "skipped": true,
       "title": "dist-DkIQBCKf — final export table (not sliced)",
-      "desc": "Lines 104-104. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 104-104. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-DkIQBCKf.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 104,
       "endLine": 104,
       "sourceFile": "readable/assets/dist-DkIQBCKf.pretty.js",
       "firstLine": "export { f as t };",
       "lastLine": "export { f as t };",
-      "text": "export{f as t}"
+      "text": "export{f as t}",
+      "capture": "assets/dist-DkIQBCKf.js"
     },
     {
       "file": "assets/dist-IS-98_QU-01.js",
@@ -5614,13 +5655,14 @@
       "file": "assets/dist-IS-98_QU-tail-export.js",
       "skipped": true,
       "title": "dist-IS-98_QU — final export table (not sliced)",
-      "desc": "Lines 19-19. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 19-19. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-IS-98_QU.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 19,
       "endLine": 19,
       "sourceFile": "readable/assets/dist-IS-98_QU.pretty.js",
       "firstLine": "export { c as t };",
       "lastLine": "export { c as t };",
-      "text": "export{c as t}"
+      "text": "export{c as t}",
+      "capture": "assets/dist-IS-98_QU.js"
     },
     {
       "file": "assets/dist-p2cW4AiE-01.js",
@@ -5634,13 +5676,14 @@
       "file": "assets/dist-p2cW4AiE-tail-export.js",
       "skipped": true,
       "title": "dist-p2cW4AiE — final export table (not sliced)",
-      "desc": "Lines 44-44. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 44-44. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dist-p2cW4AiE.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 44,
       "endLine": 44,
       "sourceFile": "readable/assets/dist-p2cW4AiE.pretty.js",
       "firstLine": "export { d as n, u as t };",
       "lastLine": "export { d as n, u as t };",
-      "text": "export{d as n,u as t}"
+      "text": "export{d as n,u as t}",
+      "capture": "assets/dist-p2cW4AiE.js"
     },
     {
       "file": "assets/dnd-DMxeXGsh-01.js",
@@ -5670,13 +5713,14 @@
       "file": "assets/dnd-DMxeXGsh-tail-export.js",
       "skipped": true,
       "title": "dnd-DMxeXGsh — final export table (not sliced)",
-      "desc": "Lines 588-602. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 588-602. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/dnd-DMxeXGsh.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 588,
       "endLine": 602,
       "sourceFile": "readable/assets/dnd-DMxeXGsh.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{N as a,u as c,s as d,o as f,L as i,l,B as n,v as o,a as p,z as r,d as s,V as t,c as u}"
+      "text": "export{N as a,u as c,s as d,o as f,L as i,l,B as n,v as o,a as p,z as r,d as s,V as t,c as u}",
+      "capture": "assets/dnd-DMxeXGsh.js"
     },
     {
       "file": "assets/ErrorBoundary-CNubh4T--01.js",
@@ -5730,13 +5774,14 @@
       "file": "assets/ErrorBoundary-CNubh4T--tail-export.js",
       "skipped": true,
       "title": "ErrorBoundary-CNubh4T- — final export table (not sliced)",
-      "desc": "Lines 1929-1996. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1929-1996. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/ErrorBoundary-CNubh4T-.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1929,
       "endLine": 1996,
       "sourceFile": "readable/assets/ErrorBoundary-CNubh4T-.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{F as $,bn as A,Yt as B,fn as C,_n as D,un as E,Jt as F,W as G,z as H,Qt as I,$e as J,gt as K,$t as L,mn as M,xn as N,sn as O,on as P,bt as Q,nn as R,gn as S,dn as T,ct as U,Ye as V,tt as W,_t as X,ft as Y,St as Z,Un as _,Xn as a,Ae as at,cn as b,Gn as c,Ee as ct,Fn as d,Ce as dt,Fe as et,Nn as f,Se as ft,Hn as g,En as h,Kn as i,je as it,vn as j,yn as k,wn as l,Te as lt,Bn as m,$n as n,Ne as nt,Yn as o,Oe as ot,Wn as p,at as q,er as r,Me as rt,Jn as s,De as st,tr as t,Le as tt,Pn as u,we as ut,Mn as v,ln as w,hn as x,pn as y,rn as z}"
+      "text": "export{F as $,bn as A,Yt as B,fn as C,_n as D,un as E,Jt as F,W as G,z as H,Qt as I,$e as J,gt as K,$t as L,mn as M,xn as N,sn as O,on as P,bt as Q,nn as R,gn as S,dn as T,ct as U,Ye as V,tt as W,_t as X,ft as Y,St as Z,Un as _,Xn as a,Ae as at,cn as b,Gn as c,Ee as ct,Fn as d,Ce as dt,Fe as et,Nn as f,Se as ft,Hn as g,En as h,Kn as i,je as it,vn as j,yn as k,wn as l,Te as lt,Bn as m,$n as n,Ne as nt,Yn as o,Oe as ot,Wn as p,at as q,er as r,Me as rt,Jn as s,De as st,tr as t,Le as tt,Pn as u,we as ut,Mn as v,ln as w,hn as x,pn as y,rn as z}",
+      "capture": "assets/ErrorBoundary-CNubh4T-.js"
     },
     {
       "file": "assets/external-link-CNayFVCy-01.js",
@@ -5750,13 +5795,14 @@
       "file": "assets/external-link-CNayFVCy-tail-export.js",
       "skipped": true,
       "title": "external-link-CNayFVCy — final export table (not sliced)",
-      "desc": "Lines 13-13. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 13-13. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/external-link-CNayFVCy.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 13,
       "endLine": 13,
       "sourceFile": "readable/assets/external-link-CNayFVCy.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/external-link-CNayFVCy.js"
     },
     {
       "file": "assets/follow-CUqA0aWI-01.js",
@@ -5770,13 +5816,14 @@
       "file": "assets/follow-CUqA0aWI-tail-export.js",
       "skipped": true,
       "title": "follow-CUqA0aWI — final export table (not sliced)",
-      "desc": "Lines 83-83. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 83-83. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/follow-CUqA0aWI.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 83,
       "endLine": 83,
       "sourceFile": "readable/assets/follow-CUqA0aWI.pretty.js",
       "firstLine": "export { r as a, t as i, i as n, a as r, n as t };",
       "lastLine": "export { r as a, t as i, i as n, a as r, n as t };",
-      "text": "export{r as a,t as i,i as n,a as r,n as t}"
+      "text": "export{r as a,t as i,i as n,a as r,n as t}",
+      "capture": "assets/follow-CUqA0aWI.js"
     },
     {
       "file": "assets/Followers-CGbahiF2-01.js",
@@ -5790,13 +5837,14 @@
       "file": "assets/Followers-CGbahiF2-tail-export.js",
       "skipped": true,
       "title": "Followers-CGbahiF2 — final export table (not sliced)",
-      "desc": "Lines 119-119. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 119-119. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Followers-CGbahiF2.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 119,
       "endLine": 119,
       "sourceFile": "readable/assets/Followers-CGbahiF2.pretty.js",
       "firstLine": "export { _ as Followers, _ as default };",
       "lastLine": "export { _ as Followers, _ as default };",
-      "text": "export{_ as Followers,_ as default}"
+      "text": "export{_ as Followers,_ as default}",
+      "capture": "assets/Followers-CGbahiF2.js"
     },
     {
       "file": "assets/Following-D9N5_ADL-01.js",
@@ -5810,13 +5858,14 @@
       "file": "assets/Following-D9N5_ADL-tail-export.js",
       "skipped": true,
       "title": "Following-D9N5_ADL — final export table (not sliced)",
-      "desc": "Lines 112-112. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 112-112. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Following-D9N5_ADL.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 112,
       "endLine": 112,
       "sourceFile": "readable/assets/Following-D9N5_ADL.pretty.js",
       "firstLine": "export { _ as Following, _ as default };",
       "lastLine": "export { _ as Following, _ as default };",
-      "text": "export{_ as Following,_ as default}"
+      "text": "export{_ as Following,_ as default}",
+      "capture": "assets/Following-D9N5_ADL.js"
     },
     {
       "file": "assets/formatDistanceToNow-DhpKhUbk-01.js",
@@ -5846,13 +5895,14 @@
       "file": "assets/formatDistanceToNow-DhpKhUbk-tail-export.js",
       "skipped": true,
       "title": "formatDistanceToNow-DhpKhUbk — final export table (not sliced)",
-      "desc": "Lines 556-556. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 556-556. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/formatDistanceToNow-DhpKhUbk.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 556,
       "endLine": 556,
       "sourceFile": "readable/assets/formatDistanceToNow-DhpKhUbk.pretty.js",
       "firstLine": "export { w as a, e as c, E as i, A as n, b as o, k as r, o as s, M as t };",
       "lastLine": "export { w as a, e as c, E as i, A as n, b as o, k as r, o as s, M as t };",
-      "text": "export{w as a,e as c,E as i,A as n,b as o,k as r,o as s,M as t}"
+      "text": "export{w as a,e as c,E as i,A as n,b as o,k as r,o as s,M as t}",
+      "capture": "assets/formatDistanceToNow-DhpKhUbk.js"
     },
     {
       "file": "assets/Game-QkGXRHTR-01.js",
@@ -5906,13 +5956,14 @@
       "file": "assets/Game-QkGXRHTR-tail-export.js",
       "skipped": true,
       "title": "Game-QkGXRHTR — final export table (not sliced)",
-      "desc": "Lines 2017-2017. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 2017-2017. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Game-QkGXRHTR.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 2017,
       "endLine": 2017,
       "sourceFile": "readable/assets/Game-QkGXRHTR.pretty.js",
       "firstLine": "export { Et as Game };",
       "lastLine": "export { Et as Game };",
-      "text": "export{Et as Game}"
+      "text": "export{Et as Game}",
+      "capture": "assets/Game-QkGXRHTR.js"
     },
     {
       "file": "assets/gameCreation-7QUnbwLk-01.js",
@@ -5958,13 +6009,14 @@
       "file": "assets/gameCreation-7QUnbwLk-tail-export.js",
       "skipped": true,
       "title": "gameCreation-7QUnbwLk — final export table (not sliced)",
-      "desc": "Lines 1664-1695. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1664-1695. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/gameCreation-7QUnbwLk.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1664,
       "endLine": 1695,
       "sourceFile": "readable/assets/gameCreation-7QUnbwLk.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{l as A,g as C,f as D,d as E,u as O,h as S,m as T,O as _,P as a,v as b,N as c,A as d,D as f,k as g,E as h,M as i,c as k,R as l,w as m,z as n,L as o,T as p,j as r,I as s,B as t,F as u,C as v,p as w,y as x,b as y}"
+      "text": "export{l as A,g as C,f as D,d as E,u as O,h as S,m as T,O as _,P as a,v as b,N as c,A as d,D as f,k as g,E as h,M as i,c as k,R as l,w as m,z as n,L as o,T as p,j as r,I as s,B as t,F as u,C as v,p as w,y as x,b as y}",
+      "capture": "assets/gameCreation-7QUnbwLk.js"
     },
     {
       "file": "assets/gameLikes-CVeS3kbw-01.js",
@@ -5978,13 +6030,14 @@
       "file": "assets/gameLikes-CVeS3kbw-tail-export.js",
       "skipped": true,
       "title": "gameLikes-CVeS3kbw — final export table (not sliced)",
-      "desc": "Lines 89-89. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 89-89. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/gameLikes-CVeS3kbw.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 89,
       "endLine": 89,
       "sourceFile": "readable/assets/gameLikes-CVeS3kbw.pretty.js",
       "firstLine": "export { r as a, n as i, o as n, i as r, a as t };",
       "lastLine": "export { r as a, n as i, o as n, i as r, a as t };",
-      "text": "export{r as a,n as i,o as n,i as r,a as t}"
+      "text": "export{r as a,n as i,o as n,i as r,a as t}",
+      "capture": "assets/gameLikes-CVeS3kbw.js"
     },
     {
       "file": "assets/GameStoryFeed-DptcNIuk-01.js",
@@ -6014,13 +6067,14 @@
       "file": "assets/GameStoryFeed-DptcNIuk-tail-export.js",
       "skipped": true,
       "title": "GameStoryFeed-DptcNIuk — final export table (not sliced)",
-      "desc": "Lines 808-808. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 808-808. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/GameStoryFeed-DptcNIuk.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 808,
       "endLine": 808,
       "sourceFile": "readable/assets/GameStoryFeed-DptcNIuk.pretty.js",
       "firstLine": "export { B as GameStoryFeed };",
       "lastLine": "export { B as GameStoryFeed };",
-      "text": "export{B as GameStoryFeed}"
+      "text": "export{B as GameStoryFeed}",
+      "capture": "assets/GameStoryFeed-DptcNIuk.js"
     },
     {
       "file": "assets/gameUtils-hllMGYPh-01.js",
@@ -6034,13 +6088,14 @@
       "file": "assets/gameUtils-hllMGYPh-tail-export.js",
       "skipped": true,
       "title": "gameUtils-hllMGYPh — final export table (not sliced)",
-      "desc": "Lines 39-39. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 39-39. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/gameUtils-hllMGYPh.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 39,
       "endLine": 39,
       "sourceFile": "readable/assets/gameUtils-hllMGYPh.pretty.js",
       "firstLine": "export { a as n, i as r, t };",
       "lastLine": "export { a as n, i as r, t };",
-      "text": "export{a as n,i as r,t}"
+      "text": "export{a as n,i as r,t}",
+      "capture": "assets/gameUtils-hllMGYPh.js"
     },
     {
       "file": "assets/history-BgFRjxWz-01.js",
@@ -6054,13 +6109,14 @@
       "file": "assets/history-BgFRjxWz-tail-export.js",
       "skipped": true,
       "title": "history-BgFRjxWz — final export table (not sliced)",
-      "desc": "Lines 51-51. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 51-51. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/history-BgFRjxWz.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 51,
       "endLine": 51,
       "sourceFile": "readable/assets/history-BgFRjxWz.pretty.js",
       "firstLine": "export { r as n, n as t };",
       "lastLine": "export { r as n, n as t };",
-      "text": "export{r as n,n as t}"
+      "text": "export{r as n,n as t}",
+      "capture": "assets/history-BgFRjxWz.js"
     },
     {
       "file": "assets/History-DjQFohPA-01.js",
@@ -6074,13 +6130,14 @@
       "file": "assets/History-DjQFohPA-tail-export.js",
       "skipped": true,
       "title": "History-DjQFohPA — final export table (not sliced)",
-      "desc": "Lines 270-270. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 270-270. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/History-DjQFohPA.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 270,
       "endLine": 270,
       "sourceFile": "readable/assets/History-DjQFohPA.pretty.js",
       "firstLine": "export { T as History };",
       "lastLine": "export { T as History };",
-      "text": "export{T as History}"
+      "text": "export{T as History}",
+      "capture": "assets/History-DjQFohPA.js"
     },
     {
       "file": "assets/i18n-Ddyvvowz-01.js",
@@ -6142,13 +6199,14 @@
       "file": "assets/i18n-Ddyvvowz-tail-export.js",
       "skipped": true,
       "title": "i18n-Ddyvvowz — final export table (not sliced)",
-      "desc": "Lines 9025-9025. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 9025-9025. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/i18n-Ddyvvowz.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 9025,
       "endLine": 9025,
       "sourceFile": "readable/assets/i18n-Ddyvvowz.pretty.js",
       "firstLine": "export { Be as n, Z as t };",
       "lastLine": "export { Be as n, Z as t };",
-      "text": "export{Be as n,Z as t}"
+      "text": "export{Be as n,Z as t}",
+      "capture": "assets/i18n-Ddyvvowz.js"
     },
     {
       "file": "assets/Invite-Bw1qGwCU-01.js",
@@ -6162,13 +6220,14 @@
       "file": "assets/Invite-Bw1qGwCU-tail-export.js",
       "skipped": true,
       "title": "Invite-Bw1qGwCU — final export table (not sliced)",
-      "desc": "Lines 331-331. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 331-331. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Invite-Bw1qGwCU.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 331,
       "endLine": 331,
       "sourceFile": "readable/assets/Invite-Bw1qGwCU.pretty.js",
       "firstLine": "export { A as Invite, A as default };",
       "lastLine": "export { A as Invite, A as default };",
-      "text": "export{A as Invite,A as default}"
+      "text": "export{A as Invite,A as default}",
+      "capture": "assets/Invite-Bw1qGwCU.js"
     },
     {
       "file": "assets/key-round-C8uAJKQY-01.js",
@@ -6182,13 +6241,14 @@
       "file": "assets/key-round-C8uAJKQY-tail-export.js",
       "skipped": true,
       "title": "key-round-C8uAJKQY — final export table (not sliced)",
-      "desc": "Lines 15-15. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 15-15. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/key-round-C8uAJKQY.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 15,
       "endLine": 15,
       "sourceFile": "readable/assets/key-round-C8uAJKQY.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/key-round-C8uAJKQY.js"
     },
     {
       "file": "assets/leaderboards-Bl1Xg4fx-01.js",
@@ -6202,13 +6262,14 @@
       "file": "assets/leaderboards-Bl1Xg4fx-tail-export.js",
       "skipped": true,
       "title": "leaderboards-Bl1Xg4fx — final export table (not sliced)",
-      "desc": "Lines 118-118. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 118-118. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/leaderboards-Bl1Xg4fx.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 118,
       "endLine": 118,
       "sourceFile": "readable/assets/leaderboards-Bl1Xg4fx.pretty.js",
       "firstLine": "export { m as a, r as c, l as i, p as n, u as o, c as r, f as s, d as t };",
       "lastLine": "export { m as a, r as c, l as i, p as n, u as o, c as r, f as s, d as t };",
-      "text": "export{m as a,r as c,l as i,p as n,u as o,c as r,f as s,d as t}"
+      "text": "export{m as a,r as c,l as i,p as n,u as o,c as r,f as s,d as t}",
+      "capture": "assets/leaderboards-Bl1Xg4fx.js"
     },
     {
       "file": "assets/LevelDesignKitPanel-BowZ7mTP-01.js",
@@ -6246,13 +6307,14 @@
       "file": "assets/LevelDesignKitPanel-BowZ7mTP-tail-export.js",
       "skipped": true,
       "title": "LevelDesignKitPanel-BowZ7mTP — final export table (not sliced)",
-      "desc": "Lines 2538-2553. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 2538-2553. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/LevelDesignKitPanel-BowZ7mTP.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 2538,
       "endLine": 2553,
       "sourceFile": "readable/assets/LevelDesignKitPanel-BowZ7mTP.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{nt as a,qe as c,z as d,B as f,it as i,Ke as l,tt as m,st as n,rt as o,Ge as p,U as r,Ye as s,Rt as t,R as u}"
+      "text": "export{nt as a,qe as c,z as d,B as f,it as i,Ke as l,tt as m,st as n,rt as o,Ge as p,U as r,Ye as s,Rt as t,R as u}",
+      "capture": "assets/LevelDesignKitPanel-BowZ7mTP.js"
     },
     {
       "file": "assets/LevelKitTest-CAElO1wd-01.js",
@@ -6266,13 +6328,14 @@
       "file": "assets/LevelKitTest-CAElO1wd-tail-export.js",
       "skipped": true,
       "title": "LevelKitTest-CAElO1wd — final export table (not sliced)",
-      "desc": "Lines 79-79. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 79-79. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/LevelKitTest-CAElO1wd.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 79,
       "endLine": 79,
       "sourceFile": "readable/assets/LevelKitTest-CAElO1wd.pretty.js",
       "firstLine": "export { u as LevelKitTest, u as default };",
       "lastLine": "export { u as LevelKitTest, u as default };",
-      "text": "export{u as LevelKitTest,u as default}"
+      "text": "export{u as LevelKitTest,u as default}",
+      "capture": "assets/LevelKitTest-CAElO1wd.js"
     },
     {
       "file": "assets/Likes-CUnV8XDg-01.js",
@@ -6286,13 +6349,14 @@
       "file": "assets/Likes-CUnV8XDg-tail-export.js",
       "skipped": true,
       "title": "Likes-CUnV8XDg — final export table (not sliced)",
-      "desc": "Lines 281-281. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 281-281. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Likes-CUnV8XDg.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 281,
       "endLine": 281,
       "sourceFile": "readable/assets/Likes-CUnV8XDg.pretty.js",
       "firstLine": "export { D as Likes };",
       "lastLine": "export { D as Likes };",
-      "text": "export{D as Likes}"
+      "text": "export{D as Likes}",
+      "capture": "assets/Likes-CUnV8XDg.js"
     },
     {
       "file": "assets/loader-circle-DBFTFT2k-01.js",
@@ -6306,13 +6370,14 @@
       "file": "assets/loader-circle-DBFTFT2k-tail-export.js",
       "skipped": true,
       "title": "loader-circle-DBFTFT2k — final export table (not sliced)",
-      "desc": "Lines 5-5. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 5-5. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/loader-circle-DBFTFT2k.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 5,
       "endLine": 5,
       "sourceFile": "readable/assets/loader-circle-DBFTFT2k.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/loader-circle-DBFTFT2k.js"
     },
     {
       "file": "assets/lock-CAG5RccF-01.js",
@@ -6326,13 +6391,14 @@
       "file": "assets/lock-CAG5RccF-tail-export.js",
       "skipped": true,
       "title": "lock-CAG5RccF — final export table (not sliced)",
-      "desc": "Lines 33-33. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 33-33. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/lock-CAG5RccF.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 33,
       "endLine": 33,
       "sourceFile": "readable/assets/lock-CAG5RccF.pretty.js",
       "firstLine": "export { t as n, n as t };",
       "lastLine": "export { t as n, n as t };",
-      "text": "export{t as n,n as t}"
+      "text": "export{t as n,n as t}",
+      "capture": "assets/lock-CAG5RccF.js"
     },
     {
       "file": "assets/mail-D0O-liE7-01.js",
@@ -6346,13 +6412,14 @@
       "file": "assets/mail-D0O-liE7-tail-export.js",
       "skipped": true,
       "title": "mail-D0O-liE7 — final export table (not sliced)",
-      "desc": "Lines 9-9. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 9-9. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/mail-D0O-liE7.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 9,
       "endLine": 9,
       "sourceFile": "readable/assets/mail-D0O-liE7.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/mail-D0O-liE7.js"
     },
     {
       "file": "assets/Notifications-CLactyWV-01.js",
@@ -6366,13 +6433,14 @@
       "file": "assets/Notifications-CLactyWV-tail-export.js",
       "skipped": true,
       "title": "Notifications-CLactyWV — final export table (not sliced)",
-      "desc": "Lines 249-249. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 249-249. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Notifications-CLactyWV.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 249,
       "endLine": 249,
       "sourceFile": "readable/assets/Notifications-CLactyWV.pretty.js",
       "firstLine": "export { k as Notifications };",
       "lastLine": "export { k as Notifications };",
-      "text": "export{k as Notifications}"
+      "text": "export{k as Notifications}",
+      "capture": "assets/Notifications-CLactyWV.js"
     },
     {
       "file": "assets/Onboarding-CO_SgZrN-01.js",
@@ -6394,13 +6462,14 @@
       "file": "assets/Onboarding-CO_SgZrN-tail-export.js",
       "skipped": true,
       "title": "Onboarding-CO_SgZrN — final export table (not sliced)",
-      "desc": "Lines 480-480. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 480-480. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Onboarding-CO_SgZrN.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 480,
       "endLine": 480,
       "sourceFile": "readable/assets/Onboarding-CO_SgZrN.pretty.js",
       "firstLine": "export { S as Onboarding, S as default };",
       "lastLine": "export { S as Onboarding, S as default };",
-      "text": "export{S as Onboarding,S as default}"
+      "text": "export{S as Onboarding,S as default}",
+      "capture": "assets/Onboarding-CO_SgZrN.js"
     },
     {
       "file": "assets/party-popper-Bs8HHRWI-01.js",
@@ -6414,13 +6483,14 @@
       "file": "assets/party-popper-Bs8HHRWI-tail-export.js",
       "skipped": true,
       "title": "party-popper-Bs8HHRWI — final export table (not sliced)",
-      "desc": "Lines 37-37. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 37-37. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/party-popper-Bs8HHRWI.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 37,
       "endLine": 37,
       "sourceFile": "readable/assets/party-popper-Bs8HHRWI.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/party-popper-Bs8HHRWI.js"
     },
     {
       "file": "assets/Pass-nC7Rn4Mq-01.js",
@@ -6434,13 +6504,14 @@
       "file": "assets/Pass-nC7Rn4Mq-tail-export.js",
       "skipped": true,
       "title": "Pass-nC7Rn4Mq — final export table (not sliced)",
-      "desc": "Lines 46-46. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 46-46. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Pass-nC7Rn4Mq.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 46,
       "endLine": 46,
       "sourceFile": "readable/assets/Pass-nC7Rn4Mq.pretty.js",
       "firstLine": "export { i as n, s as t };",
       "lastLine": "export { i as n, s as t };",
-      "text": "export{i as n,s as t}"
+      "text": "export{i as n,s as t}",
+      "capture": "assets/Pass-nC7Rn4Mq.js"
     },
     {
       "file": "assets/play-BHRX8EkG-01.js",
@@ -6454,13 +6525,14 @@
       "file": "assets/play-BHRX8EkG-tail-export.js",
       "skipped": true,
       "title": "play-BHRX8EkG — final export table (not sliced)",
-      "desc": "Lines 5-5. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 5-5. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/play-BHRX8EkG.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 5,
       "endLine": 5,
       "sourceFile": "readable/assets/play-BHRX8EkG.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/play-BHRX8EkG.js"
     },
     {
       "file": "assets/Profile-CWWm0is0-01.js",
@@ -6498,13 +6570,14 @@
       "file": "assets/Profile-CWWm0is0-tail-export.js",
       "skipped": true,
       "title": "Profile-CWWm0is0 — final export table (not sliced)",
-      "desc": "Lines 1207-1207. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1207-1207. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Profile-CWWm0is0.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1207,
       "endLine": 1207,
       "sourceFile": "readable/assets/Profile-CWWm0is0.pretty.js",
       "firstLine": "export { F as Profile, F as default };",
       "lastLine": "export { F as Profile, F as default };",
-      "text": "export{F as Profile,F as default}"
+      "text": "export{F as Profile,F as default}",
+      "capture": "assets/Profile-CWWm0is0.js"
     },
     {
       "file": "assets/Publish-CkHGQXkk-01.js",
@@ -6550,13 +6623,14 @@
       "file": "assets/Publish-CkHGQXkk-tail-export.js",
       "skipped": true,
       "title": "Publish-CkHGQXkk — final export table (not sliced)",
-      "desc": "Lines 2587-2587. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 2587-2587. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Publish-CkHGQXkk.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 2587,
       "endLine": 2587,
       "sourceFile": "readable/assets/Publish-CkHGQXkk.pretty.js",
       "firstLine": "export { Z as Publish, Z as default };",
       "lastLine": "export { Z as Publish, Z as default };",
-      "text": "export{Z as Publish,Z as default}"
+      "text": "export{Z as Publish,Z as default}",
+      "capture": "assets/Publish-CkHGQXkk.js"
     },
     {
       "file": "assets/publish-IuClGqz5-01.js",
@@ -6570,13 +6644,14 @@
       "file": "assets/publish-IuClGqz5-tail-export.js",
       "skipped": true,
       "title": "publish-IuClGqz5 — final export table (not sliced)",
-      "desc": "Lines 95-95. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 95-95. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/publish-IuClGqz5.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 95,
       "endLine": 95,
       "sourceFile": "readable/assets/publish-IuClGqz5.pretty.js",
       "firstLine": "export { i as a, r as i, o as n, l as o, a as r, c as s, s as t };",
       "lastLine": "export { i as a, r as i, o as n, l as o, a as r, c as s, s as t };",
-      "text": "export{i as a,r as i,o as n,l as o,a as r,c as s,s as t}"
+      "text": "export{i as a,r as i,o as n,l as o,a as r,c as s,s as t}",
+      "capture": "assets/publish-IuClGqz5.js"
     },
     {
       "file": "assets/refresh-cw-CkwJF4P8-01.js",
@@ -6590,13 +6665,14 @@
       "file": "assets/refresh-cw-CkwJF4P8-tail-export.js",
       "skipped": true,
       "title": "refresh-cw-CkwJF4P8 — final export table (not sliced)",
-      "desc": "Lines 14-14. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 14-14. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/refresh-cw-CkwJF4P8.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 14,
       "endLine": 14,
       "sourceFile": "readable/assets/refresh-cw-CkwJF4P8.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/refresh-cw-CkwJF4P8.js"
     },
     {
       "file": "assets/rotate-ccw-FK7vjwP0-01.js",
@@ -6610,13 +6686,14 @@
       "file": "assets/rotate-ccw-FK7vjwP0-tail-export.js",
       "skipped": true,
       "title": "rotate-ccw-FK7vjwP0 — final export table (not sliced)",
-      "desc": "Lines 9-9. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 9-9. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/rotate-ccw-FK7vjwP0.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 9,
       "endLine": 9,
       "sourceFile": "readable/assets/rotate-ccw-FK7vjwP0.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/rotate-ccw-FK7vjwP0.js"
     },
     {
       "file": "assets/SceneEditorTest-CsA4EpZw-01.js",
@@ -6630,13 +6707,14 @@
       "file": "assets/SceneEditorTest-CsA4EpZw-tail-export.js",
       "skipped": true,
       "title": "SceneEditorTest-CsA4EpZw — final export table (not sliced)",
-      "desc": "Lines 202-202. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 202-202. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/SceneEditorTest-CsA4EpZw.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 202,
       "endLine": 202,
       "sourceFile": "readable/assets/SceneEditorTest-CsA4EpZw.pretty.js",
       "firstLine": "export { d as SceneEditorTest };",
       "lastLine": "export { d as SceneEditorTest };",
-      "text": "export{d as SceneEditorTest}"
+      "text": "export{d as SceneEditorTest}",
+      "capture": "assets/SceneEditorTest-CsA4EpZw.js"
     },
     {
       "file": "assets/Search-D4S3eGXN-01.js",
@@ -6658,13 +6736,14 @@
       "file": "assets/Search-D4S3eGXN-tail-export.js",
       "skipped": true,
       "title": "Search-D4S3eGXN — final export table (not sliced)",
-      "desc": "Lines 524-524. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 524-524. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Search-D4S3eGXN.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 524,
       "endLine": 524,
       "sourceFile": "readable/assets/Search-D4S3eGXN.pretty.js",
       "firstLine": "export { D as Search };",
       "lastLine": "export { D as Search };",
-      "text": "export{D as Search}"
+      "text": "export{D as Search}",
+      "capture": "assets/Search-D4S3eGXN.js"
     },
     {
       "file": "assets/send-Bx2TrLH3-01.js",
@@ -6678,13 +6757,14 @@
       "file": "assets/send-Bx2TrLH3-tail-export.js",
       "skipped": true,
       "title": "send-Bx2TrLH3 — final export table (not sliced)",
-      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/send-Bx2TrLH3.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 12,
       "endLine": 12,
       "sourceFile": "readable/assets/send-Bx2TrLH3.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/send-Bx2TrLH3.js"
     },
     {
       "file": "assets/serviceProxy-CZRpABZv-01.js",
@@ -6698,13 +6778,14 @@
       "file": "assets/serviceProxy-CZRpABZv-tail-export.js",
       "skipped": true,
       "title": "serviceProxy-CZRpABZv — final export table (not sliced)",
-      "desc": "Lines 78-78. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 78-78. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/serviceProxy-CZRpABZv.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 78,
       "endLine": 78,
       "sourceFile": "readable/assets/serviceProxy-CZRpABZv.pretty.js",
       "firstLine": "export { l as i, o as n, e as r, s as t };",
       "lastLine": "export { l as i, o as n, e as r, s as t };",
-      "text": "export{l as i,o as n,e as r,s as t}"
+      "text": "export{l as i,o as n,e as r,s as t}",
+      "capture": "assets/serviceProxy-CZRpABZv.js"
     },
     {
       "file": "assets/settings-2-Clz1ZubR-01.js",
@@ -6718,13 +6799,14 @@
       "file": "assets/settings-2-Clz1ZubR-tail-export.js",
       "skipped": true,
       "title": "settings-2-Clz1ZubR — final export table (not sliced)",
-      "desc": "Lines 21-21. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 21-21. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/settings-2-Clz1ZubR.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 21,
       "endLine": 21,
       "sourceFile": "readable/assets/settings-2-Clz1ZubR.pretty.js",
       "firstLine": "export { t as n, n as t };",
       "lastLine": "export { t as n, n as t };",
-      "text": "export{t as n,n as t}"
+      "text": "export{t as n,n as t}",
+      "capture": "assets/settings-2-Clz1ZubR.js"
     },
     {
       "file": "assets/Settings-B2DmZABB-01.js",
@@ -6770,13 +6852,14 @@
       "file": "assets/Settings-B2DmZABB-tail-export.js",
       "skipped": true,
       "title": "Settings-B2DmZABB — final export table (not sliced)",
-      "desc": "Lines 2310-2310. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 2310-2310. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/Settings-B2DmZABB.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 2310,
       "endLine": 2310,
       "sourceFile": "readable/assets/Settings-B2DmZABB.pretty.js",
       "firstLine": "export { et as Settings };",
       "lastLine": "export { et as Settings };",
-      "text": "export{et as Settings}"
+      "text": "export{et as Settings}",
+      "capture": "assets/Settings-B2DmZABB.js"
     },
     {
       "file": "assets/share-2-B1vEkEyU-01.js",
@@ -6790,13 +6873,14 @@
       "file": "assets/share-2-B1vEkEyU-tail-export.js",
       "skipped": true,
       "title": "share-2-B1vEkEyU — final export table (not sliced)",
-      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/share-2-B1vEkEyU.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 12,
       "endLine": 12,
       "sourceFile": "readable/assets/share-2-B1vEkEyU.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/share-2-B1vEkEyU.js"
     },
     {
       "file": "assets/ShareMenu-DgMG0s-m-01.js",
@@ -6818,13 +6902,14 @@
       "file": "assets/ShareMenu-DgMG0s-m-tail-export.js",
       "skipped": true,
       "title": "ShareMenu-DgMG0s-m — final export table (not sliced)",
-      "desc": "Lines 398-398. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 398-398. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/ShareMenu-DgMG0s-m.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 398,
       "endLine": 398,
       "sourceFile": "readable/assets/ShareMenu-DgMG0s-m.pretty.js",
       "firstLine": "export { v as a, _ as c, y as i, S as n, C as o, x as r, b as s, O as t };",
       "lastLine": "export { v as a, _ as c, y as i, S as n, C as o, x as r, b as s, O as t };",
-      "text": "export{v as a,_ as c,y as i,S as n,C as o,x as r,b as s,O as t}"
+      "text": "export{v as a,_ as c,y as i,S as n,C as o,x as r,b as s,O as t}",
+      "capture": "assets/ShareMenu-DgMG0s-m.js"
     },
     {
       "file": "assets/shield-check-CAJ-dFVb-01.js",
@@ -6838,13 +6923,14 @@
       "file": "assets/shield-check-CAJ-dFVb-tail-export.js",
       "skipped": true,
       "title": "shield-check-CAJ-dFVb — final export table (not sliced)",
-      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 12-12. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/shield-check-CAJ-dFVb.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 12,
       "endLine": 12,
       "sourceFile": "readable/assets/shield-check-CAJ-dFVb.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/shield-check-CAJ-dFVb.js"
     },
     {
       "file": "assets/StandaloneAuthPathRedirect-WcSzz1pk-01.js",
@@ -6858,13 +6944,14 @@
       "file": "assets/StandaloneAuthPathRedirect-WcSzz1pk-tail-export.js",
       "skipped": true,
       "title": "StandaloneAuthPathRedirect-WcSzz1pk — final export table (not sliced)",
-      "desc": "Lines 14-14. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 14-14. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/StandaloneAuthPathRedirect-WcSzz1pk.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 14,
       "endLine": 14,
       "sourceFile": "readable/assets/StandaloneAuthPathRedirect-WcSzz1pk.pretty.js",
       "firstLine": "export { s as StandaloneAuthPathRedirect };",
       "lastLine": "export { s as StandaloneAuthPathRedirect };",
-      "text": "export{s as StandaloneAuthPathRedirect}"
+      "text": "export{s as StandaloneAuthPathRedirect}",
+      "capture": "assets/StandaloneAuthPathRedirect-WcSzz1pk.js"
     },
     {
       "file": "assets/switch-DR7KWk3q-01.js",
@@ -6902,13 +6989,14 @@
       "file": "assets/switch-DR7KWk3q-tail-export.js",
       "skipped": true,
       "title": "switch-DR7KWk3q — final export table (not sliced)",
-      "desc": "Lines 1442-1453. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1442-1453. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/switch-DR7KWk3q.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1442,
       "endLine": 1453,
       "sourceFile": "readable/assets/switch-DR7KWk3q.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{ot as a,et as c,$e as i,L as l,Qe as n,at as o,it as r,tt as s,wt as t,N as u}"
+      "text": "export{ot as a,et as c,$e as i,L as l,Qe as n,at as o,it as r,tt as s,wt as t,N as u}",
+      "capture": "assets/switch-DR7KWk3q.js"
     },
     {
       "file": "assets/tabs-Gm5XRVor-01.js",
@@ -6922,13 +7010,14 @@
       "file": "assets/tabs-Gm5XRVor-tail-export.js",
       "skipped": true,
       "title": "tabs-Gm5XRVor — final export table (not sliced)",
-      "desc": "Lines 192-192. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 192-192. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/tabs-Gm5XRVor.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 192,
       "endLine": 192,
       "sourceFile": "readable/assets/tabs-Gm5XRVor.pretty.js",
       "firstLine": "export { F as i, I as n, P as r, N as t };",
       "lastLine": "export { F as i, I as n, P as r, N as t };",
-      "text": "export{F as i,I as n,P as r,N as t}"
+      "text": "export{F as i,I as n,P as r,N as t}",
+      "capture": "assets/tabs-Gm5XRVor.js"
     },
     {
       "file": "assets/terminal-L5JMdm_r-01.js",
@@ -6942,13 +7031,14 @@
       "file": "assets/terminal-L5JMdm_r-tail-export.js",
       "skipped": true,
       "title": "terminal-L5JMdm_r — final export table (not sliced)",
-      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/terminal-L5JMdm_r.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 6,
       "endLine": 6,
       "sourceFile": "readable/assets/terminal-L5JMdm_r.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/terminal-L5JMdm_r.js"
     },
     {
       "file": "assets/textarea-D_1TMYK2-01.js",
@@ -6962,13 +7052,14 @@
       "file": "assets/textarea-D_1TMYK2-tail-export.js",
       "skipped": true,
       "title": "textarea-D_1TMYK2 — final export table (not sliced)",
-      "desc": "Lines 17-17. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 17-17. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/textarea-D_1TMYK2.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 17,
       "endLine": 17,
       "sourceFile": "readable/assets/textarea-D_1TMYK2.pretty.js",
       "firstLine": "export { o as t };",
       "lastLine": "export { o as t };",
-      "text": "export{o as t}"
+      "text": "export{o as t}",
+      "capture": "assets/textarea-D_1TMYK2.js"
     },
     {
       "file": "assets/thumbs-up-3xlfzfdY-01.js",
@@ -6982,13 +7073,14 @@
       "file": "assets/thumbs-up-3xlfzfdY-tail-export.js",
       "skipped": true,
       "title": "thumbs-up-3xlfzfdY — final export table (not sliced)",
-      "desc": "Lines 18-18. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 18-18. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/thumbs-up-3xlfzfdY.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 18,
       "endLine": 18,
       "sourceFile": "readable/assets/thumbs-up-3xlfzfdY.pretty.js",
       "firstLine": "export { t as n, n as t };",
       "lastLine": "export { t as n, n as t };",
-      "text": "export{t as n,n as t}"
+      "text": "export{t as n,n as t}",
+      "capture": "assets/thumbs-up-3xlfzfdY.js"
     },
     {
       "file": "assets/tour-D03BMTEP-01.js",
@@ -7026,13 +7118,14 @@
       "file": "assets/tour-D03BMTEP-tail-export.js",
       "skipped": true,
       "title": "tour-D03BMTEP — final export table (not sliced)",
-      "desc": "Lines 1194-1211. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1194-1211. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/tour-D03BMTEP.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1194,
       "endLine": 1211,
       "sourceFile": "readable/assets/tour-D03BMTEP.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{Ee as a,Se as c,z as d,B as f,M as g,N as h,je as i,Ce as l,I as m,Me as n,Oe as o,de as p,X as r,ke as s,Ke as t,R as u}"
+      "text": "export{Ee as a,Se as c,z as d,B as f,M as g,N as h,je as i,Ce as l,I as m,Me as n,Oe as o,de as p,X as r,ke as s,Ke as t,R as u}",
+      "capture": "assets/tour-D03BMTEP.js"
     },
     {
       "file": "assets/TourClaim-CJ-HokaR-01.js",
@@ -7046,13 +7139,14 @@
       "file": "assets/TourClaim-CJ-HokaR-tail-export.js",
       "skipped": true,
       "title": "TourClaim-CJ-HokaR — final export table (not sliced)",
-      "desc": "Lines 136-136. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 136-136. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/TourClaim-CJ-HokaR.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 136,
       "endLine": 136,
       "sourceFile": "readable/assets/TourClaim-CJ-HokaR.pretty.js",
       "firstLine": "export { _ as TourClaim, _ as default };",
       "lastLine": "export { _ as TourClaim, _ as default };",
-      "text": "export{_ as TourClaim,_ as default}"
+      "text": "export{_ as TourClaim,_ as default}",
+      "capture": "assets/TourClaim-CJ-HokaR.js"
     },
     {
       "file": "assets/TourWrapper-BBwg2sIi-01.js",
@@ -7082,13 +7176,14 @@
       "file": "assets/TourWrapper-BBwg2sIi-tail-export.js",
       "skipped": true,
       "title": "TourWrapper-BBwg2sIi — final export table (not sliced)",
-      "desc": "Lines 1011-1011. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 1011-1011. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/TourWrapper-BBwg2sIi.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 1011,
       "endLine": 1011,
       "sourceFile": "readable/assets/TourWrapper-BBwg2sIi.pretty.js",
       "firstLine": "export { _e as Tour };",
       "lastLine": "export { _e as Tour };",
-      "text": "export{_e as Tour}"
+      "text": "export{_e as Tour}",
+      "capture": "assets/TourWrapper-BBwg2sIi.js"
     },
     {
       "file": "assets/triangle-alert-D-SEZi4r-01.js",
@@ -7102,13 +7197,14 @@
       "file": "assets/triangle-alert-D-SEZi4r-tail-export.js",
       "skipped": true,
       "title": "triangle-alert-D-SEZi4r — final export table (not sliced)",
-      "desc": "Lines 13-13. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 13-13. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/triangle-alert-D-SEZi4r.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 13,
       "endLine": 13,
       "sourceFile": "readable/assets/triangle-alert-D-SEZi4r.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/triangle-alert-D-SEZi4r.js"
     },
     {
       "file": "assets/upload-DLWSp9LN-01.js",
@@ -7122,13 +7218,14 @@
       "file": "assets/upload-DLWSp9LN-tail-export.js",
       "skipped": true,
       "title": "upload-DLWSp9LN — final export table (not sliced)",
-      "desc": "Lines 7-7. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 7-7. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/upload-DLWSp9LN.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 7,
       "endLine": 7,
       "sourceFile": "readable/assets/upload-DLWSp9LN.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/upload-DLWSp9LN.js"
     },
     {
       "file": "assets/user-DD-5DUVW-01.js",
@@ -7142,13 +7239,14 @@
       "file": "assets/user-DD-5DUVW-tail-export.js",
       "skipped": true,
       "title": "user-DD-5DUVW — final export table (not sliced)",
-      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 6-6. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/user-DD-5DUVW.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 6,
       "endLine": 6,
       "sourceFile": "readable/assets/user-DD-5DUVW.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/user-DD-5DUVW.js"
     },
     {
       "file": "assets/useToast-QK0Q4gGT-01.js",
@@ -7162,13 +7260,14 @@
       "file": "assets/useToast-QK0Q4gGT-tail-export.js",
       "skipped": true,
       "title": "useToast-QK0Q4gGT — final export table (not sliced)",
-      "desc": "Lines 94-94. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 94-94. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/useToast-QK0Q4gGT.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 94,
       "endLine": 94,
       "sourceFile": "readable/assets/useToast-QK0Q4gGT.pretty.js",
       "firstLine": "export { m as t };",
       "lastLine": "export { m as t };",
-      "text": "export{m as t}"
+      "text": "export{m as t}",
+      "capture": "assets/useToast-QK0Q4gGT.js"
     },
     {
       "file": "assets/useTranslation-BdauNPOZ-01.js",
@@ -7182,13 +7281,14 @@
       "file": "assets/useTranslation-BdauNPOZ-tail-export.js",
       "skipped": true,
       "title": "useTranslation-BdauNPOZ — final export table (not sliced)",
-      "desc": "Lines 211-222. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 211-222. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/useTranslation-BdauNPOZ.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 211,
       "endLine": 222,
       "sourceFile": "readable/assets/useTranslation-BdauNPOZ.pretty.js",
       "firstLine": "export {",
       "lastLine": "};",
-      "text": "export{_ as a,u as c,y as i,r as l,x as n,g as o,b as r,d as s,E as t,a as u}"
+      "text": "export{_ as a,u as c,y as i,r as l,x as n,g as o,b as r,d as s,E as t,a as u}",
+      "capture": "assets/useTranslation-BdauNPOZ.js"
     },
     {
       "file": "assets/wand-sparkles-DuaVuhfE-01.js",
@@ -7202,13 +7302,14 @@
       "file": "assets/wand-sparkles-DuaVuhfE-tail-export.js",
       "skipped": true,
       "title": "wand-sparkles-DuaVuhfE — final export table (not sliced)",
-      "desc": "Lines 24-24. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 24-24. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/wand-sparkles-DuaVuhfE.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 24,
       "endLine": 24,
       "sourceFile": "readable/assets/wand-sparkles-DuaVuhfE.pretty.js",
       "firstLine": "export { t as n, n as t };",
       "lastLine": "export { t as n, n as t };",
-      "text": "export{t as n,n as t}"
+      "text": "export{t as n,n as t}",
+      "capture": "assets/wand-sparkles-DuaVuhfE.js"
     },
     {
       "file": "assets/zap-OaMDwI_w-01.js",
@@ -7222,13 +7323,14 @@
       "file": "assets/zap-OaMDwI_w-tail-export.js",
       "skipped": true,
       "title": "zap-OaMDwI_w — final export table (not sliced)",
-      "desc": "Lines 11-11. The chunk's final export {…} table — the exported bindings live in the earlier slices; a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement, the statement the reading copy's table must still match.",
+      "desc": "Lines 11-11. The chunk's final export {…} table — the exported bindings live in the earlier slices, so a standalone tail carries no new statements, so it is indexed only, and the recorded renameBindings reach its renamed local bindings at reconstruction time. Its recorded `text` is the served chunk's own export statement (assets/zap-OaMDwI_w.js), matched by public names — the statement the reading copy's table must still match.",
       "startLine": 11,
       "endLine": 11,
       "sourceFile": "readable/assets/zap-OaMDwI_w.pretty.js",
       "firstLine": "export { t };",
       "lastLine": "export { t };",
-      "text": "export{t}"
+      "text": "export{t}",
+      "capture": "assets/zap-OaMDwI_w.js"
     },
     {
       "file": "assets/AuthService-CQeU_0bQ-vendor.js",

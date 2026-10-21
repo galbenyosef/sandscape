@@ -277,6 +277,12 @@ try {
   problem(`split-spec.json does not parse: ${e.message}`);
 }
 const sections = Array.isArray(spec?.sections) ? spec.sections : [];
+// the served capture each sourceFile was rendered from — the skipped tails'
+// recorded text is the served chunk's own export statement
+const captureOfSource = new Map();
+for (const s of Array.isArray(spec?.sources) ? spec.sources : [])
+  if (s && typeof s.sourceFile === "string" && typeof s.capture === "string")
+    captureOfSource.set(s.sourceFile, s.capture);
 if (spec && !Array.isArray(spec?.sections)) problem("split-spec.json has no sections array");
 if (!String(spec?.note ?? "").trim()) problem("split-spec.json has no note (derivation record)");
 if (!spec?.renderOptions || typeof spec.renderOptions !== "object")
@@ -530,7 +536,40 @@ for (const s of sections) {
     problem(`skipped section ${s.file}: no firstLine/lastLine recorded`);
   else if (first !== s.firstLine || last !== s.lastLine)
     problem(`skipped section ${s.file}: range text does not match the recorded first/last lines`);
-  else skippedOK++;
+  else if (typeof s.text !== "string")
+    // the tail carries no derived text, so the frozen export gate has no
+    // derived text for the table and reports it NOT covered
+    problem(`skipped section ${s.file}: no text recorded — the export gate cannot reach this region`);
+  else {
+    // The recorded text is the SERVED chunk's own export statement: the
+    // statement the reading copy's table must still match. It is a DIFFERENT
+    // text from the reading copy's own lines, so the frozen gate's comparison
+    // is real — a public name the served chunk exports and the reading copy
+    // does not is caught. The text is therefore NOT the sourceFile's lines;
+    // it is verified against the served capture instead, and it must export
+    // the same public names the reading copy's table exports.
+    const capRel = s.capture || captureOfSource.get(s.sourceFile) || null;
+    if (!capRel) {
+      problem(`skipped section ${s.file}: no capture recorded — the export gate cannot reach this region`);
+    } else {
+      const capAbs = path.join(proj, capRel);
+      if (!fs.existsSync(capAbs)) {
+        problem(`skipped section ${s.file}: capture missing: ${capRel}`);
+      } else if (!fs.readFileSync(capAbs, "utf8").includes(s.text)) {
+        problem(`skipped section ${s.file}: recorded text is not the served capture's own export statement (${capRel})`);
+      } else {
+        const want = exportsOf(lines.slice(s.startLine - 1, s.endLine).join("\n"));
+        const got = exportsOf(s.text);
+        const missing = [...want].filter((n) => !got.has(n)).sort();
+        const extra = [...got].filter((n) => !want.has(n)).sort();
+        if (missing.length || extra.length) {
+          problem(`skipped section ${s.file}: recorded text and the reading copy's table export different public names`);
+          if (missing.length) problem(`  missing from the recorded text: ${missing.join(" ")}`);
+          if (extra.length) problem(`  not in the reading copy's table: ${extra.join(" ")}`);
+        } else skippedOK++;
+      }
+    }
+  }
 }
 
 // ── every src + pretty parses standalone ────────────────────────────────
