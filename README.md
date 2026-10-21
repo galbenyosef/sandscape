@@ -104,6 +104,8 @@ the fleet rule is that external dependencies stay external.
 - `tools/verify.mjs` — re-hash the capture against the manifest
 - `tools/record-manifest.mjs` — re-cut / `--check` the capture manifest
 - `tools/audit.js` — integrity gate for the derived layers (`AUDIT PASS`)
+- `tools/check-links.mjs` — link gate: every scope of the derived layer
+  exports only names the layer declares (the engine is the judge)
 - `tools/serve.mjs` — the loopback static server used for the serve probe /
   boot test (SPA rewrite, asset paths 404 honestly)
 - `_mirror-report.json` — capture record (method, 404s, origin variants,
@@ -169,7 +171,20 @@ service, fonts) is live and external.
 node tools/verify.mjs     # re-hash the capture against the manifest
 node tools/audit.js       # derived-layer integrity gate (AUDIT PASS)
 node tools/check-exports.mjs   # the derived layer still exports every public name
+node tools/check-links.mjs     # every scope exports only names the layer declares
 ```
+
+`check-links.mjs` guards the one class the export-name gate cannot see: a
+scope that exports a binding nothing declares is a hard SyntaxError at link
+time ("Export 'x' is not defined"), and the scope cannot be imported at all.
+The layer is cut from whole modules, so a chunk's recorded export table
+legitimately names bindings its SIBLING slices declare — `check-links.mjs`
+reassembles each scope from the layer's own bytes plus the mirror's own record
+of the skipped export-table tail, reads that tail in the layer's spelling
+through `sources[].renameBindings` (the recorded tail is the capture's
+spelling, the slices are the layer's), and reports such a binding as a
+fragment rather than as a defect. A name that exists in no slice of the scope
+is a real break, and the gate names it.
 
 State as of 2026-10-14: `verify.mjs` → `124 files checked, 0 problems`;
 `audit.js` → `AUDIT PASS — 640 spec sections (524/524 src↔pretty round-trips
@@ -186,7 +201,11 @@ under pinned prettier 3.9.6 (fixed point), capture manifest free of derived
 layers)`; the rename-campaign gates → `verify-rename: 524/524 slice(s)
 reproduce byte-exact, 10 renamed slice(s) (21 indexed occurrence(s)), 102/102
 chunk(s) references+bindings YES` and `check-chunk: 102 chunk(s), 524 slice
-body(ies) substituted — all cross-slice calls resolve`; `derive.mjs --check` →
+body(ies) substituted — all cross-slice calls resolve`; `check-links.mjs` →
+`524 file(s) in src/; 102 scopes (one per captured chunk), 102 carrying an
+export table, 102 export tables checked, 102 fragment exports (a sibling slice
+of the same scope declares the binding) — every export table names a binding
+the layer declares: YES`; `derive.mjs --check` →
 `PASS — a fresh render matches the committed derived layers byte-for-byte`;
 `record-manifest.mjs --check` → `PASS — 124 capture file(s) recorded, walk
 agrees byte-for-byte, no derived path leaked`; `update.mjs` → `up to date: 124
