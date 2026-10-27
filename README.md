@@ -104,6 +104,14 @@ the fleet rule is that external dependencies stay external.
 - `tools/verify.mjs` — re-hash the capture against the manifest
 - `tools/record-manifest.mjs` — re-cut / `--check` the capture manifest
 - `tools/audit.js` — integrity gate for the derived layers (`AUDIT PASS`)
+- `tools/vendor/prettier/` — the pinned prettier **3.9.6** module API vendored
+  in-repo (the published tarball's bytes, integrity
+  `sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==`;
+  the stub `package.json` only carries the version the loaders check). `derive.mjs`
+  and `audit.js` resolve `$PRETTIER_MJS` → this copy → `node_modules/prettier`,
+  so a clean checkout re-derives without another mirror's tree; derive fails
+  naming every path tried when the renderer is missing, and `audit.js` puts the
+  skip plus the same tried/fix lines in its verdict instead of passing silently.
 - `tools/check-links.mjs` — link gate: every scope of the derived layer
   exports only names the layer declares (the engine is the judge)
 - `tools/serve.mjs` — the loopback static server used for the serve probe /

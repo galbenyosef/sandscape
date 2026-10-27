@@ -822,13 +822,24 @@ for (const s of sources) {
 }
 
 // ── re-render under the pinned prettier, multi-pass FIXED POINT (t)(3) ──
+// The renderer is VENDORED in this mirror (tools/vendor/prettier/ — the
+// published 3.9.6 tarball's bytes), so the re-render check never depends on
+// another mirror's tree. It used to fall back to a sibling mirror's
+// node_modules, which is gitignored and committed nowhere.
 const prettierCandidates = [
-  process.env.PRETTIER_MJS,
+  path.join(proj, "tools", "vendor", "prettier", "index.mjs"),
   path.join(proj, "node_modules", "prettier", "index.mjs"),
-  "D:/repos/mirrors/metropolygonia/node_modules/prettier/index.mjs",
-].filter(Boolean);
+];
+const prettierTried = [];
+if (process.env.PRETTIER_MJS) {
+  prettierTried.push(`$PRETTIER_MJS = ${process.env.PRETTIER_MJS}`);
+  prettierCandidates.unshift(process.env.PRETTIER_MJS);
+} else {
+  prettierTried.push("$PRETTIER_MJS (not set)");
+}
 let prettierPath = null;
 for (const c of prettierCandidates) {
+  prettierTried.push(c);
   if (!fs.existsSync(c)) continue;
   try {
     const pkg = JSON.parse(fs.readFileSync(path.join(path.dirname(c), "package.json"), "utf8"));
@@ -842,7 +853,12 @@ for (const c of prettierCandidates) {
 }
 
 (async () => {
-  let renderNote = `prettier ${PINNED} not importable — renderOptions recorded, re-render check skipped`;
+  let renderNote =
+    `prettier ${PINNED} not importable — renderOptions recorded, re-render check skipped` +
+    `\n    tried: ${prettierTried.join("  |  ")}` +
+    `\n    fix: restore the vendored copy (git checkout -- tools/vendor/prettier), ` +
+    `or install it (npm install --no-save prettier@${PINNED}), ` +
+    `or point PRETTIER_MJS at its index.mjs`;
   if (prettierPath) {
     const prettier = (await import(pathToFileURL(prettierPath).href)).default;
     async function formatFixed(text, parser) {

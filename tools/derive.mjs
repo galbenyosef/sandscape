@@ -105,13 +105,26 @@ const prettyRelFor = (capRel) =>
   "readable/" + servedStemOf(capRel) + (/\.css$/i.test(capRel) ? ".pretty.css" : ".pretty.js");
 
 // ── pinned prettier (module API, exactly 3.9.6) ─────────────────────────
+// The renderer is VENDORED in this mirror (tools/vendor/prettier/ — the
+// published 3.9.6 tarball's bytes), so a re-derivation never reaches into
+// another mirror's tree. It used to fall back to a sibling mirror's
+// node_modules, which is gitignored and committed nowhere: a clean checkout
+// broke this mirror's derive with a message that looked like a broken tool.
 async function loadPrettier() {
   const candidates = [
-    process.env.PRETTIER_MJS,
+    path.join(proj, "tools", "vendor", "prettier", "index.mjs"),
     path.join(proj, "node_modules", "prettier", "index.mjs"),
-    "D:/repos/mirrors/metropolygonia/node_modules/prettier/index.mjs",
-  ].filter(Boolean);
+  ];
+  const tried = [];
+  const env = process.env.PRETTIER_MJS;
+  if (env) {
+    tried.push(`$PRETTIER_MJS = ${env}`);
+    candidates.unshift(env);
+  } else {
+    tried.push("$PRETTIER_MJS (not set)");
+  }
   for (const c of candidates) {
+    tried.push(c);
     if (!fs.existsSync(c)) continue;
     try {
       const pkg = JSON.parse(fs.readFileSync(path.join(path.dirname(c), "package.json"), "utf8"));
@@ -122,7 +135,14 @@ async function loadPrettier() {
       /* try next */
     }
   }
-  throw new Error(`pinned prettier ${PINNED} not found (set PRETTIER_MJS to its index.mjs)`);
+  throw new Error(
+    `pinned prettier ${PINNED} not found.\n` +
+      `  tried:\n` +
+      tried.map((c) => `    ${c}`).join("\n") +
+      `\n  fix: restore the vendored copy (git checkout -- tools/vendor/prettier) ` +
+      `or install it (npm install --no-save prettier@${PINNED}), ` +
+      `or point PRETTIER_MJS at its index.mjs`,
+  );
 }
 
 // format-to-layout-fixed-point: prettier 3.9.6 re-flows this build's very long
