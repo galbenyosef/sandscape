@@ -223,6 +223,25 @@ chunk, the stylesheet, a route chunk (`Game-…`), `manifest.webmanifest` and
 `favicon.png` → 200; listener killed (`taskkill`), `netstat` shows no
 LISTENING socket and curl refuses the port.
 
+## Boot test (2026-10-27)
+
+- Entry: `http://127.0.0.1:4937/play?g=3UpDloEh` served by `tools/serve.mjs` with
+  the network blocked (`MAP * 127.0.0.1`).
+- Outcome: **rendered** — the captured Sandscape shell painted (sidebar
+  Home/History/Likes/Publish/Subscription, top search + Create, footer and
+  cookie notice) and the play route showed its "Game not found" state, because
+  the `?g=` record is fetched from the external Supabase backend, which the
+  offline rule blocks.
+- Evidence: body 275 chars (416 with the consent banner still up); canvas none;
+  2 console errors; 2 failed same-origin requests, 18 blocked cross-origin
+  (16 Supabase, 1 Google Fonts, 1 GTM); screenshot
+  `docs/boot-2026-10-27.png`.
+- Gaps seen: same-origin 404 for `/_vercel/insights/script.js` (telemetry
+  endpoint deliberately excluded from the capture) and `/sw.js` (PWA service
+  worker, not captured). The mirror's documented claim is confirmed: the app
+  shell renders offline; the published game record and embed are external and
+  cannot render from a loopback origin.
+
 ## Updating from upstream
 
 ```
