@@ -1,0 +1,24 @@
+// copy-C3ryofZQ 01 — key
+// Lines 1-22 of readable/assets/copy-C3ryofZQ.pretty.js (statement-aligned).
+import { r as e } from "./button-gyaE5cND.js";
+var t = e(`Copy`, [
+  [
+    `rect`,
+    {
+      width: `14`,
+      height: `14`,
+      x: `8`,
+      y: `8`,
+      rx: `2`,
+      ry: `2`,
+      key: `17jyea`,
+    },
+  ],
+  [
+    `path`,
+    {
+      d: `M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2`,
+      key: `zix9uf`,
+    },
+  ],
+]);

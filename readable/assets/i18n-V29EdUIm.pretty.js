@@ -1,0 +1,7921 @@
+import { i as e, o as t } from "./useTranslation-BdauNPOZ.js";
+var n = {
+    type: `3rdParty`,
+    init(n) {
+      (t(n.options.react), e(n));
+    },
+  },
+  r = (e) => typeof e == `string`,
+  i = () => {
+    let e,
+      t,
+      n = new Promise((n, r) => {
+        ((e = n), (t = r));
+      });
+    return ((n.resolve = e), (n.reject = t), n);
+  },
+  a = (e) => (e == null ? `` : `` + e),
+  o = (e, t, n) => {
+    e.forEach((e) => {
+      t[e] && (n[e] = t[e]);
+    });
+  },
+  s = /###/g,
+  c = (e) => (e && e.indexOf(`###`) > -1 ? e.replace(s, `.`) : e),
+  l = (e) => !e || r(e),
+  u = (e, t, n) => {
+    let i = r(t) ? t.split(`.`) : t,
+      a = 0;
+    for (; a < i.length - 1;) {
+      if (l(e)) return {};
+      let t = c(i[a]);
+      (!e[t] && n && (e[t] = new n()),
+        (e = Object.prototype.hasOwnProperty.call(e, t) ? e[t] : {}),
+        ++a);
+    }
+    return l(e) ? {} : { obj: e, k: c(i[a]) };
+  },
+  d = (e, t, n) => {
+    let { obj: r, k: i } = u(e, t, Object);
+    if (r !== void 0 || t.length === 1) {
+      r[i] = n;
+      return;
+    }
+    let a = t[t.length - 1],
+      o = t.slice(0, t.length - 1),
+      s = u(e, o, Object);
+    for (; s.obj === void 0 && o.length;)
+      ((a = `${o[o.length - 1]}.${a}`),
+        (o = o.slice(0, o.length - 1)),
+        (s = u(e, o, Object)),
+        s?.obj && s.obj[`${s.k}.${a}`] !== void 0 && (s.obj = void 0));
+    s.obj[`${s.k}.${a}`] = n;
+  },
+  f = (e, t, n, r) => {
+    let { obj: i, k: a } = u(e, t, Object);
+    ((i[a] = i[a] || []), i[a].push(n));
+  },
+  p = (e, t) => {
+    let { obj: n, k: r } = u(e, t);
+    if (n && Object.prototype.hasOwnProperty.call(n, r)) return n[r];
+  },
+  m = (e, t, n) => {
+    let r = p(e, n);
+    return r === void 0 ? p(t, n) : r;
+  },
+  h = (e, t, n) => {
+    for (let i in t)
+      i !== `__proto__` &&
+        i !== `constructor` &&
+        (i in e
+          ? r(e[i]) ||
+            e[i] instanceof String ||
+            r(t[i]) ||
+            t[i] instanceof String
+            ? n && (e[i] = t[i])
+            : h(e[i], t[i], n)
+          : (e[i] = t[i]));
+    return e;
+  },
+  g = (e) => e.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, `\\$&`),
+  _ = {
+    "&": `&amp;`,
+    "<": `&lt;`,
+    ">": `&gt;`,
+    '"': `&quot;`,
+    "'": `&#39;`,
+    "/": `&#x2F;`,
+  },
+  v = (e) => (r(e) ? e.replace(/[&<>"'\/]/g, (e) => _[e]) : e),
+  y = class {
+    constructor(e) {
+      ((this.capacity = e),
+        (this.regExpMap = new Map()),
+        (this.regExpQueue = []));
+    }
+    getRegExp(e) {
+      let t = this.regExpMap.get(e);
+      if (t !== void 0) return t;
+      let n = new RegExp(e);
+      return (
+        this.regExpQueue.length === this.capacity &&
+          this.regExpMap.delete(this.regExpQueue.shift()),
+        this.regExpMap.set(e, n),
+        this.regExpQueue.push(e),
+        n
+      );
+    }
+  },
+  b = [` `, `,`, `?`, `!`, `;`],
+  x = new y(20),
+  S = (e, t, n) => {
+    ((t ||= ``), (n ||= ``));
+    let r = b.filter((e) => t.indexOf(e) < 0 && n.indexOf(e) < 0);
+    if (r.length === 0) return !0;
+    let i = x.getRegExp(`(${r.map((e) => (e === `?` ? `\\?` : e)).join(`|`)})`),
+      a = !i.test(e);
+    if (!a) {
+      let t = e.indexOf(n);
+      t > 0 && !i.test(e.substring(0, t)) && (a = !0);
+    }
+    return a;
+  },
+  C = (e, t, n = `.`) => {
+    if (!e) return;
+    if (e[t]) return Object.prototype.hasOwnProperty.call(e, t) ? e[t] : void 0;
+    let r = t.split(n),
+      i = e;
+    for (let e = 0; e < r.length;) {
+      if (!i || typeof i != `object`) return;
+      let t,
+        a = ``;
+      for (let o = e; o < r.length; ++o)
+        if ((o !== e && (a += n), (a += r[o]), (t = i[a]), t !== void 0)) {
+          if (
+            [`string`, `number`, `boolean`].indexOf(typeof t) > -1 &&
+            o < r.length - 1
+          )
+            continue;
+          e += o - e + 1;
+          break;
+        }
+      i = t;
+    }
+    return i;
+  },
+  w = (e) => e?.replace(/_/g, `-`),
+  T = {
+    type: `logger`,
+    log(e) {
+      this.output(`log`, e);
+    },
+    warn(e) {
+      this.output(`warn`, e);
+    },
+    error(e) {
+      this.output(`error`, e);
+    },
+    output(e, t) {
+      console?.[e]?.apply?.(console, t);
+    },
+  },
+  E = new (class e {
+    constructor(e, t = {}) {
+      this.init(e, t);
+    }
+    init(e, t = {}) {
+      ((this.prefix = t.prefix || `i18next:`),
+        (this.logger = e || T),
+        (this.options = t),
+        (this.debug = t.debug));
+    }
+    log(...e) {
+      return this.forward(e, `log`, ``, !0);
+    }
+    warn(...e) {
+      return this.forward(e, `warn`, ``, !0);
+    }
+    error(...e) {
+      return this.forward(e, `error`, ``);
+    }
+    deprecate(...e) {
+      return this.forward(e, `warn`, `WARNING DEPRECATED: `, !0);
+    }
+    forward(e, t, n, i) {
+      return i && !this.debug
+        ? null
+        : (r(e[0]) && (e[0] = `${n}${this.prefix} ${e[0]}`), this.logger[t](e));
+    }
+    create(t) {
+      return new e(this.logger, {
+        prefix: `${this.prefix}:${t}:`,
+        ...this.options,
+      });
+    }
+    clone(t) {
+      return (
+        (t ||= this.options),
+        (t.prefix = t.prefix || this.prefix),
+        new e(this.logger, t)
+      );
+    }
+  })(),
+  D = class {
+    constructor() {
+      this.observers = {};
+    }
+    on(e, t) {
+      return (
+        e.split(` `).forEach((e) => {
+          this.observers[e] || (this.observers[e] = new Map());
+          let n = this.observers[e].get(t) || 0;
+          this.observers[e].set(t, n + 1);
+        }),
+        this
+      );
+    }
+    off(e, t) {
+      if (this.observers[e]) {
+        if (!t) {
+          delete this.observers[e];
+          return;
+        }
+        this.observers[e].delete(t);
+      }
+    }
+    emit(e, ...t) {
+      (this.observers[e] &&
+        Array.from(this.observers[e].entries()).forEach(([e, n]) => {
+          for (let r = 0; r < n; r++) e(...t);
+        }),
+        this.observers[`*`] &&
+          Array.from(this.observers[`*`].entries()).forEach(([n, r]) => {
+            for (let i = 0; i < r; i++) n.apply(n, [e, ...t]);
+          }));
+    }
+  },
+  O = class extends D {
+    constructor(e, t = { ns: [`translation`], defaultNS: `translation` }) {
+      (super(),
+        (this.data = e || {}),
+        (this.options = t),
+        this.options.keySeparator === void 0 &&
+          (this.options.keySeparator = `.`),
+        this.options.ignoreJSONStructure === void 0 &&
+          (this.options.ignoreJSONStructure = !0));
+    }
+    addNamespaces(e) {
+      this.options.ns.indexOf(e) < 0 && this.options.ns.push(e);
+    }
+    removeNamespaces(e) {
+      let t = this.options.ns.indexOf(e);
+      t > -1 && this.options.ns.splice(t, 1);
+    }
+    getResource(e, t, n, i = {}) {
+      let a =
+          i.keySeparator === void 0
+            ? this.options.keySeparator
+            : i.keySeparator,
+        o =
+          i.ignoreJSONStructure === void 0
+            ? this.options.ignoreJSONStructure
+            : i.ignoreJSONStructure,
+        s;
+      e.indexOf(`.`) > -1
+        ? (s = e.split(`.`))
+        : ((s = [e, t]),
+          n &&
+            (Array.isArray(n)
+              ? s.push(...n)
+              : r(n) && a
+                ? s.push(...n.split(a))
+                : s.push(n)));
+      let c = p(this.data, s);
+      return (
+        !c &&
+          !t &&
+          !n &&
+          e.indexOf(`.`) > -1 &&
+          ((e = s[0]), (t = s[1]), (n = s.slice(2).join(`.`))),
+        c || !o || !r(n) ? c : C(this.data?.[e]?.[t], n, a)
+      );
+    }
+    addResource(e, t, n, r, i = { silent: !1 }) {
+      let a =
+          i.keySeparator === void 0
+            ? this.options.keySeparator
+            : i.keySeparator,
+        o = [e, t];
+      (n && (o = o.concat(a ? n.split(a) : n)),
+        e.indexOf(`.`) > -1 && ((o = e.split(`.`)), (r = t), (t = o[1])),
+        this.addNamespaces(t),
+        d(this.data, o, r),
+        i.silent || this.emit(`added`, e, t, n, r));
+    }
+    addResources(e, t, n, i = { silent: !1 }) {
+      for (let i in n)
+        (r(n[i]) || Array.isArray(n[i])) &&
+          this.addResource(e, t, i, n[i], { silent: !0 });
+      i.silent || this.emit(`added`, e, t, n);
+    }
+    addResourceBundle(e, t, n, r, i, a = { silent: !1, skipCopy: !1 }) {
+      let o = [e, t];
+      (e.indexOf(`.`) > -1 &&
+        ((o = e.split(`.`)), (r = n), (n = t), (t = o[1])),
+        this.addNamespaces(t));
+      let s = p(this.data, o) || {};
+      (a.skipCopy || (n = JSON.parse(JSON.stringify(n))),
+        r ? h(s, n, i) : (s = { ...s, ...n }),
+        d(this.data, o, s),
+        a.silent || this.emit(`added`, e, t, n));
+    }
+    removeResourceBundle(e, t) {
+      (this.hasResourceBundle(e, t) && delete this.data[e][t],
+        this.removeNamespaces(t),
+        this.emit(`removed`, e, t));
+    }
+    hasResourceBundle(e, t) {
+      return this.getResource(e, t) !== void 0;
+    }
+    getResourceBundle(e, t) {
+      return ((t ||= this.options.defaultNS), this.getResource(e, t));
+    }
+    getDataByLanguage(e) {
+      return this.data[e];
+    }
+    hasLanguageSomeTranslations(e) {
+      let t = this.getDataByLanguage(e);
+      return !!((t && Object.keys(t)) || []).find(
+        (e) => t[e] && Object.keys(t[e]).length > 0,
+      );
+    }
+    toJSON() {
+      return this.data;
+    }
+  },
+  k = {
+    processors: {},
+    addPostProcessor(e) {
+      this.processors[e.name] = e;
+    },
+    handle(e, t, n, r, i) {
+      return (
+        e.forEach((e) => {
+          t = this.processors[e]?.process(t, n, r, i) ?? t;
+        }),
+        t
+      );
+    },
+  },
+  A = Symbol(`i18next/PATH_KEY`);
+function ee() {
+  let e = [],
+    t = Object.create(null),
+    n;
+  return (
+    (t.get = (r, i) => (
+      n?.revoke?.(),
+      i === A ? e : (e.push(i), (n = Proxy.revocable(r, t)), n.proxy)
+    )),
+    Proxy.revocable(Object.create(null), t).proxy
+  );
+}
+function j(e, t) {
+  let { [A]: n } = e(ee()),
+    r = t?.keySeparator ?? `.`,
+    i = t?.nsSeparator ?? `:`;
+  if (n.length > 1 && i) {
+    let e = t?.ns,
+      a = Array.isArray(e) ? e : null;
+    if (a && a.length > 1 && a.slice(1).includes(n[0]))
+      return `${n[0]}${i}${n.slice(1).join(r)}`;
+  }
+  return n.join(r);
+}
+var te = {},
+  M = (e) => !r(e) && typeof e != `boolean` && typeof e != `number`,
+  N = class e extends D {
+    constructor(e, t = {}) {
+      (super(),
+        o(
+          [
+            `resourceStore`,
+            `languageUtils`,
+            `pluralResolver`,
+            `interpolator`,
+            `backendConnector`,
+            `i18nFormat`,
+            `utils`,
+          ],
+          e,
+          this,
+        ),
+        (this.options = t),
+        this.options.keySeparator === void 0 &&
+          (this.options.keySeparator = `.`),
+        (this.logger = E.create(`translator`)));
+    }
+    changeLanguage(e) {
+      e && (this.language = e);
+    }
+    exists(e, t = { interpolation: {} }) {
+      let n = { ...t };
+      if (e == null) return !1;
+      let r = this.resolve(e, n);
+      if (r?.res === void 0) return !1;
+      let i = M(r.res);
+      return !(n.returnObjects === !1 && i);
+    }
+    extractFromKey(e, t) {
+      let n =
+        t.nsSeparator === void 0 ? this.options.nsSeparator : t.nsSeparator;
+      n === void 0 && (n = `:`);
+      let i =
+          t.keySeparator === void 0
+            ? this.options.keySeparator
+            : t.keySeparator,
+        a = t.ns || this.options.defaultNS || [],
+        o = n && e.indexOf(n) > -1,
+        s =
+          !this.options.userDefinedKeySeparator &&
+          !t.keySeparator &&
+          !this.options.userDefinedNsSeparator &&
+          !t.nsSeparator &&
+          !S(e, n, i);
+      if (o && !s) {
+        let t = e.match(this.interpolator.nestingRegexp);
+        if (t && t.length > 0) return { key: e, namespaces: r(a) ? [a] : a };
+        let o = e.split(n);
+        ((n !== i || (n === i && this.options.ns.indexOf(o[0]) > -1)) &&
+          (a = o.shift()),
+          (e = o.join(i)));
+      }
+      return { key: e, namespaces: r(a) ? [a] : a };
+    }
+    translate(t, n, i) {
+      let a = typeof n == `object` ? { ...n } : n;
+      if (
+        (typeof a != `object` &&
+          this.options.overloadTranslationOptionHandler &&
+          (a = this.options.overloadTranslationOptionHandler(arguments)),
+        typeof a == `object` && (a = { ...a }),
+        (a ||= {}),
+        t == null)
+      )
+        return ``;
+      (typeof t == `function` && (t = j(t, { ...this.options, ...a })),
+        Array.isArray(t) || (t = [String(t)]),
+        (t = t.map((e) =>
+          typeof e == `function` ? j(e, { ...this.options, ...a }) : String(e),
+        )));
+      let o =
+          a.returnDetails === void 0
+            ? this.options.returnDetails
+            : a.returnDetails,
+        s =
+          a.keySeparator === void 0
+            ? this.options.keySeparator
+            : a.keySeparator,
+        { key: c, namespaces: l } = this.extractFromKey(t[t.length - 1], a),
+        u = l[l.length - 1],
+        d = a.nsSeparator === void 0 ? this.options.nsSeparator : a.nsSeparator;
+      d === void 0 && (d = `:`);
+      let f = a.lng || this.language,
+        p = a.appendNamespaceToCIMode || this.options.appendNamespaceToCIMode;
+      if (f?.toLowerCase() === `cimode`)
+        return p
+          ? o
+            ? {
+                res: `${u}${d}${c}`,
+                usedKey: c,
+                exactUsedKey: c,
+                usedLng: f,
+                usedNS: u,
+                usedParams: this.getUsedParamsDetails(a),
+              }
+            : `${u}${d}${c}`
+          : o
+            ? {
+                res: c,
+                usedKey: c,
+                exactUsedKey: c,
+                usedLng: f,
+                usedNS: u,
+                usedParams: this.getUsedParamsDetails(a),
+              }
+            : c;
+      let m = this.resolve(t, a),
+        h = m?.res,
+        g = m?.usedKey || c,
+        _ = m?.exactUsedKey || c,
+        v = [`[object Number]`, `[object Function]`, `[object RegExp]`],
+        y = a.joinArrays === void 0 ? this.options.joinArrays : a.joinArrays,
+        b = !this.i18nFormat || this.i18nFormat.handleAsObject,
+        x = a.count !== void 0 && !r(a.count),
+        S = e.hasDefaultValue(a),
+        C = x ? this.pluralResolver.getSuffix(f, a.count, a) : ``,
+        w =
+          a.ordinal && x
+            ? this.pluralResolver.getSuffix(f, a.count, { ordinal: !1 })
+            : ``,
+        T = x && !a.ordinal && a.count === 0,
+        E =
+          (T && a[`defaultValue${this.options.pluralSeparator}zero`]) ||
+          a[`defaultValue${C}`] ||
+          a[`defaultValue${w}`] ||
+          a.defaultValue,
+        D = h;
+      b && !h && S && (D = E);
+      let O = M(D),
+        k = Object.prototype.toString.apply(D);
+      if (b && D && O && v.indexOf(k) < 0 && !(r(y) && Array.isArray(D))) {
+        if (!a.returnObjects && !this.options.returnObjects) {
+          this.options.returnedObjectHandler ||
+            this.logger.warn(
+              `accessing an object - but returnObjects options is not enabled!`,
+            );
+          let e = this.options.returnedObjectHandler
+            ? this.options.returnedObjectHandler(g, D, { ...a, ns: l })
+            : `key '${c} (${this.language})' returned an object instead of string.`;
+          return o
+            ? ((m.res = e), (m.usedParams = this.getUsedParamsDetails(a)), m)
+            : e;
+        }
+        if (s) {
+          let e = Array.isArray(D),
+            t = e ? [] : {},
+            n = e ? _ : g;
+          for (let e in D)
+            if (Object.prototype.hasOwnProperty.call(D, e)) {
+              let r = `${n}${s}${e}`;
+              (S && !h
+                ? (t[e] = this.translate(r, {
+                    ...a,
+                    defaultValue: M(E) ? E[e] : void 0,
+                    joinArrays: !1,
+                    ns: l,
+                  }))
+                : (t[e] = this.translate(r, { ...a, joinArrays: !1, ns: l })),
+                t[e] === r && (t[e] = D[e]));
+            }
+          h = t;
+        }
+      } else if (b && r(y) && Array.isArray(h))
+        ((h = h.join(y)), (h &&= this.extendTranslation(h, t, a, i)));
+      else {
+        let e = !1,
+          n = !1;
+        (!this.isValidLookup(h) && S && ((e = !0), (h = E)),
+          this.isValidLookup(h) || ((n = !0), (h = c)));
+        let r =
+            (a.missingKeyNoValueFallbackToKey ||
+              this.options.missingKeyNoValueFallbackToKey) &&
+            n
+              ? void 0
+              : h,
+          o = S && E !== h && this.options.updateMissing;
+        if (n || e || o) {
+          if (
+            (this.logger.log(
+              o ? `updateKey` : `missingKey`,
+              f,
+              u,
+              c,
+              o ? E : h,
+            ),
+            s)
+          ) {
+            let e = this.resolve(c, { ...a, keySeparator: !1 });
+            e &&
+              e.res &&
+              this.logger.warn(
+                `Seems the loaded translations were in flat JSON format instead of nested. Either set keySeparator: false on init or make sure your translations are published in nested format.`,
+              );
+          }
+          let e = [],
+            t = this.languageUtils.getFallbackCodes(
+              this.options.fallbackLng,
+              a.lng || this.language,
+            );
+          if (this.options.saveMissingTo === `fallback` && t && t[0])
+            for (let n = 0; n < t.length; n++) e.push(t[n]);
+          else
+            this.options.saveMissingTo === `all`
+              ? (e = this.languageUtils.toResolveHierarchy(
+                  a.lng || this.language,
+                ))
+              : e.push(a.lng || this.language);
+          let n = (e, t, n) => {
+            let i = S && n !== h ? n : r;
+            (this.options.missingKeyHandler
+              ? this.options.missingKeyHandler(e, u, t, i, o, a)
+              : this.backendConnector?.saveMissing &&
+                this.backendConnector.saveMissing(e, u, t, i, o, a),
+              this.emit(`missingKey`, e, u, t, h));
+          };
+          this.options.saveMissing &&
+            (this.options.saveMissingPlurals && x
+              ? e.forEach((e) => {
+                  let t = this.pluralResolver.getSuffixes(e, a);
+                  (T &&
+                    a[`defaultValue${this.options.pluralSeparator}zero`] &&
+                    t.indexOf(`${this.options.pluralSeparator}zero`) < 0 &&
+                    t.push(`${this.options.pluralSeparator}zero`),
+                    t.forEach((t) => {
+                      n([e], c + t, a[`defaultValue${t}`] || E);
+                    }));
+                })
+              : n(e, c, E));
+        }
+        ((h = this.extendTranslation(h, t, a, m, i)),
+          n &&
+            h === c &&
+            this.options.appendNamespaceToMissingKey &&
+            (h = `${u}${d}${c}`),
+          (n || e) &&
+            this.options.parseMissingKeyHandler &&
+            (h = this.options.parseMissingKeyHandler(
+              this.options.appendNamespaceToMissingKey ? `${u}${d}${c}` : c,
+              e ? h : void 0,
+              a,
+            )));
+      }
+      return o
+        ? ((m.res = h), (m.usedParams = this.getUsedParamsDetails(a)), m)
+        : h;
+    }
+    extendTranslation(e, t, n, i, a) {
+      if (this.i18nFormat?.parse)
+        e = this.i18nFormat.parse(
+          e,
+          { ...this.options.interpolation.defaultVariables, ...n },
+          n.lng || this.language || i.usedLng,
+          i.usedNS,
+          i.usedKey,
+          { resolved: i },
+        );
+      else if (!n.skipInterpolation) {
+        n.interpolation &&
+          this.interpolator.init({
+            ...n,
+            interpolation: {
+              ...this.options.interpolation,
+              ...n.interpolation,
+            },
+          });
+        let o =
+            r(e) &&
+            (n?.interpolation?.skipOnVariables === void 0
+              ? this.options.interpolation.skipOnVariables
+              : n.interpolation.skipOnVariables),
+          s;
+        if (o) {
+          let t = e.match(this.interpolator.nestingRegexp);
+          s = t && t.length;
+        }
+        let c = n.replace && !r(n.replace) ? n.replace : n;
+        if (
+          (this.options.interpolation.defaultVariables &&
+            (c = { ...this.options.interpolation.defaultVariables, ...c }),
+          (e = this.interpolator.interpolate(
+            e,
+            c,
+            n.lng || this.language || i.usedLng,
+            n,
+          )),
+          o)
+        ) {
+          let t = e.match(this.interpolator.nestingRegexp),
+            r = t && t.length;
+          s < r && (n.nest = !1);
+        }
+        (!n.lng && i && i.res && (n.lng = this.language || i.usedLng),
+          n.nest !== !1 &&
+            (e = this.interpolator.nest(
+              e,
+              (...e) =>
+                a?.[0] === e[0] && !n.context
+                  ? (this.logger.warn(
+                      `It seems you are nesting recursively key: ${e[0]} in key: ${t[0]}`,
+                    ),
+                    null)
+                  : this.translate(...e, t),
+              n,
+            )),
+          n.interpolation && this.interpolator.reset());
+      }
+      let o = n.postProcess || this.options.postProcess,
+        s = r(o) ? [o] : o;
+      return (
+        e != null &&
+          s?.length &&
+          n.applyPostProcessor !== !1 &&
+          (e = k.handle(
+            s,
+            e,
+            t,
+            this.options && this.options.postProcessPassResolved
+              ? {
+                  i18nResolved: {
+                    ...i,
+                    usedParams: this.getUsedParamsDetails(n),
+                  },
+                  ...n,
+                }
+              : n,
+            this,
+          )),
+        e
+      );
+    }
+    resolve(e, t = {}) {
+      let n, i, a, o, s;
+      return (
+        r(e) && (e = [e]),
+        Array.isArray(e) &&
+          (e = e.map((e) =>
+            typeof e == `function` ? j(e, { ...this.options, ...t }) : e,
+          )),
+        e.forEach((e) => {
+          if (this.isValidLookup(n)) return;
+          let c = this.extractFromKey(e, t),
+            l = c.key;
+          i = l;
+          let u = c.namespaces;
+          this.options.fallbackNS && (u = u.concat(this.options.fallbackNS));
+          let d = t.count !== void 0 && !r(t.count),
+            f = d && !t.ordinal && t.count === 0,
+            p =
+              t.context !== void 0 &&
+              (r(t.context) || typeof t.context == `number`) &&
+              t.context !== ``,
+            m = t.lngs
+              ? t.lngs
+              : this.languageUtils.toResolveHierarchy(
+                  t.lng || this.language,
+                  t.fallbackLng,
+                );
+          u.forEach((e) => {
+            this.isValidLookup(n) ||
+              ((s = e),
+              !te[`${m[0]}-${e}`] &&
+                this.utils?.hasLoadedNamespace &&
+                !this.utils?.hasLoadedNamespace(s) &&
+                ((te[`${m[0]}-${e}`] = !0),
+                this.logger.warn(
+                  `key "${i}" for languages "${m.join(`, `)}" won't get resolved as namespace "${s}" was not yet loaded`,
+                  `This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!`,
+                )),
+              m.forEach((r) => {
+                if (this.isValidLookup(n)) return;
+                o = r;
+                let i = [l];
+                if (this.i18nFormat?.addLookupKeys)
+                  this.i18nFormat.addLookupKeys(i, l, r, e, t);
+                else {
+                  let e;
+                  d && (e = this.pluralResolver.getSuffix(r, t.count, t));
+                  let n = `${this.options.pluralSeparator}zero`,
+                    a = `${this.options.pluralSeparator}ordinal${this.options.pluralSeparator}`;
+                  if (
+                    (d &&
+                      (t.ordinal &&
+                        e.indexOf(a) === 0 &&
+                        i.push(l + e.replace(a, this.options.pluralSeparator)),
+                      i.push(l + e),
+                      f && i.push(l + n)),
+                    p)
+                  ) {
+                    let r = `${l}${this.options.contextSeparator || `_`}${t.context}`;
+                    (i.push(r),
+                      d &&
+                        (t.ordinal &&
+                          e.indexOf(a) === 0 &&
+                          i.push(
+                            r + e.replace(a, this.options.pluralSeparator),
+                          ),
+                        i.push(r + e),
+                        f && i.push(r + n)));
+                  }
+                }
+                let s;
+                for (; (s = i.pop());)
+                  this.isValidLookup(n) ||
+                    ((a = s), (n = this.getResource(r, e, s, t)));
+              }));
+          });
+        }),
+        { res: n, usedKey: i, exactUsedKey: a, usedLng: o, usedNS: s }
+      );
+    }
+    isValidLookup(e) {
+      return (
+        e !== void 0 &&
+        !(!this.options.returnNull && e === null) &&
+        !(!this.options.returnEmptyString && e === ``)
+      );
+    }
+    getResource(e, t, n, r = {}) {
+      return this.i18nFormat?.getResource
+        ? this.i18nFormat.getResource(e, t, n, r)
+        : this.resourceStore.getResource(e, t, n, r);
+    }
+    getUsedParamsDetails(e = {}) {
+      let t = [
+          `defaultValue`,
+          `ordinal`,
+          `context`,
+          `replace`,
+          `lng`,
+          `lngs`,
+          `fallbackLng`,
+          `ns`,
+          `keySeparator`,
+          `nsSeparator`,
+          `returnObjects`,
+          `returnDetails`,
+          `joinArrays`,
+          `postProcess`,
+          `interpolation`,
+        ],
+        n = e.replace && !r(e.replace),
+        i = n ? e.replace : e;
+      if (
+        (n && e.count !== void 0 && (i.count = e.count),
+        this.options.interpolation.defaultVariables &&
+          (i = { ...this.options.interpolation.defaultVariables, ...i }),
+        !n)
+      ) {
+        i = { ...i };
+        for (let e of t) delete i[e];
+      }
+      return i;
+    }
+    static hasDefaultValue(e) {
+      for (let t in e)
+        if (
+          Object.prototype.hasOwnProperty.call(e, t) &&
+          t.substring(0, 12) === `defaultValue` &&
+          e[t] !== void 0
+        )
+          return !0;
+      return !1;
+    }
+  },
+  P = class {
+    constructor(e) {
+      ((this.options = e),
+        (this.supportedLngs = this.options.supportedLngs || !1),
+        (this.logger = E.create(`languageUtils`)));
+    }
+    getScriptPartFromCode(e) {
+      if (((e = w(e)), !e || e.indexOf(`-`) < 0)) return null;
+      let t = e.split(`-`);
+      return t.length === 2 || (t.pop(), t[t.length - 1].toLowerCase() === `x`)
+        ? null
+        : this.formatLanguageCode(t.join(`-`));
+    }
+    getLanguagePartFromCode(e) {
+      if (((e = w(e)), !e || e.indexOf(`-`) < 0)) return e;
+      let t = e.split(`-`);
+      return this.formatLanguageCode(t[0]);
+    }
+    formatLanguageCode(e) {
+      if (r(e) && e.indexOf(`-`) > -1) {
+        let t;
+        try {
+          t = Intl.getCanonicalLocales(e)[0];
+        } catch {}
+        return (
+          t && this.options.lowerCaseLng && (t = t.toLowerCase()),
+          t || (this.options.lowerCaseLng ? e.toLowerCase() : e)
+        );
+      }
+      return this.options.cleanCode || this.options.lowerCaseLng
+        ? e.toLowerCase()
+        : e;
+    }
+    isSupportedCode(e) {
+      return (
+        (this.options.load === `languageOnly` ||
+          this.options.nonExplicitSupportedLngs) &&
+          (e = this.getLanguagePartFromCode(e)),
+        !this.supportedLngs ||
+          !this.supportedLngs.length ||
+          this.supportedLngs.indexOf(e) > -1
+      );
+    }
+    getBestMatchFromCodes(e) {
+      if (!e) return null;
+      let t;
+      return (
+        e.forEach((e) => {
+          if (t) return;
+          let n = this.formatLanguageCode(e);
+          (!this.options.supportedLngs || this.isSupportedCode(n)) && (t = n);
+        }),
+        !t &&
+          this.options.supportedLngs &&
+          e.forEach((e) => {
+            if (t) return;
+            let n = this.getScriptPartFromCode(e);
+            if (this.isSupportedCode(n)) return (t = n);
+            let r = this.getLanguagePartFromCode(e);
+            if (this.isSupportedCode(r)) return (t = r);
+            t = this.options.supportedLngs.find((e) => {
+              if (
+                e === r ||
+                (!(e.indexOf(`-`) < 0 && r.indexOf(`-`) < 0) &&
+                  ((e.indexOf(`-`) > 0 &&
+                    r.indexOf(`-`) < 0 &&
+                    e.substring(0, e.indexOf(`-`)) === r) ||
+                    (e.indexOf(r) === 0 && r.length > 1)))
+              )
+                return e;
+            });
+          }),
+        (t ||= this.getFallbackCodes(this.options.fallbackLng)[0]),
+        t
+      );
+    }
+    getFallbackCodes(e, t) {
+      if (!e) return [];
+      if (
+        (typeof e == `function` && (e = e(t)),
+        r(e) && (e = [e]),
+        Array.isArray(e))
+      )
+        return e;
+      if (!t) return e.default || [];
+      let n = e[t];
+      return (
+        (n ||= e[this.getScriptPartFromCode(t)]),
+        (n ||= e[this.formatLanguageCode(t)]),
+        (n ||= e[this.getLanguagePartFromCode(t)]),
+        (n ||= e.default),
+        n || []
+      );
+    }
+    toResolveHierarchy(e, t) {
+      let n = this.getFallbackCodes(
+          (t === !1 ? [] : t) || this.options.fallbackLng || [],
+          e,
+        ),
+        i = [],
+        a = (e) => {
+          e &&
+            (this.isSupportedCode(e)
+              ? i.push(e)
+              : this.logger.warn(
+                  `rejecting language code not found in supportedLngs: ${e}`,
+                ));
+        };
+      return (
+        r(e) && (e.indexOf(`-`) > -1 || e.indexOf(`_`) > -1)
+          ? (this.options.load !== `languageOnly` &&
+              a(this.formatLanguageCode(e)),
+            this.options.load !== `languageOnly` &&
+              this.options.load !== `currentOnly` &&
+              a(this.getScriptPartFromCode(e)),
+            this.options.load !== `currentOnly` &&
+              a(this.getLanguagePartFromCode(e)))
+          : r(e) && a(this.formatLanguageCode(e)),
+        n.forEach((e) => {
+          i.indexOf(e) < 0 && a(this.formatLanguageCode(e));
+        }),
+        i
+      );
+    }
+  },
+  F = { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 },
+  I = {
+    select: (e) => (e === 1 ? `one` : `other`),
+    resolvedOptions: () => ({ pluralCategories: [`one`, `other`] }),
+  },
+  ne = class {
+    constructor(e, t = {}) {
+      ((this.languageUtils = e),
+        (this.options = t),
+        (this.logger = E.create(`pluralResolver`)),
+        (this.pluralRulesCache = {}));
+    }
+    clearCache() {
+      this.pluralRulesCache = {};
+    }
+    getRule(e, t = {}) {
+      let n = w(e === `dev` ? `en` : e),
+        r = t.ordinal ? `ordinal` : `cardinal`,
+        i = JSON.stringify({ cleanedCode: n, type: r });
+      if (i in this.pluralRulesCache) return this.pluralRulesCache[i];
+      let a;
+      try {
+        a = new Intl.PluralRules(n, { type: r });
+      } catch {
+        if (typeof Intl > `u`)
+          return (
+            this.logger.error(`No Intl support, please use an Intl polyfill!`),
+            I
+          );
+        if (!e.match(/-|_/)) return I;
+        let n = this.languageUtils.getLanguagePartFromCode(e);
+        a = this.getRule(n, t);
+      }
+      return ((this.pluralRulesCache[i] = a), a);
+    }
+    needsPlural(e, t = {}) {
+      let n = this.getRule(e, t);
+      return (
+        (n ||= this.getRule(`dev`, t)),
+        n?.resolvedOptions().pluralCategories.length > 1
+      );
+    }
+    getPluralFormsOfKey(e, t, n = {}) {
+      return this.getSuffixes(e, n).map((e) => `${t}${e}`);
+    }
+    getSuffixes(e, t = {}) {
+      let n = this.getRule(e, t);
+      return (
+        (n ||= this.getRule(`dev`, t)),
+        n
+          ? n
+              .resolvedOptions()
+              .pluralCategories.sort((e, t) => F[e] - F[t])
+              .map(
+                (e) =>
+                  `${this.options.prepend}${t.ordinal ? `ordinal${this.options.prepend}` : ``}${e}`,
+              )
+          : []
+      );
+    }
+    getSuffix(e, t, n = {}) {
+      let r = this.getRule(e, n);
+      return r
+        ? `${this.options.prepend}${n.ordinal ? `ordinal${this.options.prepend}` : ``}${r.select(t)}`
+        : (this.logger.warn(`no plural rule found for: ${e}`),
+          this.getSuffix(`dev`, t, n));
+    }
+  },
+  L = (e, t, n, i = `.`, a = !0) => {
+    let o = m(e, t, n);
+    return (
+      !o && a && r(n) && ((o = C(e, n, i)), o === void 0 && (o = C(t, n, i))),
+      o
+    );
+  },
+  R = (e) => e.replace(/\$/g, `$$$$`),
+  z = class {
+    constructor(e = {}) {
+      ((this.logger = E.create(`interpolator`)),
+        (this.options = e),
+        (this.format = e?.interpolation?.format || ((e) => e)),
+        this.init(e));
+    }
+    init(e = {}) {
+      e.interpolation ||= { escapeValue: !0 };
+      let {
+        escape: t,
+        escapeValue: n,
+        useRawValueToEscape: r,
+        prefix: i,
+        prefixEscaped: a,
+        suffix: o,
+        suffixEscaped: s,
+        formatSeparator: c,
+        unescapeSuffix: l,
+        unescapePrefix: u,
+        nestingPrefix: d,
+        nestingPrefixEscaped: f,
+        nestingSuffix: p,
+        nestingSuffixEscaped: m,
+        nestingOptionsSeparator: h,
+        maxReplaces: _,
+        alwaysFormat: y,
+      } = e.interpolation;
+      ((this.escape = t === void 0 ? v : t),
+        (this.escapeValue = n === void 0 || n),
+        (this.useRawValueToEscape = r !== void 0 && r),
+        (this.prefix = i ? g(i) : a || `{{`),
+        (this.suffix = o ? g(o) : s || `}}`),
+        (this.formatSeparator = c || `,`),
+        (this.unescapePrefix = l ? `` : u || `-`),
+        (this.unescapeSuffix = this.unescapePrefix ? `` : l || ``),
+        (this.nestingPrefix = d ? g(d) : f || g(`$t(`)),
+        (this.nestingSuffix = p ? g(p) : m || g(`)`)),
+        (this.nestingOptionsSeparator = h || `,`),
+        (this.maxReplaces = _ || 1e3),
+        (this.alwaysFormat = y !== void 0 && y),
+        this.resetRegExp());
+    }
+    reset() {
+      this.options && this.init(this.options);
+    }
+    resetRegExp() {
+      let e = (e, t) =>
+        e?.source === t ? ((e.lastIndex = 0), e) : new RegExp(t, `g`);
+      ((this.regexp = e(this.regexp, `${this.prefix}(.+?)${this.suffix}`)),
+        (this.regexpUnescape = e(
+          this.regexpUnescape,
+          `${this.prefix}${this.unescapePrefix}(.+?)${this.unescapeSuffix}${this.suffix}`,
+        )),
+        (this.nestingRegexp = e(
+          this.nestingRegexp,
+          `${this.nestingPrefix}((?:[^()"']+|"[^"]*"|'[^']*'|\\((?:[^()]|"[^"]*"|'[^']*')*\\))*?)${this.nestingSuffix}`,
+        )));
+    }
+    interpolate(e, t, n, i) {
+      let o,
+        s,
+        c,
+        l =
+          (this.options &&
+            this.options.interpolation &&
+            this.options.interpolation.defaultVariables) ||
+          {},
+        u = (e) => {
+          if (e.indexOf(this.formatSeparator) < 0) {
+            let r = L(
+              t,
+              l,
+              e,
+              this.options.keySeparator,
+              this.options.ignoreJSONStructure,
+            );
+            return this.alwaysFormat
+              ? this.format(r, void 0, n, { ...i, ...t, interpolationkey: e })
+              : r;
+          }
+          let r = e.split(this.formatSeparator),
+            a = r.shift().trim(),
+            o = r.join(this.formatSeparator).trim();
+          return this.format(
+            L(
+              t,
+              l,
+              a,
+              this.options.keySeparator,
+              this.options.ignoreJSONStructure,
+            ),
+            o,
+            n,
+            { ...i, ...t, interpolationkey: a },
+          );
+        };
+      this.resetRegExp();
+      let d =
+          i?.missingInterpolationHandler ||
+          this.options.missingInterpolationHandler,
+        f =
+          i?.interpolation?.skipOnVariables === void 0
+            ? this.options.interpolation.skipOnVariables
+            : i.interpolation.skipOnVariables;
+      return (
+        [
+          { regex: this.regexpUnescape, safeValue: (e) => R(e) },
+          {
+            regex: this.regexp,
+            safeValue: (e) => (this.escapeValue ? R(this.escape(e)) : R(e)),
+          },
+        ].forEach((t) => {
+          for (c = 0; (o = t.regex.exec(e));) {
+            let n = o[1].trim();
+            if (((s = u(n)), s === void 0))
+              if (typeof d == `function`) {
+                let t = d(e, o, i);
+                s = r(t) ? t : ``;
+              } else if (i && Object.prototype.hasOwnProperty.call(i, n))
+                s = ``;
+              else if (f) {
+                s = o[0];
+                continue;
+              } else
+                (this.logger.warn(
+                  `missed to pass in variable ${n} for interpolating ${e}`,
+                ),
+                  (s = ``));
+            else !r(s) && !this.useRawValueToEscape && (s = a(s));
+            let l = t.safeValue(s);
+            if (
+              ((e = e.replace(o[0], l)),
+              f
+                ? ((t.regex.lastIndex += s.length),
+                  (t.regex.lastIndex -= o[0].length))
+                : (t.regex.lastIndex = 0),
+              c++,
+              c >= this.maxReplaces)
+            )
+              break;
+          }
+        }),
+        e
+      );
+    }
+    nest(e, t, n = {}) {
+      let i,
+        o,
+        s,
+        c = (e, t) => {
+          let n = this.nestingOptionsSeparator;
+          if (e.indexOf(n) < 0) return e;
+          let r = e.split(RegExp(`${g(n)}[ ]*{`)),
+            i = `{${r[1]}`;
+          ((e = r[0]), (i = this.interpolate(i, s)));
+          let a = i.match(/'/g),
+            o = i.match(/"/g);
+          (((a?.length ?? 0) % 2 == 0 && !o) || (o?.length ?? 0) % 2 != 0) &&
+            (i = i.replace(/'/g, `"`));
+          try {
+            ((s = JSON.parse(i)), t && (s = { ...t, ...s }));
+          } catch (t) {
+            return (
+              this.logger.warn(
+                `failed parsing options string in nesting for key ${e}`,
+                t,
+              ),
+              `${e}${n}${i}`
+            );
+          }
+          return (
+            s.defaultValue &&
+              s.defaultValue.indexOf(this.prefix) > -1 &&
+              delete s.defaultValue,
+            e
+          );
+        };
+      for (; (i = this.nestingRegexp.exec(e));) {
+        let l = [];
+        ((s = { ...n }),
+          (s = s.replace && !r(s.replace) ? s.replace : s),
+          (s.applyPostProcessor = !1),
+          delete s.defaultValue);
+        let u = /{.*}/.test(i[1])
+          ? i[1].lastIndexOf(`}`) + 1
+          : i[1].indexOf(this.formatSeparator);
+        if (
+          (u !== -1 &&
+            ((l = i[1]
+              .slice(u)
+              .split(this.formatSeparator)
+              .map((e) => e.trim())
+              .filter(Boolean)),
+            (i[1] = i[1].slice(0, u))),
+          (o = t(c.call(this, i[1].trim(), s), s)),
+          o && i[0] === e && !r(o))
+        )
+          return o;
+        (r(o) || (o = a(o)),
+          (o ||=
+            (this.logger.warn(`missed to resolve ${i[1]} for nesting ${e}`),
+            ``)),
+          l.length &&
+            (o = l.reduce(
+              (e, t) =>
+                this.format(e, t, n.lng, {
+                  ...n,
+                  interpolationkey: i[1].trim(),
+                }),
+              o.trim(),
+            )),
+          (e = e.replace(i[0], o)),
+          (this.regexp.lastIndex = 0));
+      }
+      return e;
+    }
+  },
+  re = (e) => {
+    let t = e.toLowerCase().trim(),
+      n = {};
+    if (e.indexOf(`(`) > -1) {
+      let r = e.split(`(`);
+      t = r[0].toLowerCase().trim();
+      let i = r[1].substring(0, r[1].length - 1);
+      t === `currency` && i.indexOf(`:`) < 0
+        ? (n.currency ||= i.trim())
+        : t === `relativetime` && i.indexOf(`:`) < 0
+          ? (n.range ||= i.trim())
+          : i.split(`;`).forEach((e) => {
+              if (e) {
+                let [t, ...r] = e.split(`:`),
+                  i = r
+                    .join(`:`)
+                    .trim()
+                    .replace(/^'+|'+$/g, ``),
+                  a = t.trim();
+                (n[a] || (n[a] = i),
+                  i === `false` && (n[a] = !1),
+                  i === `true` && (n[a] = !0),
+                  isNaN(i) || (n[a] = parseInt(i, 10)));
+              }
+            });
+    }
+    return { formatName: t, formatOptions: n };
+  },
+  B = (e) => {
+    let t = {};
+    return (n, r, i) => {
+      let a = i;
+      i &&
+        i.interpolationkey &&
+        i.formatParams &&
+        i.formatParams[i.interpolationkey] &&
+        i[i.interpolationkey] &&
+        (a = { ...a, [i.interpolationkey]: void 0 });
+      let o = r + JSON.stringify(a),
+        s = t[o];
+      return (s || ((s = e(w(r), i)), (t[o] = s)), s(n));
+    };
+  },
+  ie = (e) => (t, n, r) => e(w(n), r)(t),
+  ae = class {
+    constructor(e = {}) {
+      ((this.logger = E.create(`formatter`)), (this.options = e), this.init(e));
+    }
+    init(e, t = { interpolation: {} }) {
+      this.formatSeparator = t.interpolation.formatSeparator || `,`;
+      let n = t.cacheInBuiltFormats ? B : ie;
+      this.formats = {
+        number: n((e, t) => {
+          let n = new Intl.NumberFormat(e, { ...t });
+          return (e) => n.format(e);
+        }),
+        currency: n((e, t) => {
+          let n = new Intl.NumberFormat(e, { ...t, style: `currency` });
+          return (e) => n.format(e);
+        }),
+        datetime: n((e, t) => {
+          let n = new Intl.DateTimeFormat(e, { ...t });
+          return (e) => n.format(e);
+        }),
+        relativetime: n((e, t) => {
+          let n = new Intl.RelativeTimeFormat(e, { ...t });
+          return (e) => n.format(e, t.range || `day`);
+        }),
+        list: n((e, t) => {
+          let n = new Intl.ListFormat(e, { ...t });
+          return (e) => n.format(e);
+        }),
+      };
+    }
+    add(e, t) {
+      this.formats[e.toLowerCase().trim()] = t;
+    }
+    addCached(e, t) {
+      this.formats[e.toLowerCase().trim()] = B(t);
+    }
+    format(e, t, n, r = {}) {
+      let i = t.split(this.formatSeparator);
+      if (
+        i.length > 1 &&
+        i[0].indexOf(`(`) > 1 &&
+        i[0].indexOf(`)`) < 0 &&
+        i.find((e) => e.indexOf(`)`) > -1)
+      ) {
+        let e = i.findIndex((e) => e.indexOf(`)`) > -1);
+        i[0] = [i[0], ...i.splice(1, e)].join(this.formatSeparator);
+      }
+      return i.reduce((e, t) => {
+        let { formatName: i, formatOptions: a } = re(t);
+        if (this.formats[i]) {
+          let t = e;
+          try {
+            let o = r?.formatParams?.[r.interpolationkey] || {},
+              s = o.locale || o.lng || r.locale || r.lng || n;
+            t = this.formats[i](e, s, { ...a, ...r, ...o });
+          } catch (e) {
+            this.logger.warn(e);
+          }
+          return t;
+        } else this.logger.warn(`there was no format function for ${i}`);
+        return e;
+      }, e);
+    }
+  },
+  oe = (e, t) => {
+    e.pending[t] !== void 0 && (delete e.pending[t], e.pendingCount--);
+  },
+  se = class extends D {
+    constructor(e, t, n, r = {}) {
+      (super(),
+        (this.backend = e),
+        (this.store = t),
+        (this.services = n),
+        (this.languageUtils = n.languageUtils),
+        (this.options = r),
+        (this.logger = E.create(`backendConnector`)),
+        (this.waitingReads = []),
+        (this.maxParallelReads = r.maxParallelReads || 10),
+        (this.readingCalls = 0),
+        (this.maxRetries = r.maxRetries >= 0 ? r.maxRetries : 5),
+        (this.retryTimeout = r.retryTimeout >= 1 ? r.retryTimeout : 350),
+        (this.state = {}),
+        (this.queue = []),
+        this.backend?.init?.(n, r.backend, r));
+    }
+    queueLoad(e, t, n, r) {
+      let i = {},
+        a = {},
+        o = {},
+        s = {};
+      return (
+        e.forEach((e) => {
+          let r = !0;
+          (t.forEach((t) => {
+            let o = `${e}|${t}`;
+            !n.reload && this.store.hasResourceBundle(e, t)
+              ? (this.state[o] = 2)
+              : this.state[o] < 0 ||
+                (this.state[o] === 1
+                  ? a[o] === void 0 && (a[o] = !0)
+                  : ((this.state[o] = 1),
+                    (r = !1),
+                    a[o] === void 0 && (a[o] = !0),
+                    i[o] === void 0 && (i[o] = !0),
+                    s[t] === void 0 && (s[t] = !0)));
+          }),
+            r || (o[e] = !0));
+        }),
+        (Object.keys(i).length || Object.keys(a).length) &&
+          this.queue.push({
+            pending: a,
+            pendingCount: Object.keys(a).length,
+            loaded: {},
+            errors: [],
+            callback: r,
+          }),
+        {
+          toLoad: Object.keys(i),
+          pending: Object.keys(a),
+          toLoadLanguages: Object.keys(o),
+          toLoadNamespaces: Object.keys(s),
+        }
+      );
+    }
+    loaded(e, t, n) {
+      let r = e.split(`|`),
+        i = r[0],
+        a = r[1];
+      (t && this.emit(`failedLoading`, i, a, t),
+        !t &&
+          n &&
+          this.store.addResourceBundle(i, a, n, void 0, void 0, {
+            skipCopy: !0,
+          }),
+        (this.state[e] = t ? -1 : 2),
+        t && n && (this.state[e] = 0));
+      let o = {};
+      (this.queue.forEach((n) => {
+        (f(n.loaded, [i], a),
+          oe(n, e),
+          t && n.errors.push(t),
+          n.pendingCount === 0 &&
+            !n.done &&
+            (Object.keys(n.loaded).forEach((e) => {
+              o[e] || (o[e] = {});
+              let t = n.loaded[e];
+              t.length &&
+                t.forEach((t) => {
+                  o[e][t] === void 0 && (o[e][t] = !0);
+                });
+            }),
+            (n.done = !0),
+            n.errors.length ? n.callback(n.errors) : n.callback()));
+      }),
+        this.emit(`loaded`, o),
+        (this.queue = this.queue.filter((e) => !e.done)));
+    }
+    read(e, t, n, r = 0, i = this.retryTimeout, a) {
+      if (!e.length) return a(null, {});
+      if (this.readingCalls >= this.maxParallelReads) {
+        this.waitingReads.push({
+          lng: e,
+          ns: t,
+          fcName: n,
+          tried: r,
+          wait: i,
+          callback: a,
+        });
+        return;
+      }
+      this.readingCalls++;
+      let o = (o, s) => {
+          if ((this.readingCalls--, this.waitingReads.length > 0)) {
+            let e = this.waitingReads.shift();
+            this.read(e.lng, e.ns, e.fcName, e.tried, e.wait, e.callback);
+          }
+          if (o && s && r < this.maxRetries) {
+            setTimeout(() => {
+              this.read.call(this, e, t, n, r + 1, i * 2, a);
+            }, i);
+            return;
+          }
+          a(o, s);
+        },
+        s = this.backend[n].bind(this.backend);
+      if (s.length === 2) {
+        try {
+          let n = s(e, t);
+          n && typeof n.then == `function`
+            ? n.then((e) => o(null, e)).catch(o)
+            : o(null, n);
+        } catch (e) {
+          o(e);
+        }
+        return;
+      }
+      return s(e, t, o);
+    }
+    prepareLoading(e, t, n = {}, i) {
+      if (!this.backend)
+        return (
+          this.logger.warn(
+            `No backend was added via i18next.use. Will not load resources.`,
+          ),
+          i && i()
+        );
+      (r(e) && (e = this.languageUtils.toResolveHierarchy(e)),
+        r(t) && (t = [t]));
+      let a = this.queueLoad(e, t, n, i);
+      if (!a.toLoad.length) return (a.pending.length || i(), null);
+      a.toLoad.forEach((e) => {
+        this.loadOne(e);
+      });
+    }
+    load(e, t, n) {
+      this.prepareLoading(e, t, {}, n);
+    }
+    reload(e, t, n) {
+      this.prepareLoading(e, t, { reload: !0 }, n);
+    }
+    loadOne(e, t = ``) {
+      let n = e.split(`|`),
+        r = n[0],
+        i = n[1];
+      this.read(r, i, `read`, void 0, void 0, (n, a) => {
+        (n &&
+          this.logger.warn(
+            `${t}loading namespace ${i} for language ${r} failed`,
+            n,
+          ),
+          !n &&
+            a &&
+            this.logger.log(`${t}loaded namespace ${i} for language ${r}`, a),
+          this.loaded(e, n, a));
+      });
+    }
+    saveMissing(e, t, n, r, i, a = {}, o = () => {}) {
+      if (
+        this.services?.utils?.hasLoadedNamespace &&
+        !this.services?.utils?.hasLoadedNamespace(t)
+      ) {
+        this.logger.warn(
+          `did not save key "${n}" as the namespace "${t}" was not yet loaded`,
+          `This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!`,
+        );
+        return;
+      }
+      if (!(n == null || n === ``)) {
+        if (this.backend?.create) {
+          let s = { ...a, isUpdate: i },
+            c = this.backend.create.bind(this.backend);
+          if (c.length < 6)
+            try {
+              let i;
+              ((i = c.length === 5 ? c(e, t, n, r, s) : c(e, t, n, r)),
+                i && typeof i.then == `function`
+                  ? i.then((e) => o(null, e)).catch(o)
+                  : o(null, i));
+            } catch (e) {
+              o(e);
+            }
+          else c(e, t, n, r, o, s);
+        }
+        !e || !e[0] || this.store.addResource(e[0], t, n, r);
+      }
+    }
+  },
+  V = () => ({
+    debug: !1,
+    initAsync: !0,
+    ns: [`translation`],
+    defaultNS: [`translation`],
+    fallbackLng: [`dev`],
+    fallbackNS: !1,
+    supportedLngs: !1,
+    nonExplicitSupportedLngs: !1,
+    load: `all`,
+    preload: !1,
+    simplifyPluralSuffix: !0,
+    keySeparator: `.`,
+    nsSeparator: `:`,
+    pluralSeparator: `_`,
+    contextSeparator: `_`,
+    partialBundledLanguages: !1,
+    saveMissing: !1,
+    updateMissing: !1,
+    saveMissingTo: `fallback`,
+    saveMissingPlurals: !0,
+    missingKeyHandler: !1,
+    missingInterpolationHandler: !1,
+    postProcess: !1,
+    postProcessPassResolved: !1,
+    returnNull: !1,
+    returnEmptyString: !0,
+    returnObjects: !1,
+    joinArrays: !1,
+    returnedObjectHandler: !1,
+    parseMissingKeyHandler: !1,
+    appendNamespaceToMissingKey: !1,
+    appendNamespaceToCIMode: !1,
+    overloadTranslationOptionHandler: (e) => {
+      let t = {};
+      if (
+        (typeof e[1] == `object` && (t = e[1]),
+        r(e[1]) && (t.defaultValue = e[1]),
+        r(e[2]) && (t.tDescription = e[2]),
+        typeof e[2] == `object` || typeof e[3] == `object`)
+      ) {
+        let n = e[3] || e[2];
+        Object.keys(n).forEach((e) => {
+          t[e] = n[e];
+        });
+      }
+      return t;
+    },
+    interpolation: {
+      escapeValue: !0,
+      format: (e) => e,
+      prefix: `{{`,
+      suffix: `}}`,
+      formatSeparator: `,`,
+      unescapePrefix: `-`,
+      nestingPrefix: `$t(`,
+      nestingSuffix: `)`,
+      nestingOptionsSeparator: `,`,
+      maxReplaces: 1e3,
+      skipOnVariables: !0,
+    },
+    cacheInBuiltFormats: !0,
+  }),
+  H = (e) => (
+    r(e.ns) && (e.ns = [e.ns]),
+    r(e.fallbackLng) && (e.fallbackLng = [e.fallbackLng]),
+    r(e.fallbackNS) && (e.fallbackNS = [e.fallbackNS]),
+    e.supportedLngs?.indexOf?.(`cimode`) < 0 &&
+      (e.supportedLngs = e.supportedLngs.concat([`cimode`])),
+    typeof e.initImmediate == `boolean` && (e.initAsync = e.initImmediate),
+    e
+  ),
+  U = () => {},
+  ce = (e) => {
+    Object.getOwnPropertyNames(Object.getPrototypeOf(e)).forEach((t) => {
+      typeof e[t] == `function` && (e[t] = e[t].bind(e));
+    });
+  },
+  W = `__i18next_supportNoticeShown`,
+  le = () =>
+    !!(
+      (typeof globalThis < `u` && globalThis[W]) ||
+      (typeof process < `u` && {}.I18NEXT_NO_SUPPORT_NOTICE) ||
+      typeof process < `u`
+    ),
+  ue = () => {
+    typeof globalThis < `u` && (globalThis[W] = !0);
+  },
+  de = (e) =>
+    !!(
+      e?.modules?.backend?.name?.indexOf(`Locize`) > 0 ||
+      e?.modules?.backend?.constructor?.name?.indexOf(`Locize`) > 0 ||
+      (e?.options?.backend?.backends &&
+        e.options.backend.backends.some(
+          (e) =>
+            e?.name?.indexOf(`Locize`) > 0 ||
+            e?.constructor?.name?.indexOf(`Locize`) > 0,
+        )) ||
+      e?.options?.backend?.projectId ||
+      (e?.options?.backend?.backendOptions &&
+        e.options.backend.backendOptions.some((e) => e?.projectId))
+    ),
+  G = class e extends D {
+    constructor(e = {}, t) {
+      if (
+        (super(),
+        (this.options = H(e)),
+        (this.services = {}),
+        (this.logger = E),
+        (this.modules = { external: [] }),
+        ce(this),
+        t && !this.isInitialized && !e.isClone)
+      ) {
+        if (!this.options.initAsync) return (this.init(e, t), this);
+        setTimeout(() => {
+          this.init(e, t);
+        }, 0);
+      }
+    }
+    init(e = {}, t) {
+      ((this.isInitializing = !0),
+        typeof e == `function` && ((t = e), (e = {})),
+        e.defaultNS == null &&
+          e.ns &&
+          (r(e.ns)
+            ? (e.defaultNS = e.ns)
+            : e.ns.indexOf(`translation`) < 0 && (e.defaultNS = e.ns[0])));
+      let n = V();
+      ((this.options = { ...n, ...this.options, ...H(e) }),
+        (this.options.interpolation = {
+          ...n.interpolation,
+          ...this.options.interpolation,
+        }),
+        e.keySeparator !== void 0 &&
+          (this.options.userDefinedKeySeparator = e.keySeparator),
+        e.nsSeparator !== void 0 &&
+          (this.options.userDefinedNsSeparator = e.nsSeparator),
+        typeof this.options.overloadTranslationOptionHandler != `function` &&
+          (this.options.overloadTranslationOptionHandler =
+            n.overloadTranslationOptionHandler),
+        this.options.showSupportNotice !== !1 &&
+          !de(this) &&
+          !le() &&
+          (typeof console < `u` &&
+            console.info !== void 0 &&
+            console.info(
+              `🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙`,
+            ),
+          ue()));
+      let a = (e) => (e ? (typeof e == `function` ? new e() : e) : null);
+      if (!this.options.isClone) {
+        this.modules.logger
+          ? E.init(a(this.modules.logger), this.options)
+          : E.init(null, this.options);
+        let e;
+        e = this.modules.formatter ? this.modules.formatter : ae;
+        let t = new P(this.options);
+        this.store = new O(this.options.resources, this.options);
+        let r = this.services;
+        ((r.logger = E),
+          (r.resourceStore = this.store),
+          (r.languageUtils = t),
+          (r.pluralResolver = new ne(t, {
+            prepend: this.options.pluralSeparator,
+            simplifyPluralSuffix: this.options.simplifyPluralSuffix,
+          })),
+          this.options.interpolation.format &&
+            this.options.interpolation.format !== n.interpolation.format &&
+            this.logger.deprecate(
+              `init: you are still using the legacy format function, please use the new approach: https://www.i18next.com/translation-function/formatting`,
+            ),
+          e &&
+            (!this.options.interpolation.format ||
+              this.options.interpolation.format === n.interpolation.format) &&
+            ((r.formatter = a(e)),
+            r.formatter.init && r.formatter.init(r, this.options),
+            (this.options.interpolation.format = r.formatter.format.bind(
+              r.formatter,
+            ))),
+          (r.interpolator = new z(this.options)),
+          (r.utils = {
+            hasLoadedNamespace: this.hasLoadedNamespace.bind(this),
+          }),
+          (r.backendConnector = new se(
+            a(this.modules.backend),
+            r.resourceStore,
+            r,
+            this.options,
+          )),
+          r.backendConnector.on(`*`, (e, ...t) => {
+            this.emit(e, ...t);
+          }),
+          this.modules.languageDetector &&
+            ((r.languageDetector = a(this.modules.languageDetector)),
+            r.languageDetector.init &&
+              r.languageDetector.init(r, this.options.detection, this.options)),
+          this.modules.i18nFormat &&
+            ((r.i18nFormat = a(this.modules.i18nFormat)),
+            r.i18nFormat.init && r.i18nFormat.init(this)),
+          (this.translator = new N(this.services, this.options)),
+          this.translator.on(`*`, (e, ...t) => {
+            this.emit(e, ...t);
+          }),
+          this.modules.external.forEach((e) => {
+            e.init && e.init(this);
+          }));
+      }
+      if (
+        ((this.format = this.options.interpolation.format),
+        (t ||= U),
+        this.options.fallbackLng &&
+          !this.services.languageDetector &&
+          !this.options.lng)
+      ) {
+        let e = this.services.languageUtils.getFallbackCodes(
+          this.options.fallbackLng,
+        );
+        e.length > 0 && e[0] !== `dev` && (this.options.lng = e[0]);
+      }
+      (!this.services.languageDetector &&
+        !this.options.lng &&
+        this.logger.warn(
+          `init: no languageDetector is used and no lng is defined`,
+        ),
+        [
+          `getResource`,
+          `hasResourceBundle`,
+          `getResourceBundle`,
+          `getDataByLanguage`,
+        ].forEach((e) => {
+          this[e] = (...t) => this.store[e](...t);
+        }),
+        [
+          `addResource`,
+          `addResources`,
+          `addResourceBundle`,
+          `removeResourceBundle`,
+        ].forEach((e) => {
+          this[e] = (...t) => (this.store[e](...t), this);
+        }));
+      let o = i(),
+        s = () => {
+          let e = (e, n) => {
+            ((this.isInitializing = !1),
+              this.isInitialized &&
+                !this.initializedStoreOnce &&
+                this.logger.warn(
+                  `init: i18next is already initialized. You should call init just once!`,
+                ),
+              (this.isInitialized = !0),
+              this.options.isClone ||
+                this.logger.log(`initialized`, this.options),
+              this.emit(`initialized`, this.options),
+              o.resolve(n),
+              t(e, n));
+          };
+          if (this.languages && !this.isInitialized)
+            return e(null, this.t.bind(this));
+          this.changeLanguage(this.options.lng, e);
+        };
+      return (
+        this.options.resources || !this.options.initAsync
+          ? s()
+          : setTimeout(s, 0),
+        o
+      );
+    }
+    loadResources(e, t = U) {
+      let n = t,
+        i = r(e) ? e : this.language;
+      if (
+        (typeof e == `function` && (n = e),
+        !this.options.resources || this.options.partialBundledLanguages)
+      ) {
+        if (
+          i?.toLowerCase() === `cimode` &&
+          (!this.options.preload || this.options.preload.length === 0)
+        )
+          return n();
+        let e = [],
+          t = (t) => {
+            t &&
+              t !== `cimode` &&
+              this.services.languageUtils.toResolveHierarchy(t).forEach((t) => {
+                t !== `cimode` && e.indexOf(t) < 0 && e.push(t);
+              });
+          };
+        (i
+          ? t(i)
+          : this.services.languageUtils
+              .getFallbackCodes(this.options.fallbackLng)
+              .forEach((e) => t(e)),
+          this.options.preload?.forEach?.((e) => t(e)),
+          this.services.backendConnector.load(e, this.options.ns, (e) => {
+            (!e &&
+              !this.resolvedLanguage &&
+              this.language &&
+              this.setResolvedLanguage(this.language),
+              n(e));
+          }));
+      } else n(null);
+    }
+    reloadResources(e, t, n) {
+      let r = i();
+      return (
+        typeof e == `function` && ((n = e), (e = void 0)),
+        typeof t == `function` && ((n = t), (t = void 0)),
+        (e ||= this.languages),
+        (t ||= this.options.ns),
+        (n ||= U),
+        this.services.backendConnector.reload(e, t, (e) => {
+          (r.resolve(), n(e));
+        }),
+        r
+      );
+    }
+    use(e) {
+      if (!e)
+        throw Error(
+          `You are passing an undefined module! Please check the object you are passing to i18next.use()`,
+        );
+      if (!e.type)
+        throw Error(
+          `You are passing a wrong module! Please check the object you are passing to i18next.use()`,
+        );
+      return (
+        e.type === `backend` && (this.modules.backend = e),
+        (e.type === `logger` || (e.log && e.warn && e.error)) &&
+          (this.modules.logger = e),
+        e.type === `languageDetector` && (this.modules.languageDetector = e),
+        e.type === `i18nFormat` && (this.modules.i18nFormat = e),
+        e.type === `postProcessor` && k.addPostProcessor(e),
+        e.type === `formatter` && (this.modules.formatter = e),
+        e.type === `3rdParty` && this.modules.external.push(e),
+        this
+      );
+    }
+    setResolvedLanguage(e) {
+      if (!(!e || !this.languages) && !([`cimode`, `dev`].indexOf(e) > -1)) {
+        for (let e = 0; e < this.languages.length; e++) {
+          let t = this.languages[e];
+          if (
+            !([`cimode`, `dev`].indexOf(t) > -1) &&
+            this.store.hasLanguageSomeTranslations(t)
+          ) {
+            this.resolvedLanguage = t;
+            break;
+          }
+        }
+        !this.resolvedLanguage &&
+          this.languages.indexOf(e) < 0 &&
+          this.store.hasLanguageSomeTranslations(e) &&
+          ((this.resolvedLanguage = e), this.languages.unshift(e));
+      }
+    }
+    changeLanguage(e, t) {
+      this.isLanguageChangingTo = e;
+      let n = i();
+      this.emit(`languageChanging`, e);
+      let a = (e) => {
+          ((this.language = e),
+            (this.languages =
+              this.services.languageUtils.toResolveHierarchy(e)),
+            (this.resolvedLanguage = void 0),
+            this.setResolvedLanguage(e));
+        },
+        o = (r, i) => {
+          (i
+            ? this.isLanguageChangingTo === e &&
+              (a(i),
+              this.translator.changeLanguage(i),
+              (this.isLanguageChangingTo = void 0),
+              this.emit(`languageChanged`, i),
+              this.logger.log(`languageChanged`, i))
+            : (this.isLanguageChangingTo = void 0),
+            n.resolve((...e) => this.t(...e)),
+            t && t(r, (...e) => this.t(...e)));
+        },
+        s = (t) => {
+          !e && !t && this.services.languageDetector && (t = []);
+          let n = r(t) ? t : t && t[0],
+            i = this.store.hasLanguageSomeTranslations(n)
+              ? n
+              : this.services.languageUtils.getBestMatchFromCodes(
+                  r(t) ? [t] : t,
+                );
+          (i &&
+            (this.language || a(i),
+            this.translator.language || this.translator.changeLanguage(i),
+            this.services.languageDetector?.cacheUserLanguage?.(i)),
+            this.loadResources(i, (e) => {
+              o(e, i);
+            }));
+        };
+      return (
+        !e &&
+        this.services.languageDetector &&
+        !this.services.languageDetector.async
+          ? s(this.services.languageDetector.detect())
+          : !e &&
+              this.services.languageDetector &&
+              this.services.languageDetector.async
+            ? this.services.languageDetector.detect.length === 0
+              ? this.services.languageDetector.detect().then(s)
+              : this.services.languageDetector.detect(s)
+            : s(e),
+        n
+      );
+    }
+    getFixedT(e, t, n) {
+      let i = (e, t, ...r) => {
+        let a;
+        ((a =
+          typeof t == `object`
+            ? { ...t }
+            : this.options.overloadTranslationOptionHandler([e, t].concat(r))),
+          (a.lng = a.lng || i.lng),
+          (a.lngs = a.lngs || i.lngs),
+          (a.ns = a.ns || i.ns),
+          a.keyPrefix !== `` &&
+            (a.keyPrefix = a.keyPrefix || n || i.keyPrefix));
+        let o = { ...this.options, ...a };
+        typeof a.keyPrefix == `function` && (a.keyPrefix = j(a.keyPrefix, o));
+        let s = this.options.keySeparator || `.`,
+          c;
+        return (
+          a.keyPrefix && Array.isArray(e)
+            ? (c = e.map(
+                (e) => (
+                  typeof e == `function` && (e = j(e, o)),
+                  `${a.keyPrefix}${s}${e}`
+                ),
+              ))
+            : (typeof e == `function` && (e = j(e, o)),
+              (c = a.keyPrefix ? `${a.keyPrefix}${s}${e}` : e)),
+          this.t(c, a)
+        );
+      };
+      return (
+        r(e) ? (i.lng = e) : (i.lngs = e),
+        (i.ns = t),
+        (i.keyPrefix = n),
+        i
+      );
+    }
+    t(...e) {
+      return this.translator?.translate(...e);
+    }
+    exists(...e) {
+      return this.translator?.exists(...e);
+    }
+    setDefaultNamespace(e) {
+      this.options.defaultNS = e;
+    }
+    hasLoadedNamespace(e, t = {}) {
+      if (!this.isInitialized)
+        return (
+          this.logger.warn(
+            `hasLoadedNamespace: i18next was not initialized`,
+            this.languages,
+          ),
+          !1
+        );
+      if (!this.languages || !this.languages.length)
+        return (
+          this.logger.warn(
+            `hasLoadedNamespace: i18n.languages were undefined or empty`,
+            this.languages,
+          ),
+          !1
+        );
+      let n = t.lng || this.resolvedLanguage || this.languages[0],
+        r = this.options ? this.options.fallbackLng : !1,
+        i = this.languages[this.languages.length - 1];
+      if (n.toLowerCase() === `cimode`) return !0;
+      let a = (e, t) => {
+        let n = this.services.backendConnector.state[`${e}|${t}`];
+        return n === -1 || n === 0 || n === 2;
+      };
+      if (t.precheck) {
+        let e = t.precheck(this, a);
+        if (e !== void 0) return e;
+      }
+      return !!(
+        this.hasResourceBundle(n, e) ||
+        !this.services.backendConnector.backend ||
+        (this.options.resources && !this.options.partialBundledLanguages) ||
+        (a(n, e) && (!r || a(i, e)))
+      );
+    }
+    loadNamespaces(e, t) {
+      let n = i();
+      return this.options.ns
+        ? (r(e) && (e = [e]),
+          e.forEach((e) => {
+            this.options.ns.indexOf(e) < 0 && this.options.ns.push(e);
+          }),
+          this.loadResources((e) => {
+            (n.resolve(), t && t(e));
+          }),
+          n)
+        : (t && t(), Promise.resolve());
+    }
+    loadLanguages(e, t) {
+      let n = i();
+      r(e) && (e = [e]);
+      let a = this.options.preload || [],
+        o = e.filter(
+          (e) =>
+            a.indexOf(e) < 0 && this.services.languageUtils.isSupportedCode(e),
+        );
+      return o.length
+        ? ((this.options.preload = a.concat(o)),
+          this.loadResources((e) => {
+            (n.resolve(), t && t(e));
+          }),
+          n)
+        : (t && t(), Promise.resolve());
+    }
+    dir(e) {
+      if (
+        ((e ||=
+          this.resolvedLanguage ||
+          (this.languages?.length > 0 ? this.languages[0] : this.language)),
+        !e)
+      )
+        return `rtl`;
+      try {
+        let t = new Intl.Locale(e);
+        if (t && t.getTextInfo) {
+          let e = t.getTextInfo();
+          if (e && e.direction) return e.direction;
+        }
+      } catch {}
+      let t =
+          `ar.shu.sqr.ssh.xaa.yhd.yud.aao.abh.abv.acm.acq.acw.acx.acy.adf.ads.aeb.aec.afb.ajp.apc.apd.arb.arq.ars.ary.arz.auz.avl.ayh.ayl.ayn.ayp.bbz.pga.he.iw.ps.pbt.pbu.pst.prp.prd.ug.ur.ydd.yds.yih.ji.yi.hbo.men.xmn.fa.jpr.peo.pes.prs.dv.sam.ckb`.split(
+            `.`,
+          ),
+        n = this.services?.languageUtils || new P(V());
+      return e.toLowerCase().indexOf(`-latn`) > 1
+        ? `ltr`
+        : t.indexOf(n.getLanguagePartFromCode(e)) > -1 ||
+            e.toLowerCase().indexOf(`-arab`) > 1
+          ? `rtl`
+          : `ltr`;
+    }
+    static createInstance(t = {}, n) {
+      let r = new e(t, n);
+      return ((r.createInstance = e.createInstance), r);
+    }
+    cloneInstance(t = {}, n = U) {
+      let r = t.forkResourceStore;
+      r && delete t.forkResourceStore;
+      let i = { ...this.options, ...t, isClone: !0 },
+        a = new e(i);
+      if (
+        ((t.debug !== void 0 || t.prefix !== void 0) &&
+          (a.logger = a.logger.clone(t)),
+        [`store`, `services`, `language`].forEach((e) => {
+          a[e] = this[e];
+        }),
+        (a.services = { ...this.services }),
+        (a.services.utils = {
+          hasLoadedNamespace: a.hasLoadedNamespace.bind(a),
+        }),
+        r &&
+          ((a.store = new O(
+            Object.keys(this.store.data).reduce(
+              (e, t) => (
+                (e[t] = { ...this.store.data[t] }),
+                (e[t] = Object.keys(e[t]).reduce(
+                  (n, r) => ((n[r] = { ...e[t][r] }), n),
+                  e[t],
+                )),
+                e
+              ),
+              {},
+            ),
+            i,
+          )),
+          (a.services.resourceStore = a.store)),
+        t.interpolation)
+      ) {
+        let e = {
+            ...V().interpolation,
+            ...this.options.interpolation,
+            ...t.interpolation,
+          },
+          n = { ...i, interpolation: e };
+        a.services.interpolator = new z(n);
+      }
+      return (
+        (a.translator = new N(a.services, i)),
+        a.translator.on(`*`, (e, ...t) => {
+          a.emit(e, ...t);
+        }),
+        a.init(i, n),
+        (a.translator.options = i),
+        (a.translator.backendConnector.services.utils = {
+          hasLoadedNamespace: a.hasLoadedNamespace.bind(a),
+        }),
+        a
+      );
+    }
+    toJSON() {
+      return {
+        options: this.options,
+        store: this.store,
+        language: this.language,
+        languages: this.languages,
+        resolvedLanguage: this.resolvedLanguage,
+      };
+    }
+  }.createInstance();
+(G.createInstance,
+  G.dir,
+  G.init,
+  G.loadResources,
+  G.reloadResources,
+  G.use,
+  G.changeLanguage,
+  G.getFixedT,
+  G.t,
+  G.exists,
+  G.setDefaultNamespace,
+  G.hasLoadedNamespace,
+  G.loadNamespaces,
+  G.loadLanguages);
+var { slice: fe, forEach: pe } = [];
+function me(e) {
+  return (
+    pe.call(fe.call(arguments, 1), (t) => {
+      if (t) for (let n in t) e[n] === void 0 && (e[n] = t[n]);
+    }),
+    e
+  );
+}
+function he(e) {
+  return (
+    typeof e == `string` &&
+    [
+      /<\s*script.*?>/i,
+      /<\s*\/\s*script\s*>/i,
+      /<\s*img.*?on\w+\s*=/i,
+      /<\s*\w+\s*on\w+\s*=.*?>/i,
+      /javascript\s*:/i,
+      /vbscript\s*:/i,
+      /expression\s*\(/i,
+      /eval\s*\(/i,
+      /alert\s*\(/i,
+      /document\.cookie/i,
+      /document\.write\s*\(/i,
+      /window\.location/i,
+      /innerHTML/i,
+    ].some((t) => t.test(e))
+  );
+}
+var K = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/,
+  ge = function (e, t) {
+    let n =
+        arguments.length > 2 && arguments[2] !== void 0
+          ? arguments[2]
+          : { path: `/` },
+      r = `${e}=${encodeURIComponent(t)}`;
+    if (n.maxAge > 0) {
+      let e = n.maxAge - 0;
+      if (Number.isNaN(e)) throw Error(`maxAge should be a Number`);
+      r += `; Max-Age=${Math.floor(e)}`;
+    }
+    if (n.domain) {
+      if (!K.test(n.domain)) throw TypeError(`option domain is invalid`);
+      r += `; Domain=${n.domain}`;
+    }
+    if (n.path) {
+      if (!K.test(n.path)) throw TypeError(`option path is invalid`);
+      r += `; Path=${n.path}`;
+    }
+    if (n.expires) {
+      if (typeof n.expires.toUTCString != `function`)
+        throw TypeError(`option expires is invalid`);
+      r += `; Expires=${n.expires.toUTCString()}`;
+    }
+    if (
+      (n.httpOnly && (r += `; HttpOnly`),
+      n.secure && (r += `; Secure`),
+      n.sameSite)
+    )
+      switch (
+        typeof n.sameSite == `string` ? n.sameSite.toLowerCase() : n.sameSite
+      ) {
+        case !0:
+          r += `; SameSite=Strict`;
+          break;
+        case `lax`:
+          r += `; SameSite=Lax`;
+          break;
+        case `strict`:
+          r += `; SameSite=Strict`;
+          break;
+        case `none`:
+          r += `; SameSite=None`;
+          break;
+        default:
+          throw TypeError(`option sameSite is invalid`);
+      }
+    return (n.partitioned && (r += `; Partitioned`), r);
+  },
+  q = {
+    create(e, t, n, r) {
+      let i =
+        arguments.length > 4 && arguments[4] !== void 0
+          ? arguments[4]
+          : { path: `/`, sameSite: `strict` };
+      (n &&
+        ((i.expires = new Date()),
+        i.expires.setTime(i.expires.getTime() + n * 60 * 1e3)),
+        r && (i.domain = r),
+        (document.cookie = ge(e, t, i)));
+    },
+    read(e) {
+      let t = `${e}=`,
+        n = document.cookie.split(`;`);
+      for (let e = 0; e < n.length; e++) {
+        let r = n[e];
+        for (; r.charAt(0) === ` `;) r = r.substring(1, r.length);
+        if (r.indexOf(t) === 0) return r.substring(t.length, r.length);
+      }
+      return null;
+    },
+    remove(e, t) {
+      this.create(e, ``, -1, t);
+    },
+  },
+  _e = {
+    name: `cookie`,
+    lookup(e) {
+      let { lookupCookie: t } = e;
+      if (t && typeof document < `u`) return q.read(t) || void 0;
+    },
+    cacheUserLanguage(e, t) {
+      let {
+        lookupCookie: n,
+        cookieMinutes: r,
+        cookieDomain: i,
+        cookieOptions: a,
+      } = t;
+      n && typeof document < `u` && q.create(n, e, r, i, a);
+    },
+  },
+  ve = {
+    name: `querystring`,
+    lookup(e) {
+      let { lookupQuerystring: t } = e,
+        n;
+      if (typeof window < `u`) {
+        let { search: e } = window.location;
+        !window.location.search &&
+          window.location.hash?.indexOf(`?`) > -1 &&
+          (e = window.location.hash.substring(
+            window.location.hash.indexOf(`?`),
+          ));
+        let r = e.substring(1).split(`&`);
+        for (let e = 0; e < r.length; e++) {
+          let i = r[e].indexOf(`=`);
+          i > 0 && r[e].substring(0, i) === t && (n = r[e].substring(i + 1));
+        }
+      }
+      return n;
+    },
+  },
+  ye = {
+    name: `hash`,
+    lookup(e) {
+      let { lookupHash: t, lookupFromHashIndex: n } = e,
+        r;
+      if (typeof window < `u`) {
+        let { hash: e } = window.location;
+        if (e && e.length > 2) {
+          let i = e.substring(1);
+          if (t) {
+            let e = i.split(`&`);
+            for (let n = 0; n < e.length; n++) {
+              let i = e[n].indexOf(`=`);
+              i > 0 &&
+                e[n].substring(0, i) === t &&
+                (r = e[n].substring(i + 1));
+            }
+          }
+          if (r) return r;
+          if (!r && n > -1) {
+            let t = e.match(/\/([a-zA-Z-]*)/g);
+            return Array.isArray(t)
+              ? t[typeof n == `number` ? n : 0]?.replace(`/`, ``)
+              : void 0;
+          }
+        }
+      }
+      return r;
+    },
+  },
+  J = null,
+  Y = () => {
+    if (J !== null) return J;
+    try {
+      if (((J = typeof window < `u` && window.localStorage !== null), !J))
+        return !1;
+      let e = `i18next.translate.boo`;
+      (window.localStorage.setItem(e, `foo`),
+        window.localStorage.removeItem(e));
+    } catch {
+      J = !1;
+    }
+    return J;
+  },
+  be = {
+    name: `localStorage`,
+    lookup(e) {
+      let { lookupLocalStorage: t } = e;
+      if (t && Y()) return window.localStorage.getItem(t) || void 0;
+    },
+    cacheUserLanguage(e, t) {
+      let { lookupLocalStorage: n } = t;
+      n && Y() && window.localStorage.setItem(n, e);
+    },
+  },
+  X = null,
+  xe = () => {
+    if (X !== null) return X;
+    try {
+      if (((X = typeof window < `u` && window.sessionStorage !== null), !X))
+        return !1;
+      let e = `i18next.translate.boo`;
+      (window.sessionStorage.setItem(e, `foo`),
+        window.sessionStorage.removeItem(e));
+    } catch {
+      X = !1;
+    }
+    return X;
+  },
+  Se = {
+    name: `sessionStorage`,
+    lookup(e) {
+      let { lookupSessionStorage: t } = e;
+      if (t && xe()) return window.sessionStorage.getItem(t) || void 0;
+    },
+    cacheUserLanguage(e, t) {
+      let { lookupSessionStorage: n } = t;
+      n && xe() && window.sessionStorage.setItem(n, e);
+    },
+  },
+  Ce = {
+    name: `navigator`,
+    lookup(e) {
+      let t = [];
+      if (typeof navigator < `u`) {
+        let { languages: e, userLanguage: n, language: r } = navigator;
+        if (e) for (let n = 0; n < e.length; n++) t.push(e[n]);
+        (n && t.push(n), r && t.push(r));
+      }
+      return t.length > 0 ? t : void 0;
+    },
+  },
+  we = {
+    name: `htmlTag`,
+    lookup(e) {
+      let { htmlTag: t } = e,
+        n,
+        r = t || (typeof document < `u` ? document.documentElement : null);
+      return (
+        r &&
+          typeof r.getAttribute == `function` &&
+          (n = r.getAttribute(`lang`)),
+        n
+      );
+    },
+  },
+  Te = {
+    name: `path`,
+    lookup(e) {
+      let { lookupFromPathIndex: t } = e;
+      if (typeof window > `u`) return;
+      let n = window.location.pathname.match(/\/([a-zA-Z-]*)/g);
+      if (Array.isArray(n))
+        return n[typeof t == `number` ? t : 0]?.replace(`/`, ``);
+    },
+  },
+  Ee = {
+    name: `subdomain`,
+    lookup(e) {
+      let { lookupFromSubdomainIndex: t } = e,
+        n = typeof t == `number` ? t + 1 : 1,
+        r =
+          typeof window < `u` &&
+          window.location?.hostname?.match(
+            /^(\w{2,5})\.(([a-z0-9-]{1,63}\.[a-z]{2,6})|localhost)/i,
+          );
+      if (r) return r[n];
+    },
+  },
+  De = !1;
+try {
+  (document.cookie, (De = !0));
+} catch {}
+var Oe = [
+  `querystring`,
+  `cookie`,
+  `localStorage`,
+  `sessionStorage`,
+  `navigator`,
+  `htmlTag`,
+];
+De || Oe.splice(1, 1);
+var ke = () => ({
+    order: Oe,
+    lookupQuerystring: `lng`,
+    lookupCookie: `i18next`,
+    lookupLocalStorage: `i18nextLng`,
+    lookupSessionStorage: `i18nextLng`,
+    caches: [`localStorage`],
+    excludeCacheFor: [`cimode`],
+    convertDetectedLanguage: (e) => e,
+  }),
+  Ae = class {
+    constructor(e) {
+      let t =
+        arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+      ((this.type = `languageDetector`),
+        (this.detectors = {}),
+        this.init(e, t));
+    }
+    init() {
+      let e =
+          arguments.length > 0 && arguments[0] !== void 0
+            ? arguments[0]
+            : { languageUtils: {} },
+        t = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {},
+        n = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
+      ((this.services = e),
+        (this.options = me(t, this.options || {}, ke())),
+        typeof this.options.convertDetectedLanguage == `string` &&
+          this.options.convertDetectedLanguage.indexOf(`15897`) > -1 &&
+          (this.options.convertDetectedLanguage = (e) => e.replace(`-`, `_`)),
+        this.options.lookupFromUrlIndex &&
+          (this.options.lookupFromPathIndex = this.options.lookupFromUrlIndex),
+        (this.i18nOptions = n),
+        this.addDetector(_e),
+        this.addDetector(ve),
+        this.addDetector(be),
+        this.addDetector(Se),
+        this.addDetector(Ce),
+        this.addDetector(we),
+        this.addDetector(Te),
+        this.addDetector(Ee),
+        this.addDetector(ye));
+    }
+    addDetector(e) {
+      return ((this.detectors[e.name] = e), this);
+    }
+    detect() {
+      let e =
+          arguments.length > 0 && arguments[0] !== void 0
+            ? arguments[0]
+            : this.options.order,
+        t = [];
+      return (
+        e.forEach((e) => {
+          if (this.detectors[e]) {
+            let n = this.detectors[e].lookup(this.options);
+            (n && typeof n == `string` && (n = [n]), n && (t = t.concat(n)));
+          }
+        }),
+        (t = t
+          .filter((e) => e != null && !he(e))
+          .map((e) => this.options.convertDetectedLanguage(e))),
+        this.services &&
+        this.services.languageUtils &&
+        this.services.languageUtils.getBestMatchFromCodes
+          ? t
+          : t.length > 0
+            ? t[0]
+            : null
+      );
+    }
+    cacheUserLanguage(e) {
+      let t =
+        arguments.length > 1 && arguments[1] !== void 0
+          ? arguments[1]
+          : this.options.caches;
+      t &&
+        ((this.options.excludeCacheFor &&
+          this.options.excludeCacheFor.indexOf(e) > -1) ||
+          t.forEach((t) => {
+            this.detectors[t] &&
+              this.detectors[t].cacheUserLanguage(e, this.options);
+          }));
+    }
+  };
+Ae.type = `languageDetector`;
+var je = {
+    navigation: {
+      home: `Home`,
+      search: `Search`,
+      create: `Create`,
+      publish: `Publish`,
+      profile: `Profile`,
+      settings: `Settings`,
+      history: `History`,
+      following: `Following`,
+      followers: `Followers`,
+      likes: `Likes`,
+      logout: `Logout`,
+      menu: `Menu`,
+      myStuff: `My Stuff`,
+      social: `Social`,
+      tools: `Tools`,
+      notifications: `Notifications`,
+      help: `Help`,
+      toggleMenu: `Toggle mobile menu`,
+      subscriptionAndSandcoins: `Subscription`,
+    },
+    auth: {
+      login: `Login`,
+      register: `Register`,
+      resetPassword: `Reset Password`,
+    },
+    gameCard: {
+      likes: `likes`,
+      comments: `comments`,
+      views: `views`,
+      live: `Live`,
+    },
+    homePage: {
+      joinAlpha: `Join the alpha`,
+      trending: `Trending`,
+      newReleases: `New Releases`,
+      allGames: `All Games`,
+    },
+    categories: {
+      all: `All Games`,
+      action: `Action`,
+      rpg: `RPG`,
+      puzzle: `Puzzle`,
+      racing: `Racing`,
+      strategy: `Strategy`,
+    },
+    general: {
+      loading: `Loading...`,
+      submit: `Submit`,
+      cancel: `Cancel`,
+      save: `Save`,
+      delete: `Delete`,
+      search: `Search`,
+      language: `Language`,
+      email: `Email`,
+      submitting: `Submitting...`,
+    },
+    footer: {
+      discord: `Discord`,
+      twitter: `X/Twitter`,
+      instagram: `Instagram`,
+      youtube: `YouTube`,
+      tiktok: `TikTok`,
+      links: `About | Terms | Privacy`,
+      aboutLinks: `About | Terms | Privacy`,
+      copyright: `© {{year}} Sandscape. All rights reserved.`,
+      poweredBy: `Powered by`,
+      product: `Product`,
+      resources: `Resources`,
+      company: `Company`,
+      v1Link: `Sandscape v1`,
+      blogLink: `Blog`,
+      faqLink: `FAQ`,
+      aboutLink: `About`,
+      contactLink: `Contact`,
+      privacyLink: `Privacy Policy`,
+      termsLink: `Terms of Service`,
+      aria: {
+        twitter: `X/Twitter`,
+        instagram: `Instagram`,
+        tiktok: `TikTok`,
+        youtube: `YouTube`,
+        discord: `Discord`,
+      },
+    },
+    invite: {
+      title: `Invite Collaborators`,
+      searchPlaceholder: `Search users...`,
+      notImplemented: `User search feature is not yet implemented.`,
+      searching: `Searching...`,
+    },
+    invitePage: {
+      seoTitle: `You've been invited | Sandscape`,
+      loading: `Loading your invite…`,
+      invitedTitle: `You've been invited to Sandscape`,
+      coinsBadge: `+{{amount}} Sandcoins`,
+      continue: `Continue`,
+      redeemedTitle: `You're in`,
+      alreadyTitle: `You're already in`,
+      coinsAdded: `{{amount}} Sandcoins added`,
+      coinsClaimed: `{{amount}} Sandcoins already claimed`,
+      balanceLabel: `Balance: {{balance}} Sandcoins`,
+      startCreating: `Start creating`,
+      errorTitle: `Something went wrong`,
+      errorBody: `We couldn't load this invite. Please try again.`,
+      unavailableTitle: `Invite unavailable`,
+      goHome: `Go home`,
+      status: {
+        used: `This invite has already been used.`,
+        expired: `This invite has expired.`,
+        revoked: `This invite is no longer active.`,
+        not_found: `We couldn't find this invite.`,
+      },
+    },
+    cookies: {
+      accept: `Accept all`,
+      decline: `Reject all`,
+      notice: `Cookie Notice`,
+      message: `We use optional analytics and advertising cookies that you can accept or reject. Read our`,
+      policy: `cookie policy`,
+    },
+    publish: {
+      compatibility: `Compatibility`,
+      compatibilityBoth: `Desktop & Mobile`,
+      compatibilityDesktop: `Desktop only`,
+      compatibilityMobile: `Mobile only`,
+      compatibilityHint: `Which devices your controls actually work on. Players see this before they launch.`,
+      distribution: `Distribution`,
+      distributionDesc: `Decide who can find your game, then send it live.`,
+      advancedSettings: `Advanced settings`,
+      advancedSettingsDesc: `Monetization, ratings and community controls — not live yet, shown here so you know what's coming.`,
+      gameplayReplace: `Replace`,
+      title: `Publish your game`,
+      subtitle: `Fine-tune the story, visuals, and launch settings before sharing your world with the Sandscape community.`,
+      creatorConsole: `Creator Console`,
+      yourProjects: `Your projects`,
+      selectProject: `Select a project to prepare its store presence.`,
+      noProjects: `No projects found.`,
+      createFirst: `Create a game first!`,
+      needNewSlot: `Need a new slot?`,
+      createNewProject: `Create new project`,
+      loadingProject: `Loading project data…`,
+      launchDetails: `Launch details`,
+      launchDetailsDesc: `Metadata players will see on discovery surfaces.`,
+      gameTitle: `Game title`,
+      gameTitlePlaceholder: `Name your experience`,
+      tagline: `Tagline`,
+      taglinePlaceholder: `One sentence hook`,
+      primaryGenre: `Primary genre`,
+      chooseGenre: `Choose a genre`,
+      tags: `Tags`,
+      tagsPlaceholder: `Comma separated keywords`,
+      shortDescription: `Short description`,
+      shortDescriptionPlaceholder: `Pitch the fantasy in two sentences`,
+      detailedDescription: `Detailed description`,
+      detailedDescriptionPlaceholder: `Break down core mechanics, world lore, and what makes this experience special.`,
+      coverArt: `Cover art`,
+      coverArtUpload: `Upload or generate a cover image.`,
+      generate: `Generate`,
+      generating: `Generating…`,
+      upload: `Upload`,
+      previewClip: `Preview clip`,
+      previewClipDesc: `5-8 second gameplay loop in MP4 or WebM.`,
+      gameplayEncouragement: `You can publish without it, but games with gameplay footage get played far more often.`,
+      gameplayOptional: `Optional`,
+      estimatedPlaytime: `Estimated playtime`,
+      ageRating: `Age rating`,
+      monetization: `Monetization & access`,
+      monetizationDesc: `Configure how players unlock and support this experience.`,
+      visibility: `Visibility`,
+      visibilityDesc: `Control how the game appears across Sandscape.`,
+      visibilityPublic: `Public`,
+      visibilityPublicDesc: `Listed on discovery rows and searchable.`,
+      visibilityUnlisted: `Unlisted`,
+      visibilityUnlistedDesc: `Playable via direct link, hidden from browse and search.`,
+      communitySettings: `Community settings`,
+      communitySettingsDesc: `Shape how players gather feedback and play together.`,
+      moderationHint: `Need a moderation boost? Verified creators gain access to proactive content review.`,
+      alreadyLive: `This game is already live. Publishing will replace the current version.`,
+      publishButton: `Publish to community`,
+      updateButton: `Update published game`,
+      publishing: `Publishing…`,
+      updating: `Updating…`,
+      livePreview: `Live preview`,
+      livePreviewDesc: `This is how your listing will appear in featured carousels.`,
+      untitledExperience: `Untitled experience`,
+      noCoverArt: `No cover art yet`,
+      previewHint: `Publishing pushes your build to the live catalogue. You can update metadata or roll back to draft at any time.`,
+      updateConfirmTitle: `Update published game?`,
+      updateConfirmDesc: `This will replace the currently live version with your latest build. Players will see the new version immediately.`,
+      cancel: `Cancel`,
+      confirmUpdate: `Yes, update it`,
+      published: `Published!`,
+      publishedDesc: `Your game is now live.`,
+      updated: `Updated!`,
+      updatedDesc: `Your game has been updated.`,
+      publishFailed: `Publish failed`,
+      missingInfo: `Missing info`,
+      missingInfoDesc: `Select a project and enter a title.`,
+      error: `Error`,
+      errorPublish: `Failed to publish game`,
+      thumbnailGenerated: `Thumbnail generated`,
+      thumbnailReady: `Cover art ready!`,
+      generationFailed: `Generation failed`,
+      generationFailedDesc: `Could not generate thumbnail`,
+      errorThumbnail: `Failed to generate thumbnail`,
+      uploaded: `Uploaded`,
+      uploadedDesc: `Cover art uploaded!`,
+      uploadFailed: `Upload failed`,
+      uploadFailedDesc: `Could not upload thumbnail`,
+      thumbnailPromptPlaceholder: `Describe the cover art you want…`,
+      customPrompt: `Custom prompt`,
+      invalidFileType: `Invalid file type`,
+      invalidFileTypeDesc: `Please upload a PNG, JPEG, WebP, or GIF image.`,
+      fileTooLarge: `File too large`,
+      fileTooLargeDesc: `Thumbnail must be under 5 MB.`,
+      comingSoon: `Coming soon`,
+      soonBadge: `Soon`,
+      somethingWentWrong: `Something went wrong`,
+      updatedAgo: `Updated {{time}}`,
+      statusDraft: `draft`,
+      statusCompleted: `completed`,
+      coverArtPreviewAlt: `Cover art preview`,
+      estimatedPlaytimeValue: `10-15 minutes`,
+      ageRatingEveryone: `Everyone`,
+      accessTier: `Access tier`,
+      accessTierFree: `Free to play`,
+      sandCoinPrice: `Sandcoin price`,
+      sandCoinPricePlaceholder: `Set the entry price`,
+      enableTipping: `Enable tipping`,
+      enableTippingDesc: `Allow fans to drop Sandcoins after play sessions.`,
+      allowRemixing: `Allow remixing`,
+      allowRemixingDesc: `Collaborators can build variants with attribution.`,
+      enableComments: `Enable comments`,
+      enableCommentsDesc: `Open threaded conversations on your game page.`,
+      leaderboard: `Leaderboard`,
+      leaderboardDesc: `Track top players to boost replayability.`,
+      spectatorMode: `Spectator mode`,
+      spectatorModeDesc: `Let community members watch live sessions.`,
+      coverAlt: `Cover`,
+      previewDescriptionPlaceholder: `Describe the promise of your world to draw players in.`,
+      leaderboardEnableDesc: `Show rankings on the game page and let the game report results.`,
+      leaderboardPublishFirst: `Publish once to set up leaderboards for this game.`,
+      leaderboardLoading: `Loading leaderboard settings…`,
+      leaderboardNoManifest: `This build ships no sandscape.leaderboard.json, so there is nothing to rank yet. Ask the assistant to "add a leaderboard", then publish again.`,
+      leaderboardManifestInvalid: `This game's leaderboard file is invalid:`,
+      leaderboardManifestFound: `This build declares {{count}} board(s).`,
+      leaderboardBoards: `Boards`,
+      leaderboardAddBoard: `Add board`,
+      leaderboardNoBoards: `No boards yet. Add one, or publish a build whose manifest declares some.`,
+      leaderboardBoardTitle: `Board title`,
+      leaderboardBoardEnabled: `Show this board`,
+      leaderboardGroupBy: `Rank`,
+      leaderboardByPlayer: `Players`,
+      leaderboardMetric: `Metric`,
+      leaderboardAggregate: `By`,
+      leaderboardPeriod: `Window`,
+      leaderboardAggregate_max: `Best`,
+      leaderboardAggregate_min: `Lowest`,
+      leaderboardAggregate_sum: `Total`,
+      leaderboardAggregate_count: `Count`,
+      leaderboardAggregate_avg: `Average`,
+      leaderboardAggregate_latest: `Latest`,
+      leaderboardOriginManifest: `From the game`,
+      leaderboardOriginCreator: `Yours`,
+      leaderboardResetAction: `Reset`,
+      leaderboardReset: `Reset this board?`,
+      leaderboardResetConfirm: `The board starts empty from now on. Results are kept — other boards still count them.`,
+      leaderboardResetDone: `Board reset`,
+      leaderboardDeleteAction: `Delete`,
+      leaderboardDelete: `Delete this board?`,
+      leaderboardDeleteConfirm: `The board disappears from the game page. Results are kept.`,
+      leaderboardDeleted: `Board deleted`,
+      leaderboardCreate: `Create`,
+      leaderboardCancel: `Cancel`,
+      leaderboardBoardAdded: `Board added`,
+      leaderboardOn: `Leaderboards are on`,
+      leaderboardOff: `Leaderboards are off`,
+      leaderboardSaveFailed: `Could not save`,
+      leaderboardManifestOwned: `This board comes from the game. Changing anything here — including hiding it — makes it yours, and future builds will stop updating it.`,
+    },
+    seo: {
+      title: `Sandscape – Make Games Without Coding | Creative Game Studio`,
+      description: `Sandscape is a creative studio for making games. Describe an idea, refine it with visual tools, or build every detail by hand—then play and share what you create. Create an account today!`,
+      keywords: `AI game creator, make games with AI, AI game generator, create games without coding, mobile game maker, game creation platform, collaborative game development, prompt to game, AI game development, no-code game creation`,
+    },
+    homeBanners: { playCta: `Play` },
+    bannerCarousel: {
+      mute: `Mute`,
+      unmute: `Unmute`,
+      closeBanner: `Close banner`,
+      showBanner: `Show banner {{number}}`,
+    },
+    game: {
+      compat: {
+        title: `Built for another device`,
+        desktopOnly: `This game was made for desktop — it may not run properly on this device.`,
+        mobileOnly: `This game was made for mobile — it may not run properly on this device.`,
+        playAnyway: `Play anyway`,
+      },
+      notFound: `Game not found`,
+      removedOrIncorrect: `This game may have been removed or the link is incorrect.`,
+      backToGames: `Back to games`,
+      noGameSpecified: `No game specified. Use a link like /play?g=CODE`,
+      notAvailable: `Game not available — no published build found.`,
+      seoDescriptionFallback: `Experience AI-generated gameplay, art, and mechanics.`,
+      shareTextFallback: `An awesome game created on Sandscape!`,
+      remix: `Remix`,
+      like: `Like`,
+      unlike: `Unlike`,
+      follow: `Follow`,
+      unfollow: `Unfollow`,
+      fullscreen: `Fullscreen`,
+      exitFullscreen: `Exit fullscreen`,
+      showMore: `Show more`,
+      showLess: `Show less`,
+      views: `{{count}} views`,
+      publishedPrefix: `Published `,
+      comments: `Comments`,
+      beFirstToComment: `Be the first to comment.`,
+      relatedGames: `Related Games`,
+      commentPlaceholder: `Add a comment...`,
+      post: `Post`,
+      posting: `Posting...`,
+      registerToComment: `Register to comment on this game`,
+      reply: `Reply`,
+      replyToPlaceholder: `Reply to {{name}}...`,
+      delete: `Delete`,
+      deleteCommentTitle: `Delete comment?`,
+      deleteCommentDescription: `This comment will be permanently removed. This action cannot be undone.`,
+      toast: {
+        likeFailed: `Failed to update like status.`,
+        followFailed: `Failed to update follow status`,
+        commentFailed: `Failed to post comment.`,
+        replyFailed: `Failed to post reply.`,
+        deleteFailed: `Failed to delete comment.`,
+      },
+    },
+    search: {
+      liveBadge: `Live`,
+      shareGame: `Share game`,
+      noBio: `No bio available`,
+      view: `View`,
+      seo: {
+        titleWithQuery: `Search results for "{{query}}" - Sandscape`,
+        title: `Search - Sandscape`,
+        description: `Search for games, creators, and channels on Sandscape.`,
+      },
+      heading: { results: `Results for "{{query}}"`, default: `Search` },
+      empty: {
+        title: `Search for games and creators`,
+        description: `Use the search bar in the header to find games, creators, and channels`,
+      },
+      noResults: {
+        title: `No results found`,
+        description: `We couldn't find any matches for "{{query}}". Try a different search term.`,
+      },
+      tabs: { all: `All Results`, games: `Games`, creators: `Creators` },
+      section: { games: `Games`, creators: `Creators` },
+      viewAllGames: `View all {{count}} games`,
+      viewAllCreators: `View all {{count}} creators`,
+      noGamesMatching: `No games found matching "{{query}}"`,
+      noCreatorsMatching: `No creators found matching "{{query}}"`,
+    },
+    createPrompt: {
+      recentProjects: `Recent projects`,
+      noPreview: `No preview`,
+      title: `What will you create?`,
+      tagline: `Games powered by your imagination`,
+      placeholder: `Describe your game idea...`,
+      removeTag: `Remove {{tag}}`,
+      genresMore: `More`,
+      genresLess: `Less`,
+      viewAll: `View all`,
+      genres: {
+        action: `Action`,
+        adventure: `Adventure`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `Simulation`,
+        puzzle: `Puzzle`,
+        rpg: `RPG`,
+        racing: `Racing`,
+        strategy: `Strategy`,
+        survival: `Survival`,
+        horror: `Horror`,
+      },
+    },
+    loginPage: {
+      toastSuccessTitle: `Success`,
+      toastSuccessDesc: `Logged in successfully`,
+      toastErrorTitle: `Error`,
+      toastLoginFailed: `Failed to login`,
+      toastOauthErrorTitle: `OAuth Error`,
+      toastOauthFailed: `Authentication failed`,
+      toastEnterEmail: `Please enter your email address`,
+      toastMagicLinkSentTitle: `Magic Link Sent`,
+      toastMagicLinkSentDesc: `Check your inbox for a sign-in link.`,
+      toastMagicLinkFailed: `Failed to send magic link`,
+      title: `Welcome back`,
+      subtitleMagicLink: `Enter your email to receive a sign-in link`,
+      subtitlePassword: `Enter your credentials to continue`,
+      magicLinkConfirmPrefix: `We've sent a magic link to`,
+      magicLinkConfirmSuffix: `Check your inbox and click the link to sign in.`,
+      backToLogin: `Back to Login`,
+      password: `Password`,
+      emailPlaceholder: `Enter your email`,
+      passwordPlaceholder: `Enter your password`,
+      sending: `Sending...`,
+      sendMagicLink: `Send Magic Link`,
+      signIn: `Sign In`,
+      usePasswordInstead: `Sign in with password instead`,
+      useMagicLinkInstead: `Sign in with magic link instead`,
+      forgotPassword: `Forgot password?`,
+      toastSignUpSuccessTitle: `Account created`,
+      toastSignUpSuccessDesc: `Welcome to Sandscape!`,
+      toastSignUpFailed: `Failed to create account`,
+      signUpTitle: `Create your account`,
+      signUpSubtitle: `Sign up to play — it's free.`,
+      tabSignIn: `Sign in`,
+      tabSignUp: `Create account`,
+      createAccount: `Create account`,
+      signUpPasswordPlaceholder: `Choose a password`,
+      confirmEmailTitle: `Confirm your email`,
+      confirmEmailPrefix: `We've sent a confirmation link to`,
+      confirmEmailSuffix: `Click the link in that email to activate your account, then sign in.`,
+      switchToSignUp: `Don't have an account? Create one`,
+      switchToSignIn: `Already have an account? Sign in`,
+    },
+    registerPage: {
+      toastSuccessTitle: `Success`,
+      toastSuccessDesc: `Account created successfully`,
+      toastErrorTitle: `Error`,
+      toastOauthErrorTitle: `OAuth Error`,
+      title: `Create an account`,
+      subtitle: `Enter your details to get started`,
+      password: `Password`,
+      emailPlaceholder: `Enter your email`,
+      passwordPlaceholder: `Choose a password`,
+      createAccount: `Create Account`,
+      signUpWithGoogle: `Sign up with Google`,
+      signUpWithFacebook: `Sign up with Facebook`,
+      haveAccount: `Already have an account? Sign in`,
+    },
+    notFound: {
+      seoTitle: `404 - Page Not Found | Sandscape`,
+      seoDescription: `The page you're looking for doesn't exist. Return to Sandscape to create and play AI-generated games.`,
+      heading: `404 - Page Not Found`,
+      message: `The page you're looking for doesn't exist.`,
+      goHome: `Go Home`,
+    },
+    share: {
+      linkCopied: `Link copied`,
+      copyPrompt: `Copy this link:`,
+      instagramCopied: `Link copied for Instagram`,
+      instagramCopyManual: `Copy this link for Instagram`,
+      instagramDescription: `Paste it into your story, bio, or a DM.`,
+      title: `Share`,
+      copied: `Copied`,
+      copy: `Copy`,
+      more: `More`,
+    },
+    header: {
+      toggleMenu: `Toggle menu`,
+      yourProjects: `Your Projects`,
+      newProject: `New Project`,
+      myAccount: `My Account`,
+      joinSandscape: `Join Sandscape`,
+      subscriptionAndSandcoins: `Subscription`,
+    },
+    following: { title: `Following`, empty: `Not following anyone.` },
+    followers: { title: `Followers`, empty: `No followers found.` },
+    likes: {
+      seoTitle: `My Liked Games | Sandscape`,
+      seoDescription: `View all the games you've liked on Sandscape.`,
+      title: `Liked Games`,
+      emptyTitle: `No liked games yet`,
+      emptyMessage: `Games you like will appear here`,
+      browseGames: `Browse Games`,
+      unknownCreator: `Unknown`,
+    },
+    notifications: {
+      seoTitle: `Notifications | Sandscape`,
+      seoDescription: `View your Sandscape notifications — follows, likes, comments, collaboration invites and mentions.`,
+      title: `Notifications`,
+      markAllRead: `Mark all read`,
+      emptyTitle: `No notifications yet`,
+      emptyDescription: `When people follow you, like or comment on your games, or invite you to collaborate, you'll see it here.`,
+      browseGames: `Browse Games`,
+      accept: `Accept`,
+      decline: `Decline`,
+      someone: `Someone`,
+      aGame: `a game`,
+      msgNewFollower: `{{name}} started following you`,
+      msgGameLike: `{{name}} liked your game "{{game}}"`,
+      msgGameComment: `{{name}} commented on your game "{{game}}"`,
+      msgCommentReply: `{{name}} replied to your comment`,
+      msgCollabInvite: `{{name}} invited you to collaborate on a project`,
+      msgChatMention: `{{name}} mentioned you in chat`,
+      msgDefault: `You have a new notification`,
+    },
+    history: {
+      title: `History`,
+      emptyTitle: `No games played yet`,
+      emptyMessage: `Games you play will show up here`,
+      browseGames: `Browse Games`,
+      seoTitle: `History | Sandscape`,
+      seoDescription: `Games you have recently played on Sandscape.`,
+      unknownCreator: `Unknown`,
+      errorTitle: `Couldn't load your history`,
+      errorMessage: `Something went wrong. Please try again.`,
+      retry: `Retry`,
+    },
+    profile: {
+      deleteProjectConfirm: `Are you sure you want to delete this project?`,
+      deleteProjectFailed: `Failed to delete project`,
+      duplicateProject: `Duplicate project`,
+      duplicatingProject: `Duplicating project`,
+      duplicateProjectDone: `Duplicated as "{{name}}"`,
+      duplicateProjectFailed: `Failed to duplicate project`,
+      avatarUploadFailed: `Avatar upload failed: `,
+      updateProfileFailed: `Error updating profile: `,
+      notFound: `Profile not found.`,
+      goHome: `Go Home`,
+      followStatusFailed: `Failed to update follow status.`,
+      seoTitle: `{{name}} | Sandscape`,
+      seoDefaultName: `User Profile`,
+      seoDescription: `Check out {{name}}'s games and activity on Sandscape. Join to follow, play and collaborate.`,
+      seoDefaultCreator: `this creator`,
+      seoKeywords: `{{name}}, game creator, AI games, player profile, game portfolio, Sandscape user`,
+      followers: `Followers`,
+      following: `Following`,
+      unfollow: `Unfollow`,
+      follow: `Follow`,
+      editProfile: `Edit Profile`,
+      bioPlaceholder: `Your bio`,
+      saving: `Saving...`,
+      myProjects: `My Projects`,
+      publishedGames: `Published Games`,
+      activity: `Activity`,
+      loadingProjects: `Loading projects...`,
+      noProjects: `No projects yet`,
+      createFirstGame: `Create Your First Game`,
+      statusInProgress: `In Progress`,
+      noPublishedGames: `No published games yet`,
+      noRecentActivity: `No recent activity`,
+    },
+    settings: {
+      notifNewFollowersLabel: `New followers`,
+      notifNewFollowersDesc: `When someone follows you`,
+      notifGameLikesLabel: `Game likes`,
+      notifGameLikesDesc: `When someone likes your game`,
+      notifGameCommentsLabel: `Game comments`,
+      notifGameCommentsDesc: `When someone comments on your game`,
+      notifCommentRepliesLabel: `Comment replies`,
+      notifCommentRepliesDesc: `When someone replies to your comment`,
+      notifMentionsLabel: `Mentions`,
+      notifMentionsDesc: `When someone mentions you in chat`,
+      prefUpdateFailed: `Failed to update preference`,
+      usernameEmpty: `Username can't be empty`,
+      profileUpdated: `Profile updated`,
+      profileUpdateFailed: `Failed to update profile`,
+      emailInvalid: `Enter a valid email address`,
+      emailAlreadyYours: `That's already your email`,
+      emailConfirmationSent: `Confirmation email sent`,
+      emailConfirmationDesc: `Check {{email}} to confirm the change.`,
+      emailUpdateFailed: `Failed to update email`,
+      passwordTooShort: `Password must be at least 8 characters`,
+      passwordsDontMatch: `Passwords don't match`,
+      passwordUpdated: `Password updated`,
+      passwordUpdateFailed: `Failed to update password`,
+      accountDeleted: `Your account has been deleted`,
+      accountDeleteFailed: `Failed to delete account`,
+      seoTitle: `Settings | Sandscape`,
+      seoDescription: `Manage your Sandscape account, profile, and preferences.`,
+      tabProfile: `Profile`,
+      tabAccount: `Account`,
+      tabNotifications: `Notifications`,
+      tabAppearance: `Appearance`,
+      profileTitle: `Profile`,
+      profileDescription: `Update how you appear to others across Sandscape.`,
+      changeAvatar: `Change avatar`,
+      avatarHint: `JPG or PNG. Saved when you click Save changes.`,
+      usernameLabel: `Username`,
+      usernamePlaceholder: `Your username`,
+      bioLabel: `Bio`,
+      bioPlaceholder: `Tell the community about yourself`,
+      saveChanges: `Save changes`,
+      accountTitle: `Account`,
+      accountDescription: `Manage your sign-in details.`,
+      emailPlaceholder: `you@example.com`,
+      changeEmail: `Change email`,
+      changeEmailHint: `We'll email a confirmation link to the new address. Your email changes only after you confirm it.`,
+      changePasswordTitle: `Change password`,
+      changePasswordHint: `Choose a new password (at least 8 characters).`,
+      newPasswordLabel: `New password`,
+      newPasswordPlaceholder: `New password`,
+      confirmPasswordLabel: `Confirm new password`,
+      confirmPasswordPlaceholder: `Confirm new password`,
+      updatePassword: `Update password`,
+      deleteAccountTitle: `Delete account`,
+      deleteAccountHint: `Permanently delete your account. This can't be undone. Games you've published stay live but are no longer attributed to you.`,
+      deleteMyAccount: `Delete my account`,
+      deleteAccountConfirmTitle: `Delete your account?`,
+      deleteAccountConfirmDesc: `This permanently deletes your profile, likes, comments, follows, notifications and projects. Your published games remain live but anonymized. This action cannot be undone.`,
+      deleteAccountAction: `Delete account`,
+      notificationsTitle: `Notifications`,
+      notificationsDescription: `Choose which notifications you want to receive. Collaboration invites are always delivered.`,
+      appearanceTitle: `Appearance`,
+      appearanceDescription: `Customize how Sandscape looks and feels.`,
+      themeLabel: `Theme`,
+      themeLight: `Light`,
+      themeDark: `Dark`,
+      themeSystem: `System`,
+      tabBilling: `Billing`,
+    },
+    authPage: {
+      title: `Sign in or create an account`,
+      signInTitle: `Sign in`,
+      description: `Continue with a provider or use your email. Account creation is open to everyone.`,
+      createAccount: `Create account`,
+      signIn: `Sign in`,
+      codeTitle: `Enter your code`,
+      codeDescription: `Enter the verification code we sent. The same flow works for new and existing accounts.`,
+      updatePasswordTitle: `Set a new password`,
+      updatePasswordDescription: `Choose a secure password for your Sandscape account.`,
+      recoveryTitle: `Reset your password`,
+      recoveryDescription: `We'll email a secure password-reset link if the address can receive one.`,
+      checkEmailTitle: `Check your email`,
+      confirmRecoveryDescription: `If the address can receive a reset email, it will arrive shortly.`,
+      continueWith: {
+        google: `Continue with Google`,
+        github: `Continue with GitHub`,
+        apple: `Continue with Apple`,
+        facebook: `Continue with Facebook`,
+      },
+      or: `or`,
+      emailPlaceholder: `you@example.com`,
+      continueWithEmail: `Continue with email`,
+      usePassword: `Sign in with a password instead`,
+      codeLabel: `Verification code`,
+      verifyCode: `Verify code`,
+      resendCountdown: `Resend in {{seconds}}s`,
+      resendCode: `Resend code`,
+      changeEmail: `Change email`,
+      password: `Password`,
+      signInWithPassword: `Sign in with password`,
+      passwordSigninNewAccountHint: `New to Sandscape? Go back and continue with email. You can set a password while setting up your account.`,
+      forgotPassword: `Forgot password?`,
+      backToOptions: `Back to sign-in options`,
+      sendRecovery: `Send reset link`,
+      newPassword: `New password`,
+      confirmPassword: `Confirm password`,
+      updatePassword: `Update password`,
+      genericEmailNotice: `For privacy, this message is the same whether or not an account already exists.`,
+      legal: `By continuing, you agree to Sandscape's <terms>Terms</terms> and acknowledge the <privacy>Privacy Policy</privacy>.`,
+      callbackFailedTitle: `We couldn't finish signing you in`,
+      tryAgain: `Try again`,
+      finishing: `Finishing sign in...`,
+      errors: {
+        generic: `Something went wrong. Please try again.`,
+        usernameTaken: `That username is already taken.`,
+        invalidCode: `That code is invalid or expired. Request a new code and try again.`,
+        rateLimited: `Too many attempts. Wait a moment before trying again.`,
+        captcha: `Security verification failed. Please try again.`,
+        captchaRequired: `Complete the security check to continue.`,
+        invalidCredentials: `The email or password is incorrect, or the account is not ready for password sign-in.`,
+        network: `We couldn't reach the sign-in service. Check your connection and try again.`,
+        validation: `Check the information you entered and try again.`,
+        providerDenied: `Provider access was cancelled or denied. Choose a method and try again.`,
+        callback: `The sign-in response was invalid or expired. Please try again.`,
+        emailRequired: `Enter a valid email address.`,
+        codeRequired: `Enter the complete verification code.`,
+        credentialsRequired: `Enter both your email and password.`,
+        passwordTooShort: `Use a password with at least 8 characters.`,
+        passwordMismatch: `The passwords do not match.`,
+        recoverySession: `Request a new password-reset link before setting a password.`,
+      },
+    },
+    onboarding: {
+      title: `Choose how you appear`,
+      description: `A public username is required. Everything else is optional and can be changed later.`,
+      completedTitle: `Your account is ready`,
+      optionalRetryDescription: `Your public username is saved. You can retry optional steps or continue now.`,
+      username: `Public username`,
+      usernameRules: `Use 3-30 letters, numbers, underscores, or hyphens. This is public and must not be an email address.`,
+      avatar: `Avatar (optional)`,
+      chooseAvatar: `Choose image`,
+      password: `Set a password (optional)`,
+      passwordHint: `You can keep using email codes and set a password later in Account security.`,
+      creatorEnabled: `Creator access enabled`,
+      creatorEnabledHint: `You can create and publish games now.`,
+      subscribeForCreation: `Join the alpha (optional)`,
+      subscribeForCreationHint: `The alpha is open. We'll take you to the plans when you finish, so you can start creating right away.`,
+      finish: `Finish setup`,
+      continueWithoutOptional: `Continue without optional steps`,
+      retryOptional: `Retry optional steps`,
+      optionalFailedTitle: `Some optional steps need attention`,
+      optionalFailures: {
+        avatar: `Your avatar could not be saved.`,
+        password: `Your password could not be set.`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `Active sign-in methods`,
+      signInMethodsHint: `These are the verified ways you can access this account.`,
+      methodEmailCode: `Email code`,
+      methodPassword: `Password`,
+      setPasswordTitle: `Set a password`,
+      setPassword: `Set password`,
+    },
+    mailingList: {
+      title: `Join the mailing list`,
+      message: `Get occasional Sandscape product news by email. This does not create an account or request creator access.`,
+      successTitle: `Subscribed`,
+      successMessage: `You're on the mailing list.`,
+      alreadyRegisteredTitle: `Already subscribed`,
+      alreadyRegisteredMessage: `That email is already on the mailing list.`,
+      errorTitle: `Subscription failed`,
+      errorMessage: `There was a problem joining the mailing list. Please try again.`,
+      emailPlaceholder: `you@example.com`,
+      join: `Join mailing list`,
+    },
+    leaderboard: {
+      title: `Leaderboard`,
+      periodLabel: `Time range`,
+      period: {
+        all: `All time`,
+        daily: `Today`,
+        weekly: `This week`,
+        monthly: `This month`,
+        default: `Default`,
+      },
+      rank: `#`,
+      player: `Player`,
+      entries: `Plays`,
+      you: `You`,
+      yourRank: `Your rank`,
+      empty: `No results yet — be the first to play.`,
+      error: `Could not load the leaderboard right now.`,
+      refresh: `Refresh`,
+      unknownPlayer: `Player`,
+    },
+    billing: {
+      title: `Subscription`,
+      loading: `Loading your plan…`,
+      loadFailed: `Could not load plans.`,
+      statusFailed: `Could not load your subscription.`,
+      unconfigured: `Subscriptions aren't available yet. Sandcoins are granted by invite for now.`,
+      retry: `Try again`,
+      renewsOn: `renews on`,
+      cancelsOn: `cancels on`,
+      pastDue: `your last payment failed; update your card to keep your plan`,
+      managePlan: `Manage plan`,
+      current: `Current`,
+      currentPlan: `Current plan`,
+      subscribe: `Subscribe`,
+      switchPlan: `Switch plan`,
+      comingSoon: `Coming soon`,
+      coinsPerMonth: `Sandcoins / month`,
+      perMonth: `mo`,
+      perYear: `yr`,
+      priceUnavailable: `—`,
+      freeName: `Free`,
+      freePrice: `$0`,
+      freePlay: `Play Games (Ads)`,
+      freeTips: `Earn Tips`,
+      proName: `Pro`,
+      proCreate: `Generous Creation`,
+      proCoins: `Larger Sandcoin Stipend`,
+      adFree: `Ad-Free`,
+      monthlyCoins: `Monthly Sandcoins`,
+      marketplace: `Sell on Marketplace`,
+      revShare: `Best Revenue Share`,
+      analytics: `Analytics & Beta`,
+      thanksTitle: `Payment received`,
+      thanksBody: `Your Sandcoins are on the way — this page will update in a moment.`,
+      canceledTitle: `Plan canceled`,
+      canceledBody: `Your plan stays active until the end of the current billing period.`,
+      cancelScheduled: `Cancellation scheduled`,
+      alreadySubscribedTitle: `You already have a plan`,
+      alreadySubscribedBody: `Opening your billing portal so you can switch or cancel.`,
+      checkoutFailedTitle: `Could not start checkout`,
+      portalFailedTitle: `Could not open billing`,
+      tryAgain: `Please try again.`,
+      coinsFootnote: `Your plan's monthly Sandcoins reset at the start of each billing period — they do not roll over. Purchased and gifted Sandcoins never expire, and your plan's Sandcoins are always spent first. Items marked “Coming soon” aren't active yet.`,
+      starterName: `Starter`,
+      starterCreate: `More Creation`,
+      maxName: `Max`,
+      maxCreate: `Maximum Creation`,
+      maxCoins: `Largest Sandcoin Stipend`,
+      priority: `Priority Support`,
+      packsTitle: `Sandcoin packs`,
+      packsDescription: `Top up any time, on any plan. Purchased Sandcoins never expire.`,
+      coins: `Sandcoins`,
+      buyFor: `Buy for`,
+      planCoins: `plan Sandcoins`,
+      resetOn: `reset on`,
+      permanentCoins: `purchased & gifted Sandcoins that never expire`,
+      alphaOpenTitle: `The alpha is open`,
+      alphaOpenBody: `Choose any plan or Sandcoin pack to unlock the full creation studio, from your first prompt to your published game.`,
+      alphaNotice: `During the alpha period, pricing is subject to change.`,
+      noticeUnavailable: `We couldn't check for recent purchase or refund notices. Reload this page to try again.`,
+      subtitle: `Manage your plan and top up Sandcoins as you need them.`,
+      plansTitle: `Subscription plans`,
+      plansDescription: `Every plan grants a monthly Sandcoin stipend. Switch or cancel any time.`,
+      tier: `Tier`,
+      balance: `Sandcoin balance`,
+      includes: `Includes`,
+      mostPopular: `Most popular`,
+      cancelPlan: `Cancel plan`,
+      freeTagline: `Play every game in the gallery, no card needed.`,
+      starterTagline: `Best for hobbyists getting a first game off the ground.`,
+      proTagline: `Best for individual creators making games regularly.`,
+      maxTagline: `Best for high-volume, full-time production.`,
+      welcomeTitle: `Welcome to Sandscape {{plan}}`,
+      welcomePackTitle: `Your Sandcoins are in`,
+      welcomeCoins: `+{{amount}} Sandcoins`,
+      welcomeCoins_one: `+{{amount}} Sandcoin`,
+      welcomeBody: `Your {{plan}} plan is live. Your Sandcoins are already in your wallet, and your plan tops it back up every billing period.`,
+      welcomePackBody: `Thanks for your purchase. Purchased Sandcoins never expire, so spend them whenever inspiration strikes.`,
+      welcomeCreate: `Start creating`,
+      welcomeLater: `Maybe later`,
+      refundTitle: `Purchase refunded`,
+      refundPartialTitle: `Purchase partly refunded`,
+      disputeTitle: `Payment reversed`,
+      refundAmount: `−{{amount}} Sandcoins`,
+      refundAmount_one: `−{{amount}} Sandcoin`,
+      refundPlan: `Your {{plan}} plan payment from {{date}} was refunded.`,
+      refundPlanPartial: `Part of your {{plan}} plan payment from {{date}} was refunded.`,
+      disputePlan: `The {{plan}} plan payment from {{date}} was disputed with your bank.`,
+      refundPack: `Your {{amount}} Sandcoin pack from {{date}} was refunded.`,
+      refundPackPartial: `Part of your {{amount}} Sandcoin pack from {{date}} was refunded.`,
+      disputePack: `The payment for your {{amount}} Sandcoin pack from {{date}} was disputed with your bank.`,
+      refundCoinsRemoved: `{{amount}} Sandcoins were removed from your wallet.`,
+      refundCoinsRemoved_one: `{{amount}} Sandcoin was removed from your wallet.`,
+      refundCoinsRemovedSomeSpent: `{{amount}} Sandcoins were removed from your wallet. The rest of what this purchase owed back had already been spent.`,
+      refundCoinsRemovedSomeSpent_one: `{{amount}} Sandcoin was removed from your wallet. The rest of what this purchase owed back had already been spent.`,
+      refundCoinsAllSpent: `The Sandcoins from this purchase had already been spent, so your balance did not change.`,
+      refundCoinsUnchanged: `Your Sandcoin balance did not change.`,
+      refundDone: `Got it`,
+    },
+    offerPage: {
+      seoTitle: `Your Sandscape offer`,
+      brand: `Sandscape`,
+      title: `Your invitation`,
+      claimedTitle: `Your offer is claimed`,
+      loading: `Loading offer`,
+      loadFailed: `Could not load this offer. Please try again.`,
+      continue: `Continue`,
+      back: `Back to Sandscape`,
+      claim: `Claim your offer`,
+      continueWithStripe: `Continue with Stripe`,
+      preparing: `Preparing…`,
+      signIn: `Sign in or create an account`,
+      switchAccount: `Use a different account`,
+      accountSettings: `Go to account settings`,
+      claimFailed: `Could not claim this offer.`,
+      unexpectedCheckout: `Unexpected checkout URL.`,
+      benefitsReady: `Your benefits are ready. Welcome to Sandscape.`,
+      discountApplied: `Your discount is applied to future subscription invoices.`,
+      trialActive: `Your trial is active. Manage it from Billing.`,
+      billingUnavailable: `Subscription offers are not available in this environment yet.`,
+      coinsGrant: `{{amount}} Sandcoins, granted once.`,
+      coinsGrantCreator: `{{amount}} Sandcoins, granted once, plus creator access.`,
+      coinsGrantCoding: `{{amount}} Sandcoins, granted once, plus coding access.`,
+      coinsGrantCreatorCoding: `{{amount}} Sandcoins, granted once, plus creator and coding access.`,
+      noCard: `No payment card required.`,
+      trial_one: `Try {{tier}} for {{count}} day.`,
+      trial_other: `Try {{tier}} for {{count}} days.`,
+      trialWithCoins_one: `Try {{tier}} for {{count}} day. Includes {{amount}} trial Sandcoins.`,
+      trialWithCoins_other: `Try {{tier}} for {{count}} days. Includes {{amount}} trial Sandcoins.`,
+      trialBillingPrice: `A credit card is required in Stripe Checkout. The plan then renews at {{price}} per billing period unless you cancel before the trial ends. Unused trial Sandcoins expire at trial end.`,
+      trialBilling: `A credit card is required in Stripe Checkout. Regular plan billing begins unless you cancel before the trial ends. Unused trial Sandcoins expire at trial end.`,
+      trialCreator: `Creator access is included and persists after the trial.`,
+      discount_one: `{{percent}}% off {{tier}} for {{count}} billing month.`,
+      discount_other: `{{percent}}% off {{tier}} for {{count}} billing months.`,
+      discountTerms: `The regular price resumes afterward. Existing subscribers must be on this plan; the discount applies to future invoices.`,
+      discountTermsPrice: `Regular price: {{price}} per billing period. The regular price resumes afterward. Existing subscribers must be on this plan; the discount applies to future invoices.`,
+      claimBy: `Claim by {{date}}.`,
+      status: {
+        unavailable: `This offer is unavailable.`,
+        not_found: `This offer could not be found.`,
+        expired: `This offer has expired.`,
+        revoked: `This offer is no longer available.`,
+        used: `This offer has already been claimed. If you claimed it, its benefits are already in your account.`,
+        wrong_account: `Sign in with the email address that received this offer.`,
+        no_email: `Your account has no email address. Add one to claim this offer.`,
+        billing_unavailable: `Subscription offers are not available in this environment yet.`,
+        subscription_ineligible: `This offer requires an account without an existing subscription.`,
+        plan_mismatch: `This discount applies to a different plan than your current subscription.`,
+        existing_discount: `Your subscription already has a discount. This offer cannot replace it.`,
+        trial_already_used: `This account already has a trial in progress or used. Return to your original trial invitation.`,
+        pending: `Your checkout is being prepared. Please try again in a minute.`,
+      },
+    },
+    emailPreferences: {
+      title: `Email preferences`,
+      description: `Choose optional emails from Sandscape. Account security and billing messages are handled separately.`,
+      promotions: `Promotions, invitations and offers`,
+      productUpdates: `Product news and general information`,
+      unsubscribed: `Unsubscribe from all marketing emails`,
+      loading: `Loading email preferences…`,
+      retry: `Retry`,
+      loadFailed: `Could not load email preferences.`,
+      saveFailed: `Could not save your email preferences.`,
+      noEmail: `Your account has no email address, so Sandscape sends it no optional email.`,
+    },
+  },
+  Me = {
+    billing: {
+      alphaOpenTitle: `La alfa está abierta`,
+      alphaOpenBody: `Elige cualquier plan o paquete de Sandcoins para desbloquear todo el estudio de creación, desde tu primera idea hasta tu juego publicado.`,
+    },
+    navigation: {
+      home: `Inicio`,
+      search: `Buscar`,
+      create: `Crear`,
+      profile: `Perfil`,
+      settings: `Configuración`,
+      history: `Historial`,
+      following: `Siguiendo`,
+      followers: `Seguidores`,
+      likes: `Me gusta`,
+      logout: `Cerrar sesión`,
+      menu: `Menú`,
+      myStuff: `Mis Cosas`,
+      social: `Social`,
+      tools: `Herramientas`,
+      notifications: `Notificaciones`,
+      help: `Ayuda`,
+      toggleMenu: `Alternar menú móvil`,
+      publish: `Publicar`,
+    },
+    auth: {
+      login: `Iniciar sesión`,
+      register: `Registrarse`,
+      resetPassword: `Restablecer contraseña`,
+    },
+    gameCard: {
+      likes: `me gusta`,
+      comments: `comentarios`,
+      views: `vistas`,
+      live: `En vivo`,
+    },
+    homePage: {
+      joinAlpha: `Únete a la alfa`,
+      trending: `Tendencias`,
+      newReleases: `Nuevos lanzamientos`,
+      allGames: `Todos los juegos`,
+    },
+    categories: {
+      all: `Todos los juegos`,
+      action: `Acción`,
+      rpg: `RPG`,
+      puzzle: `Puzzle`,
+      racing: `Carreras`,
+      strategy: `Estrategia`,
+    },
+    general: {
+      loading: `Cargando...`,
+      submit: `Enviar`,
+      cancel: `Cancelar`,
+      save: `Guardar`,
+      delete: `Eliminar`,
+      search: `Buscar`,
+      language: `Idioma`,
+      email: `Correo electrónico`,
+      submitting: `Enviando...`,
+    },
+    footer: {
+      discord: `Discord`,
+      twitter: `X/Twitter`,
+      instagram: `Instagram`,
+      youtube: `YouTube`,
+      tiktok: `TikTok`,
+      links: `Acerca de | Términos | Privacidad`,
+      aboutLinks: `Acerca de | Términos | Privacidad`,
+      copyright: `© {{year}} Sandscape. Todos los derechos reservados.`,
+      poweredBy: `Desarrollado por`,
+      product: `Producto`,
+      resources: `Recursos`,
+      company: `Compañía`,
+      v1Link: `Sandscape v1`,
+      blogLink: `Blog`,
+      faqLink: `FAQ`,
+      aboutLink: `Acerca de`,
+      contactLink: `Contacto`,
+      privacyLink: `Política de privacidad`,
+      termsLink: `Términos de servicio`,
+      aria: {
+        twitter: `X/Twitter`,
+        instagram: `Instagram`,
+        tiktok: `TikTok`,
+        youtube: `YouTube`,
+        discord: `Discord`,
+      },
+    },
+    invite: {
+      title: `Invitar Colaboradores`,
+      searchPlaceholder: `Buscar usuarios...`,
+      notImplemented: `La función de búsqueda de usuarios aún no está implementada.`,
+      searching: `Buscando...`,
+    },
+    cookies: {
+      accept: `Aceptar todas`,
+      decline: `Rechazar todas`,
+      notice: `Aviso de Cookies`,
+      message: `Usamos cookies opcionales de análisis y publicidad que puedes aceptar o rechazar. Consulta nuestra`,
+      policy: `política de cookies`,
+    },
+    seo: {
+      title: `Sandscape – Crea juegos sin programar | Estudio creativo de juegos`,
+      description: `Sandscape es un estudio creativo para crear juegos. Describe una idea, perfecciónala con herramientas visuales o construye cada detalle a mano, luego juega y comparte lo que creas. ¡Crea una cuenta hoy!`,
+      keywords: `creador de juegos IA, hacer juegos con IA, generador de juegos IA, crear juegos sin codificar, creador de juegos móviles, plataforma de creación de juegos, desarrollo colaborativo de juegos, prompt a juego, desarrollo de juegos IA, creación de juegos sin código`,
+    },
+    homeBanners: { playCta: `Jugar` },
+    bannerCarousel: {
+      mute: `Silenciar`,
+      unmute: `Activar sonido`,
+      closeBanner: `Cerrar banner`,
+      showBanner: `Mostrar banner {{number}}`,
+    },
+    game: {
+      compat: {
+        title: `Creado para otro dispositivo`,
+        desktopOnly: `Este juego se creó para ordenador: puede que no funcione correctamente en este dispositivo.`,
+        mobileOnly: `Este juego se creó para móvil: puede que no funcione correctamente en este dispositivo.`,
+        playAnyway: `Jugar de todos modos`,
+      },
+      notFound: `Juego no encontrado`,
+      removedOrIncorrect: `Es posible que este juego se haya eliminado o que el enlace sea incorrecto.`,
+      backToGames: `Volver a los juegos`,
+      noGameSpecified: `No se especificó ningún juego. Usa un enlace como /play?g=CODE`,
+      notAvailable: `Juego no disponible — no se encontró ninguna versión publicada.`,
+      seoDescriptionFallback: `Disfruta de jugabilidad, arte y mecánicas generadas por IA.`,
+      shareTextFallback: `¡Un juego increíble creado en Sandscape!`,
+      remix: `Remezclar`,
+      like: `Me gusta`,
+      unlike: `Ya no me gusta`,
+      follow: `Seguir`,
+      unfollow: `Dejar de seguir`,
+      fullscreen: `Pantalla completa`,
+      exitFullscreen: `Salir de pantalla completa`,
+      showMore: `Mostrar más`,
+      showLess: `Mostrar menos`,
+      views: `{{count}} visualizaciones`,
+      publishedPrefix: `Publicado `,
+      comments: `Comentarios`,
+      beFirstToComment: `Sé el primero en comentar.`,
+      relatedGames: `Juegos relacionados`,
+      commentPlaceholder: `Añade un comentario...`,
+      post: `Publicar`,
+      posting: `Publicando...`,
+      registerToComment: `Regístrate para comentar este juego`,
+      reply: `Responder`,
+      replyToPlaceholder: `Responder a {{name}}...`,
+      delete: `Eliminar`,
+      deleteCommentTitle: `¿Eliminar comentario?`,
+      deleteCommentDescription: `Este comentario se eliminará permanentemente. Esta acción no se puede deshacer.`,
+      toast: {
+        likeFailed: `No se pudo actualizar el estado de me gusta.`,
+        followFailed: `No se pudo actualizar el estado de seguimiento`,
+        commentFailed: `No se pudo publicar el comentario.`,
+        replyFailed: `No se pudo publicar la respuesta.`,
+        deleteFailed: `No se pudo eliminar el comentario.`,
+      },
+    },
+    search: {
+      liveBadge: `En vivo`,
+      shareGame: `Compartir juego`,
+      noBio: `No hay biografía disponible`,
+      view: `Ver`,
+      seo: {
+        titleWithQuery: `Resultados de búsqueda para "{{query}}" - Sandscape`,
+        title: `Buscar - Sandscape`,
+        description: `Busca juegos, creadores y canales en Sandscape.`,
+      },
+      heading: { results: `Resultados para "{{query}}"`, default: `Buscar` },
+      empty: {
+        title: `Busca juegos y creadores`,
+        description: `Usa la barra de búsqueda en la cabecera para encontrar juegos, creadores y canales`,
+      },
+      noResults: {
+        title: `No se encontraron resultados`,
+        description: `No encontramos ninguna coincidencia para "{{query}}". Prueba con otro término de búsqueda.`,
+      },
+      tabs: {
+        all: `Todos los resultados`,
+        games: `Juegos`,
+        creators: `Creadores`,
+      },
+      section: { games: `Juegos`, creators: `Creadores` },
+      viewAllGames: `Ver los {{count}} juegos`,
+      viewAllCreators: `Ver los {{count}} creadores`,
+      noGamesMatching: `No se encontraron juegos que coincidan con "{{query}}"`,
+      noCreatorsMatching: `No se encontraron creadores que coincidan con "{{query}}"`,
+    },
+    loginPage: {
+      toastSuccessTitle: `Éxito`,
+      toastSuccessDesc: `Sesión iniciada correctamente`,
+      toastErrorTitle: `Error`,
+      toastLoginFailed: `No se pudo iniciar sesión`,
+      toastOauthErrorTitle: `Error de OAuth`,
+      toastOauthFailed: `Error de autenticación`,
+      toastEnterEmail: `Introduce tu dirección de correo electrónico`,
+      toastMagicLinkSentTitle: `Enlace mágico enviado`,
+      toastMagicLinkSentDesc: `Revisa tu bandeja de entrada para encontrar un enlace de inicio de sesión.`,
+      toastMagicLinkFailed: `No se pudo enviar el enlace mágico`,
+      title: `Bienvenido de nuevo`,
+      subtitleMagicLink: `Introduce tu correo electrónico para recibir un enlace de inicio de sesión`,
+      subtitlePassword: `Introduce tus credenciales para continuar`,
+      magicLinkConfirmPrefix: `Hemos enviado un enlace mágico a`,
+      magicLinkConfirmSuffix: `Revisa tu bandeja de entrada y haz clic en el enlace para iniciar sesión.`,
+      backToLogin: `Volver al inicio de sesión`,
+      password: `Contraseña`,
+      emailPlaceholder: `Introduce tu correo electrónico`,
+      passwordPlaceholder: `Introduce tu contraseña`,
+      sending: `Enviando...`,
+      sendMagicLink: `Enviar enlace mágico`,
+      signIn: `Iniciar sesión`,
+      usePasswordInstead: `Iniciar sesión con contraseña`,
+      useMagicLinkInstead: `Iniciar sesión con enlace mágico`,
+      forgotPassword: `¿Olvidaste tu contraseña?`,
+    },
+    registerPage: {
+      toastSuccessTitle: `Éxito`,
+      toastSuccessDesc: `Cuenta creada correctamente`,
+      toastErrorTitle: `Error`,
+      toastOauthErrorTitle: `Error de OAuth`,
+      title: `Crear una cuenta`,
+      subtitle: `Introduce tus datos para empezar`,
+      password: `Contraseña`,
+      emailPlaceholder: `Introduce tu correo electrónico`,
+      passwordPlaceholder: `Elige una contraseña`,
+      createAccount: `Crear cuenta`,
+      signUpWithGoogle: `Registrarse con Google`,
+      signUpWithFacebook: `Registrarse con Facebook`,
+      haveAccount: `¿Ya tienes una cuenta? Inicia sesión`,
+    },
+    notFound: {
+      seoTitle: `404 - Página no encontrada | Sandscape`,
+      seoDescription: `La página que buscas no existe. Vuelve a Sandscape para crear y jugar a juegos generados por IA.`,
+      heading: `404 - Página no encontrada`,
+      message: `La página que buscas no existe.`,
+      goHome: `Ir al inicio`,
+    },
+    share: {
+      linkCopied: `Enlace copiado`,
+      copyPrompt: `Copia este enlace:`,
+      instagramCopied: `Enlace copiado para Instagram`,
+      instagramCopyManual: `Copia este enlace para Instagram`,
+      instagramDescription: `Pégalo en tu historia, biografía o un mensaje directo.`,
+      title: `Compartir`,
+      copied: `Copiado`,
+      copy: `Copiar`,
+      more: `Más`,
+    },
+    header: {
+      toggleMenu: `Alternar menú`,
+      yourProjects: `Tus Proyectos`,
+      newProject: `Nuevo Proyecto`,
+      myAccount: `Mi Cuenta`,
+      joinSandscape: `Únete a Sandscape`,
+    },
+    followers: { empty: `No se encontraron seguidores.`, title: `Seguidores` },
+    following: { empty: `No sigues a nadie.`, title: `Siguiendo` },
+    history: {
+      title: `Historial`,
+      emptyTitle: `Aún no has jugado a ningún juego`,
+      emptyMessage: `Los juegos que juegues aparecerán aquí`,
+      browseGames: `Explorar juegos`,
+      seoTitle: `Historial | Sandscape`,
+      seoDescription: `Juegos a los que has jugado recientemente en Sandscape.`,
+      unknownCreator: `Desconocido`,
+      errorTitle: `No se pudo cargar tu historial`,
+      errorMessage: `Algo salió mal. Por favor, inténtalo de nuevo.`,
+      retry: `Reintentar`,
+    },
+    likes: {
+      browseGames: `Explorar juegos`,
+      emptyMessage: `Los juegos que te gusten aparecerán aquí`,
+      emptyTitle: `Aún no tienes juegos con me gusta`,
+      seoDescription: `Mira todos los juegos que te han gustado en Sandscape.`,
+      seoTitle: `Mis juegos favoritos | Sandscape`,
+      title: `Juegos favoritos`,
+      unknownCreator: `Desconocido`,
+    },
+    notifications: {
+      accept: `Aceptar`,
+      browseGames: `Explorar juegos`,
+      decline: `Rechazar`,
+      emptyDescription: `Cuando las personas te sigan, den me gusta o comenten tus juegos, o te inviten a colaborar, lo verás aquí.`,
+      emptyTitle: `Aún no tienes notificaciones`,
+      markAllRead: `Marcar todas como leídas`,
+      seoDescription: `Consulta tus notificaciones de Sandscape: seguidores, me gusta, comentarios, invitaciones a colaborar y menciones.`,
+      seoTitle: `Notificaciones | Sandscape`,
+      title: `Notificaciones`,
+      someone: `Alguien`,
+      aGame: `un juego`,
+      msgNewFollower: `{{name}} empezó a seguirte`,
+      msgGameLike: `A {{name}} le gustó tu juego "{{game}}"`,
+      msgGameComment: `{{name}} comentó en tu juego "{{game}}"`,
+      msgCommentReply: `{{name}} respondió a tu comentario`,
+      msgCollabInvite: `{{name}} te invitó a colaborar en un proyecto`,
+      msgChatMention: `{{name}} te mencionó en el chat`,
+      msgDefault: `Tienes una nueva notificación`,
+    },
+    profile: {
+      activity: `Actividad`,
+      avatarUploadFailed: `Error al subir el avatar: `,
+      bioPlaceholder: `Tu biografía`,
+      createFirstGame: `Crea tu primer juego`,
+      deleteProjectConfirm: `¿Seguro que quieres eliminar este proyecto?`,
+      deleteProjectFailed: `No se pudo eliminar el proyecto`,
+      editProfile: `Editar perfil`,
+      follow: `Seguir`,
+      followStatusFailed: `No se pudo actualizar el estado de seguimiento.`,
+      followers: `Seguidores`,
+      following: `Siguiendo`,
+      goHome: `Ir al inicio`,
+      loadingProjects: `Cargando proyectos...`,
+      myProjects: `Mis proyectos`,
+      noProjects: `Aún no tienes proyectos`,
+      noPublishedGames: `Aún no tienes juegos publicados`,
+      noRecentActivity: `Sin actividad reciente`,
+      notFound: `Perfil no encontrado.`,
+      publishedGames: `Juegos publicados`,
+      saving: `Guardando...`,
+      seoDefaultCreator: `este creador`,
+      seoDefaultName: `Perfil de usuario`,
+      seoDescription: `Descubre los juegos y la actividad de {{name}} en Sandscape. Únete para seguir, jugar y colaborar.`,
+      seoKeywords: `{{name}}, creador de juegos, juegos con IA, perfil de jugador, portafolio de juegos, usuario de Sandscape`,
+      seoTitle: `{{name}} | Sandscape`,
+      statusInProgress: `En progreso`,
+      unfollow: `Dejar de seguir`,
+      updateProfileFailed: `Error al actualizar el perfil: `,
+    },
+    publish: {
+      compatibility: `Compatibilidad`,
+      compatibilityBoth: `Escritorio y móvil`,
+      compatibilityDesktop: `Solo escritorio`,
+      compatibilityMobile: `Solo móvil`,
+      compatibilityHint: `En qué dispositivos funcionan realmente tus controles. Los jugadores lo ven antes de iniciar.`,
+      distribution: `Distribución`,
+      distributionDesc: `Decide quién puede encontrar tu juego y luego publícalo.`,
+      advancedSettings: `Ajustes avanzados`,
+      advancedSettingsDesc: `Monetización, clasificaciones y controles de comunidad: aún no disponibles, se muestran aquí para que sepas lo que viene.`,
+      gameplayReplace: `Reemplazar`,
+      accessTier: `Nivel de acceso`,
+      accessTierFree: `Gratis para jugar`,
+      ageRatingEveryone: `Para todos`,
+      allowRemixing: `Permitir remezclas`,
+      allowRemixingDesc: `Los colaboradores pueden crear variantes con atribución.`,
+      comingSoon: `Próximamente`,
+      coverAlt: `Portada`,
+      coverArtPreviewAlt: `Vista previa de la portada`,
+      enableComments: `Habilitar comentarios`,
+      enableCommentsDesc: `Abre conversaciones en hilo en la página de tu juego.`,
+      enableTipping: `Habilitar propinas`,
+      enableTippingDesc: `Permite que los fans dejen Sand Coins después de jugar.`,
+      estimatedPlaytimeValue: `10-15 minutos`,
+      gameplayEncouragement: `Puedes publicar sin él, pero los juegos con vídeo de jugabilidad se juegan mucho más.`,
+      gameplayOptional: `Opcional`,
+      leaderboard: `Tabla de clasificación`,
+      leaderboardDesc: `Lleva un registro de los mejores jugadores para fomentar la rejugabilidad.`,
+      previewDescriptionPlaceholder: `Describe la promesa de tu mundo para atraer a los jugadores.`,
+      sandCoinPrice: `Precio en Sand Coin`,
+      sandCoinPricePlaceholder: `Establece el precio de entrada`,
+      somethingWentWrong: `Algo salió mal`,
+      soonBadge: `Pronto`,
+      spectatorMode: `Modo espectador`,
+      spectatorModeDesc: `Permite que los miembros de la comunidad vean sesiones en vivo.`,
+      statusCompleted: `completado`,
+      statusDraft: `borrador`,
+      updatedAgo: `Actualizado {{time}}`,
+      leaderboardEnableDesc: `Muestra clasificaciones en la página del juego y permite que el juego envíe resultados.`,
+      leaderboardPublishFirst: `Publica una vez para configurar las clasificaciones.`,
+      leaderboardLoading: `Cargando ajustes…`,
+      leaderboardNoManifest: `Esta versión no incluye sandscape.leaderboard.json. Pide al asistente «añade una clasificación» y publica de nuevo.`,
+      leaderboardManifestInvalid: `El archivo de clasificación no es válido:`,
+      leaderboardManifestFound: `Esta versión declara {{count}} tabla(s).`,
+      leaderboardBoards: `Tablas`,
+      leaderboardAddBoard: `Añadir tabla`,
+      leaderboardNoBoards: `Aún no hay tablas.`,
+      leaderboardBoardTitle: `Título de la tabla`,
+      leaderboardBoardEnabled: `Mostrar esta tabla`,
+      leaderboardGroupBy: `Clasificar`,
+      leaderboardByPlayer: `Jugadores`,
+      leaderboardMetric: `Métrica`,
+      leaderboardAggregate: `Por`,
+      leaderboardPeriod: `Periodo`,
+      leaderboardAggregate_max: `Mejor`,
+      leaderboardAggregate_min: `Menor`,
+      leaderboardAggregate_sum: `Total`,
+      leaderboardAggregate_count: `Recuento`,
+      leaderboardAggregate_avg: `Media`,
+      leaderboardAggregate_latest: `Último`,
+      leaderboardOriginManifest: `Del juego`,
+      leaderboardOriginCreator: `Tuya`,
+      leaderboardResetAction: `Reiniciar`,
+      leaderboardReset: `¿Reiniciar esta tabla?`,
+      leaderboardResetConfirm: `La tabla empieza vacía. Los resultados se conservan.`,
+      leaderboardResetDone: `Tabla reiniciada`,
+      leaderboardDeleteAction: `Eliminar`,
+      leaderboardDelete: `¿Eliminar esta tabla?`,
+      leaderboardDeleteConfirm: `La tabla desaparece de la página. Los resultados se conservan.`,
+      leaderboardDeleted: `Tabla eliminada`,
+      leaderboardCreate: `Crear`,
+      leaderboardCancel: `Cancelar`,
+      leaderboardBoardAdded: `Tabla añadida`,
+      leaderboardOn: `Clasificaciones activadas`,
+      leaderboardOff: `Clasificaciones desactivadas`,
+      leaderboardSaveFailed: `No se pudo guardar`,
+      leaderboardManifestOwned: `Esta tabla viene del juego. Cualquier cambio aquí —incluido ocultarla— la hace tuya, y las versiones futuras dejarán de actualizarla.`,
+    },
+    settings: {
+      accountDeleteFailed: `No se pudo eliminar la cuenta`,
+      accountDeleted: `Tu cuenta ha sido eliminada`,
+      accountDescription: `Administra los datos de tu inicio de sesión.`,
+      accountTitle: `Cuenta`,
+      appearanceDescription: `Personaliza la apariencia y el estilo de Sandscape.`,
+      appearanceTitle: `Apariencia`,
+      avatarHint: `JPG o PNG. Se guarda cuando haces clic en Guardar cambios.`,
+      bioLabel: `Biografía`,
+      bioPlaceholder: `Cuéntale a la comunidad sobre ti`,
+      changeAvatar: `Cambiar avatar`,
+      changeEmail: `Cambiar correo electrónico`,
+      changeEmailHint: `Enviaremos un enlace de confirmación a la nueva dirección. Tu correo electrónico solo cambia después de que lo confirmes.`,
+      changePasswordHint: `Elige una nueva contraseña (al menos 8 caracteres).`,
+      changePasswordTitle: `Cambiar contraseña`,
+      confirmPasswordLabel: `Confirmar nueva contraseña`,
+      confirmPasswordPlaceholder: `Confirmar nueva contraseña`,
+      deleteAccountAction: `Eliminar cuenta`,
+      deleteAccountConfirmDesc: `Esto elimina permanentemente tu perfil, me gusta, comentarios, seguidores, notificaciones y proyectos. Tus juegos publicados permanecen activos pero anonimizados. Esta acción no se puede deshacer.`,
+      deleteAccountConfirmTitle: `¿Eliminar tu cuenta?`,
+      deleteAccountHint: `Elimina permanentemente tu cuenta. Esto no se puede deshacer. Los juegos que hayas publicado seguirán activos pero ya no se te atribuirán.`,
+      deleteAccountTitle: `Eliminar cuenta`,
+      deleteMyAccount: `Eliminar mi cuenta`,
+      emailAlreadyYours: `Ese ya es tu correo electrónico`,
+      emailConfirmationDesc: `Revisa {{email}} para confirmar el cambio.`,
+      emailConfirmationSent: `Correo de confirmación enviado`,
+      emailInvalid: `Introduce una dirección de correo electrónico válida`,
+      emailPlaceholder: `tu@ejemplo.com`,
+      emailUpdateFailed: `No se pudo actualizar el correo electrónico`,
+      newPasswordLabel: `Nueva contraseña`,
+      newPasswordPlaceholder: `Nueva contraseña`,
+      notifCommentRepliesDesc: `Cuando alguien responde a tu comentario`,
+      notifCommentRepliesLabel: `Respuestas a comentarios`,
+      notifGameCommentsDesc: `Cuando alguien comenta tu juego`,
+      notifGameCommentsLabel: `Comentarios del juego`,
+      notifGameLikesDesc: `Cuando a alguien le gusta tu juego`,
+      notifGameLikesLabel: `Me gusta del juego`,
+      notifMentionsDesc: `Cuando alguien te menciona en el chat`,
+      notifMentionsLabel: `Menciones`,
+      notifNewFollowersDesc: `Cuando alguien te sigue`,
+      notifNewFollowersLabel: `Nuevos seguidores`,
+      notificationsDescription: `Elige qué notificaciones quieres recibir. Las invitaciones a colaborar siempre se entregan.`,
+      notificationsTitle: `Notificaciones`,
+      passwordTooShort: `La contraseña debe tener al menos 8 caracteres`,
+      passwordUpdateFailed: `No se pudo actualizar la contraseña`,
+      passwordUpdated: `Contraseña actualizada`,
+      passwordsDontMatch: `Las contraseñas no coinciden`,
+      prefUpdateFailed: `No se pudo actualizar la preferencia`,
+      profileDescription: `Actualiza cómo apareces ante los demás en Sandscape.`,
+      profileTitle: `Perfil`,
+      profileUpdateFailed: `No se pudo actualizar el perfil`,
+      profileUpdated: `Perfil actualizado`,
+      saveChanges: `Guardar cambios`,
+      seoDescription: `Administra tu cuenta, perfil y preferencias de Sandscape.`,
+      seoTitle: `Configuración | Sandscape`,
+      tabAccount: `Cuenta`,
+      tabAppearance: `Apariencia`,
+      tabNotifications: `Notificaciones`,
+      tabProfile: `Perfil`,
+      themeDark: `Oscuro`,
+      themeLabel: `Tema`,
+      themeLight: `Claro`,
+      themeSystem: `Sistema`,
+      updatePassword: `Actualizar contraseña`,
+      usernameEmpty: `El nombre de usuario no puede estar vacío`,
+      usernameLabel: `Nombre de usuario`,
+      usernamePlaceholder: `Tu nombre de usuario`,
+    },
+    createPrompt: {
+      recentProjects: `Proyectos recientes`,
+      noPreview: `Sin vista previa`,
+      title: `¿Qué vas a crear?`,
+      tagline: `Juegos impulsados por tu imaginación`,
+      placeholder: `Describe tu idea de juego...`,
+      removeTag: `Quitar {{tag}}`,
+      genresMore: `Más`,
+      genresLess: `Menos`,
+      viewAll: `Ver todo`,
+      genres: {
+        action: `Acción`,
+        adventure: `Aventura`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `Simulación`,
+        puzzle: `Puzle`,
+        rpg: `RPG`,
+        racing: `Carreras`,
+        strategy: `Estrategia`,
+        survival: `Supervivencia`,
+        horror: `Terror`,
+      },
+    },
+    authPage: {
+      title: `Inicia sesión o crea una cuenta`,
+      signInTitle: `Iniciar sesión`,
+      description: `Continúa con un proveedor o usa tu correo. Cualquiera puede crear una cuenta.`,
+      createAccount: `Crear cuenta`,
+      signIn: `Iniciar sesión`,
+      codeTitle: `Introduce tu código`,
+      codeDescription: `Introduce el código de verificación que enviamos. El proceso es el mismo para cuentas nuevas y existentes.`,
+      updatePasswordTitle: `Establece una nueva contraseña`,
+      updatePasswordDescription: `Elige una contraseña segura para tu cuenta de Sandscape.`,
+      recoveryTitle: `Restablece tu contraseña`,
+      recoveryDescription: `Enviaremos un enlace seguro si la dirección puede recibirlo.`,
+      checkEmailTitle: `Revisa tu correo`,
+      confirmRecoveryDescription: `Si la dirección puede recibir un correo de restablecimiento, llegará pronto.`,
+      continueWith: {
+        google: `Continuar con Google`,
+        github: `Continuar con GitHub`,
+        apple: `Continuar con Apple`,
+        facebook: `Continuar con Facebook`,
+      },
+      or: `o`,
+      emailPlaceholder: `tu@ejemplo.com`,
+      continueWithEmail: `Continuar con correo`,
+      usePassword: `Iniciar sesión con contraseña`,
+      codeLabel: `Código de verificación`,
+      verifyCode: `Verificar código`,
+      resendCountdown: `Reenviar en {{seconds}} s`,
+      resendCode: `Reenviar código`,
+      changeEmail: `Cambiar correo`,
+      password: `Contraseña`,
+      signInWithPassword: `Iniciar sesión con contraseña`,
+      passwordSigninNewAccountHint: `¿Nuevo en Sandscape? Vuelve y continúa con tu correo. Podrás establecer una contraseña al configurar tu cuenta.`,
+      forgotPassword: `¿Olvidaste la contraseña?`,
+      backToOptions: `Volver a las opciones de acceso`,
+      sendRecovery: `Enviar enlace`,
+      newPassword: `Nueva contraseña`,
+      confirmPassword: `Confirmar contraseña`,
+      updatePassword: `Actualizar contraseña`,
+      genericEmailNotice: `Por privacidad, este mensaje es igual exista o no una cuenta.`,
+      legal: `Al continuar, aceptas los <terms>Términos de Sandscape</terms> y reconoces la <privacy>Política de privacidad</privacy>.`,
+      callbackFailedTitle: `No pudimos completar el inicio de sesión`,
+      tryAgain: `Intentar de nuevo`,
+      finishing: `Completando el inicio de sesión...`,
+      errors: {
+        generic: `Algo salió mal. Inténtalo de nuevo.`,
+        usernameTaken: `Ese nombre de usuario ya está en uso.`,
+        invalidCode: `El código no es válido o ha caducado. Solicita uno nuevo.`,
+        rateLimited: `Demasiados intentos. Espera un momento.`,
+        captcha: `Falló la verificación de seguridad.`,
+        captchaRequired: `Completa la comprobación de seguridad.`,
+        invalidCredentials: `El correo o la contraseña no son correctos, o la cuenta aún no admite contraseña.`,
+        network: `No pudimos conectar con el servicio. Revisa tu conexión.`,
+        validation: `Revisa los datos e inténtalo de nuevo.`,
+        providerDenied: `El acceso del proveedor se canceló o denegó.`,
+        callback: `La respuesta de acceso no es válida o ha caducado.`,
+        emailRequired: `Introduce un correo válido.`,
+        codeRequired: `Introduce el código de verificación completo.`,
+        credentialsRequired: `Introduce tu correo y contraseña.`,
+        passwordTooShort: `Usa al menos 8 caracteres.`,
+        passwordMismatch: `Las contraseñas no coinciden.`,
+        recoverySession: `Solicita un nuevo enlace de restablecimiento.`,
+      },
+    },
+    onboarding: {
+      title: `Elige cómo aparecerás`,
+      description: `Se requiere un nombre de usuario público. Todo lo demás es opcional.`,
+      completedTitle: `Tu cuenta está lista`,
+      optionalRetryDescription: `Tu nombre público está guardado. Reintenta los pasos opcionales o continúa.`,
+      username: `Nombre de usuario público`,
+      usernameRules: `Usa entre 3 y 30 letras, números, guiones bajos o guiones. Es público y no puede ser un correo.`,
+      avatar: `Avatar (opcional)`,
+      chooseAvatar: `Elegir imagen`,
+      password: `Establecer contraseña (opcional)`,
+      passwordHint: `Puedes seguir usando códigos y establecerla más tarde en Seguridad.`,
+      creatorEnabled: `Acceso de creador activado`,
+      creatorEnabledHint: `Ya puedes crear y publicar juegos.`,
+      subscribeForCreation: `Unirse a la alfa (opcional)`,
+      subscribeForCreationHint: `La alfa está abierta. Al terminar te llevaremos a los planes para que empieces a crear enseguida.`,
+      finish: `Finalizar configuración`,
+      continueWithoutOptional: `Continuar sin pasos opcionales`,
+      retryOptional: `Reintentar pasos opcionales`,
+      optionalFailedTitle: `Algunos pasos opcionales necesitan atención`,
+      optionalFailures: {
+        avatar: `No se pudo guardar el avatar.`,
+        password: `No se pudo establecer la contraseña.`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `Métodos de acceso activos`,
+      signInMethodsHint: `Formas verificadas de acceder a esta cuenta.`,
+      methodEmailCode: `Código por correo`,
+      methodPassword: `Contraseña`,
+      setPasswordTitle: `Establecer contraseña`,
+      setPassword: `Establecer contraseña`,
+    },
+    mailingList: {
+      title: `Unirse a la lista de correo`,
+      message: `Recibe noticias ocasionales de Sandscape. Esto no crea una cuenta ni solicita acceso de creador.`,
+      successTitle: `Suscripción confirmada`,
+      successMessage: `Estás en la lista de correo.`,
+      alreadyRegisteredTitle: `Ya estás suscrito`,
+      alreadyRegisteredMessage: `Ese correo ya está en la lista.`,
+      errorTitle: `Falló la suscripción`,
+      errorMessage: `No se pudo unir a la lista. Inténtalo de nuevo.`,
+      emailPlaceholder: `tu@ejemplo.com`,
+      join: `Unirse a la lista de correo`,
+    },
+    leaderboard: {
+      title: `Clasificación`,
+      periodLabel: `Periodo`,
+      period: {
+        all: `Histórico`,
+        daily: `Hoy`,
+        weekly: `Esta semana`,
+        monthly: `Este mes`,
+        default: `Por defecto`,
+      },
+      rank: `#`,
+      player: `Jugador`,
+      entries: `Partidas`,
+      you: `Tú`,
+      yourRank: `Tu posición`,
+      empty: `Aún no hay resultados: sé el primero en jugar.`,
+      error: `No se pudo cargar la clasificación.`,
+      refresh: `Actualizar`,
+      unknownPlayer: `Jugador`,
+    },
+  },
+  Ne = {
+    billing: {
+      alphaOpenTitle: `L’alpha est ouverte`,
+      alphaOpenBody: `Choisissez un abonnement ou un pack de Sandcoins pour débloquer tout le studio de création, de votre première idée à votre jeu publié.`,
+    },
+    navigation: {
+      home: `Accueil`,
+      search: `Rechercher`,
+      create: `Créer`,
+      profile: `Profil`,
+      settings: `Paramètres`,
+      history: `Historique`,
+      following: `Abonnements`,
+      followers: `Abonnés`,
+      likes: `J'aime`,
+      logout: `Déconnexion`,
+      menu: `Menu`,
+      myStuff: `Mes Contenus`,
+      social: `Social`,
+      tools: `Outils`,
+      notifications: `Notifications`,
+      help: `Aide`,
+      toggleMenu: `Basculer le menu mobile`,
+      publish: `Publier`,
+    },
+    auth: {
+      login: `Connexion`,
+      register: `S'inscrire`,
+      resetPassword: `Réinitialiser le mot de passe`,
+    },
+    gameCard: {
+      likes: `j'aime`,
+      comments: `commentaires`,
+      views: `vues`,
+      live: `En direct`,
+    },
+    homePage: {
+      joinAlpha: `Rejoindre l’alpha`,
+      trending: `Tendances`,
+      newReleases: `Nouveautés`,
+      allGames: `Tous les jeux`,
+    },
+    categories: {
+      all: `Tous les jeux`,
+      action: `Action`,
+      rpg: `RPG`,
+      puzzle: `Puzzle`,
+      racing: `Course`,
+      strategy: `Stratégie`,
+    },
+    general: {
+      loading: `Chargement...`,
+      submit: `Envoyer`,
+      cancel: `Annuler`,
+      save: `Enregistrer`,
+      delete: `Supprimer`,
+      search: `Rechercher`,
+      language: `Langue`,
+      email: `Email`,
+      submitting: `Envoi en cours...`,
+    },
+    footer: {
+      discord: `Discord`,
+      twitter: `X/Twitter`,
+      instagram: `Instagram`,
+      youtube: `YouTube`,
+      tiktok: `TikTok`,
+      links: `À propos | Conditions | Confidentialité`,
+      aboutLinks: `À propos | Conditions | Confidentialité`,
+      copyright: `© {{year}} Sandscape. Tous droits réservés.`,
+      poweredBy: `Propulsé par`,
+      product: `Produit`,
+      resources: `Ressources`,
+      company: `Entreprise`,
+      v1Link: `Sandscape v1`,
+      blogLink: `Blog`,
+      faqLink: `FAQ`,
+      aboutLink: `À propos`,
+      contactLink: `Contact`,
+      privacyLink: `Politique de confidentialité`,
+      termsLink: `Conditions d'utilisation`,
+      aria: {
+        twitter: `X/Twitter`,
+        instagram: `Instagram`,
+        tiktok: `TikTok`,
+        youtube: `YouTube`,
+        discord: `Discord`,
+      },
+    },
+    invite: {
+      title: `Inviter des Collaborateurs`,
+      searchPlaceholder: `Rechercher des utilisateurs...`,
+      notImplemented: `La fonctionnalité de recherche d'utilisateurs n'est pas encore implémentée.`,
+      searching: `Recherche en cours...`,
+    },
+    cookies: {
+      accept: `Tout accepter`,
+      decline: `Tout refuser`,
+      notice: `Avis de Cookies`,
+      message: `Nous utilisons des cookies facultatifs d’analyse et de publicité que vous pouvez accepter ou refuser. Consultez notre`,
+      policy: `politique de cookies`,
+    },
+    seo: {
+      title: `Sandscape – Créez des jeux sans coder | Studio créatif de jeux`,
+      description: `Sandscape est un studio créatif pour faire des jeux. Décrivez une idée, affinez-la avec des outils visuels ou construisez chaque détail à la main, puis jouez et partagez vos créations. Créez un compte dès aujourd'hui !`,
+      keywords: `Créateur de jeu IA, faire des jeux avec IA, générateur de jeu IA, créer des jeux sans coder, créateur de jeu mobile, plateforme de création de jeu, développement de jeu collaboratif, du texte au jeu, développement de jeu IA, création de jeu sans code`,
+    },
+    homeBanners: { playCta: `Jouer` },
+    bannerCarousel: {
+      mute: `Couper le son`,
+      unmute: `Activer le son`,
+      closeBanner: `Fermer la bannière`,
+      showBanner: `Afficher la bannière {{number}}`,
+    },
+    game: {
+      compat: {
+        title: `Conçu pour un autre appareil`,
+        desktopOnly: `Ce jeu a été conçu pour un ordinateur — il risque de ne pas fonctionner correctement sur cet appareil.`,
+        mobileOnly: `Ce jeu a été conçu pour mobile — il risque de ne pas fonctionner correctement sur cet appareil.`,
+        playAnyway: `Jouer quand même`,
+      },
+      notFound: `Jeu introuvable`,
+      removedOrIncorrect: `Ce jeu a peut-être été supprimé ou le lien est incorrect.`,
+      backToGames: `Retour aux jeux`,
+      noGameSpecified: `Aucun jeu spécifié. Utilisez un lien tel que /play?g=CODE`,
+      notAvailable: `Jeu indisponible — aucune version publiée trouvée.`,
+      seoDescriptionFallback: `Découvrez un gameplay, des graphismes et des mécaniques générés par l'IA.`,
+      shareTextFallback: `Un jeu génial créé sur Sandscape !`,
+      remix: `Remixer`,
+      like: `J'aime`,
+      unlike: `Je n'aime plus`,
+      follow: `Suivre`,
+      unfollow: `Ne plus suivre`,
+      fullscreen: `Plein écran`,
+      exitFullscreen: `Quitter le plein écran`,
+      showMore: `Voir plus`,
+      showLess: `Voir moins`,
+      views: `{{count}} vues`,
+      publishedPrefix: `Publié le `,
+      comments: `Commentaires`,
+      beFirstToComment: `Soyez le premier à commenter.`,
+      relatedGames: `Jeux similaires`,
+      commentPlaceholder: `Ajouter un commentaire...`,
+      post: `Publier`,
+      posting: `Publication...`,
+      registerToComment: `Inscrivez-vous pour commenter ce jeu`,
+      reply: `Répondre`,
+      replyToPlaceholder: `Répondre à {{name}}...`,
+      delete: `Supprimer`,
+      deleteCommentTitle: `Supprimer le commentaire ?`,
+      deleteCommentDescription: `Ce commentaire sera définitivement supprimé. Cette action est irréversible.`,
+      toast: {
+        likeFailed: `Échec de la mise à jour du « J'aime ».`,
+        followFailed: `Échec de la mise à jour de l'abonnement`,
+        commentFailed: `Échec de la publication du commentaire.`,
+        replyFailed: `Échec de la publication de la réponse.`,
+        deleteFailed: `Échec de la suppression du commentaire.`,
+      },
+    },
+    search: {
+      liveBadge: `En direct`,
+      shareGame: `Partager le jeu`,
+      noBio: `Aucune biographie disponible`,
+      view: `Voir`,
+      seo: {
+        titleWithQuery: `Résultats de recherche pour « {{query}} » - Sandscape`,
+        title: `Recherche - Sandscape`,
+        description: `Recherchez des jeux, des créateurs et des chaînes sur Sandscape.`,
+      },
+      heading: {
+        results: `Résultats pour « {{query}} »`,
+        default: `Recherche`,
+      },
+      empty: {
+        title: `Recherchez des jeux et des créateurs`,
+        description: `Utilisez la barre de recherche en haut pour trouver des jeux, des créateurs et des chaînes`,
+      },
+      noResults: {
+        title: `Aucun résultat trouvé`,
+        description: `Nous n'avons trouvé aucune correspondance pour « {{query}} ». Essayez un autre terme de recherche.`,
+      },
+      tabs: { all: `Tous les résultats`, games: `Jeux`, creators: `Créateurs` },
+      section: { games: `Jeux`, creators: `Créateurs` },
+      viewAllGames: `Voir les {{count}} jeux`,
+      viewAllCreators: `Voir les {{count}} créateurs`,
+      noGamesMatching: `Aucun jeu trouvé correspondant à « {{query}} »`,
+      noCreatorsMatching: `Aucun créateur trouvé correspondant à « {{query}} »`,
+    },
+    loginPage: {
+      toastSuccessTitle: `Succès`,
+      toastSuccessDesc: `Connexion réussie`,
+      toastErrorTitle: `Erreur`,
+      toastLoginFailed: `Échec de la connexion`,
+      toastOauthErrorTitle: `Erreur OAuth`,
+      toastOauthFailed: `Échec de l'authentification`,
+      toastEnterEmail: `Veuillez saisir votre adresse e-mail`,
+      toastMagicLinkSentTitle: `Lien magique envoyé`,
+      toastMagicLinkSentDesc: `Consultez votre boîte de réception pour trouver le lien de connexion.`,
+      toastMagicLinkFailed: `Échec de l'envoi du lien magique`,
+      title: `Bon retour`,
+      subtitleMagicLink: `Saisissez votre e-mail pour recevoir un lien de connexion`,
+      subtitlePassword: `Saisissez vos identifiants pour continuer`,
+      magicLinkConfirmPrefix: `Nous avons envoyé un lien magique à`,
+      magicLinkConfirmSuffix: `Consultez votre boîte de réception et cliquez sur le lien pour vous connecter.`,
+      backToLogin: `Retour à la connexion`,
+      password: `Mot de passe`,
+      emailPlaceholder: `Saisissez votre e-mail`,
+      passwordPlaceholder: `Saisissez votre mot de passe`,
+      sending: `Envoi...`,
+      sendMagicLink: `Envoyer le lien magique`,
+      signIn: `Se connecter`,
+      usePasswordInstead: `Se connecter avec un mot de passe`,
+      useMagicLinkInstead: `Se connecter avec un lien magique`,
+      forgotPassword: `Mot de passe oublié ?`,
+    },
+    registerPage: {
+      toastSuccessTitle: `Succès`,
+      toastSuccessDesc: `Compte créé avec succès`,
+      toastErrorTitle: `Erreur`,
+      toastOauthErrorTitle: `Erreur OAuth`,
+      title: `Créer un compte`,
+      subtitle: `Saisissez vos informations pour commencer`,
+      password: `Mot de passe`,
+      emailPlaceholder: `Saisissez votre e-mail`,
+      passwordPlaceholder: `Choisissez un mot de passe`,
+      createAccount: `Créer un compte`,
+      signUpWithGoogle: `S'inscrire avec Google`,
+      signUpWithFacebook: `S'inscrire avec Facebook`,
+      haveAccount: `Vous avez déjà un compte ? Connectez-vous`,
+    },
+    notFound: {
+      seoTitle: `404 - Page introuvable | Sandscape`,
+      seoDescription: `La page que vous recherchez n'existe pas. Retournez sur Sandscape pour créer et jouer à des jeux générés par l'IA.`,
+      heading: `404 - Page introuvable`,
+      message: `La page que vous recherchez n'existe pas.`,
+      goHome: `Accueil`,
+    },
+    share: {
+      linkCopied: `Lien copié`,
+      copyPrompt: `Copiez ce lien :`,
+      instagramCopied: `Lien copié pour Instagram`,
+      instagramCopyManual: `Copiez ce lien pour Instagram`,
+      instagramDescription: `Collez-le dans votre story, votre bio ou un message privé.`,
+      title: `Partager`,
+      copied: `Copié`,
+      copy: `Copier`,
+      more: `Plus`,
+    },
+    header: {
+      toggleMenu: `Basculer le menu`,
+      yourProjects: `Vos Projets`,
+      newProject: `Nouveau Projet`,
+      myAccount: `Mon Compte`,
+      joinSandscape: `Rejoindre Sandscape`,
+    },
+    followers: { empty: `Aucun abonné trouvé.`, title: `Abonnés` },
+    following: { empty: `Vous ne suivez personne.`, title: `Abonnements` },
+    history: {
+      title: `Historique`,
+      emptyTitle: `Aucun jeu joué pour l'instant`,
+      emptyMessage: `Les jeux auxquels vous jouez apparaîtront ici`,
+      browseGames: `Parcourir les jeux`,
+      seoTitle: `Historique | Sandscape`,
+      seoDescription: `Jeux auxquels vous avez récemment joué sur Sandscape.`,
+      unknownCreator: `Inconnu`,
+      errorTitle: `Impossible de charger votre historique`,
+      errorMessage: `Une erreur s'est produite. Veuillez réessayer.`,
+      retry: `Réessayer`,
+    },
+    likes: {
+      browseGames: `Parcourir les jeux`,
+      emptyMessage: `Les jeux que vous aimez apparaîtront ici`,
+      emptyTitle: `Aucun jeu aimé pour l'instant`,
+      seoDescription: `Consultez tous les jeux que vous avez aimés sur Sandscape.`,
+      seoTitle: `Mes jeux aimés | Sandscape`,
+      title: `Jeux aimés`,
+      unknownCreator: `Inconnu`,
+    },
+    notifications: {
+      accept: `Accepter`,
+      browseGames: `Parcourir les jeux`,
+      decline: `Refuser`,
+      emptyDescription: `Lorsque des personnes vous suivent, aiment ou commentent vos jeux, ou vous invitent à collaborer, vous le verrez ici.`,
+      emptyTitle: `Aucune notification pour l'instant`,
+      markAllRead: `Tout marquer comme lu`,
+      seoDescription: `Consultez vos notifications Sandscape — abonnements, mentions J'aime, commentaires, invitations à collaborer et mentions.`,
+      seoTitle: `Notifications | Sandscape`,
+      title: `Notifications`,
+      someone: `Quelqu'un`,
+      aGame: `un jeu`,
+      msgNewFollower: `{{name}} a commencé à vous suivre`,
+      msgGameLike: `{{name}} a aimé votre jeu "{{game}}"`,
+      msgGameComment: `{{name}} a commenté votre jeu "{{game}}"`,
+      msgCommentReply: `{{name}} a répondu à votre commentaire`,
+      msgCollabInvite: `{{name}} vous a invité à collaborer sur un projet`,
+      msgChatMention: `{{name}} vous a mentionné dans le chat`,
+      msgDefault: `Vous avez une nouvelle notification`,
+    },
+    profile: {
+      activity: `Activité`,
+      avatarUploadFailed: `Échec du téléversement de l'avatar : `,
+      bioPlaceholder: `Votre bio`,
+      createFirstGame: `Créez votre premier jeu`,
+      deleteProjectConfirm: `Voulez-vous vraiment supprimer ce projet ?`,
+      deleteProjectFailed: `Échec de la suppression du projet`,
+      editProfile: `Modifier le profil`,
+      follow: `Suivre`,
+      followStatusFailed: `Échec de la mise à jour du statut d'abonnement.`,
+      followers: `Abonnés`,
+      following: `Abonnements`,
+      goHome: `Accueil`,
+      loadingProjects: `Chargement des projets...`,
+      myProjects: `Mes projets`,
+      noProjects: `Aucun projet pour l'instant`,
+      noPublishedGames: `Aucun jeu publié pour l'instant`,
+      noRecentActivity: `Aucune activité récente`,
+      notFound: `Profil introuvable.`,
+      publishedGames: `Jeux publiés`,
+      saving: `Enregistrement...`,
+      seoDefaultCreator: `ce créateur`,
+      seoDefaultName: `Profil utilisateur`,
+      seoDescription: `Découvrez les jeux et l'activité de {{name}} sur Sandscape. Inscrivez-vous pour suivre, jouer et collaborer.`,
+      seoKeywords: `{{name}}, créateur de jeux, jeux IA, profil de joueur, portfolio de jeux, utilisateur Sandscape`,
+      seoTitle: `{{name}} | Sandscape`,
+      statusInProgress: `En cours`,
+      unfollow: `Ne plus suivre`,
+      updateProfileFailed: `Erreur lors de la mise à jour du profil : `,
+    },
+    publish: {
+      compatibility: `Compatibilité`,
+      compatibilityBoth: `Ordinateur et mobile`,
+      compatibilityDesktop: `Ordinateur uniquement`,
+      compatibilityMobile: `Mobile uniquement`,
+      compatibilityHint: `Les appareils sur lesquels vos commandes fonctionnent réellement. Les joueurs le voient avant de lancer le jeu.`,
+      distribution: `Distribution`,
+      distributionDesc: `Choisissez qui peut trouver votre jeu, puis mettez-le en ligne.`,
+      advancedSettings: `Paramètres avancés`,
+      advancedSettingsDesc: `Monétisation, classifications et contrôles communautaires — pas encore actifs, affichés ici pour vous montrer ce qui arrive.`,
+      gameplayReplace: `Remplacer`,
+      accessTier: `Niveau d'accès`,
+      accessTierFree: `Gratuit`,
+      ageRatingEveryone: `Tous publics`,
+      allowRemixing: `Autoriser le remixage`,
+      allowRemixingDesc: `Les collaborateurs peuvent créer des variantes avec attribution.`,
+      comingSoon: `Bientôt disponible`,
+      coverAlt: `Couverture`,
+      coverArtPreviewAlt: `Aperçu de la couverture`,
+      enableComments: `Activer les commentaires`,
+      enableCommentsDesc: `Ouvrez des conversations en fil de discussion sur la page de votre jeu.`,
+      enableTipping: `Activer les pourboires`,
+      enableTippingDesc: `Permettez aux fans de laisser des Sand Coins après leurs sessions de jeu.`,
+      estimatedPlaytimeValue: `10-15 minutes`,
+      gameplayEncouragement: `Vous pouvez publier sans, mais les jeux avec une séquence de gameplay sont bien plus joués.`,
+      gameplayOptional: `Facultatif`,
+      leaderboard: `Classement`,
+      leaderboardDesc: `Suivez les meilleurs joueurs pour augmenter la rejouabilité.`,
+      previewDescriptionPlaceholder: `Décrivez la promesse de votre univers pour attirer les joueurs.`,
+      sandCoinPrice: `Prix en Sand Coins`,
+      sandCoinPricePlaceholder: `Définissez le prix d'entrée`,
+      somethingWentWrong: `Une erreur s'est produite`,
+      soonBadge: `Bientôt`,
+      spectatorMode: `Mode spectateur`,
+      spectatorModeDesc: `Permettez aux membres de la communauté de regarder les sessions en direct.`,
+      statusCompleted: `terminé`,
+      statusDraft: `brouillon`,
+      updatedAgo: `Mis à jour {{time}}`,
+      leaderboardEnableDesc: `Affiche les classements sur la page du jeu et autorise le jeu à envoyer des résultats.`,
+      leaderboardPublishFirst: `Publiez une fois pour configurer les classements.`,
+      leaderboardLoading: `Chargement des réglages…`,
+      leaderboardNoManifest: `Cette version ne contient pas sandscape.leaderboard.json. Demandez à l'assistant « ajoute un classement », puis republiez.`,
+      leaderboardManifestInvalid: `Le fichier de classement est invalide :`,
+      leaderboardManifestFound: `Cette version déclare {{count}} classement(s).`,
+      leaderboardBoards: `Classements`,
+      leaderboardAddBoard: `Ajouter`,
+      leaderboardNoBoards: `Aucun classement pour l'instant.`,
+      leaderboardBoardTitle: `Titre du classement`,
+      leaderboardBoardEnabled: `Afficher ce classement`,
+      leaderboardGroupBy: `Classer`,
+      leaderboardByPlayer: `Joueurs`,
+      leaderboardMetric: `Mesure`,
+      leaderboardAggregate: `Par`,
+      leaderboardPeriod: `Période`,
+      leaderboardAggregate_max: `Meilleur`,
+      leaderboardAggregate_min: `Plus bas`,
+      leaderboardAggregate_sum: `Total`,
+      leaderboardAggregate_count: `Nombre`,
+      leaderboardAggregate_avg: `Moyenne`,
+      leaderboardAggregate_latest: `Dernier`,
+      leaderboardOriginManifest: `Du jeu`,
+      leaderboardOriginCreator: `À vous`,
+      leaderboardResetAction: `Réinitialiser`,
+      leaderboardReset: `Réinitialiser ce classement ?`,
+      leaderboardResetConfirm: `Le classement repart de zéro. Les résultats sont conservés.`,
+      leaderboardResetDone: `Classement réinitialisé`,
+      leaderboardDeleteAction: `Supprimer`,
+      leaderboardDelete: `Supprimer ce classement ?`,
+      leaderboardDeleteConfirm: `Le classement disparaît de la page. Les résultats sont conservés.`,
+      leaderboardDeleted: `Classement supprimé`,
+      leaderboardCreate: `Créer`,
+      leaderboardCancel: `Annuler`,
+      leaderboardBoardAdded: `Classement ajouté`,
+      leaderboardOn: `Classements activés`,
+      leaderboardOff: `Classements désactivés`,
+      leaderboardSaveFailed: `Enregistrement impossible`,
+      leaderboardManifestOwned: `Ce classement vient du jeu. Toute modification ici — y compris le masquer — vous l'attribue, et les prochaines versions cesseront de le mettre à jour.`,
+    },
+    settings: {
+      accountDeleteFailed: `Échec de la suppression du compte`,
+      accountDeleted: `Votre compte a été supprimé`,
+      accountDescription: `Gérez vos informations de connexion.`,
+      accountTitle: `Compte`,
+      appearanceDescription: `Personnalisez l'apparence et l'ambiance de Sandscape.`,
+      appearanceTitle: `Apparence`,
+      avatarHint: `JPG ou PNG. Enregistré lorsque vous cliquez sur Enregistrer les modifications.`,
+      bioLabel: `Bio`,
+      bioPlaceholder: `Parlez de vous à la communauté`,
+      changeAvatar: `Changer d'avatar`,
+      changeEmail: `Changer d'adresse e-mail`,
+      changeEmailHint: `Nous enverrons un lien de confirmation par e-mail à la nouvelle adresse. Votre e-mail ne change qu'après confirmation.`,
+      changePasswordHint: `Choisissez un nouveau mot de passe (au moins 8 caractères).`,
+      changePasswordTitle: `Changer de mot de passe`,
+      confirmPasswordLabel: `Confirmer le nouveau mot de passe`,
+      confirmPasswordPlaceholder: `Confirmer le nouveau mot de passe`,
+      deleteAccountAction: `Supprimer le compte`,
+      deleteAccountConfirmDesc: `Cette action supprime définitivement votre profil, vos mentions J'aime, vos commentaires, vos abonnements, vos notifications et vos projets. Vos jeux publiés restent en ligne mais sont anonymisés. Cette action est irréversible.`,
+      deleteAccountConfirmTitle: `Supprimer votre compte ?`,
+      deleteAccountHint: `Supprimez définitivement votre compte. Cette action est irréversible. Les jeux que vous avez publiés restent en ligne mais ne vous sont plus attribués.`,
+      deleteAccountTitle: `Supprimer le compte`,
+      deleteMyAccount: `Supprimer mon compte`,
+      emailAlreadyYours: `C'est déjà votre adresse e-mail`,
+      emailConfirmationDesc: `Consultez {{email}} pour confirmer le changement.`,
+      emailConfirmationSent: `E-mail de confirmation envoyé`,
+      emailInvalid: `Saisissez une adresse e-mail valide`,
+      emailPlaceholder: `vous@exemple.com`,
+      emailUpdateFailed: `Échec de la mise à jour de l'adresse e-mail`,
+      newPasswordLabel: `Nouveau mot de passe`,
+      newPasswordPlaceholder: `Nouveau mot de passe`,
+      notifCommentRepliesDesc: `Lorsque quelqu'un répond à votre commentaire`,
+      notifCommentRepliesLabel: `Réponses aux commentaires`,
+      notifGameCommentsDesc: `Lorsque quelqu'un commente votre jeu`,
+      notifGameCommentsLabel: `Commentaires sur les jeux`,
+      notifGameLikesDesc: `Lorsque quelqu'un aime votre jeu`,
+      notifGameLikesLabel: `Mentions J'aime sur les jeux`,
+      notifMentionsDesc: `Lorsque quelqu'un vous mentionne dans le chat`,
+      notifMentionsLabel: `Mentions`,
+      notifNewFollowersDesc: `Lorsque quelqu'un vous suit`,
+      notifNewFollowersLabel: `Nouveaux abonnés`,
+      notificationsDescription: `Choisissez les notifications que vous souhaitez recevoir. Les invitations à collaborer sont toujours envoyées.`,
+      notificationsTitle: `Notifications`,
+      passwordTooShort: `Le mot de passe doit comporter au moins 8 caractères`,
+      passwordUpdateFailed: `Échec de la mise à jour du mot de passe`,
+      passwordUpdated: `Mot de passe mis à jour`,
+      passwordsDontMatch: `Les mots de passe ne correspondent pas`,
+      prefUpdateFailed: `Échec de la mise à jour de la préférence`,
+      profileDescription: `Modifiez la façon dont vous apparaissez aux autres sur Sandscape.`,
+      profileTitle: `Profil`,
+      profileUpdateFailed: `Échec de la mise à jour du profil`,
+      profileUpdated: `Profil mis à jour`,
+      saveChanges: `Enregistrer les modifications`,
+      seoDescription: `Gérez votre compte, votre profil et vos préférences Sandscape.`,
+      seoTitle: `Paramètres | Sandscape`,
+      tabAccount: `Compte`,
+      tabAppearance: `Apparence`,
+      tabNotifications: `Notifications`,
+      tabProfile: `Profil`,
+      themeDark: `Sombre`,
+      themeLabel: `Thème`,
+      themeLight: `Clair`,
+      themeSystem: `Système`,
+      updatePassword: `Mettre à jour le mot de passe`,
+      usernameEmpty: `Le nom d'utilisateur ne peut pas être vide`,
+      usernameLabel: `Nom d'utilisateur`,
+      usernamePlaceholder: `Votre nom d'utilisateur`,
+    },
+    createPrompt: {
+      recentProjects: `Projets récents`,
+      noPreview: `Aucun aperçu`,
+      title: `Que allez-vous créer ?`,
+      tagline: `Des jeux propulsés par votre imagination`,
+      placeholder: `Décrivez votre idée de jeu...`,
+      removeTag: `Retirer {{tag}}`,
+      genresMore: `Plus`,
+      genresLess: `Moins`,
+      viewAll: `Tout voir`,
+      genres: {
+        action: `Action`,
+        adventure: `Aventure`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `Simulation`,
+        puzzle: `Puzzle`,
+        rpg: `RPG`,
+        racing: `Course`,
+        strategy: `Stratégie`,
+        survival: `Survie`,
+        horror: `Horreur`,
+      },
+    },
+    authPage: {
+      title: `Connectez-vous ou créez un compte`,
+      signInTitle: `Se connecter`,
+      description: `Continuez avec un fournisseur ou votre e-mail. La création de compte est ouverte à tous.`,
+      createAccount: `Créer un compte`,
+      signIn: `Se connecter`,
+      codeTitle: `Saisissez votre code`,
+      codeDescription: `Saisissez le code de vérification envoyé. Le parcours est identique pour les comptes nouveaux et existants.`,
+      updatePasswordTitle: `Définir un nouveau mot de passe`,
+      updatePasswordDescription: `Choisissez un mot de passe sécurisé pour votre compte Sandscape.`,
+      recoveryTitle: `Réinitialiser votre mot de passe`,
+      recoveryDescription: `Nous enverrons un lien sécurisé si l'adresse peut le recevoir.`,
+      checkEmailTitle: `Consultez vos e-mails`,
+      confirmRecoveryDescription: `Si l'adresse peut recevoir un e-mail de réinitialisation, il arrivera bientôt.`,
+      continueWith: {
+        google: `Continuer avec Google`,
+        github: `Continuer avec GitHub`,
+        apple: `Continuer avec Apple`,
+        facebook: `Continuer avec Facebook`,
+      },
+      or: `ou`,
+      emailPlaceholder: `vous@exemple.com`,
+      continueWithEmail: `Continuer avec l'e-mail`,
+      usePassword: `Se connecter avec un mot de passe`,
+      codeLabel: `Code de vérification`,
+      verifyCode: `Vérifier le code`,
+      resendCountdown: `Renvoyer dans {{seconds}} s`,
+      resendCode: `Renvoyer le code`,
+      changeEmail: `Changer d'e-mail`,
+      password: `Mot de passe`,
+      signInWithPassword: `Se connecter avec un mot de passe`,
+      passwordSigninNewAccountHint: `Nouveau sur Sandscape ? Revenez en arrière et continuez avec votre e-mail. Vous pourrez définir un mot de passe lors de la configuration de votre compte.`,
+      forgotPassword: `Mot de passe oublié ?`,
+      backToOptions: `Retour aux options de connexion`,
+      sendRecovery: `Envoyer le lien`,
+      newPassword: `Nouveau mot de passe`,
+      confirmPassword: `Confirmer le mot de passe`,
+      updatePassword: `Mettre à jour le mot de passe`,
+      genericEmailNotice: `Pour protéger votre vie privée, ce message est identique qu'un compte existe ou non.`,
+      legal: `En continuant, vous acceptez les <terms>Conditions de Sandscape</terms> et reconnaissez la <privacy>Politique de confidentialité</privacy>.`,
+      callbackFailedTitle: `La connexion n'a pas pu être finalisée`,
+      tryAgain: `Réessayer`,
+      finishing: `Finalisation de la connexion...`,
+      errors: {
+        generic: `Une erreur est survenue. Réessayez.`,
+        usernameTaken: `Ce nom d'utilisateur est déjà pris.`,
+        invalidCode: `Ce code est invalide ou expiré. Demandez-en un nouveau.`,
+        rateLimited: `Trop de tentatives. Patientez un instant.`,
+        captcha: `La vérification de sécurité a échoué.`,
+        captchaRequired: `Effectuez la vérification de sécurité.`,
+        invalidCredentials: `L'e-mail ou le mot de passe est incorrect, ou le compte n'est pas prêt pour ce mode.`,
+        network: `Connexion au service impossible. Vérifiez votre réseau.`,
+        validation: `Vérifiez les informations saisies.`,
+        providerDenied: `L'accès du fournisseur a été annulé ou refusé.`,
+        callback: `La réponse de connexion est invalide ou expirée.`,
+        emailRequired: `Saisissez une adresse e-mail valide.`,
+        codeRequired: `Saisissez le code de vérification complet.`,
+        credentialsRequired: `Saisissez l'e-mail et le mot de passe.`,
+        passwordTooShort: `Utilisez au moins 8 caractères.`,
+        passwordMismatch: `Les mots de passe ne correspondent pas.`,
+        recoverySession: `Demandez un nouveau lien de réinitialisation.`,
+      },
+    },
+    onboarding: {
+      title: `Choisissez votre apparence`,
+      description: `Un nom d'utilisateur public est requis. Tout le reste est facultatif.`,
+      completedTitle: `Votre compte est prêt`,
+      optionalRetryDescription: `Votre nom public est enregistré. Réessayez les étapes facultatives ou continuez.`,
+      username: `Nom d'utilisateur public`,
+      usernameRules: `Utilisez 3 à 30 lettres, chiffres, tirets bas ou tirets. Il est public et ne doit pas être un e-mail.`,
+      avatar: `Avatar (facultatif)`,
+      chooseAvatar: `Choisir une image`,
+      password: `Définir un mot de passe (facultatif)`,
+      passwordHint: `Vous pouvez continuer avec les codes e-mail et définir un mot de passe plus tard dans Sécurité.`,
+      creatorEnabled: `Accès créateur activé`,
+      creatorEnabledHint: `Vous pouvez maintenant créer et publier des jeux.`,
+      subscribeForCreation: `Rejoindre l'alpha (facultatif)`,
+      subscribeForCreationHint: `L'alpha est ouverte. Une fois la configuration terminée, nous vous présenterons les forfaits pour que vous puissiez créer tout de suite.`,
+      finish: `Terminer`,
+      continueWithoutOptional: `Continuer sans les étapes facultatives`,
+      retryOptional: `Réessayer les étapes facultatives`,
+      optionalFailedTitle: `Certaines étapes facultatives nécessitent votre attention`,
+      optionalFailures: {
+        avatar: `L'avatar n'a pas pu être enregistré.`,
+        password: `Le mot de passe n'a pas pu être défini.`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `Méthodes de connexion actives`,
+      signInMethodsHint: `Les moyens vérifiés d'accéder à ce compte.`,
+      methodEmailCode: `Code par e-mail`,
+      methodPassword: `Mot de passe`,
+      setPasswordTitle: `Définir un mot de passe`,
+      setPassword: `Définir le mot de passe`,
+    },
+    mailingList: {
+      title: `Rejoindre la liste de diffusion`,
+      message: `Recevez occasionnellement des nouvelles de Sandscape. Ceci ne crée pas de compte ni de demande d'accès créateur.`,
+      successTitle: `Inscription confirmée`,
+      successMessage: `Vous êtes sur la liste de diffusion.`,
+      alreadyRegisteredTitle: `Déjà inscrit`,
+      alreadyRegisteredMessage: `Cet e-mail est déjà inscrit.`,
+      errorTitle: `Échec de l'inscription`,
+      errorMessage: `Impossible de rejoindre la liste. Réessayez.`,
+      emailPlaceholder: `vous@exemple.com`,
+      join: `Rejoindre la liste de diffusion`,
+    },
+    leaderboard: {
+      title: `Classement`,
+      periodLabel: `Période`,
+      period: {
+        all: `Depuis toujours`,
+        daily: `Aujourd'hui`,
+        weekly: `Cette semaine`,
+        monthly: `Ce mois-ci`,
+        default: `Par défaut`,
+      },
+      rank: `#`,
+      player: `Joueur`,
+      entries: `Parties`,
+      you: `Vous`,
+      yourRank: `Votre rang`,
+      empty: `Aucun résultat pour l'instant — soyez le premier à jouer.`,
+      error: `Impossible de charger le classement pour le moment.`,
+      refresh: `Actualiser`,
+      unknownPlayer: `Joueur`,
+    },
+  },
+  Pe = {
+    billing: {
+      alphaOpenTitle: `Die Alpha ist offen`,
+      alphaOpenBody: `Wähle einen Tarif oder ein Sandcoin-Paket, um das gesamte Kreativstudio freizuschalten – von deiner ersten Idee bis zum veröffentlichten Spiel.`,
+    },
+    navigation: {
+      home: `Startseite`,
+      search: `Suche`,
+      create: `Erstellen`,
+      profile: `Profil`,
+      settings: `Einstellungen`,
+      history: `Verlauf`,
+      following: `Folge ich`,
+      followers: `Follower`,
+      likes: `Likes`,
+      logout: `Abmelden`,
+      menu: `Menü`,
+      myStuff: `Meine Sachen`,
+      social: `Sozial`,
+      tools: `Werkzeuge`,
+      notifications: `Benachrichtigungen`,
+      help: `Hilfe`,
+      toggleMenu: `Mobiles Menü umschalten`,
+      publish: `Veröffentlichen`,
+    },
+    auth: {
+      login: `Anmelden`,
+      register: `Registrieren`,
+      resetPassword: `Passwort zurücksetzen`,
+    },
+    gameCard: {
+      likes: `Likes`,
+      comments: `Kommentare`,
+      views: `Aufrufe`,
+      live: `Live`,
+    },
+    homePage: {
+      joinAlpha: `An der Alpha teilnehmen`,
+      trending: `Trending`,
+      newReleases: `Neuerscheinungen`,
+      allGames: `Alle Spiele`,
+    },
+    categories: {
+      all: `Alle Spiele`,
+      action: `Action`,
+      rpg: `RPG`,
+      puzzle: `Puzzle`,
+      racing: `Rennen`,
+      strategy: `Strategie`,
+    },
+    general: {
+      loading: `Lädt...`,
+      submit: `Senden`,
+      cancel: `Abbrechen`,
+      save: `Speichern`,
+      delete: `Löschen`,
+      search: `Suche`,
+      language: `Sprache`,
+      email: `E-Mail`,
+      submitting: `Wird gesendet...`,
+    },
+    footer: {
+      discord: `Discord`,
+      twitter: `X/Twitter`,
+      instagram: `Instagram`,
+      youtube: `YouTube`,
+      tiktok: `TikTok`,
+      links: `Über | Bedingungen | Datenschutz`,
+      aboutLinks: `Über | Bedingungen | Datenschutz`,
+      copyright: `© {{year}} Sandscape. Alle Rechte vorbehalten.`,
+      poweredBy: `Unterstützt von`,
+      product: `Produkt`,
+      resources: `Ressourcen`,
+      company: `Unternehmen`,
+      v1Link: `Sandscape v1`,
+      blogLink: `Blog`,
+      faqLink: `FAQ`,
+      aboutLink: `Über uns`,
+      contactLink: `Kontakt`,
+      privacyLink: `Datenschutzrichtlinie`,
+      termsLink: `Nutzungsbedingungen`,
+      aria: {
+        twitter: `X/Twitter`,
+        instagram: `Instagram`,
+        tiktok: `TikTok`,
+        youtube: `YouTube`,
+        discord: `Discord`,
+      },
+    },
+    invite: {
+      title: `Kollaborateure einladen`,
+      searchPlaceholder: `Benutzer suchen...`,
+      notImplemented: `Benutzersuche ist noch nicht implementiert.`,
+      searching: `Suche läuft...`,
+    },
+    cookies: {
+      accept: `Alle akzeptieren`,
+      decline: `Alle ablehnen`,
+      notice: `Cookie-Hinweis`,
+      message: `Wir verwenden optionale Analyse- und Werbe-Cookies, die du akzeptieren oder ablehnen kannst. Lies unsere`,
+      policy: `Cookie-Richtlinie zu`,
+    },
+    seo: {
+      title: `Sandscape – Spiele ohne Programmieren erstellen | Kreatives Spielestudio`,
+      description: `Sandscape ist ein Kreativstudio zum Erstellen von Spielen. Beschreibe eine Idee, verfeinere sie mit visuellen Werkzeugen oder baue jedes Detail von Hand – dann spiele und teile, was du erschaffst. Erstelle noch heute ein Konto!`,
+      keywords: `KI Spielersteller, Spiele mit KI erstellen, KI Spielgenerator, Spiele ohne Programmierung erstellen, mobiler Spielmacher, Spielerstellungsplattform, kollaborative Spielentwicklung, Prompt zum Spiel, KI Spielentwicklung, No-Code Spielerstellung`,
+    },
+    homeBanners: { playCta: `Spielen` },
+    bannerCarousel: {
+      mute: `Stumm`,
+      unmute: `Ton ein`,
+      closeBanner: `Banner schließen`,
+      showBanner: `Banner {{number}} anzeigen`,
+    },
+    game: {
+      compat: {
+        title: `Für ein anderes Gerät entwickelt`,
+        desktopOnly: `Dieses Spiel wurde für den Desktop entwickelt – auf diesem Gerät läuft es möglicherweise nicht richtig.`,
+        mobileOnly: `Dieses Spiel wurde für Mobilgeräte entwickelt – auf diesem Gerät läuft es möglicherweise nicht richtig.`,
+        playAnyway: `Trotzdem spielen`,
+      },
+      notFound: `Spiel nicht gefunden`,
+      removedOrIncorrect: `Dieses Spiel wurde möglicherweise entfernt oder der Link ist fehlerhaft.`,
+      backToGames: `Zurück zu den Spielen`,
+      noGameSpecified: `Kein Spiel angegeben. Verwende einen Link wie /play?g=CODE`,
+      notAvailable: `Spiel nicht verfügbar — kein veröffentlichter Build gefunden.`,
+      seoDescriptionFallback: `Erlebe KI-generiertes Gameplay, Grafik und Spielmechaniken.`,
+      shareTextFallback: `Ein großartiges Spiel, erstellt mit Sandscape!`,
+      remix: `Remixen`,
+      like: `Gefällt mir`,
+      unlike: `Gefällt mir nicht mehr`,
+      follow: `Folgen`,
+      unfollow: `Nicht mehr folgen`,
+      fullscreen: `Vollbild`,
+      exitFullscreen: `Vollbild beenden`,
+      showMore: `Mehr anzeigen`,
+      showLess: `Weniger anzeigen`,
+      views: `{{count}} Aufrufe`,
+      publishedPrefix: `Veröffentlicht `,
+      comments: `Kommentare`,
+      beFirstToComment: `Sei der Erste, der kommentiert.`,
+      relatedGames: `Ähnliche Spiele`,
+      commentPlaceholder: `Kommentar hinzufügen...`,
+      post: `Posten`,
+      posting: `Wird gepostet...`,
+      registerToComment: `Registriere dich, um dieses Spiel zu kommentieren`,
+      reply: `Antworten`,
+      replyToPlaceholder: `Antworte {{name}}...`,
+      delete: `Löschen`,
+      deleteCommentTitle: `Kommentar löschen?`,
+      deleteCommentDescription: `Dieser Kommentar wird dauerhaft entfernt. Diese Aktion kann nicht rückgängig gemacht werden.`,
+      toast: {
+        likeFailed: `Like-Status konnte nicht aktualisiert werden.`,
+        followFailed: `Folgen-Status konnte nicht aktualisiert werden`,
+        commentFailed: `Kommentar konnte nicht gepostet werden.`,
+        replyFailed: `Antwort konnte nicht gepostet werden.`,
+        deleteFailed: `Kommentar konnte nicht gelöscht werden.`,
+      },
+    },
+    search: {
+      liveBadge: `Live`,
+      shareGame: `Spiel teilen`,
+      noBio: `Keine Biografie verfügbar`,
+      view: `Ansehen`,
+      seo: {
+        titleWithQuery: `Suchergebnisse für "{{query}}" - Sandscape`,
+        title: `Suche - Sandscape`,
+        description: `Suche nach Spielen, Creators und Kanälen auf Sandscape.`,
+      },
+      heading: { results: `Ergebnisse für "{{query}}"`, default: `Suche` },
+      empty: {
+        title: `Suche nach Spielen und Creators`,
+        description: `Nutze die Suchleiste oben, um Spiele, Creators und Kanäle zu finden`,
+      },
+      noResults: {
+        title: `Keine Ergebnisse gefunden`,
+        description: `Wir konnten keine Treffer für "{{query}}" finden. Versuche einen anderen Suchbegriff.`,
+      },
+      tabs: { all: `Alle Ergebnisse`, games: `Spiele`, creators: `Creators` },
+      section: { games: `Spiele`, creators: `Creators` },
+      viewAllGames: `Alle {{count}} Spiele anzeigen`,
+      viewAllCreators: `Alle {{count}} Creators anzeigen`,
+      noGamesMatching: `Keine Spiele gefunden für "{{query}}"`,
+      noCreatorsMatching: `Keine Creators gefunden für "{{query}}"`,
+    },
+    loginPage: {
+      toastSuccessTitle: `Erfolg`,
+      toastSuccessDesc: `Erfolgreich angemeldet`,
+      toastErrorTitle: `Fehler`,
+      toastLoginFailed: `Anmeldung fehlgeschlagen`,
+      toastOauthErrorTitle: `OAuth-Fehler`,
+      toastOauthFailed: `Authentifizierung fehlgeschlagen`,
+      toastEnterEmail: `Bitte gib deine E-Mail-Adresse ein`,
+      toastMagicLinkSentTitle: `Magic Link gesendet`,
+      toastMagicLinkSentDesc: `Sieh in deinem Posteingang nach einem Anmeldelink.`,
+      toastMagicLinkFailed: `Magic Link konnte nicht gesendet werden`,
+      title: `Willkommen zurück`,
+      subtitleMagicLink: `Gib deine E-Mail-Adresse ein, um einen Anmeldelink zu erhalten`,
+      subtitlePassword: `Gib deine Anmeldedaten ein, um fortzufahren`,
+      magicLinkConfirmPrefix: `Wir haben einen Magic Link gesendet an`,
+      magicLinkConfirmSuffix: `Sieh in deinem Posteingang nach und klicke auf den Link, um dich anzumelden.`,
+      backToLogin: `Zurück zur Anmeldung`,
+      password: `Passwort`,
+      emailPlaceholder: `Gib deine E-Mail-Adresse ein`,
+      passwordPlaceholder: `Gib dein Passwort ein`,
+      sending: `Wird gesendet...`,
+      sendMagicLink: `Magic Link senden`,
+      signIn: `Anmelden`,
+      usePasswordInstead: `Stattdessen mit Passwort anmelden`,
+      useMagicLinkInstead: `Stattdessen mit Magic Link anmelden`,
+      forgotPassword: `Passwort vergessen?`,
+    },
+    registerPage: {
+      toastSuccessTitle: `Erfolg`,
+      toastSuccessDesc: `Konto erfolgreich erstellt`,
+      toastErrorTitle: `Fehler`,
+      toastOauthErrorTitle: `OAuth-Fehler`,
+      title: `Konto erstellen`,
+      subtitle: `Gib deine Daten ein, um loszulegen`,
+      password: `Passwort`,
+      emailPlaceholder: `Gib deine E-Mail-Adresse ein`,
+      passwordPlaceholder: `Wähle ein Passwort`,
+      createAccount: `Konto erstellen`,
+      signUpWithGoogle: `Mit Google registrieren`,
+      signUpWithFacebook: `Mit Facebook registrieren`,
+      haveAccount: `Du hast bereits ein Konto? Anmelden`,
+    },
+    notFound: {
+      seoTitle: `404 - Seite nicht gefunden | Sandscape`,
+      seoDescription: `Die gesuchte Seite existiert nicht. Kehre zu Sandscape zurück, um KI-generierte Spiele zu erstellen und zu spielen.`,
+      heading: `404 - Seite nicht gefunden`,
+      message: `Die gesuchte Seite existiert nicht.`,
+      goHome: `Zur Startseite`,
+    },
+    share: {
+      linkCopied: `Link kopiert`,
+      copyPrompt: `Diesen Link kopieren:`,
+      instagramCopied: `Link für Instagram kopiert`,
+      instagramCopyManual: `Diesen Link für Instagram kopieren`,
+      instagramDescription: `Füge ihn in deine Story, Bio oder eine DM ein.`,
+      title: `Teilen`,
+      copied: `Kopiert`,
+      copy: `Kopieren`,
+      more: `Mehr`,
+    },
+    header: {
+      toggleMenu: `Menü umschalten`,
+      yourProjects: `Deine Projekte`,
+      newProject: `Neues Projekt`,
+      myAccount: `Mein Konto`,
+      joinSandscape: `Sandscape beitreten`,
+    },
+    followers: { empty: `Keine Follower gefunden.`, title: `Follower` },
+    following: { empty: `Du folgst niemandem.`, title: `Folge ich` },
+    history: {
+      title: `Verlauf`,
+      emptyTitle: `Noch keine Spiele gespielt`,
+      emptyMessage: `Spiele, die du spielst, erscheinen hier`,
+      browseGames: `Spiele durchsuchen`,
+      seoTitle: `Verlauf | Sandscape`,
+      seoDescription: `Spiele, die du kürzlich auf Sandscape gespielt hast.`,
+      unknownCreator: `Unbekannt`,
+      errorTitle: `Verlauf konnte nicht geladen werden`,
+      errorMessage: `Etwas ist schiefgelaufen. Bitte versuche es erneut.`,
+      retry: `Erneut versuchen`,
+    },
+    likes: {
+      browseGames: `Spiele durchsuchen`,
+      emptyMessage: `Spiele, die dir gefallen, erscheinen hier`,
+      emptyTitle: `Noch keine gelikten Spiele`,
+      seoDescription: `Sieh dir alle Spiele an, die dir auf Sandscape gefallen haben.`,
+      seoTitle: `Meine gelikten Spiele | Sandscape`,
+      title: `Gelikte Spiele`,
+      unknownCreator: `Unbekannt`,
+    },
+    notifications: {
+      accept: `Annehmen`,
+      browseGames: `Spiele durchsuchen`,
+      decline: `Ablehnen`,
+      emptyDescription: `Wenn dir Leute folgen, deine Spiele liken oder kommentieren oder dich zur Zusammenarbeit einladen, siehst du es hier.`,
+      emptyTitle: `Noch keine Benachrichtigungen`,
+      markAllRead: `Alle als gelesen markieren`,
+      seoDescription: `Sieh dir deine Sandscape-Benachrichtigungen an — Follows, Likes, Kommentare, Einladungen zur Zusammenarbeit und Erwähnungen.`,
+      seoTitle: `Benachrichtigungen | Sandscape`,
+      title: `Benachrichtigungen`,
+      someone: `Jemand`,
+      aGame: `ein Spiel`,
+      msgNewFollower: `{{name}} folgt dir jetzt`,
+      msgGameLike: `{{name}} gefällt dein Spiel "{{game}}"`,
+      msgGameComment: `{{name}} hat dein Spiel "{{game}}" kommentiert`,
+      msgCommentReply: `{{name}} hat auf deinen Kommentar geantwortet`,
+      msgCollabInvite: `{{name}} hat dich eingeladen, an einem Projekt mitzuarbeiten`,
+      msgChatMention: `{{name}} hat dich im Chat erwähnt`,
+      msgDefault: `Du hast eine neue Benachrichtigung`,
+    },
+    profile: {
+      activity: `Aktivität`,
+      avatarUploadFailed: `Avatar-Upload fehlgeschlagen: `,
+      bioPlaceholder: `Deine Bio`,
+      createFirstGame: `Erstelle dein erstes Spiel`,
+      deleteProjectConfirm: `Möchtest du dieses Projekt wirklich löschen?`,
+      deleteProjectFailed: `Projekt konnte nicht gelöscht werden`,
+      editProfile: `Profil bearbeiten`,
+      follow: `Folgen`,
+      followStatusFailed: `Follow-Status konnte nicht aktualisiert werden.`,
+      followers: `Follower`,
+      following: `Folge ich`,
+      goHome: `Zur Startseite`,
+      loadingProjects: `Projekte werden geladen...`,
+      myProjects: `Meine Projekte`,
+      noProjects: `Noch keine Projekte`,
+      noPublishedGames: `Noch keine veröffentlichten Spiele`,
+      noRecentActivity: `Keine kürzliche Aktivität`,
+      notFound: `Profil nicht gefunden.`,
+      publishedGames: `Veröffentlichte Spiele`,
+      saving: `Wird gespeichert...`,
+      seoDefaultCreator: `dieser Creator`,
+      seoDefaultName: `Benutzerprofil`,
+      seoDescription: `Sieh dir die Spiele und Aktivitäten von {{name}} auf Sandscape an. Tritt bei, um zu folgen, zu spielen und zusammenzuarbeiten.`,
+      seoKeywords: `{{name}}, Spieleentwickler, KI-Spiele, Spielerprofil, Spiele-Portfolio, Sandscape-Nutzer`,
+      seoTitle: `{{name}} | Sandscape`,
+      statusInProgress: `In Bearbeitung`,
+      unfollow: `Nicht mehr folgen`,
+      updateProfileFailed: `Fehler beim Aktualisieren des Profils: `,
+    },
+    publish: {
+      compatibility: `Kompatibilität`,
+      compatibilityBoth: `Desktop und Mobil`,
+      compatibilityDesktop: `Nur Desktop`,
+      compatibilityMobile: `Nur Mobil`,
+      compatibilityHint: `Auf welchen Geräten deine Steuerung tatsächlich funktioniert. Spieler sehen das vor dem Start.`,
+      distribution: `Verbreitung`,
+      distributionDesc: `Lege fest, wer dein Spiel finden kann, und schalte es dann live.`,
+      advancedSettings: `Erweiterte Einstellungen`,
+      advancedSettingsDesc: `Monetarisierung, Altersfreigaben und Community-Steuerung — noch nicht aktiv, hier gezeigt, damit du weißt, was kommt.`,
+      gameplayReplace: `Ersetzen`,
+      accessTier: `Zugriffsstufe`,
+      accessTierFree: `Kostenlos spielbar`,
+      ageRatingEveryone: `Alle Altersgruppen`,
+      allowRemixing: `Remixing erlauben`,
+      allowRemixingDesc: `Mitwirkende können Varianten mit Namensnennung erstellen.`,
+      comingSoon: `Demnächst verfügbar`,
+      coverAlt: `Cover`,
+      coverArtPreviewAlt: `Vorschau des Cover-Artworks`,
+      enableComments: `Kommentare aktivieren`,
+      enableCommentsDesc: `Öffne Diskussionsstränge auf deiner Spielseite.`,
+      enableTipping: `Trinkgeld aktivieren`,
+      enableTippingDesc: `Erlaube Fans, nach Spielsitzungen Sand Coins zu hinterlassen.`,
+      estimatedPlaytimeValue: `10-15 Minuten`,
+      gameplayEncouragement: `Du kannst auch ohne veröffentlichen, aber Spiele mit Gameplay-Video werden deutlich häufiger gespielt.`,
+      gameplayOptional: `Optional`,
+      leaderboard: `Bestenliste`,
+      leaderboardDesc: `Verfolge die besten Spieler, um den Wiederspielwert zu steigern.`,
+      previewDescriptionPlaceholder: `Beschreibe das Versprechen deiner Welt, um Spieler anzulocken.`,
+      sandCoinPrice: `Sand Coin-Preis`,
+      sandCoinPricePlaceholder: `Lege den Eintrittspreis fest`,
+      somethingWentWrong: `Etwas ist schiefgelaufen`,
+      soonBadge: `Bald`,
+      spectatorMode: `Zuschauermodus`,
+      spectatorModeDesc: `Lass Community-Mitglieder Live-Sitzungen verfolgen.`,
+      statusCompleted: `abgeschlossen`,
+      statusDraft: `Entwurf`,
+      updatedAgo: `Aktualisiert {{time}}`,
+      leaderboardEnableDesc: `Zeigt Ranglisten auf der Spielseite und lässt das Spiel Ergebnisse melden.`,
+      leaderboardPublishFirst: `Einmal veröffentlichen, um Bestenlisten einzurichten.`,
+      leaderboardLoading: `Einstellungen werden geladen…`,
+      leaderboardNoManifest: `Dieser Build enthält keine sandscape.leaderboard.json. Bitte den Assistenten um „füge eine Bestenliste hinzu“ und veröffentliche erneut.`,
+      leaderboardManifestInvalid: `Die Bestenlisten-Datei ist ungültig:`,
+      leaderboardManifestFound: `Dieser Build deklariert {{count}} Liste(n).`,
+      leaderboardBoards: `Listen`,
+      leaderboardAddBoard: `Liste hinzufügen`,
+      leaderboardNoBoards: `Noch keine Listen.`,
+      leaderboardBoardTitle: `Titel der Liste`,
+      leaderboardBoardEnabled: `Diese Liste zeigen`,
+      leaderboardGroupBy: `Ranking nach`,
+      leaderboardByPlayer: `Spieler`,
+      leaderboardMetric: `Messwert`,
+      leaderboardAggregate: `Nach`,
+      leaderboardPeriod: `Zeitraum`,
+      leaderboardAggregate_max: `Bester`,
+      leaderboardAggregate_min: `Niedrigster`,
+      leaderboardAggregate_sum: `Summe`,
+      leaderboardAggregate_count: `Anzahl`,
+      leaderboardAggregate_avg: `Durchschnitt`,
+      leaderboardAggregate_latest: `Letzter`,
+      leaderboardOriginManifest: `Aus dem Spiel`,
+      leaderboardOriginCreator: `Deine`,
+      leaderboardResetAction: `Zurücksetzen`,
+      leaderboardReset: `Diese Liste zurücksetzen?`,
+      leaderboardResetConfirm: `Die Liste startet leer. Ergebnisse bleiben erhalten.`,
+      leaderboardResetDone: `Liste zurückgesetzt`,
+      leaderboardDeleteAction: `Löschen`,
+      leaderboardDelete: `Diese Liste löschen?`,
+      leaderboardDeleteConfirm: `Die Liste verschwindet von der Spielseite. Ergebnisse bleiben erhalten.`,
+      leaderboardDeleted: `Liste gelöscht`,
+      leaderboardCreate: `Erstellen`,
+      leaderboardCancel: `Abbrechen`,
+      leaderboardBoardAdded: `Liste hinzugefügt`,
+      leaderboardOn: `Bestenlisten sind an`,
+      leaderboardOff: `Bestenlisten sind aus`,
+      leaderboardSaveFailed: `Speichern fehlgeschlagen`,
+      leaderboardManifestOwned: `Diese Liste stammt aus dem Spiel. Jede Änderung hier – auch das Ausblenden – macht sie zu deiner, und künftige Builds aktualisieren sie nicht mehr.`,
+    },
+    settings: {
+      accountDeleteFailed: `Konto konnte nicht gelöscht werden`,
+      accountDeleted: `Dein Konto wurde gelöscht`,
+      accountDescription: `Verwalte deine Anmeldedaten.`,
+      accountTitle: `Konto`,
+      appearanceDescription: `Passe an, wie Sandscape aussieht und sich anfühlt.`,
+      appearanceTitle: `Darstellung`,
+      avatarHint: `JPG oder PNG. Wird gespeichert, wenn du auf Änderungen speichern klickst.`,
+      bioLabel: `Bio`,
+      bioPlaceholder: `Erzähle der Community von dir`,
+      changeAvatar: `Avatar ändern`,
+      changeEmail: `E-Mail ändern`,
+      changeEmailHint: `Wir senden einen Bestätigungslink an die neue Adresse. Deine E-Mail-Adresse ändert sich erst, nachdem du sie bestätigt hast.`,
+      changePasswordHint: `Wähle ein neues Passwort (mindestens 8 Zeichen).`,
+      changePasswordTitle: `Passwort ändern`,
+      confirmPasswordLabel: `Neues Passwort bestätigen`,
+      confirmPasswordPlaceholder: `Neues Passwort bestätigen`,
+      deleteAccountAction: `Konto löschen`,
+      deleteAccountConfirmDesc: `Dadurch werden dein Profil, Likes, Kommentare, Follows, Benachrichtigungen und Projekte dauerhaft gelöscht. Deine veröffentlichten Spiele bleiben online, werden jedoch anonymisiert. Diese Aktion kann nicht rückgängig gemacht werden.`,
+      deleteAccountConfirmTitle: `Konto löschen?`,
+      deleteAccountHint: `Lösche dein Konto dauerhaft. Dies kann nicht rückgängig gemacht werden. Spiele, die du veröffentlicht hast, bleiben online, werden dir aber nicht mehr zugeschrieben.`,
+      deleteAccountTitle: `Konto löschen`,
+      deleteMyAccount: `Mein Konto löschen`,
+      emailAlreadyYours: `Das ist bereits deine E-Mail-Adresse`,
+      emailConfirmationDesc: `Prüfe {{email}}, um die Änderung zu bestätigen.`,
+      emailConfirmationSent: `Bestätigungs-E-Mail gesendet`,
+      emailInvalid: `Gib eine gültige E-Mail-Adresse ein`,
+      emailPlaceholder: `du@beispiel.de`,
+      emailUpdateFailed: `E-Mail konnte nicht aktualisiert werden`,
+      newPasswordLabel: `Neues Passwort`,
+      newPasswordPlaceholder: `Neues Passwort`,
+      notifCommentRepliesDesc: `Wenn jemand auf deinen Kommentar antwortet`,
+      notifCommentRepliesLabel: `Kommentarantworten`,
+      notifGameCommentsDesc: `Wenn jemand dein Spiel kommentiert`,
+      notifGameCommentsLabel: `Spielkommentare`,
+      notifGameLikesDesc: `Wenn jemand dein Spiel likt`,
+      notifGameLikesLabel: `Spiel-Likes`,
+      notifMentionsDesc: `Wenn dich jemand im Chat erwähnt`,
+      notifMentionsLabel: `Erwähnungen`,
+      notifNewFollowersDesc: `Wenn dir jemand folgt`,
+      notifNewFollowersLabel: `Neue Follower`,
+      notificationsDescription: `Wähle aus, welche Benachrichtigungen du erhalten möchtest. Einladungen zur Zusammenarbeit werden immer zugestellt.`,
+      notificationsTitle: `Benachrichtigungen`,
+      passwordTooShort: `Das Passwort muss mindestens 8 Zeichen lang sein`,
+      passwordUpdateFailed: `Passwort konnte nicht aktualisiert werden`,
+      passwordUpdated: `Passwort aktualisiert`,
+      passwordsDontMatch: `Die Passwörter stimmen nicht überein`,
+      prefUpdateFailed: `Einstellung konnte nicht aktualisiert werden`,
+      profileDescription: `Aktualisiere, wie du anderen auf Sandscape erscheinst.`,
+      profileTitle: `Profil`,
+      profileUpdateFailed: `Profil konnte nicht aktualisiert werden`,
+      profileUpdated: `Profil aktualisiert`,
+      saveChanges: `Änderungen speichern`,
+      seoDescription: `Verwalte dein Sandscape-Konto, dein Profil und deine Einstellungen.`,
+      seoTitle: `Einstellungen | Sandscape`,
+      tabAccount: `Konto`,
+      tabAppearance: `Darstellung`,
+      tabNotifications: `Benachrichtigungen`,
+      tabProfile: `Profil`,
+      themeDark: `Dunkel`,
+      themeLabel: `Design`,
+      themeLight: `Hell`,
+      themeSystem: `System`,
+      updatePassword: `Passwort aktualisieren`,
+      usernameEmpty: `Der Benutzername darf nicht leer sein`,
+      usernameLabel: `Benutzername`,
+      usernamePlaceholder: `Dein Benutzername`,
+    },
+    createPrompt: {
+      recentProjects: `Letzte Projekte`,
+      noPreview: `Keine Vorschau`,
+      title: `Was wirst du erschaffen?`,
+      tagline: `Spiele, angetrieben von deiner Fantasie`,
+      placeholder: `Beschreibe deine Spielidee...`,
+      removeTag: `{{tag}} entfernen`,
+      genresMore: `Mehr`,
+      genresLess: `Weniger`,
+      viewAll: `Alle ansehen`,
+      genres: {
+        action: `Action`,
+        adventure: `Abenteuer`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `Simulation`,
+        puzzle: `Rätsel`,
+        rpg: `RPG`,
+        racing: `Rennen`,
+        strategy: `Strategie`,
+        survival: `Survival`,
+        horror: `Horror`,
+      },
+    },
+    authPage: {
+      title: `Anmelden oder Konto erstellen`,
+      signInTitle: `Anmelden`,
+      description: `Fahre mit einem Anbieter oder deiner E-Mail fort. Jeder kann ein Konto erstellen.`,
+      createAccount: `Konto erstellen`,
+      signIn: `Anmelden`,
+      codeTitle: `Code eingeben`,
+      codeDescription: `Gib den zugesandten Bestätigungscode ein. Der Ablauf ist für neue und bestehende Konten gleich.`,
+      updatePasswordTitle: `Neues Passwort festlegen`,
+      updatePasswordDescription: `Wähle ein sicheres Passwort für dein Sandscape-Konto.`,
+      recoveryTitle: `Passwort zurücksetzen`,
+      recoveryDescription: `Wir senden einen sicheren Link, wenn die Adresse ihn empfangen kann.`,
+      checkEmailTitle: `E-Mail prüfen`,
+      confirmRecoveryDescription: `Wenn die Adresse eine Rücksetzmail empfangen kann, kommt sie in Kürze.`,
+      continueWith: {
+        google: `Weiter mit Google`,
+        github: `Weiter mit GitHub`,
+        apple: `Weiter mit Apple`,
+        facebook: `Weiter mit Facebook`,
+      },
+      or: `oder`,
+      emailPlaceholder: `du@beispiel.de`,
+      continueWithEmail: `Weiter mit E-Mail`,
+      usePassword: `Stattdessen mit Passwort anmelden`,
+      codeLabel: `Bestätigungscode`,
+      verifyCode: `Code bestätigen`,
+      resendCountdown: `Erneut senden in {{seconds}} s`,
+      resendCode: `Code erneut senden`,
+      changeEmail: `E-Mail ändern`,
+      password: `Passwort`,
+      signInWithPassword: `Mit Passwort anmelden`,
+      passwordSigninNewAccountHint: `Neu bei Sandscape? Geh zurück und fahre mit deiner E-Mail fort. Ein Passwort kannst du bei der Kontoeinrichtung festlegen.`,
+      forgotPassword: `Passwort vergessen?`,
+      backToOptions: `Zurück zu den Anmeldeoptionen`,
+      sendRecovery: `Link senden`,
+      newPassword: `Neues Passwort`,
+      confirmPassword: `Passwort bestätigen`,
+      updatePassword: `Passwort aktualisieren`,
+      genericEmailNotice: `Zum Schutz deiner Privatsphäre ist diese Meldung gleich, unabhängig davon, ob ein Konto besteht.`,
+      legal: `Mit dem Fortfahren stimmst du den <terms>Sandscape-Bedingungen</terms> und der <privacy>Datenschutzrichtlinie</privacy> zu.`,
+      callbackFailedTitle: `Anmeldung konnte nicht abgeschlossen werden`,
+      tryAgain: `Erneut versuchen`,
+      finishing: `Anmeldung wird abgeschlossen...`,
+      errors: {
+        generic: `Etwas ist schiefgelaufen. Versuche es erneut.`,
+        usernameTaken: `Dieser Benutzername ist bereits vergeben.`,
+        invalidCode: `Der Code ist ungültig oder abgelaufen. Fordere einen neuen an.`,
+        rateLimited: `Zu viele Versuche. Warte einen Moment.`,
+        captcha: `Sicherheitsprüfung fehlgeschlagen.`,
+        captchaRequired: `Schließe die Sicherheitsprüfung ab.`,
+        invalidCredentials: `E-Mail oder Passwort ist falsch oder das Konto ist für die Passwortanmeldung nicht bereit.`,
+        network: `Der Anmeldedienst ist nicht erreichbar. Prüfe deine Verbindung.`,
+        validation: `Prüfe deine Eingaben.`,
+        providerDenied: `Der Anbieterzugriff wurde abgebrochen oder abgelehnt.`,
+        callback: `Die Anmeldeantwort ist ungültig oder abgelaufen.`,
+        emailRequired: `Gib eine gültige E-Mail-Adresse ein.`,
+        codeRequired: `Gib den vollständigen Bestätigungscode ein.`,
+        credentialsRequired: `Gib E-Mail und Passwort ein.`,
+        passwordTooShort: `Verwende mindestens 8 Zeichen.`,
+        passwordMismatch: `Die Passwörter stimmen nicht überein.`,
+        recoverySession: `Fordere einen neuen Rücksetzlink an.`,
+      },
+    },
+    onboarding: {
+      title: `Wähle deinen öffentlichen Auftritt`,
+      description: `Ein öffentlicher Benutzername ist erforderlich. Alles andere ist optional.`,
+      completedTitle: `Dein Konto ist bereit`,
+      optionalRetryDescription: `Dein öffentlicher Name ist gespeichert. Wiederhole optionale Schritte oder fahre fort.`,
+      username: `Öffentlicher Benutzername`,
+      usernameRules: `Verwende 3–30 Buchstaben, Zahlen, Unter- oder Bindestriche. Er ist öffentlich und darf keine E-Mail sein.`,
+      avatar: `Avatar (optional)`,
+      chooseAvatar: `Bild auswählen`,
+      password: `Passwort festlegen (optional)`,
+      passwordHint: `Du kannst weiter E-Mail-Codes nutzen und später unter Sicherheit ein Passwort festlegen.`,
+      creatorEnabled: `Creator-Zugang aktiviert`,
+      creatorEnabledHint: `Du kannst jetzt Spiele erstellen und veröffentlichen.`,
+      subscribeForCreation: `Bei der Alpha mitmachen (optional)`,
+      subscribeForCreationHint: `Die Alpha ist offen. Nach der Einrichtung führen wir dich zu den Abos, damit du sofort loslegen kannst.`,
+      finish: `Einrichtung abschließen`,
+      continueWithoutOptional: `Ohne optionale Schritte fortfahren`,
+      retryOptional: `Optionale Schritte wiederholen`,
+      optionalFailedTitle: `Einige optionale Schritte brauchen Aufmerksamkeit`,
+      optionalFailures: {
+        avatar: `Der Avatar konnte nicht gespeichert werden.`,
+        password: `Das Passwort konnte nicht festgelegt werden.`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `Aktive Anmeldemethoden`,
+      signInMethodsHint: `Die bestätigten Wege zu diesem Konto.`,
+      methodEmailCode: `E-Mail-Code`,
+      methodPassword: `Passwort`,
+      setPasswordTitle: `Passwort festlegen`,
+      setPassword: `Passwort festlegen`,
+    },
+    mailingList: {
+      title: `Mailingliste abonnieren`,
+      message: `Erhalte gelegentlich Sandscape-Neuigkeiten. Dies erstellt kein Konto und beantragt keinen Creator-Zugang.`,
+      successTitle: `Abonniert`,
+      successMessage: `Du bist auf der Mailingliste.`,
+      alreadyRegisteredTitle: `Bereits abonniert`,
+      alreadyRegisteredMessage: `Diese E-Mail ist bereits auf der Liste.`,
+      errorTitle: `Abonnement fehlgeschlagen`,
+      errorMessage: `Die Mailingliste konnte nicht abonniert werden.`,
+      emailPlaceholder: `du@beispiel.de`,
+      join: `Mailingliste abonnieren`,
+    },
+    leaderboard: {
+      title: `Bestenliste`,
+      periodLabel: `Zeitraum`,
+      period: {
+        all: `Gesamt`,
+        daily: `Heute`,
+        weekly: `Diese Woche`,
+        monthly: `Diesen Monat`,
+        default: `Standard`,
+      },
+      rank: `#`,
+      player: `Spieler`,
+      entries: `Partien`,
+      you: `Du`,
+      yourRank: `Dein Platz`,
+      empty: `Noch keine Ergebnisse – spiel als Erster.`,
+      error: `Bestenliste konnte nicht geladen werden.`,
+      refresh: `Aktualisieren`,
+      unknownPlayer: `Spieler`,
+    },
+  },
+  Fe = {
+    billing: {
+      alphaOpenTitle: `アルファ版を公開中`,
+      alphaOpenBody: `いずれかのプランまたはSandcoinパックを購入すると、最初のアイデアからゲームの公開まで、制作スタジオの全機能が使えます。`,
+    },
+    navigation: {
+      home: `ホーム`,
+      search: `検索`,
+      create: `作成`,
+      profile: `プロフィール`,
+      settings: `設定`,
+      history: `履歴`,
+      following: `フォロー中`,
+      followers: `フォロワー`,
+      likes: `いいね`,
+      logout: `ログアウト`,
+      menu: `メニュー`,
+      myStuff: `マイアイテム`,
+      social: `ソーシャル`,
+      tools: `ツール`,
+      notifications: `通知`,
+      help: `ヘルプ`,
+      toggleMenu: `モバイルメニューを切り替え`,
+      publish: `公開`,
+    },
+    auth: {
+      login: `ログイン`,
+      register: `登録`,
+      resetPassword: `パスワードリセット`,
+    },
+    gameCard: {
+      likes: `いいね`,
+      comments: `コメント`,
+      views: `ビュー`,
+      live: `ライブ`,
+    },
+    homePage: {
+      joinAlpha: `アルファ版に参加`,
+      trending: `トレンド`,
+      newReleases: `新作`,
+      allGames: `すべてのゲーム`,
+    },
+    categories: {
+      all: `すべてのゲーム`,
+      action: `アクション`,
+      rpg: `RPG`,
+      puzzle: `パズル`,
+      racing: `レース`,
+      strategy: `戦略`,
+    },
+    general: {
+      loading: `読み込み中...`,
+      submit: `送信`,
+      cancel: `キャンセル`,
+      save: `保存`,
+      delete: `削除`,
+      search: `検索`,
+      language: `言語`,
+      email: `メールアドレス`,
+      submitting: `送信中...`,
+    },
+    footer: {
+      discord: `Discord`,
+      twitter: `X/Twitter`,
+      instagram: `Instagram`,
+      youtube: `YouTube`,
+      tiktok: `TikTok`,
+      links: `概要 | 規約 | プライバシー`,
+      aboutLinks: `概要 | 規約 | プライバシー`,
+      copyright: `© {{year}} Sandscape. All rights reserved.`,
+      poweredBy: `Powered by`,
+      product: `製品`,
+      resources: `リソース`,
+      company: `会社`,
+      v1Link: `Sandscape v1`,
+      blogLink: `ブログ`,
+      faqLink: `FAQ`,
+      aboutLink: `概要`,
+      contactLink: `お問い合わせ`,
+      privacyLink: `プライバシーポリシー`,
+      termsLink: `利用規約`,
+      aria: {
+        twitter: `X/Twitter`,
+        instagram: `Instagram`,
+        tiktok: `TikTok`,
+        youtube: `YouTube`,
+        discord: `Discord`,
+      },
+    },
+    invite: {
+      title: `共同編集者を招待`,
+      searchPlaceholder: `ユーザーを検索...`,
+      notImplemented: `ユーザー検索機能はまだ実装されていません。`,
+      searching: `検索中...`,
+    },
+    cookies: {
+      accept: `すべて許可`,
+      decline: `すべて拒否`,
+      notice: `クッキーに関する通知`,
+      message: `分析・広告用の任意のCookieを使用しています。同意も拒否も可能です。詳しくは`,
+      policy: `クッキーポリシーに同意したことになります`,
+    },
+    seo: {
+      title: `Sandscape – コーディングなしでゲームを作成 | クリエイティブゲームスタジオ`,
+      description: `Sandscape はゲームを作るためのクリエイティブスタジオです。アイデアを説明し、ビジュアルツールで磨き上げるか、細部まで手作業で作り込み、作ったものをプレイして共有しましょう。今すぐアカウントを作成しましょう！`,
+      keywords: `AI ゲームクリエイター, AI でゲームを作る, AI ゲームジェネレーター, コーディングなしでゲームを作成, モバイルゲームメーカー, ゲーム作成プラットフォーム, 共同ゲーム開発, プロンプトからゲームへ, AI ゲーム開発, ノーコードゲーム作成`,
+    },
+    homeBanners: { playCta: `プレイ` },
+    bannerCarousel: {
+      mute: `ミュート`,
+      unmute: `ミュート解除`,
+      closeBanner: `バナーを閉じる`,
+      showBanner: `バナー{{number}}を表示`,
+    },
+    game: {
+      compat: {
+        title: `別のデバイス向けのゲームです`,
+        desktopOnly: `このゲームはデスクトップ向けに作られています。このデバイスでは正しく動作しない可能性があります。`,
+        mobileOnly: `このゲームはモバイル向けに作られています。このデバイスでは正しく動作しない可能性があります。`,
+        playAnyway: `このまま遊ぶ`,
+      },
+      notFound: `ゲームが見つかりません`,
+      removedOrIncorrect: `このゲームは削除されたか、リンクが正しくない可能性があります。`,
+      backToGames: `ゲーム一覧に戻る`,
+      noGameSpecified: `ゲームが指定されていません。/play?g=CODE のようなリンクを使用してください`,
+      notAvailable: `ゲームは利用できません — 公開済みのビルドが見つかりません。`,
+      seoDescriptionFallback: `AIが生成したゲームプレイ、アート、メカニクスを体験しよう。`,
+      shareTextFallback: `Sandscapeで作られた素晴らしいゲーム！`,
+      remix: `リミックス`,
+      like: `いいね`,
+      unlike: `いいねを取り消す`,
+      follow: `フォロー`,
+      unfollow: `フォロー解除`,
+      fullscreen: `全画面表示`,
+      exitFullscreen: `全画面表示を終了`,
+      showMore: `もっと見る`,
+      showLess: `閉じる`,
+      views: `{{count}} 回視聴`,
+      publishedPrefix: `公開日 `,
+      comments: `コメント`,
+      beFirstToComment: `最初のコメントを投稿しましょう。`,
+      relatedGames: `関連ゲーム`,
+      commentPlaceholder: `コメントを追加...`,
+      post: `投稿`,
+      posting: `投稿中...`,
+      registerToComment: `このゲームにコメントするには登録してください`,
+      reply: `返信`,
+      replyToPlaceholder: `{{name}}に返信...`,
+      delete: `削除`,
+      deleteCommentTitle: `コメントを削除しますか？`,
+      deleteCommentDescription: `このコメントは完全に削除されます。この操作は取り消せません。`,
+      toast: {
+        likeFailed: `いいねの更新に失敗しました。`,
+        followFailed: `フォロー状態の更新に失敗しました`,
+        commentFailed: `コメントの投稿に失敗しました。`,
+        replyFailed: `返信の投稿に失敗しました。`,
+        deleteFailed: `コメントの削除に失敗しました。`,
+      },
+    },
+    search: {
+      liveBadge: `ライブ`,
+      shareGame: `ゲームを共有`,
+      noBio: `自己紹介はありません`,
+      view: `表示`,
+      seo: {
+        titleWithQuery: `「{{query}}」の検索結果 - Sandscape`,
+        title: `検索 - Sandscape`,
+        description: `Sandscapeでゲーム、クリエイター、チャンネルを検索。`,
+      },
+      heading: { results: `「{{query}}」の結果`, default: `検索` },
+      empty: {
+        title: `ゲームやクリエイターを検索`,
+        description: `ヘッダーの検索バーを使ってゲーム、クリエイター、チャンネルを探しましょう`,
+      },
+      noResults: {
+        title: `結果が見つかりません`,
+        description: `「{{query}}」に一致するものが見つかりませんでした。別のキーワードでお試しください。`,
+      },
+      tabs: { all: `すべての結果`, games: `ゲーム`, creators: `クリエイター` },
+      section: { games: `ゲーム`, creators: `クリエイター` },
+      viewAllGames: `{{count}}件のゲームをすべて表示`,
+      viewAllCreators: `{{count}}人のクリエイターをすべて表示`,
+      noGamesMatching: `「{{query}}」に一致するゲームが見つかりません`,
+      noCreatorsMatching: `「{{query}}」に一致するクリエイターが見つかりません`,
+    },
+    loginPage: {
+      toastSuccessTitle: `成功`,
+      toastSuccessDesc: `ログインしました`,
+      toastErrorTitle: `エラー`,
+      toastLoginFailed: `ログインに失敗しました`,
+      toastOauthErrorTitle: `OAuthエラー`,
+      toastOauthFailed: `認証に失敗しました`,
+      toastEnterEmail: `メールアドレスを入力してください`,
+      toastMagicLinkSentTitle: `マジックリンクを送信しました`,
+      toastMagicLinkSentDesc: `受信トレイでサインインリンクを確認してください。`,
+      toastMagicLinkFailed: `マジックリンクの送信に失敗しました`,
+      title: `おかえりなさい`,
+      subtitleMagicLink: `サインインリンクを受け取るにはメールアドレスを入力してください`,
+      subtitlePassword: `続行するには認証情報を入力してください`,
+      magicLinkConfirmPrefix: `マジックリンクを送信しました`,
+      magicLinkConfirmSuffix: `受信トレイを確認し、リンクをクリックしてサインインしてください。`,
+      backToLogin: `ログインに戻る`,
+      password: `パスワード`,
+      emailPlaceholder: `メールアドレスを入力`,
+      passwordPlaceholder: `パスワードを入力`,
+      sending: `送信中...`,
+      sendMagicLink: `マジックリンクを送信`,
+      signIn: `サインイン`,
+      usePasswordInstead: `パスワードでサインイン`,
+      useMagicLinkInstead: `マジックリンクでサインイン`,
+      forgotPassword: `パスワードをお忘れですか？`,
+    },
+    registerPage: {
+      toastSuccessTitle: `成功`,
+      toastSuccessDesc: `アカウントを作成しました`,
+      toastErrorTitle: `エラー`,
+      toastOauthErrorTitle: `OAuthエラー`,
+      title: `アカウントを作成`,
+      subtitle: `始めるには情報を入力してください`,
+      password: `パスワード`,
+      emailPlaceholder: `メールアドレスを入力`,
+      passwordPlaceholder: `パスワードを設定`,
+      createAccount: `アカウントを作成`,
+      signUpWithGoogle: `Googleで登録`,
+      signUpWithFacebook: `Facebookで登録`,
+      haveAccount: `すでにアカウントをお持ちですか？サインイン`,
+    },
+    notFound: {
+      seoTitle: `404 - ページが見つかりません | Sandscape`,
+      seoDescription: `お探しのページは存在しません。Sandscapeに戻って、AI生成ゲームを作成・プレイしましょう。`,
+      heading: `404 - ページが見つかりません`,
+      message: `お探しのページは存在しません。`,
+      goHome: `ホームへ`,
+    },
+    share: {
+      linkCopied: `リンクをコピーしました`,
+      copyPrompt: `このリンクをコピー：`,
+      instagramCopied: `Instagram用にリンクをコピーしました`,
+      instagramCopyManual: `Instagram用にこのリンクをコピー`,
+      instagramDescription: `ストーリー、プロフィール、DMに貼り付けてください。`,
+      title: `共有`,
+      copied: `コピーしました`,
+      copy: `コピー`,
+      more: `その他`,
+    },
+    header: {
+      toggleMenu: `メニューを切り替え`,
+      yourProjects: `あなたのプロジェクト`,
+      newProject: `新規プロジェクト`,
+      myAccount: `マイアカウント`,
+      joinSandscape: `Sandscape に参加`,
+    },
+    followers: { empty: `フォロワーが見つかりません。`, title: `フォロワー` },
+    following: { empty: `誰もフォローしていません。`, title: `フォロー中` },
+    history: {
+      title: `履歴`,
+      emptyTitle: `まだプレイしたゲームがありません`,
+      emptyMessage: `プレイしたゲームがここに表示されます`,
+      browseGames: `ゲームを見る`,
+      seoTitle: `履歴 | Sandscape`,
+      seoDescription: `Sandscapeで最近プレイしたゲーム。`,
+      unknownCreator: `不明`,
+      errorTitle: `履歴を読み込めませんでした`,
+      errorMessage: `問題が発生しました。もう一度お試しください。`,
+      retry: `再試行`,
+    },
+    likes: {
+      browseGames: `ゲームを見る`,
+      emptyMessage: `いいねしたゲームがここに表示されます`,
+      emptyTitle: `まだいいねしたゲームがありません`,
+      seoDescription: `Sandscapeでいいねしたすべてのゲームを表示します。`,
+      seoTitle: `いいねしたゲーム | Sandscape`,
+      title: `いいねしたゲーム`,
+      unknownCreator: `不明`,
+    },
+    notifications: {
+      accept: `承認`,
+      browseGames: `ゲームを見る`,
+      decline: `辞退`,
+      emptyDescription: `誰かがあなたをフォローしたり、あなたのゲームにいいねやコメントをしたり、コラボレーションに招待したりすると、ここに表示されます。`,
+      emptyTitle: `まだ通知がありません`,
+      markAllRead: `すべて既読にする`,
+      seoDescription: `フォロー、いいね、コメント、コラボレーション招待、メンションなど、Sandscapeの通知を表示します。`,
+      seoTitle: `通知 | Sandscape`,
+      title: `通知`,
+      someone: `誰か`,
+      aGame: `ゲーム`,
+      msgNewFollower: `{{name}}さんがあなたをフォローしました`,
+      msgGameLike: `{{name}}さんがあなたのゲーム「{{game}}」にいいねしました`,
+      msgGameComment: `{{name}}さんがあなたのゲーム「{{game}}」にコメントしました`,
+      msgCommentReply: `{{name}}さんがあなたのコメントに返信しました`,
+      msgCollabInvite: `{{name}}さんがプロジェクトへのコラボレーションに招待しました`,
+      msgChatMention: `{{name}}さんがチャットであなたにメンションしました`,
+      msgDefault: `新しい通知があります`,
+    },
+    profile: {
+      activity: `アクティビティ`,
+      avatarUploadFailed: `アバターのアップロードに失敗しました: `,
+      bioPlaceholder: `自己紹介`,
+      createFirstGame: `最初のゲームを作成`,
+      deleteProjectConfirm: `このプロジェクトを削除してもよろしいですか？`,
+      deleteProjectFailed: `プロジェクトの削除に失敗しました`,
+      editProfile: `プロフィールを編集`,
+      follow: `フォロー`,
+      followStatusFailed: `フォロー状態の更新に失敗しました。`,
+      followers: `フォロワー`,
+      following: `フォロー中`,
+      goHome: `ホームへ`,
+      loadingProjects: `プロジェクトを読み込み中...`,
+      myProjects: `マイプロジェクト`,
+      noProjects: `まだプロジェクトがありません`,
+      noPublishedGames: `まだ公開したゲームがありません`,
+      noRecentActivity: `最近のアクティビティはありません`,
+      notFound: `プロフィールが見つかりません。`,
+      publishedGames: `公開済みゲーム`,
+      saving: `保存中...`,
+      seoDefaultCreator: `このクリエイター`,
+      seoDefaultName: `ユーザープロフィール`,
+      seoDescription: `Sandscapeで{{name}}さんのゲームとアクティビティをチェックしましょう。参加してフォロー、プレイ、コラボレーションができます。`,
+      seoKeywords: `{{name}}, ゲームクリエイター, AIゲーム, プレイヤープロフィール, ゲームポートフォリオ, Sandscapeユーザー`,
+      seoTitle: `{{name}} | Sandscape`,
+      statusInProgress: `進行中`,
+      unfollow: `フォロー解除`,
+      updateProfileFailed: `プロフィールの更新エラー: `,
+    },
+    publish: {
+      compatibility: `対応デバイス`,
+      compatibilityBoth: `デスクトップとモバイル`,
+      compatibilityDesktop: `デスクトップのみ`,
+      compatibilityMobile: `モバイルのみ`,
+      compatibilityHint: `操作が実際に動作するデバイスです。プレイヤーは起動前にこれを確認できます。`,
+      distribution: `配信`,
+      distributionDesc: `誰がゲームを見つけられるかを設定してから、公開しましょう。`,
+      advancedSettings: `詳細設定`,
+      advancedSettingsDesc: `収益化、レーティング、コミュニティ管理 — まだ利用できませんが、今後の予定としてここに表示しています。`,
+      gameplayReplace: `置き換え`,
+      accessTier: `アクセスティア`,
+      accessTierFree: `無料プレイ`,
+      ageRatingEveryone: `全年齢`,
+      allowRemixing: `リミックスを許可`,
+      allowRemixingDesc: `コラボレーターはクレジット表示付きでバリアントを作成できます。`,
+      comingSoon: `近日公開`,
+      coverAlt: `カバー`,
+      coverArtPreviewAlt: `カバーアートのプレビュー`,
+      enableComments: `コメントを有効にする`,
+      enableCommentsDesc: `ゲームページでスレッド形式の会話を開きます。`,
+      enableTipping: `投げ銭を有効にする`,
+      enableTippingDesc: `プレイ後にファンがSand Coinを贈れるようにします。`,
+      estimatedPlaytimeValue: `10～15分`,
+      gameplayEncouragement: `なくても公開できますが、ゲームプレイ映像がある作品ははるかに多くプレイされます。`,
+      gameplayOptional: `任意`,
+      leaderboard: `リーダーボード`,
+      leaderboardDesc: `トッププレイヤーを記録してリプレイ性を高めます。`,
+      previewDescriptionPlaceholder: `あなたの世界の魅力を伝えてプレイヤーを引き込みましょう。`,
+      sandCoinPrice: `Sand Coin価格`,
+      sandCoinPricePlaceholder: `入場価格を設定`,
+      somethingWentWrong: `問題が発生しました`,
+      soonBadge: `近日`,
+      spectatorMode: `観戦モード`,
+      spectatorModeDesc: `コミュニティメンバーがライブセッションを視聴できるようにします。`,
+      statusCompleted: `完了`,
+      statusDraft: `下書き`,
+      updatedAgo: `{{time}}に更新`,
+      leaderboardEnableDesc: `ゲームページにランキングを表示し、ゲームから結果を送信できるようにします。`,
+      leaderboardPublishFirst: `一度公開するとランキングを設定できます。`,
+      leaderboardLoading: `設定を読み込み中…`,
+      leaderboardNoManifest: `このビルドには sandscape.leaderboard.json がありません。アシスタントに「ランキングを追加して」と伝えてから再公開してください。`,
+      leaderboardManifestInvalid: `ランキング定義ファイルが不正です:`,
+      leaderboardManifestFound: `このビルドは {{count}} 件のランキングを宣言しています。`,
+      leaderboardBoards: `ランキング`,
+      leaderboardAddBoard: `ランキングを追加`,
+      leaderboardNoBoards: `まだランキングがありません。`,
+      leaderboardBoardTitle: `ランキング名`,
+      leaderboardBoardEnabled: `このランキングを表示`,
+      leaderboardGroupBy: `集計対象`,
+      leaderboardByPlayer: `プレイヤー`,
+      leaderboardMetric: `指標`,
+      leaderboardAggregate: `方法`,
+      leaderboardPeriod: `期間`,
+      leaderboardAggregate_max: `最高`,
+      leaderboardAggregate_min: `最低`,
+      leaderboardAggregate_sum: `合計`,
+      leaderboardAggregate_count: `回数`,
+      leaderboardAggregate_avg: `平均`,
+      leaderboardAggregate_latest: `最新`,
+      leaderboardOriginManifest: `ゲーム由来`,
+      leaderboardOriginCreator: `あなたの設定`,
+      leaderboardResetAction: `リセット`,
+      leaderboardReset: `このランキングをリセットしますか？`,
+      leaderboardResetConfirm: `これ以降は空から始まります。結果は保持されます。`,
+      leaderboardResetDone: `リセットしました`,
+      leaderboardDeleteAction: `削除`,
+      leaderboardDelete: `このランキングを削除しますか？`,
+      leaderboardDeleteConfirm: `ゲームページから消えます。結果は保持されます。`,
+      leaderboardDeleted: `削除しました`,
+      leaderboardCreate: `作成`,
+      leaderboardCancel: `キャンセル`,
+      leaderboardBoardAdded: `ランキングを追加しました`,
+      leaderboardOn: `ランキングは有効です`,
+      leaderboardOff: `ランキングは無効です`,
+      leaderboardSaveFailed: `保存できませんでした`,
+      leaderboardManifestOwned: `このランキングはゲーム由来です。非表示を含め、ここで変更するとあなたのものになり、以降のビルドでは更新されなくなります。`,
+    },
+    settings: {
+      accountDeleteFailed: `アカウントの削除に失敗しました`,
+      accountDeleted: `アカウントが削除されました`,
+      accountDescription: `サインイン情報を管理します。`,
+      accountTitle: `アカウント`,
+      appearanceDescription: `Sandscapeの見た目や使い心地をカスタマイズします。`,
+      appearanceTitle: `外観`,
+      avatarHint: `JPGまたはPNG。「変更を保存」をクリックすると保存されます。`,
+      bioLabel: `自己紹介`,
+      bioPlaceholder: `コミュニティに自己紹介をしましょう`,
+      changeAvatar: `アバターを変更`,
+      changeEmail: `メールアドレスを変更`,
+      changeEmailHint: `新しいアドレスに確認リンクをメールで送信します。確認後にのみメールアドレスが変更されます。`,
+      changePasswordHint: `新しいパスワードを選択してください（8文字以上）。`,
+      changePasswordTitle: `パスワードを変更`,
+      confirmPasswordLabel: `新しいパスワードを確認`,
+      confirmPasswordPlaceholder: `新しいパスワードを確認`,
+      deleteAccountAction: `アカウントを削除`,
+      deleteAccountConfirmDesc: `これにより、あなたのプロフィール、いいね、コメント、フォロー、通知、プロジェクトが完全に削除されます。公開済みのゲームは引き続き公開されますが匿名化されます。この操作は取り消せません。`,
+      deleteAccountConfirmTitle: `アカウントを削除しますか？`,
+      deleteAccountHint: `アカウントを完全に削除します。この操作は取り消せません。公開済みのゲームは引き続き公開されますが、あなたのクレジットは表示されなくなります。`,
+      deleteAccountTitle: `アカウントを削除`,
+      deleteMyAccount: `アカウントを削除する`,
+      emailAlreadyYours: `これはすでにあなたのメールアドレスです`,
+      emailConfirmationDesc: `{{email}}を確認して変更を承認してください。`,
+      emailConfirmationSent: `確認メールを送信しました`,
+      emailInvalid: `有効なメールアドレスを入力してください`,
+      emailPlaceholder: `you@example.com`,
+      emailUpdateFailed: `メールアドレスの更新に失敗しました`,
+      newPasswordLabel: `新しいパスワード`,
+      newPasswordPlaceholder: `新しいパスワード`,
+      notifCommentRepliesDesc: `誰かがあなたのコメントに返信したとき`,
+      notifCommentRepliesLabel: `コメントへの返信`,
+      notifGameCommentsDesc: `誰かがあなたのゲームにコメントしたとき`,
+      notifGameCommentsLabel: `ゲームへのコメント`,
+      notifGameLikesDesc: `誰かがあなたのゲームにいいねしたとき`,
+      notifGameLikesLabel: `ゲームへのいいね`,
+      notifMentionsDesc: `誰かがチャットであなたをメンションしたとき`,
+      notifMentionsLabel: `メンション`,
+      notifNewFollowersDesc: `誰かがあなたをフォローしたとき`,
+      notifNewFollowersLabel: `新しいフォロワー`,
+      notificationsDescription: `受け取りたい通知を選択してください。コラボレーション招待は常に配信されます。`,
+      notificationsTitle: `通知`,
+      passwordTooShort: `パスワードは8文字以上にしてください`,
+      passwordUpdateFailed: `パスワードの更新に失敗しました`,
+      passwordUpdated: `パスワードを更新しました`,
+      passwordsDontMatch: `パスワードが一致しません`,
+      prefUpdateFailed: `設定の更新に失敗しました`,
+      profileDescription: `Sandscape全体で他のユーザーに表示される内容を更新します。`,
+      profileTitle: `プロフィール`,
+      profileUpdateFailed: `プロフィールの更新に失敗しました`,
+      profileUpdated: `プロフィールを更新しました`,
+      saveChanges: `変更を保存`,
+      seoDescription: `Sandscapeのアカウント、プロフィール、設定を管理します。`,
+      seoTitle: `設定 | Sandscape`,
+      tabAccount: `アカウント`,
+      tabAppearance: `外観`,
+      tabNotifications: `通知`,
+      tabProfile: `プロフィール`,
+      themeDark: `ダーク`,
+      themeLabel: `テーマ`,
+      themeLight: `ライト`,
+      themeSystem: `システム`,
+      updatePassword: `パスワードを更新`,
+      usernameEmpty: `ユーザー名は空にできません`,
+      usernameLabel: `ユーザー名`,
+      usernamePlaceholder: `ユーザー名`,
+    },
+    createPrompt: {
+      recentProjects: `最近のプロジェクト`,
+      noPreview: `プレビューなし`,
+      title: `何をつくりますか？`,
+      tagline: `想像力が動かすゲーム`,
+      placeholder: `ゲームのアイデアを入力...`,
+      removeTag: `{{tag}} を削除`,
+      genresMore: `もっと見る`,
+      genresLess: `閉じる`,
+      viewAll: `すべて表示`,
+      genres: {
+        action: `アクション`,
+        adventure: `アドベンチャー`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `シミュレーション`,
+        puzzle: `パズル`,
+        rpg: `RPG`,
+        racing: `レース`,
+        strategy: `ストラテジー`,
+        survival: `サバイバル`,
+        horror: `ホラー`,
+      },
+    },
+    authPage: {
+      title: `サインインまたはアカウント作成`,
+      signInTitle: `サインイン`,
+      description: `プロバイダーまたはメールで続行できます。誰でもアカウントを作成できます。`,
+      createAccount: `アカウントを作成`,
+      signIn: `サインイン`,
+      codeTitle: `コードを入力`,
+      codeDescription: `送信された確認コードを入力してください。新規・既存アカウントで同じ手順です。`,
+      updatePasswordTitle: `新しいパスワードを設定`,
+      updatePasswordDescription: `Sandscapeアカウント用の安全なパスワードを設定してください。`,
+      recoveryTitle: `パスワードをリセット`,
+      recoveryDescription: `受信可能なアドレスには安全なリセットリンクを送信します。`,
+      checkEmailTitle: `メールを確認`,
+      confirmRecoveryDescription: `リセットメールを受信できる場合、まもなく届きます。`,
+      continueWith: {
+        google: `Googleで続行`,
+        github: `GitHubで続行`,
+        apple: `Appleで続行`,
+        facebook: `Facebookで続行`,
+      },
+      or: `または`,
+      emailPlaceholder: `you@example.com`,
+      continueWithEmail: `メールで続行`,
+      usePassword: `パスワードでサインイン`,
+      codeLabel: `確認コード`,
+      verifyCode: `コードを確認`,
+      resendCountdown: `{{seconds}}秒後に再送`,
+      resendCode: `コードを再送`,
+      changeEmail: `メールを変更`,
+      password: `パスワード`,
+      signInWithPassword: `パスワードでサインイン`,
+      passwordSigninNewAccountHint: `Sandscapeは初めてですか？戻ってメールで続行してください。アカウント設定時にパスワードを設定できます。`,
+      forgotPassword: `パスワードを忘れた場合`,
+      backToOptions: `サインイン方法に戻る`,
+      sendRecovery: `リセットリンクを送信`,
+      newPassword: `新しいパスワード`,
+      confirmPassword: `パスワードを確認`,
+      updatePassword: `パスワードを更新`,
+      genericEmailNotice: `プライバシー保護のため、アカウントの有無にかかわらず同じメッセージを表示します。`,
+      legal: `続行すると、<terms>Sandscapeの利用規約</terms>と<privacy>プライバシーポリシー</privacy>に同意したものとみなされます。`,
+      callbackFailedTitle: `サインインを完了できませんでした`,
+      tryAgain: `もう一度試す`,
+      finishing: `サインインを完了しています...`,
+      errors: {
+        generic: `問題が発生しました。もう一度お試しください。`,
+        usernameTaken: `そのユーザー名は既に使われています。`,
+        invalidCode: `コードが無効または期限切れです。新しいコードを取得してください。`,
+        rateLimited: `試行回数が多すぎます。しばらくお待ちください。`,
+        captcha: `セキュリティ確認に失敗しました。`,
+        captchaRequired: `セキュリティ確認を完了してください。`,
+        invalidCredentials: `メールまたはパスワードが正しくないか、パスワードでサインインできない状態です。`,
+        network: `サインインサービスに接続できません。接続を確認してください。`,
+        validation: `入力内容を確認してください。`,
+        providerDenied: `プロバイダーへのアクセスがキャンセルまたは拒否されました。`,
+        callback: `サインイン応答が無効または期限切れです。`,
+        emailRequired: `有効なメールアドレスを入力してください。`,
+        codeRequired: `確認コードをすべて入力してください。`,
+        credentialsRequired: `メールとパスワードを入力してください。`,
+        passwordTooShort: `8文字以上のパスワードを使用してください。`,
+        passwordMismatch: `パスワードが一致しません。`,
+        recoverySession: `新しいリセットリンクを取得してください。`,
+      },
+    },
+    onboarding: {
+      title: `公開プロフィールを設定`,
+      description: `公開ユーザー名は必須です。その他は任意で後から変更できます。`,
+      completedTitle: `アカウントの準備ができました`,
+      optionalRetryDescription: `公開ユーザー名を保存しました。任意の手順を再試行するか続行できます。`,
+      username: `公開ユーザー名`,
+      usernameRules: `3～30文字の英字、数字、アンダースコア、ハイフンを使用してください。公開情報のためメールアドレスは使えません。`,
+      avatar: `アバター（任意）`,
+      chooseAvatar: `画像を選択`,
+      password: `パスワードを設定（任意）`,
+      passwordHint: `メールコードを使い続け、後からセキュリティ設定でパスワードを設定できます。`,
+      creatorEnabled: `クリエイターアクセス有効`,
+      creatorEnabledHint: `ゲームを作成・公開できます。`,
+      subscribeForCreation: `アルファ版に参加する（任意）`,
+      subscribeForCreationHint: `アルファ版は公開中です。設定が終わるとプランのページへご案内するので、すぐに制作を始められます。`,
+      finish: `設定を完了`,
+      continueWithoutOptional: `任意の手順を省略して続行`,
+      retryOptional: `任意の手順を再試行`,
+      optionalFailedTitle: `一部の任意手順を確認してください`,
+      optionalFailures: {
+        avatar: `アバターを保存できませんでした。`,
+        password: `パスワードを設定できませんでした。`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `有効なサインイン方法`,
+      signInMethodsHint: `このアカウントにアクセスできる確認済みの方法です。`,
+      methodEmailCode: `メールコード`,
+      methodPassword: `パスワード`,
+      setPasswordTitle: `パスワードを設定`,
+      setPassword: `パスワードを設定`,
+    },
+    mailingList: {
+      title: `メーリングリストに参加`,
+      message: `Sandscapeの製品ニュースを時々お送りします。アカウント作成やクリエイターアクセス申請ではありません。`,
+      successTitle: `登録完了`,
+      successMessage: `メーリングリストに登録しました。`,
+      alreadyRegisteredTitle: `登録済みです`,
+      alreadyRegisteredMessage: `このメールは既に登録されています。`,
+      errorTitle: `登録に失敗しました`,
+      errorMessage: `メーリングリストに登録できませんでした。`,
+      emailPlaceholder: `you@example.com`,
+      join: `メーリングリストに参加`,
+    },
+    leaderboard: {
+      title: `ランキング`,
+      periodLabel: `期間`,
+      period: {
+        all: `全期間`,
+        daily: `今日`,
+        weekly: `今週`,
+        monthly: `今月`,
+        default: `既定`,
+      },
+      rank: `#`,
+      player: `プレイヤー`,
+      entries: `プレイ数`,
+      you: `あなた`,
+      yourRank: `あなたの順位`,
+      empty: `まだ結果がありません。最初のプレイヤーになりましょう。`,
+      error: `ランキングを読み込めませんでした。`,
+      refresh: `更新`,
+      unknownPlayer: `プレイヤー`,
+    },
+  },
+  Ie = {
+    billing: {
+      alphaOpenTitle: `Alpha 测试现已开放`,
+      alphaOpenBody: `选择任意订阅方案或 Sandcoin 包即可解锁完整创作工作室，从最初的想法到发布游戏。`,
+    },
+    navigation: {
+      home: `首页`,
+      search: `搜索`,
+      create: `创建`,
+      profile: `个人资料`,
+      settings: `设置`,
+      history: `历史记录`,
+      following: `关注中`,
+      followers: `粉丝`,
+      likes: `喜欢`,
+      logout: `退出登录`,
+      menu: `菜单`,
+      myStuff: `我的东西`,
+      social: `社交`,
+      tools: `工具`,
+      notifications: `通知`,
+      help: `帮助`,
+      toggleMenu: `切换移动菜单`,
+      publish: `发布`,
+    },
+    auth: { login: `登录`, register: `注册`, resetPassword: `重置密码` },
+    gameCard: {
+      likes: `喜欢`,
+      comments: `评论`,
+      views: `浏览量`,
+      live: `直播中`,
+    },
+    homePage: {
+      joinAlpha: `加入 Alpha 测试`,
+      trending: `热门趋势`,
+      newReleases: `新作`,
+      allGames: `所有游戏`,
+    },
+    categories: {
+      all: `所有游戏`,
+      action: `动作`,
+      rpg: `角色扮演`,
+      puzzle: `益智`,
+      racing: `竞速`,
+      strategy: `策略`,
+    },
+    general: {
+      loading: `加载中...`,
+      submit: `提交`,
+      cancel: `取消`,
+      save: `保存`,
+      delete: `删除`,
+      search: `搜索`,
+      language: `语言`,
+      email: `电子邮件`,
+      submitting: `提交中...`,
+    },
+    footer: {
+      discord: `Discord`,
+      twitter: `X/Twitter`,
+      instagram: `Instagram`,
+      youtube: `YouTube`,
+      tiktok: `TikTok`,
+      links: `关于 | 条款 | 隐私`,
+      aboutLinks: `关于 | 条款 | 隐私`,
+      copyright: `© {{year}} Sandscape. 保留所有权利。`,
+      poweredBy: `技术支持`,
+      product: `产品`,
+      resources: `资源`,
+      company: `公司`,
+      v1Link: `Sandscape v1`,
+      blogLink: `博客`,
+      faqLink: `常见问题`,
+      aboutLink: `关于`,
+      contactLink: `联系`,
+      privacyLink: `隐私政策`,
+      termsLink: `服务条款`,
+      aria: {
+        twitter: `X/Twitter`,
+        instagram: `Instagram`,
+        tiktok: `TikTok`,
+        youtube: `YouTube`,
+        discord: `Discord`,
+      },
+    },
+    invite: {
+      title: `邀请协作者`,
+      searchPlaceholder: `搜索用户...`,
+      notImplemented: `用户搜索功能尚未实现。`,
+      searching: `搜索中...`,
+    },
+    cookies: {
+      accept: `全部接受`,
+      decline: `全部拒绝`,
+      notice: `Cookie 通知`,
+      message: `我们使用可选的分析和广告 Cookie，您可以接受或拒绝。请阅读我们的`,
+      policy: `Cookie 政策`,
+    },
+    seo: {
+      title: `Sandscape – 无需编程制作游戏 | 创意游戏工作室`,
+      description: `Sandscape 是一个制作游戏的创意工作室。描述一个想法，用可视化工具完善它，或亲手打造每个细节，然后畅玩并分享你的创作。立即创建账户！`,
+      keywords: `AI 游戏创建器, 使用 AI 制作游戏, AI 游戏生成器, 无需编码创建游戏, 移动游戏制作器, 游戏创建平台, 协作游戏开发, 提示到游戏, AI 游戏开发, 无代码游戏创建`,
+    },
+    homeBanners: { playCta: `开始游戏` },
+    bannerCarousel: {
+      mute: `静音`,
+      unmute: `取消静音`,
+      closeBanner: `关闭横幅`,
+      showBanner: `显示横幅 {{number}}`,
+    },
+    game: {
+      compat: {
+        title: `为其他设备制作`,
+        desktopOnly: `这款游戏是为桌面端制作的，在此设备上可能无法正常运行。`,
+        mobileOnly: `这款游戏是为移动端制作的，在此设备上可能无法正常运行。`,
+        playAnyway: `仍然游玩`,
+      },
+      notFound: `未找到游戏`,
+      removedOrIncorrect: `该游戏可能已被删除，或链接有误。`,
+      backToGames: `返回游戏列表`,
+      noGameSpecified: `未指定游戏。请使用类似 /play?g=CODE 的链接`,
+      notAvailable: `游戏不可用 — 未找到已发布的构建版本。`,
+      seoDescriptionFallback: `体验 AI 生成的玩法、美术与机制。`,
+      shareTextFallback: `一款在 Sandscape 上创作的精彩游戏！`,
+      remix: `二次创作`,
+      like: `点赞`,
+      unlike: `取消点赞`,
+      follow: `关注`,
+      unfollow: `取消关注`,
+      fullscreen: `全屏`,
+      exitFullscreen: `退出全屏`,
+      showMore: `显示更多`,
+      showLess: `收起`,
+      views: `{{count}} 次观看`,
+      publishedPrefix: `发布于 `,
+      comments: `评论`,
+      beFirstToComment: `抢沙发，发表第一条评论。`,
+      relatedGames: `相关游戏`,
+      commentPlaceholder: `添加评论...`,
+      post: `发布`,
+      posting: `发布中...`,
+      registerToComment: `注册后即可评论此游戏`,
+      reply: `回复`,
+      replyToPlaceholder: `回复 {{name}}...`,
+      delete: `删除`,
+      deleteCommentTitle: `删除评论？`,
+      deleteCommentDescription: `此评论将被永久删除。此操作无法撤销。`,
+      toast: {
+        likeFailed: `更新点赞状态失败。`,
+        followFailed: `更新关注状态失败`,
+        commentFailed: `评论发布失败。`,
+        replyFailed: `回复发布失败。`,
+        deleteFailed: `删除评论失败。`,
+      },
+    },
+    search: {
+      liveBadge: `直播中`,
+      shareGame: `分享游戏`,
+      noBio: `暂无简介`,
+      view: `查看`,
+      seo: {
+        titleWithQuery: `“{{query}}”的搜索结果 - Sandscape`,
+        title: `搜索 - Sandscape`,
+        description: `在 Sandscape 上搜索游戏、创作者和频道。`,
+      },
+      heading: { results: `“{{query}}”的结果`, default: `搜索` },
+      empty: {
+        title: `搜索游戏和创作者`,
+        description: `使用顶部的搜索栏查找游戏、创作者和频道`,
+      },
+      noResults: {
+        title: `未找到结果`,
+        description: `我们找不到与“{{query}}”匹配的内容。请尝试其他搜索词。`,
+      },
+      tabs: { all: `全部结果`, games: `游戏`, creators: `创作者` },
+      section: { games: `游戏`, creators: `创作者` },
+      viewAllGames: `查看全部 {{count}} 款游戏`,
+      viewAllCreators: `查看全部 {{count}} 位创作者`,
+      noGamesMatching: `未找到与“{{query}}”匹配的游戏`,
+      noCreatorsMatching: `未找到与“{{query}}”匹配的创作者`,
+    },
+    loginPage: {
+      toastSuccessTitle: `成功`,
+      toastSuccessDesc: `登录成功`,
+      toastErrorTitle: `错误`,
+      toastLoginFailed: `登录失败`,
+      toastOauthErrorTitle: `OAuth 错误`,
+      toastOauthFailed: `身份验证失败`,
+      toastEnterEmail: `请输入您的邮箱地址`,
+      toastMagicLinkSentTitle: `魔法链接已发送`,
+      toastMagicLinkSentDesc: `请查看收件箱中的登录链接。`,
+      toastMagicLinkFailed: `发送魔法链接失败`,
+      title: `欢迎回来`,
+      subtitleMagicLink: `输入邮箱以接收登录链接`,
+      subtitlePassword: `输入您的凭据以继续`,
+      magicLinkConfirmPrefix: `我们已将魔法链接发送至`,
+      magicLinkConfirmSuffix: `请查看收件箱并点击链接登录。`,
+      backToLogin: `返回登录`,
+      password: `密码`,
+      emailPlaceholder: `输入您的邮箱`,
+      passwordPlaceholder: `输入您的密码`,
+      sending: `发送中...`,
+      sendMagicLink: `发送魔法链接`,
+      signIn: `登录`,
+      usePasswordInstead: `改用密码登录`,
+      useMagicLinkInstead: `改用魔法链接登录`,
+      forgotPassword: `忘记密码？`,
+    },
+    registerPage: {
+      toastSuccessTitle: `成功`,
+      toastSuccessDesc: `账号创建成功`,
+      toastErrorTitle: `错误`,
+      toastOauthErrorTitle: `OAuth 错误`,
+      title: `创建账号`,
+      subtitle: `输入您的信息以开始`,
+      password: `密码`,
+      emailPlaceholder: `输入您的邮箱`,
+      passwordPlaceholder: `设置一个密码`,
+      createAccount: `创建账号`,
+      signUpWithGoogle: `使用 Google 注册`,
+      signUpWithFacebook: `使用 Facebook 注册`,
+      haveAccount: `已有账号？登录`,
+    },
+    notFound: {
+      seoTitle: `404 - 页面未找到 | Sandscape`,
+      seoDescription: `您要查找的页面不存在。返回 Sandscape，创作并畅玩 AI 生成的游戏。`,
+      heading: `404 - 页面未找到`,
+      message: `您要查找的页面不存在。`,
+      goHome: `返回首页`,
+    },
+    share: {
+      linkCopied: `链接已复制`,
+      copyPrompt: `复制此链接：`,
+      instagramCopied: `已复制 Instagram 链接`,
+      instagramCopyManual: `复制此链接用于 Instagram`,
+      instagramDescription: `将其粘贴到您的故事、简介或私信中。`,
+      title: `分享`,
+      copied: `已复制`,
+      copy: `复制`,
+      more: `更多`,
+    },
+    header: {
+      toggleMenu: `切换菜单`,
+      yourProjects: `你的项目`,
+      newProject: `新建项目`,
+      myAccount: `我的账户`,
+      joinSandscape: `加入 Sandscape`,
+    },
+    followers: { empty: `未找到粉丝。`, title: `粉丝` },
+    following: { empty: `尚未关注任何人。`, title: `关注` },
+    history: {
+      title: `历史记录`,
+      emptyTitle: `还没有玩过的游戏`,
+      emptyMessage: `你玩过的游戏将显示在这里`,
+      browseGames: `浏览游戏`,
+      seoTitle: `历史记录 | Sandscape`,
+      seoDescription: `你最近在 Sandscape 上玩过的游戏。`,
+      unknownCreator: `未知`,
+      errorTitle: `无法加载你的历史记录`,
+      errorMessage: `出了点问题。请重试。`,
+      retry: `重试`,
+    },
+    likes: {
+      browseGames: `浏览游戏`,
+      emptyMessage: `你喜欢的游戏将显示在这里`,
+      emptyTitle: `还没有喜欢的游戏`,
+      seoDescription: `查看你在 Sandscape 上喜欢的所有游戏。`,
+      seoTitle: `我喜欢的游戏 | Sandscape`,
+      title: `喜欢的游戏`,
+      unknownCreator: `未知`,
+    },
+    notifications: {
+      accept: `接受`,
+      browseGames: `浏览游戏`,
+      decline: `拒绝`,
+      emptyDescription: `当有人关注你、对你的游戏点赞或评论，或邀请你协作时，你会在这里看到。`,
+      emptyTitle: `还没有通知`,
+      markAllRead: `全部标为已读`,
+      seoDescription: `查看你的 Sandscape 通知——关注、点赞、评论、协作邀请和提及。`,
+      seoTitle: `通知 | Sandscape`,
+      title: `通知`,
+      someone: `某人`,
+      aGame: `一个游戏`,
+      msgNewFollower: `{{name}} 开始关注你了`,
+      msgGameLike: `{{name}} 赞了你的游戏"{{game}}"`,
+      msgGameComment: `{{name}} 评论了你的游戏"{{game}}"`,
+      msgCommentReply: `{{name}} 回复了你的评论`,
+      msgCollabInvite: `{{name}} 邀请你协作一个项目`,
+      msgChatMention: `{{name}} 在聊天中提到了你`,
+      msgDefault: `你有一条新通知`,
+    },
+    profile: {
+      activity: `动态`,
+      avatarUploadFailed: `头像上传失败：`,
+      bioPlaceholder: `你的简介`,
+      createFirstGame: `创建你的第一款游戏`,
+      deleteProjectConfirm: `确定要删除此项目吗？`,
+      deleteProjectFailed: `删除项目失败`,
+      editProfile: `编辑资料`,
+      follow: `关注`,
+      followStatusFailed: `更新关注状态失败。`,
+      followers: `粉丝`,
+      following: `关注`,
+      goHome: `返回首页`,
+      loadingProjects: `正在加载项目……`,
+      myProjects: `我的项目`,
+      noProjects: `还没有项目`,
+      noPublishedGames: `还没有发布的游戏`,
+      noRecentActivity: `没有近期动态`,
+      notFound: `未找到该资料。`,
+      publishedGames: `已发布的游戏`,
+      saving: `正在保存……`,
+      seoDefaultCreator: `这位创作者`,
+      seoDefaultName: `用户资料`,
+      seoDescription: `在 Sandscape 上查看 {{name}} 的游戏和动态。加入即可关注、游玩并协作。`,
+      seoKeywords: `{{name}}, 游戏创作者, AI 游戏, 玩家资料, 游戏作品集, Sandscape 用户`,
+      seoTitle: `{{name}} | Sandscape`,
+      statusInProgress: `进行中`,
+      unfollow: `取消关注`,
+      updateProfileFailed: `更新资料时出错：`,
+    },
+    publish: {
+      compatibility: `兼容性`,
+      compatibilityBoth: `桌面和移动端`,
+      compatibilityDesktop: `仅桌面`,
+      compatibilityMobile: `仅移动端`,
+      compatibilityHint: `你的操作实际支持的设备。玩家在启动前会看到此信息。`,
+      distribution: `分发`,
+      distributionDesc: `先决定谁能发现你的游戏，然后将其上线。`,
+      advancedSettings: `高级设置`,
+      advancedSettingsDesc: `变现、评级和社区管理 — 尚未上线，在此展示以便你了解后续功能。`,
+      gameplayReplace: `替换`,
+      accessTier: `访问层级`,
+      accessTierFree: `免费游玩`,
+      ageRatingEveryone: `所有人`,
+      allowRemixing: `允许二次创作`,
+      allowRemixingDesc: `协作者可在署名的前提下构建变体版本。`,
+      comingSoon: `即将推出`,
+      coverAlt: `封面`,
+      coverArtPreviewAlt: `封面图预览`,
+      enableComments: `启用评论`,
+      enableCommentsDesc: `在你的游戏页面开启分层对话。`,
+      enableTipping: `启用打赏`,
+      enableTippingDesc: `允许粉丝在游玩结束后赠送 Sand Coin。`,
+      estimatedPlaytimeValue: `10-15 分钟`,
+      gameplayEncouragement: `没有它也可以发布，但有游戏画面的作品被游玩的次数要多得多。`,
+      gameplayOptional: `可选`,
+      leaderboard: `排行榜`,
+      leaderboardDesc: `追踪顶尖玩家以提升重玩价值。`,
+      previewDescriptionPlaceholder: `描述你的世界所承诺的体验，吸引玩家加入。`,
+      sandCoinPrice: `Sand Coin 价格`,
+      sandCoinPricePlaceholder: `设置入场价格`,
+      somethingWentWrong: `出了点问题`,
+      soonBadge: `即将`,
+      spectatorMode: `观战模式`,
+      spectatorModeDesc: `让社区成员观看实时游戏会话。`,
+      statusCompleted: `已完成`,
+      statusDraft: `草稿`,
+      updatedAgo: `更新于 {{time}}`,
+      leaderboardEnableDesc: `在游戏页面显示排行榜，并允许游戏上报成绩。`,
+      leaderboardPublishFirst: `先发布一次即可设置排行榜。`,
+      leaderboardLoading: `正在加载设置…`,
+      leaderboardNoManifest: `此版本未包含 sandscape.leaderboard.json。请让助手“添加排行榜”，然后重新发布。`,
+      leaderboardManifestInvalid: `排行榜配置文件无效：`,
+      leaderboardManifestFound: `此版本声明了 {{count}} 个排行榜。`,
+      leaderboardBoards: `排行榜`,
+      leaderboardAddBoard: `添加排行榜`,
+      leaderboardNoBoards: `还没有排行榜。`,
+      leaderboardBoardTitle: `排行榜名称`,
+      leaderboardBoardEnabled: `显示此排行榜`,
+      leaderboardGroupBy: `排名维度`,
+      leaderboardByPlayer: `玩家`,
+      leaderboardMetric: `指标`,
+      leaderboardAggregate: `方式`,
+      leaderboardPeriod: `时间范围`,
+      leaderboardAggregate_max: `最高`,
+      leaderboardAggregate_min: `最低`,
+      leaderboardAggregate_sum: `总和`,
+      leaderboardAggregate_count: `次数`,
+      leaderboardAggregate_avg: `平均`,
+      leaderboardAggregate_latest: `最新`,
+      leaderboardOriginManifest: `来自游戏`,
+      leaderboardOriginCreator: `你添加的`,
+      leaderboardResetAction: `重置`,
+      leaderboardReset: `重置此排行榜？`,
+      leaderboardResetConfirm: `排行榜将从现在开始重新计算，成绩会保留。`,
+      leaderboardResetDone: `已重置`,
+      leaderboardDeleteAction: `删除`,
+      leaderboardDelete: `删除此排行榜？`,
+      leaderboardDeleteConfirm: `该排行榜将从游戏页面消失，成绩会保留。`,
+      leaderboardDeleted: `已删除`,
+      leaderboardCreate: `创建`,
+      leaderboardCancel: `取消`,
+      leaderboardBoardAdded: `已添加排行榜`,
+      leaderboardOn: `排行榜已开启`,
+      leaderboardOff: `排行榜已关闭`,
+      leaderboardSaveFailed: `保存失败`,
+      leaderboardManifestOwned: `此排行榜来自游戏。在此做任何更改（包括隐藏）都会将其归为你的，之后的版本将不再更新它。`,
+    },
+    settings: {
+      accountDeleteFailed: `删除账户失败`,
+      accountDeleted: `你的账户已被删除`,
+      accountDescription: `管理你的登录信息。`,
+      accountTitle: `账户`,
+      appearanceDescription: `自定义 Sandscape 的外观和体验。`,
+      appearanceTitle: `外观`,
+      avatarHint: `JPG 或 PNG 格式。点击保存更改时生效。`,
+      bioLabel: `简介`,
+      bioPlaceholder: `向社区介绍一下你自己`,
+      changeAvatar: `更换头像`,
+      changeEmail: `更改邮箱`,
+      changeEmailHint: `我们会向新邮箱发送一封确认链接。只有在你确认之后，邮箱才会更改。`,
+      changePasswordHint: `选择一个新密码（至少 8 个字符）。`,
+      changePasswordTitle: `更改密码`,
+      confirmPasswordLabel: `确认新密码`,
+      confirmPasswordPlaceholder: `确认新密码`,
+      deleteAccountAction: `删除账户`,
+      deleteAccountConfirmDesc: `此操作将永久删除你的资料、点赞、评论、关注、通知和项目。你已发布的游戏将保持上线，但会被匿名化。此操作无法撤销。`,
+      deleteAccountConfirmTitle: `确定要删除你的账户吗？`,
+      deleteAccountHint: `永久删除你的账户。此操作无法撤销。你已发布的游戏将保持上线，但不再归于你名下。`,
+      deleteAccountTitle: `删除账户`,
+      deleteMyAccount: `删除我的账户`,
+      emailAlreadyYours: `这已经是你的邮箱了`,
+      emailConfirmationDesc: `请查看 {{email}} 以确认更改。`,
+      emailConfirmationSent: `确认邮件已发送`,
+      emailInvalid: `请输入有效的邮箱地址`,
+      emailPlaceholder: `you@example.com`,
+      emailUpdateFailed: `更新邮箱失败`,
+      newPasswordLabel: `新密码`,
+      newPasswordPlaceholder: `新密码`,
+      notifCommentRepliesDesc: `当有人回复你的评论时`,
+      notifCommentRepliesLabel: `评论回复`,
+      notifGameCommentsDesc: `当有人评论你的游戏时`,
+      notifGameCommentsLabel: `游戏评论`,
+      notifGameLikesDesc: `当有人对你的游戏点赞时`,
+      notifGameLikesLabel: `游戏点赞`,
+      notifMentionsDesc: `当有人在聊天中提及你时`,
+      notifMentionsLabel: `提及`,
+      notifNewFollowersDesc: `当有人关注你时`,
+      notifNewFollowersLabel: `新粉丝`,
+      notificationsDescription: `选择你想要接收的通知。协作邀请始终会送达。`,
+      notificationsTitle: `通知`,
+      passwordTooShort: `密码至少需要 8 个字符`,
+      passwordUpdateFailed: `更新密码失败`,
+      passwordUpdated: `密码已更新`,
+      passwordsDontMatch: `两次输入的密码不一致`,
+      prefUpdateFailed: `更新偏好设置失败`,
+      profileDescription: `更新你在 Sandscape 上向他人展示的形象。`,
+      profileTitle: `资料`,
+      profileUpdateFailed: `更新资料失败`,
+      profileUpdated: `资料已更新`,
+      saveChanges: `保存更改`,
+      seoDescription: `管理你的 Sandscape 账户、资料和偏好设置。`,
+      seoTitle: `设置 | Sandscape`,
+      tabAccount: `账户`,
+      tabAppearance: `外观`,
+      tabNotifications: `通知`,
+      tabProfile: `资料`,
+      themeDark: `深色`,
+      themeLabel: `主题`,
+      themeLight: `浅色`,
+      themeSystem: `跟随系统`,
+      updatePassword: `更新密码`,
+      usernameEmpty: `用户名不能为空`,
+      usernameLabel: `用户名`,
+      usernamePlaceholder: `你的用户名`,
+    },
+    createPrompt: {
+      recentProjects: `最近的项目`,
+      noPreview: `无预览`,
+      title: `你想创造什么？`,
+      tagline: `由你的想象力驱动的游戏`,
+      placeholder: `描述你的游戏创意...`,
+      removeTag: `移除 {{tag}}`,
+      genresMore: `更多`,
+      genresLess: `收起`,
+      viewAll: `查看全部`,
+      genres: {
+        action: `动作`,
+        adventure: `冒险`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `模拟`,
+        puzzle: `解谜`,
+        rpg: `RPG`,
+        racing: `竞速`,
+        strategy: `策略`,
+        survival: `生存`,
+        horror: `恐怖`,
+      },
+    },
+    authPage: {
+      title: `登录或创建账户`,
+      signInTitle: `登录`,
+      description: `使用服务商或电子邮件继续。所有人都可以创建账户。`,
+      createAccount: `创建账户`,
+      signIn: `登录`,
+      codeTitle: `输入验证码`,
+      codeDescription: `请输入我们发送的验证码。新用户和现有用户使用相同流程。`,
+      updatePasswordTitle: `设置新密码`,
+      updatePasswordDescription: `为你的 Sandscape 账户选择安全密码。`,
+      recoveryTitle: `重置密码`,
+      recoveryDescription: `如果该地址可以接收邮件，我们会发送安全的重置链接。`,
+      checkEmailTitle: `查看电子邮件`,
+      confirmRecoveryDescription: `如果该地址可以接收重置邮件，邮件将很快送达。`,
+      continueWith: {
+        google: `使用 Google 继续`,
+        github: `使用 GitHub 继续`,
+        apple: `使用 Apple 继续`,
+        facebook: `使用 Facebook 继续`,
+      },
+      or: `或`,
+      emailPlaceholder: `you@example.com`,
+      continueWithEmail: `使用电子邮件继续`,
+      usePassword: `改用密码登录`,
+      codeLabel: `验证码`,
+      verifyCode: `验证`,
+      resendCountdown: `{{seconds}} 秒后重新发送`,
+      resendCode: `重新发送`,
+      changeEmail: `更改电子邮件`,
+      password: `密码`,
+      signInWithPassword: `使用密码登录`,
+      passwordSigninNewAccountHint: `第一次使用 Sandscape？请返回并使用邮箱继续。你可以在设置账户时设置密码。`,
+      forgotPassword: `忘记密码？`,
+      backToOptions: `返回登录方式`,
+      sendRecovery: `发送重置链接`,
+      newPassword: `新密码`,
+      confirmPassword: `确认密码`,
+      updatePassword: `更新密码`,
+      genericEmailNotice: `为保护隐私，无论账户是否存在，此消息都相同。`,
+      legal: `继续即表示你同意 <terms>Sandscape 条款</terms>并知悉<privacy>隐私政策</privacy>。`,
+      callbackFailedTitle: `无法完成登录`,
+      tryAgain: `重试`,
+      finishing: `正在完成登录...`,
+      errors: {
+        generic: `出现问题，请重试。`,
+        usernameTaken: `该用户名已被使用。`,
+        invalidCode: `验证码无效或已过期，请申请新验证码。`,
+        rateLimited: `尝试次数过多，请稍后再试。`,
+        captcha: `安全验证失败。`,
+        captchaRequired: `请完成安全验证。`,
+        invalidCredentials: `电子邮件或密码不正确，或账户尚未支持密码登录。`,
+        network: `无法连接登录服务，请检查网络。`,
+        validation: `请检查输入内容。`,
+        providerDenied: `服务商访问已取消或被拒绝。`,
+        callback: `登录响应无效或已过期。`,
+        emailRequired: `请输入有效的电子邮件。`,
+        codeRequired: `请输入完整的验证码。`,
+        credentialsRequired: `请输入电子邮件和密码。`,
+        passwordTooShort: `密码至少需要 8 个字符。`,
+        passwordMismatch: `两次密码不一致。`,
+        recoverySession: `请申请新的密码重置链接。`,
+      },
+    },
+    onboarding: {
+      title: `选择公开身份`,
+      description: `必须设置公开用户名，其他内容均为可选且可稍后更改。`,
+      completedTitle: `账户已就绪`,
+      optionalRetryDescription: `公开用户名已保存。你可以重试可选步骤或直接继续。`,
+      username: `公开用户名`,
+      usernameRules: `使用 3–30 个字母、数字、下划线或连字符。用户名会公开显示，不能使用电子邮件。`,
+      avatar: `头像（可选）`,
+      chooseAvatar: `选择图片`,
+      password: `设置密码（可选）`,
+      passwordHint: `你可以继续使用邮件验证码，并稍后在账户安全中设置密码。`,
+      creatorEnabled: `创作者权限已启用`,
+      creatorEnabledHint: `你现在可以创建和发布游戏。`,
+      subscribeForCreation: `加入 alpha（可选）`,
+      subscribeForCreationHint: `alpha 现已开放。完成设置后，我们会带你前往套餐页面，让你立即开始创作。`,
+      finish: `完成设置`,
+      continueWithoutOptional: `跳过可选步骤并继续`,
+      retryOptional: `重试可选步骤`,
+      optionalFailedTitle: `部分可选步骤需要处理`,
+      optionalFailures: {
+        avatar: `无法保存头像。`,
+        password: `无法设置密码。`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `有效登录方式`,
+      signInMethodsHint: `这些是访问此账户的已验证方式。`,
+      methodEmailCode: `邮件验证码`,
+      methodPassword: `密码`,
+      setPasswordTitle: `设置密码`,
+      setPassword: `设置密码`,
+    },
+    mailingList: {
+      title: `加入邮件列表`,
+      message: `偶尔接收 Sandscape 产品资讯。这不会创建账户或申请创作者权限。`,
+      successTitle: `订阅成功`,
+      successMessage: `你已加入邮件列表。`,
+      alreadyRegisteredTitle: `已经订阅`,
+      alreadyRegisteredMessage: `该邮箱已在邮件列表中。`,
+      errorTitle: `订阅失败`,
+      errorMessage: `无法加入邮件列表，请重试。`,
+      emailPlaceholder: `you@example.com`,
+      join: `加入邮件列表`,
+    },
+    leaderboard: {
+      title: `排行榜`,
+      periodLabel: `时间范围`,
+      period: {
+        all: `全部时间`,
+        daily: `今天`,
+        weekly: `本周`,
+        monthly: `本月`,
+        default: `默认`,
+      },
+      rank: `#`,
+      player: `玩家`,
+      entries: `游玩次数`,
+      you: `你`,
+      yourRank: `你的排名`,
+      empty: `暂无成绩，快来成为第一个玩家。`,
+      error: `暂时无法加载排行榜。`,
+      refresh: `刷新`,
+      unknownPlayer: `玩家`,
+    },
+  },
+  Le = {
+    billing: {
+      alphaOpenTitle: `الألفا متاحة الآن`,
+      alphaOpenBody: `اختر أي خطة أو حزمة Sandcoin لفتح استوديو الإنشاء بالكامل، من فكرتك الأولى إلى لعبتك المنشورة.`,
+    },
+    navigation: {
+      home: `الرئيسية`,
+      search: `بحث`,
+      create: `إنشاء`,
+      profile: `الملف الشخصي`,
+      settings: `الإعدادات`,
+      history: `السجل`,
+      following: `المتابَعون`,
+      followers: `المتابِعون`,
+      likes: `الإعجابات`,
+      logout: `تسجيل الخروج`,
+      menu: `القائمة`,
+      myStuff: `أشيائي`,
+      social: `اجتماعي`,
+      tools: `أدوات`,
+      notifications: `الإشعارات`,
+      help: `مساعدة`,
+      toggleMenu: `تبديل قائمة الهاتف المحمول`,
+      publish: `نشر`,
+    },
+    auth: {
+      login: `تسجيل الدخول`,
+      register: `تسجيل`,
+      resetPassword: `إعادة تعيين كلمة المرور`,
+    },
+    gameCard: {
+      likes: `إعجاب`,
+      comments: `تعليق`,
+      views: `مشاهدة`,
+      live: `مباشر`,
+    },
+    homePage: {
+      joinAlpha: `انضم إلى الألفا`,
+      trending: `شائع`,
+      newReleases: `الإصدارات الجديدة`,
+      allGames: `جميع الألعاب`,
+    },
+    categories: {
+      all: `جميع الألعاب`,
+      action: `أكشن`,
+      rpg: `أر بي جي`,
+      puzzle: `ألغاز`,
+      racing: `سباق`,
+      strategy: `استراتيجية`,
+    },
+    general: {
+      loading: `جار التحميل...`,
+      submit: `إرسال`,
+      cancel: `إلغاء`,
+      save: `حفظ`,
+      delete: `حذف`,
+      search: `بحث`,
+      language: `اللغة`,
+      email: `البريد الإلكتروني`,
+      submitting: `جار الإرسال...`,
+    },
+    footer: {
+      discord: `ديسكورد`,
+      twitter: `X/تويتر`,
+      instagram: `إنستغرام`,
+      youtube: `يوتيوب`,
+      tiktok: `تيك توك`,
+      links: `حول | الشروط | الخصوصية`,
+      aboutLinks: `حول | الشروط | الخصوصية`,
+      copyright: `© {{year}} Sandscape. جميع الحقوق محفوظة.`,
+      poweredBy: `بدعم من`,
+      description: `Sandscape v2: محرك الذكاء الاصطناعي الثوري الذي يولد ألعابًا كاملة قابلة للعب من خيالك.`,
+      product: `المنتج`,
+      resources: `الموارد`,
+      company: `الشركة`,
+      v1Link: `Sandscape v1`,
+      blogLink: `المدونة`,
+      faqLink: `الأسئلة الشائعة`,
+      aboutLink: `حول`,
+      contactLink: `اتصل بنا`,
+      privacyLink: `سياسة الخصوصية`,
+      termsLink: `شروط الخدمة`,
+      aria: {
+        twitter: `X/تويتر`,
+        instagram: `إنستغرام`,
+        tiktok: `تيك توك`,
+        youtube: `يوتيوب`,
+        discord: `ديسكورد`,
+      },
+    },
+    invite: {
+      title: `دعوة المتعاونين`,
+      searchPlaceholder: `بحث عن المستخدمين...`,
+      notImplemented: `ميزة البحث عن المستخدمين لم يتم تنفيذها بعد.`,
+      searching: `جار البحث...`,
+    },
+    cookies: {
+      accept: `قبول الكل`,
+      decline: `رفض الكل`,
+      notice: `إشعار ملفات تعريف الارتباط`,
+      message: `نستخدم ملفات تعريف ارتباط اختيارية للتحليلات والإعلانات يمكنك قبولها أو رفضها. راجع`,
+      policy: `سياسة ملفات تعريف الارتباط الخاصة بنا`,
+    },
+    seo: {
+      title: `Sandscape – أنشئ ألعابًا دون برمجة | استوديو ألعاب إبداعي`,
+      description: `Sandscape هو استوديو إبداعي لصناعة الألعاب. صِف فكرة، وحسّنها بأدوات مرئية، أو ابنِ كل تفصيل يدويًا، ثم العب وشارك ما تصنعه. أنشئ حسابًا اليوم!`,
+      keywords: `منشئ ألعاب الذكاء الاصطناعي، صنع الألعاب بالذكاء الاصطناعي، مولد ألعاب الذكاء الاصطناعي، إنشاء ألعاب بدون برمجة، صانع ألعاب الهاتف المحمول، منصة إنشاء الألعاب، تطوير الألعاب التعاوني، من التلقين إلى اللعبة، تطوير ألعاب الذكاء الاصطناعي، إنشاء ألعاب بدون كود`,
+    },
+    homeBanners: { playCta: `العب` },
+    bannerCarousel: {
+      mute: `كتم الصوت`,
+      unmute: `إلغاء الكتم`,
+      closeBanner: `إغلاق اللافتة`,
+      showBanner: `عرض اللافتة {{number}}`,
+    },
+    game: {
+      compat: {
+        title: `صُمّمت لجهاز آخر`,
+        desktopOnly: `صُمّمت هذه اللعبة لأجهزة سطح المكتب — وقد لا تعمل بشكل صحيح على هذا الجهاز.`,
+        mobileOnly: `صُمّمت هذه اللعبة للهواتف المحمولة — وقد لا تعمل بشكل صحيح على هذا الجهاز.`,
+        playAnyway: `تشغيل على أي حال`,
+      },
+      notFound: `اللعبة غير موجودة`,
+      removedOrIncorrect: `ربما تمت إزالة هذه اللعبة أو أن الرابط غير صحيح.`,
+      backToGames: `العودة إلى الألعاب`,
+      noGameSpecified: `لم يتم تحديد لعبة. استخدم رابطًا مثل /play?g=CODE`,
+      notAvailable: `اللعبة غير متاحة — لم يُعثر على إصدار منشور.`,
+      seoDescriptionFallback: `اختبر طريقة لعب وفنًا وآليات من إنشاء الذكاء الاصطناعي.`,
+      shareTextFallback: `لعبة رائعة أُنشئت على Sandscape!`,
+      remix: `إعادة مزج`,
+      like: `إعجاب`,
+      unlike: `إلغاء الإعجاب`,
+      follow: `متابعة`,
+      unfollow: `إلغاء المتابعة`,
+      fullscreen: `ملء الشاشة`,
+      exitFullscreen: `إنهاء ملء الشاشة`,
+      showMore: `عرض المزيد`,
+      showLess: `عرض أقل`,
+      views: `{{count}} مشاهدة`,
+      publishedPrefix: `نُشرت `,
+      comments: `التعليقات`,
+      beFirstToComment: `كن أول من يعلّق.`,
+      relatedGames: `ألعاب ذات صلة`,
+      commentPlaceholder: `أضف تعليقًا...`,
+      post: `نشر`,
+      posting: `جارٍ النشر...`,
+      registerToComment: `سجّل للتعليق على هذه اللعبة`,
+      reply: `رد`,
+      replyToPlaceholder: `الرد على {{name}}...`,
+      delete: `حذف`,
+      deleteCommentTitle: `حذف التعليق؟`,
+      deleteCommentDescription: `سيُحذف هذا التعليق نهائيًا. لا يمكن التراجع عن هذا الإجراء.`,
+      toast: {
+        likeFailed: `فشل تحديث حالة الإعجاب.`,
+        followFailed: `فشل تحديث حالة المتابعة`,
+        commentFailed: `فشل نشر التعليق.`,
+        replyFailed: `فشل نشر الرد.`,
+        deleteFailed: `فشل حذف التعليق.`,
+      },
+    },
+    search: {
+      liveBadge: `مباشر`,
+      shareGame: `مشاركة اللعبة`,
+      noBio: `لا توجد نبذة متاحة`,
+      view: `عرض`,
+      seo: {
+        titleWithQuery: `نتائج البحث عن "{{query}}" - Sandscape`,
+        title: `بحث - Sandscape`,
+        description: `ابحث عن الألعاب والمبدعين والقنوات على Sandscape.`,
+      },
+      heading: { results: `نتائج "{{query}}"`, default: `بحث` },
+      empty: {
+        title: `ابحث عن الألعاب والمبدعين`,
+        description: `استخدم شريط البحث في الأعلى للعثور على الألعاب والمبدعين والقنوات`,
+      },
+      noResults: {
+        title: `لم يُعثر على نتائج`,
+        description: `لم نتمكن من العثور على أي نتائج لـ "{{query}}". جرّب مصطلح بحث مختلفًا.`,
+      },
+      tabs: { all: `كل النتائج`, games: `الألعاب`, creators: `المبدعون` },
+      section: { games: `الألعاب`, creators: `المبدعون` },
+      viewAllGames: `عرض كل الألعاب البالغ عددها {{count}}`,
+      viewAllCreators: `عرض كل المبدعين البالغ عددهم {{count}}`,
+      noGamesMatching: `لم يُعثر على ألعاب تطابق "{{query}}"`,
+      noCreatorsMatching: `لم يُعثر على مبدعين يطابقون "{{query}}"`,
+    },
+    loginPage: {
+      toastSuccessTitle: `نجاح`,
+      toastSuccessDesc: `تم تسجيل الدخول بنجاح`,
+      toastErrorTitle: `خطأ`,
+      toastLoginFailed: `فشل تسجيل الدخول`,
+      toastOauthErrorTitle: `خطأ في OAuth`,
+      toastOauthFailed: `فشلت المصادقة`,
+      toastEnterEmail: `يرجى إدخال عنوان بريدك الإلكتروني`,
+      toastMagicLinkSentTitle: `تم إرسال الرابط السحري`,
+      toastMagicLinkSentDesc: `تحقق من بريدك الوارد للحصول على رابط تسجيل الدخول.`,
+      toastMagicLinkFailed: `فشل إرسال الرابط السحري`,
+      title: `مرحبًا بعودتك`,
+      subtitleMagicLink: `أدخل بريدك الإلكتروني لتلقي رابط تسجيل الدخول`,
+      subtitlePassword: `أدخل بيانات اعتمادك للمتابعة`,
+      magicLinkConfirmPrefix: `لقد أرسلنا رابطًا سحريًا إلى`,
+      magicLinkConfirmSuffix: `تحقق من بريدك الوارد وانقر على الرابط لتسجيل الدخول.`,
+      backToLogin: `العودة إلى تسجيل الدخول`,
+      password: `كلمة المرور`,
+      emailPlaceholder: `أدخل بريدك الإلكتروني`,
+      passwordPlaceholder: `أدخل كلمة المرور`,
+      sending: `جارٍ الإرسال...`,
+      sendMagicLink: `إرسال الرابط السحري`,
+      signIn: `تسجيل الدخول`,
+      usePasswordInstead: `تسجيل الدخول بكلمة المرور بدلاً من ذلك`,
+      useMagicLinkInstead: `تسجيل الدخول بالرابط السحري بدلاً من ذلك`,
+      forgotPassword: `هل نسيت كلمة المرور؟`,
+    },
+    registerPage: {
+      toastSuccessTitle: `نجاح`,
+      toastSuccessDesc: `تم إنشاء الحساب بنجاح`,
+      toastErrorTitle: `خطأ`,
+      toastOauthErrorTitle: `خطأ في OAuth`,
+      title: `إنشاء حساب`,
+      subtitle: `أدخل بياناتك للبدء`,
+      password: `كلمة المرور`,
+      emailPlaceholder: `أدخل بريدك الإلكتروني`,
+      passwordPlaceholder: `اختر كلمة مرور`,
+      createAccount: `إنشاء حساب`,
+      signUpWithGoogle: `التسجيل باستخدام Google`,
+      signUpWithFacebook: `التسجيل باستخدام Facebook`,
+      haveAccount: `لديك حساب بالفعل؟ سجّل الدخول`,
+    },
+    notFound: {
+      seoTitle: `404 - الصفحة غير موجودة | Sandscape`,
+      seoDescription: `الصفحة التي تبحث عنها غير موجودة. عُد إلى Sandscape لإنشاء ألعاب من إنشاء الذكاء الاصطناعي ولعبها.`,
+      heading: `404 - الصفحة غير موجودة`,
+      message: `الصفحة التي تبحث عنها غير موجودة.`,
+      goHome: `الذهاب إلى الصفحة الرئيسية`,
+    },
+    share: {
+      linkCopied: `تم نسخ الرابط`,
+      copyPrompt: `انسخ هذا الرابط:`,
+      instagramCopied: `تم نسخ الرابط لإنستغرام`,
+      instagramCopyManual: `انسخ هذا الرابط لإنستغرام`,
+      instagramDescription: `الصقه في قصتك أو نبذتك أو في رسالة خاصة.`,
+      title: `مشاركة`,
+      copied: `تم النسخ`,
+      copy: `نسخ`,
+      more: `المزيد`,
+    },
+    header: {
+      toggleMenu: `تبديل القائمة`,
+      yourProjects: `مشاريعك`,
+      newProject: `مشروع جديد`,
+      myAccount: `حسابي`,
+      joinSandscape: `انضم إلى Sandscape`,
+    },
+    followers: { empty: `لا يوجد متابعون.`, title: `المتابِعون` },
+    following: { empty: `لا تتابع أحدًا.`, title: `المتابَعون` },
+    history: {
+      title: `السجل`,
+      emptyTitle: `لم تلعب أي ألعاب بعد`,
+      emptyMessage: `ستظهر الألعاب التي تلعبها هنا`,
+      browseGames: `تصفح الألعاب`,
+      seoTitle: `السجل | Sandscape`,
+      seoDescription: `الألعاب التي لعبتها مؤخرًا على Sandscape.`,
+      unknownCreator: `غير معروف`,
+      errorTitle: `تعذّر تحميل سجلّك`,
+      errorMessage: `حدث خطأ ما. يرجى المحاولة مرة أخرى.`,
+      retry: `إعادة المحاولة`,
+    },
+    likes: {
+      browseGames: `تصفح الألعاب`,
+      emptyMessage: `ستظهر الألعاب التي أعجبتك هنا`,
+      emptyTitle: `لا توجد ألعاب أعجبتك بعد`,
+      seoDescription: `اعرض جميع الألعاب التي أعجبتك على Sandscape.`,
+      seoTitle: `ألعابي المفضلة | Sandscape`,
+      title: `الألعاب المفضلة`,
+      unknownCreator: `غير معروف`,
+    },
+    notifications: {
+      accept: `قبول`,
+      browseGames: `تصفح الألعاب`,
+      decline: `رفض`,
+      emptyDescription: `عندما يتابعك الأشخاص، أو يعجبون بألعابك أو يعلقون عليها، أو يدعونك للتعاون، سترى ذلك هنا.`,
+      emptyTitle: `لا توجد إشعارات بعد`,
+      markAllRead: `تعليم الكل كمقروء`,
+      seoDescription: `اعرض إشعارات Sandscape الخاصة بك — المتابعات والإعجابات والتعليقات ودعوات التعاون والإشارات.`,
+      seoTitle: `الإشعارات | Sandscape`,
+      title: `الإشعارات`,
+      someone: `شخص ما`,
+      aGame: `لعبة`,
+      msgNewFollower: `بدأ {{name}} بمتابعتك`,
+      msgGameLike: `أعجبت {{name}} بلعبتك "{{game}}"`,
+      msgGameComment: `علّق {{name}} على لعبتك "{{game}}"`,
+      msgCommentReply: `ردّ {{name}} على تعليقك`,
+      msgCollabInvite: `دعاك {{name}} للتعاون في مشروع`,
+      msgChatMention: `أشار إليك {{name}} في الدردشة`,
+      msgDefault: `لديك إشعار جديد`,
+    },
+    profile: {
+      activity: `النشاط`,
+      avatarUploadFailed: `فشل رفع الصورة الرمزية: `,
+      bioPlaceholder: `نبذتك التعريفية`,
+      createFirstGame: `أنشئ لعبتك الأولى`,
+      deleteProjectConfirm: `هل أنت متأكد أنك تريد حذف هذا المشروع؟`,
+      deleteProjectFailed: `فشل حذف المشروع`,
+      editProfile: `تعديل الملف الشخصي`,
+      follow: `متابعة`,
+      followStatusFailed: `فشل تحديث حالة المتابعة.`,
+      followers: `المتابِعون`,
+      following: `المتابَعون`,
+      goHome: `الذهاب إلى الصفحة الرئيسية`,
+      loadingProjects: `جارٍ تحميل المشاريع...`,
+      myProjects: `مشاريعي`,
+      noProjects: `لا توجد مشاريع بعد`,
+      noPublishedGames: `لا توجد ألعاب منشورة بعد`,
+      noRecentActivity: `لا يوجد نشاط حديث`,
+      notFound: `لم يتم العثور على الملف الشخصي.`,
+      publishedGames: `الألعاب المنشورة`,
+      saving: `جارٍ الحفظ...`,
+      seoDefaultCreator: `هذا المنشئ`,
+      seoDefaultName: `الملف الشخصي للمستخدم`,
+      seoDescription: `اطّلع على ألعاب {{name}} ونشاطه على Sandscape. انضم للمتابعة واللعب والتعاون.`,
+      seoKeywords: `{{name}}، منشئ ألعاب، ألعاب بالذكاء الاصطناعي، الملف الشخصي للاعب، معرض الألعاب، مستخدم Sandscape`,
+      seoTitle: `{{name}} | Sandscape`,
+      statusInProgress: `قيد التنفيذ`,
+      unfollow: `إلغاء المتابعة`,
+      updateProfileFailed: `خطأ في تحديث الملف الشخصي: `,
+    },
+    publish: {
+      compatibility: `التوافق`,
+      compatibilityBoth: `سطح المكتب والجوال`,
+      compatibilityDesktop: `سطح المكتب فقط`,
+      compatibilityMobile: `الجوال فقط`,
+      compatibilityHint: `الأجهزة التي تعمل عليها عناصر التحكم فعليًا. يراها اللاعبون قبل بدء اللعب.`,
+      distribution: `التوزيع`,
+      distributionDesc: `حدد من يمكنه العثور على لعبتك، ثم انشرها.`,
+      advancedSettings: `الإعدادات المتقدمة`,
+      advancedSettingsDesc: `تحقيق الدخل والتصنيفات وأدوات المجتمع — غير مفعّلة بعد، معروضة هنا لتعرف ما هو قادم.`,
+      gameplayReplace: `استبدال`,
+      accessTier: `مستوى الوصول`,
+      accessTierFree: `مجاني اللعب`,
+      ageRatingEveryone: `للجميع`,
+      allowRemixing: `السماح بإعادة المزج`,
+      allowRemixingDesc: `يمكن للمتعاونين إنشاء نسخ مختلفة مع نسب العمل إلى أصحابه.`,
+      comingSoon: `قريبًا`,
+      coverAlt: `الغلاف`,
+      coverArtPreviewAlt: `معاينة صورة الغلاف`,
+      enableComments: `تفعيل التعليقات`,
+      enableCommentsDesc: `افتح محادثات متسلسلة على صفحة لعبتك.`,
+      enableTipping: `تفعيل الإكراميات`,
+      enableTippingDesc: `اسمح للمعجبين بإهداء عملات Sand Coins بعد جلسات اللعب.`,
+      estimatedPlaytimeValue: `10-15 دقيقة`,
+      gameplayEncouragement: `يمكنك النشر بدونه، لكن الألعاب التي تحتوي على مقطع من طور اللعب تُلعب أكثر بكثير.`,
+      gameplayOptional: `اختياري`,
+      leaderboard: `لوحة المتصدرين`,
+      leaderboardDesc: `تتبّع أفضل اللاعبين لزيادة قابلية إعادة اللعب.`,
+      previewDescriptionPlaceholder: `صف ما يَعِد به عالمك لجذب اللاعبين.`,
+      sandCoinPrice: `سعر Sand Coin`,
+      sandCoinPricePlaceholder: `حدد سعر الدخول`,
+      somethingWentWrong: `حدث خطأ ما`,
+      soonBadge: `قريبًا`,
+      spectatorMode: `وضع المشاهدة`,
+      spectatorModeDesc: `دع أعضاء المجتمع يشاهدون الجلسات المباشرة.`,
+      statusCompleted: `مكتمل`,
+      statusDraft: `مسودة`,
+      updatedAgo: `تم التحديث {{time}}`,
+      leaderboardEnableDesc: `اعرض الترتيب في صفحة اللعبة واسمح للعبة بإرسال النتائج.`,
+      leaderboardPublishFirst: `انشر مرة واحدة لإعداد لوحات الصدارة.`,
+      leaderboardLoading: `جارٍ تحميل الإعدادات…`,
+      leaderboardNoManifest: `لا تتضمن هذه النسخة ملف sandscape.leaderboard.json. اطلب من المساعد «أضف لوحة صدارة» ثم انشر مرة أخرى.`,
+      leaderboardManifestInvalid: `ملف لوحة الصدارة غير صالح:`,
+      leaderboardManifestFound: `تعلن هذه النسخة عن {{count}} لوحة.`,
+      leaderboardBoards: `اللوحات`,
+      leaderboardAddBoard: `إضافة لوحة`,
+      leaderboardNoBoards: `لا توجد لوحات بعد.`,
+      leaderboardBoardTitle: `عنوان اللوحة`,
+      leaderboardBoardEnabled: `إظهار هذه اللوحة`,
+      leaderboardGroupBy: `الترتيب حسب`,
+      leaderboardByPlayer: `اللاعبون`,
+      leaderboardMetric: `المقياس`,
+      leaderboardAggregate: `الطريقة`,
+      leaderboardPeriod: `النطاق`,
+      leaderboardAggregate_max: `الأفضل`,
+      leaderboardAggregate_min: `الأدنى`,
+      leaderboardAggregate_sum: `الإجمالي`,
+      leaderboardAggregate_count: `العدد`,
+      leaderboardAggregate_avg: `المتوسط`,
+      leaderboardAggregate_latest: `الأحدث`,
+      leaderboardOriginManifest: `من اللعبة`,
+      leaderboardOriginCreator: `خاصة بك`,
+      leaderboardResetAction: `إعادة تعيين`,
+      leaderboardReset: `إعادة تعيين هذه اللوحة؟`,
+      leaderboardResetConfirm: `ستبدأ اللوحة فارغة من الآن. تُحفظ النتائج.`,
+      leaderboardResetDone: `تمت إعادة التعيين`,
+      leaderboardDeleteAction: `حذف`,
+      leaderboardDelete: `حذف هذه اللوحة؟`,
+      leaderboardDeleteConfirm: `ستختفي اللوحة من صفحة اللعبة. تُحفظ النتائج.`,
+      leaderboardDeleted: `تم الحذف`,
+      leaderboardCreate: `إنشاء`,
+      leaderboardCancel: `إلغاء`,
+      leaderboardBoardAdded: `تمت إضافة اللوحة`,
+      leaderboardOn: `لوحات الصدارة مفعّلة`,
+      leaderboardOff: `لوحات الصدارة معطّلة`,
+      leaderboardSaveFailed: `تعذّر الحفظ`,
+      leaderboardManifestOwned: `هذه اللوحة تأتي من اللعبة. أي تغيير هنا — بما في ذلك إخفاؤها — يجعلها ملكك، ولن تحدّثها الإصدارات القادمة.`,
+    },
+    settings: {
+      accountDeleteFailed: `فشل حذف الحساب`,
+      accountDeleted: `تم حذف حسابك`,
+      accountDescription: `إدارة تفاصيل تسجيل الدخول الخاصة بك.`,
+      accountTitle: `الحساب`,
+      appearanceDescription: `خصّص شكل ومظهر Sandscape.`,
+      appearanceTitle: `المظهر`,
+      avatarHint: `JPG أو PNG. يُحفظ عند النقر على حفظ التغييرات.`,
+      bioLabel: `النبذة التعريفية`,
+      bioPlaceholder: `أخبر المجتمع عن نفسك`,
+      changeAvatar: `تغيير الصورة الرمزية`,
+      changeEmail: `تغيير البريد الإلكتروني`,
+      changeEmailHint: `سنرسل رابط تأكيد إلى العنوان الجديد. لن يتغير بريدك الإلكتروني إلا بعد تأكيده.`,
+      changePasswordHint: `اختر كلمة مرور جديدة (8 أحرف على الأقل).`,
+      changePasswordTitle: `تغيير كلمة المرور`,
+      confirmPasswordLabel: `تأكيد كلمة المرور الجديدة`,
+      confirmPasswordPlaceholder: `تأكيد كلمة المرور الجديدة`,
+      deleteAccountAction: `حذف الحساب`,
+      deleteAccountConfirmDesc: `سيؤدي هذا إلى حذف ملفك الشخصي وإعجاباتك وتعليقاتك ومتابعاتك وإشعاراتك ومشاريعك نهائيًا. تبقى ألعابك المنشورة متاحة لكن بدون نسبها إليك. لا يمكن التراجع عن هذا الإجراء.`,
+      deleteAccountConfirmTitle: `حذف حسابك؟`,
+      deleteAccountHint: `احذف حسابك نهائيًا. لا يمكن التراجع عن هذا. تبقى الألعاب التي نشرتها متاحة لكنها لم تعد منسوبة إليك.`,
+      deleteAccountTitle: `حذف الحساب`,
+      deleteMyAccount: `حذف حسابي`,
+      emailAlreadyYours: `هذا هو بريدك الإلكتروني بالفعل`,
+      emailConfirmationDesc: `تحقق من {{email}} لتأكيد التغيير.`,
+      emailConfirmationSent: `تم إرسال بريد التأكيد`,
+      emailInvalid: `أدخل عنوان بريد إلكتروني صالحًا`,
+      emailPlaceholder: `you@example.com`,
+      emailUpdateFailed: `فشل تحديث البريد الإلكتروني`,
+      newPasswordLabel: `كلمة المرور الجديدة`,
+      newPasswordPlaceholder: `كلمة المرور الجديدة`,
+      notifCommentRepliesDesc: `عندما يرد أحدهم على تعليقك`,
+      notifCommentRepliesLabel: `الردود على التعليقات`,
+      notifGameCommentsDesc: `عندما يعلّق أحدهم على لعبتك`,
+      notifGameCommentsLabel: `تعليقات اللعبة`,
+      notifGameLikesDesc: `عندما يعجب أحدهم بلعبتك`,
+      notifGameLikesLabel: `إعجابات اللعبة`,
+      notifMentionsDesc: `عندما يشير إليك أحدهم في الدردشة`,
+      notifMentionsLabel: `الإشارات`,
+      notifNewFollowersDesc: `عندما يتابعك أحدهم`,
+      notifNewFollowersLabel: `متابعون جدد`,
+      notificationsDescription: `اختر الإشعارات التي تريد تلقيها. تُرسل دعوات التعاون دائمًا.`,
+      notificationsTitle: `الإشعارات`,
+      passwordTooShort: `يجب أن تتكون كلمة المرور من 8 أحرف على الأقل`,
+      passwordUpdateFailed: `فشل تحديث كلمة المرور`,
+      passwordUpdated: `تم تحديث كلمة المرور`,
+      passwordsDontMatch: `كلمتا المرور غير متطابقتين`,
+      prefUpdateFailed: `فشل تحديث التفضيل`,
+      profileDescription: `حدّث طريقة ظهورك للآخرين عبر Sandscape.`,
+      profileTitle: `الملف الشخصي`,
+      profileUpdateFailed: `فشل تحديث الملف الشخصي`,
+      profileUpdated: `تم تحديث الملف الشخصي`,
+      saveChanges: `حفظ التغييرات`,
+      seoDescription: `إدارة حساب Sandscape وملفك الشخصي وتفضيلاتك.`,
+      seoTitle: `الإعدادات | Sandscape`,
+      tabAccount: `الحساب`,
+      tabAppearance: `المظهر`,
+      tabNotifications: `الإشعارات`,
+      tabProfile: `الملف الشخصي`,
+      themeDark: `داكن`,
+      themeLabel: `السمة`,
+      themeLight: `فاتح`,
+      themeSystem: `النظام`,
+      updatePassword: `تحديث كلمة المرور`,
+      usernameEmpty: `لا يمكن أن يكون اسم المستخدم فارغًا`,
+      usernameLabel: `اسم المستخدم`,
+      usernamePlaceholder: `اسم المستخدم الخاص بك`,
+    },
+    createPrompt: {
+      recentProjects: `المشاريع الأخيرة`,
+      noPreview: `لا توجد معاينة`,
+      title: `ماذا ستصنع؟`,
+      tagline: `ألعاب يحركها خيالك`,
+      placeholder: `صف فكرة لعبتك...`,
+      removeTag: `إزالة {{tag}}`,
+      genresMore: `المزيد`,
+      genresLess: `أقل`,
+      viewAll: `عرض الكل`,
+      genres: {
+        action: `أكشن`,
+        adventure: `مغامرة`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `محاكاة`,
+        puzzle: `ألغاز`,
+        rpg: `RPG`,
+        racing: `سباق`,
+        strategy: `استراتيجية`,
+        survival: `بقاء`,
+        horror: `رعب`,
+      },
+    },
+    authPage: {
+      title: `سجّل الدخول أو أنشئ حسابًا`,
+      signInTitle: `تسجيل الدخول`,
+      description: `تابع باستخدام مزوّد أو بريدك الإلكتروني. إنشاء الحساب متاح للجميع.`,
+      createAccount: `إنشاء حساب`,
+      signIn: `تسجيل الدخول`,
+      codeTitle: `أدخل الرمز`,
+      codeDescription: `أدخل رمز التحقق الذي أرسلناه. المسار نفسه للحسابات الجديدة والحالية.`,
+      updatePasswordTitle: `تعيين كلمة مرور جديدة`,
+      updatePasswordDescription: `اختر كلمة مرور آمنة لحساب Sandscape.`,
+      recoveryTitle: `إعادة تعيين كلمة المرور`,
+      recoveryDescription: `سنرسل رابطًا آمنًا إذا كان العنوان قادرًا على استلامه.`,
+      checkEmailTitle: `تحقق من بريدك`,
+      confirmRecoveryDescription: `إذا كان العنوان قادرًا على استلام رسالة إعادة التعيين فستصل قريبًا.`,
+      continueWith: {
+        google: `المتابعة باستخدام Google`,
+        github: `المتابعة باستخدام GitHub`,
+        apple: `المتابعة باستخدام Apple`,
+        facebook: `المتابعة باستخدام Facebook`,
+      },
+      or: `أو`,
+      emailPlaceholder: `you@example.com`,
+      continueWithEmail: `المتابعة بالبريد الإلكتروني`,
+      usePassword: `تسجيل الدخول بكلمة مرور بدلاً من ذلك`,
+      codeLabel: `رمز التحقق`,
+      verifyCode: `التحقق من الرمز`,
+      resendCountdown: `إعادة الإرسال خلال {{seconds}} ث`,
+      resendCode: `إعادة إرسال الرمز`,
+      changeEmail: `تغيير البريد`,
+      password: `كلمة المرور`,
+      signInWithPassword: `تسجيل الدخول بكلمة المرور`,
+      passwordSigninNewAccountHint: `جديد على Sandscape؟ ارجع وتابع بالبريد الإلكتروني. يمكنك تعيين كلمة مرور أثناء إعداد حسابك.`,
+      forgotPassword: `نسيت كلمة المرور؟`,
+      backToOptions: `العودة إلى خيارات الدخول`,
+      sendRecovery: `إرسال رابط إعادة التعيين`,
+      newPassword: `كلمة المرور الجديدة`,
+      confirmPassword: `تأكيد كلمة المرور`,
+      updatePassword: `تحديث كلمة المرور`,
+      genericEmailNotice: `لحماية الخصوصية، تظهر الرسالة نفسها سواء كان الحساب موجودًا أم لا.`,
+      legal: `بالمتابعة، توافق على <terms>شروط Sandscape</terms> وتقر <privacy>بسياسة الخصوصية</privacy>.`,
+      callbackFailedTitle: `تعذّر إكمال تسجيل الدخول`,
+      tryAgain: `المحاولة مجددًا`,
+      finishing: `جارٍ إكمال تسجيل الدخول...`,
+      errors: {
+        generic: `حدث خطأ. حاول مجددًا.`,
+        usernameTaken: `اسم المستخدم هذا مستخدم بالفعل.`,
+        invalidCode: `الرمز غير صالح أو منتهي الصلاحية. اطلب رمزًا جديدًا.`,
+        rateLimited: `محاولات كثيرة جدًا. انتظر قليلاً.`,
+        captcha: `فشل التحقق الأمني.`,
+        captchaRequired: `أكمل التحقق الأمني للمتابعة.`,
+        invalidCredentials: `البريد أو كلمة المرور غير صحيحين، أو الحساب غير جاهز للدخول بكلمة مرور.`,
+        network: `تعذّر الوصول إلى خدمة الدخول. تحقق من اتصالك.`,
+        validation: `تحقق من المعلومات التي أدخلتها.`,
+        providerDenied: `تم إلغاء وصول المزوّد أو رفضه.`,
+        callback: `استجابة تسجيل الدخول غير صالحة أو منتهية.`,
+        emailRequired: `أدخل بريدًا إلكترونيًا صالحًا.`,
+        codeRequired: `أدخل رمز التحقق كاملاً.`,
+        credentialsRequired: `أدخل البريد وكلمة المرور.`,
+        passwordTooShort: `استخدم كلمة مرور من 8 أحرف على الأقل.`,
+        passwordMismatch: `كلمتا المرور غير متطابقتين.`,
+        recoverySession: `اطلب رابطًا جديدًا لإعادة التعيين.`,
+      },
+    },
+    onboarding: {
+      title: `اختر طريقة ظهورك`,
+      description: `اسم مستخدم عام مطلوب. كل شيء آخر اختياري ويمكن تغييره لاحقًا.`,
+      completedTitle: `حسابك جاهز`,
+      optionalRetryDescription: `تم حفظ اسمك العام. يمكنك إعادة الخطوات الاختيارية أو المتابعة.`,
+      username: `اسم المستخدم العام`,
+      usernameRules: `استخدم 3–30 حرفًا لاتينيًا أو رقمًا أو شرطة سفلية أو واصلة. الاسم عام ويجب ألا يكون بريدًا إلكترونيًا.`,
+      avatar: `الصورة الرمزية (اختياري)`,
+      chooseAvatar: `اختيار صورة`,
+      password: `تعيين كلمة مرور (اختياري)`,
+      passwordHint: `يمكنك الاستمرار باستخدام رموز البريد وتعيين كلمة مرور لاحقًا في أمان الحساب.`,
+      creatorEnabled: `وصول المنشئ مفعّل`,
+      creatorEnabledHint: `يمكنك الآن إنشاء الألعاب ونشرها.`,
+      subscribeForCreation: `انضم إلى نسخة ألفا (اختياري)`,
+      subscribeForCreationHint: `نسخة ألفا مفتوحة الآن. سننقلك إلى الخطط عند الانتهاء لتبدأ الإنشاء فورًا.`,
+      finish: `إنهاء الإعداد`,
+      continueWithoutOptional: `المتابعة دون الخطوات الاختيارية`,
+      retryOptional: `إعادة الخطوات الاختيارية`,
+      optionalFailedTitle: `تحتاج بعض الخطوات الاختيارية إلى انتباهك`,
+      optionalFailures: {
+        avatar: `تعذّر حفظ الصورة الرمزية.`,
+        password: `تعذّر تعيين كلمة المرور.`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `طرق تسجيل الدخول النشطة`,
+      signInMethodsHint: `هذه الطرق الموثقة للوصول إلى الحساب.`,
+      methodEmailCode: `رمز عبر البريد`,
+      methodPassword: `كلمة المرور`,
+      setPasswordTitle: `تعيين كلمة مرور`,
+      setPassword: `تعيين كلمة المرور`,
+    },
+    mailingList: {
+      title: `الانضمام إلى القائمة البريدية`,
+      message: `احصل على أخبار Sandscape من حين لآخر. هذا لا ينشئ حسابًا ولا يطلب وصول منشئ.`,
+      successTitle: `تم الاشتراك`,
+      successMessage: `أنت الآن في القائمة البريدية.`,
+      alreadyRegisteredTitle: `مشترك بالفعل`,
+      alreadyRegisteredMessage: `هذا البريد موجود بالفعل في القائمة.`,
+      errorTitle: `فشل الاشتراك`,
+      errorMessage: `تعذّر الانضمام إلى القائمة البريدية. حاول مجددًا.`,
+      emailPlaceholder: `you@example.com`,
+      join: `الانضمام إلى القائمة البريدية`,
+    },
+    leaderboard: {
+      title: `لوحة الصدارة`,
+      periodLabel: `النطاق الزمني`,
+      period: {
+        all: `كل الأوقات`,
+        daily: `اليوم`,
+        weekly: `هذا الأسبوع`,
+        monthly: `هذا الشهر`,
+        default: `افتراضي`,
+      },
+      rank: `#`,
+      player: `اللاعب`,
+      entries: `الجولات`,
+      you: `أنت`,
+      yourRank: `ترتيبك`,
+      empty: `لا توجد نتائج بعد — كن أول من يلعب.`,
+      error: `تعذّر تحميل لوحة الصدارة الآن.`,
+      refresh: `تحديث`,
+      unknownPlayer: `اللاعب`,
+    },
+  },
+  Re = {
+    billing: {
+      alphaOpenTitle: `Альфа-версия открыта`,
+      alphaOpenBody: `Выберите любой план или пакет Sandcoin, чтобы открыть всю студию создания — от первой идеи до опубликованной игры.`,
+    },
+    navigation: {
+      home: `Главная`,
+      search: `Поиск`,
+      create: `Создать`,
+      profile: `Профиль`,
+      settings: `Настройки`,
+      history: `История`,
+      following: `Подписки`,
+      followers: `Подписчики`,
+      likes: `Нравится`,
+      logout: `Выйти`,
+      menu: `Меню`,
+      myStuff: `Мои вещи`,
+      social: `Социальные`,
+      tools: `Инструменты`,
+      notifications: `Уведомления`,
+      help: `Помощь`,
+      toggleMenu: `Переключить мобильное меню`,
+      publish: `Опубликовать`,
+    },
+    auth: {
+      login: `Войти`,
+      register: `Зарегистрироваться`,
+      resetPassword: `Сбросить пароль`,
+    },
+    gameCard: {
+      likes: `лайков`,
+      comments: `комментариев`,
+      views: `просмотров`,
+      live: `В эфире`,
+    },
+    homePage: {
+      joinAlpha: `Присоединиться к альфе`,
+      trending: `В тренде`,
+      newReleases: `Новинки`,
+      allGames: `Все игры`,
+    },
+    categories: {
+      all: `Все игры`,
+      action: `Экшн`,
+      rpg: `РПГ`,
+      puzzle: `Пазлы`,
+      racing: `Гонки`,
+      strategy: `Стратегии`,
+    },
+    general: {
+      loading: `Загрузка...`,
+      submit: `Отправить`,
+      cancel: `Отмена`,
+      save: `Сохранить`,
+      delete: `Удалить`,
+      search: `Поиск`,
+      language: `Язык`,
+      email: `Электронная почта`,
+      submitting: `Отправка...`,
+    },
+    footer: {
+      discord: `Discord`,
+      twitter: `X/Twitter`,
+      instagram: `Instagram`,
+      youtube: `YouTube`,
+      tiktok: `TikTok`,
+      links: `О нас | Условия | Конфиденциальность`,
+      aboutLinks: `О нас | Условия | Конфиденциальность`,
+      copyright: `© {{year}} Sandscape. Все права защищены.`,
+      poweredBy: `Работает на`,
+      description: `Sandscape v2: Революционный ИИ-движок, который генерирует целые играбельные игры из вашего воображения.`,
+      product: `Продукт`,
+      resources: `Ресурсы`,
+      company: `Компания`,
+      v1Link: `Sandscape v1`,
+      blogLink: `Блог`,
+      faqLink: `FAQ`,
+      aboutLink: `О нас`,
+      contactLink: `Контакты`,
+      privacyLink: `Политика конфиденциальности`,
+      termsLink: `Условия обслуживания`,
+      aria: {
+        twitter: `X/Twitter`,
+        instagram: `Instagram`,
+        tiktok: `TikTok`,
+        youtube: `YouTube`,
+        discord: `Discord`,
+      },
+    },
+    invite: {
+      title: `Пригласить соавторов`,
+      searchPlaceholder: `Поиск пользователей...`,
+      notImplemented: `Функция поиска пользователей еще не реализована.`,
+      searching: `Поиск...`,
+    },
+    cookies: {
+      accept: `Принять все`,
+      decline: `Отклонить все`,
+      notice: `Уведомление о файлах cookie`,
+      message: `Мы используем необязательные аналитические и рекламные cookie, которые вы можете принять или отклонить. Ознакомьтесь с нашей`,
+      policy: `политикой использования файлов cookie`,
+    },
+    seo: {
+      title: `Sandscape – Создавайте игры без программирования | Творческая игровая студия`,
+      description: `Sandscape — творческая студия для создания игр. Опишите идею, доработайте её визуальными инструментами или создайте каждую деталь вручную, затем играйте и делитесь тем, что создали. Создайте аккаунт уже сегодня!`,
+      keywords: `создатель игр ИИ, делать игры с ИИ, генератор игр ИИ, создавать игры без кодинга, создатель мобильных игр, платформа для создания игр, совместная разработка игр, промпт в игру, разработка игр ИИ, создание игр без кода`,
+    },
+    homeBanners: { playCta: `Играть` },
+    bannerCarousel: {
+      mute: `Выключить звук`,
+      unmute: `Включить звук`,
+      closeBanner: `Закрыть баннер`,
+      showBanner: `Показать баннер {{number}}`,
+    },
+    game: {
+      compat: {
+        title: `Создано для другого устройства`,
+        desktopOnly: `Эта игра создана для компьютера — на этом устройстве она может работать некорректно.`,
+        mobileOnly: `Эта игра создана для мобильных устройств — на этом устройстве она может работать некорректно.`,
+        playAnyway: `Всё равно играть`,
+      },
+      notFound: `Игра не найдена`,
+      removedOrIncorrect: `Возможно, эта игра была удалена или ссылка неверна.`,
+      backToGames: `К списку игр`,
+      noGameSpecified: `Игра не указана. Используйте ссылку вида /play?g=CODE`,
+      notAvailable: `Игра недоступна — опубликованная сборка не найдена.`,
+      seoDescriptionFallback: `Откройте для себя геймплей, графику и механики, созданные ИИ.`,
+      shareTextFallback: `Потрясающая игра, созданная на Sandscape!`,
+      remix: `Ремикс`,
+      like: `Нравится`,
+      unlike: `Убрать лайк`,
+      follow: `Подписаться`,
+      unfollow: `Отписаться`,
+      fullscreen: `На весь экран`,
+      exitFullscreen: `Выйти из полноэкранного режима`,
+      showMore: `Показать больше`,
+      showLess: `Показать меньше`,
+      views: `{{count}} просмотров`,
+      publishedPrefix: `Опубликовано `,
+      comments: `Комментарии`,
+      beFirstToComment: `Будьте первым, кто оставит комментарий.`,
+      relatedGames: `Похожие игры`,
+      commentPlaceholder: `Добавить комментарий...`,
+      post: `Отправить`,
+      posting: `Отправка...`,
+      registerToComment: `Зарегистрируйтесь, чтобы комментировать эту игру`,
+      reply: `Ответить`,
+      replyToPlaceholder: `Ответить {{name}}...`,
+      delete: `Удалить`,
+      deleteCommentTitle: `Удалить комментарий?`,
+      deleteCommentDescription: `Этот комментарий будет удалён навсегда. Это действие нельзя отменить.`,
+      toast: {
+        likeFailed: `Не удалось обновить статус лайка.`,
+        followFailed: `Не удалось обновить статус подписки`,
+        commentFailed: `Не удалось отправить комментарий.`,
+        replyFailed: `Не удалось отправить ответ.`,
+        deleteFailed: `Не удалось удалить комментарий.`,
+      },
+    },
+    search: {
+      liveBadge: `В эфире`,
+      shareGame: `Поделиться игрой`,
+      noBio: `Описание отсутствует`,
+      view: `Открыть`,
+      seo: {
+        titleWithQuery: `Результаты поиска по запросу «{{query}}» - Sandscape`,
+        title: `Поиск - Sandscape`,
+        description: `Поиск игр, авторов и каналов в Sandscape.`,
+      },
+      heading: {
+        results: `Результаты по запросу «{{query}}»`,
+        default: `Поиск`,
+      },
+      empty: {
+        title: `Найдите игры и авторов`,
+        description: `Используйте строку поиска вверху, чтобы найти игры, авторов и каналы`,
+      },
+      noResults: {
+        title: `Ничего не найдено`,
+        description: `Не удалось найти совпадений по запросу «{{query}}». Попробуйте другой запрос.`,
+      },
+      tabs: { all: `Все результаты`, games: `Игры`, creators: `Авторы` },
+      section: { games: `Игры`, creators: `Авторы` },
+      viewAllGames: `Показать все игры ({{count}})`,
+      viewAllCreators: `Показать всех авторов ({{count}})`,
+      noGamesMatching: `Не найдено игр по запросу «{{query}}»`,
+      noCreatorsMatching: `Не найдено авторов по запросу «{{query}}»`,
+    },
+    loginPage: {
+      toastSuccessTitle: `Успешно`,
+      toastSuccessDesc: `Вход выполнен успешно`,
+      toastErrorTitle: `Ошибка`,
+      toastLoginFailed: `Не удалось войти`,
+      toastOauthErrorTitle: `Ошибка OAuth`,
+      toastOauthFailed: `Ошибка аутентификации`,
+      toastEnterEmail: `Пожалуйста, введите адрес электронной почты`,
+      toastMagicLinkSentTitle: `Magic-ссылка отправлена`,
+      toastMagicLinkSentDesc: `Проверьте почту — там ссылка для входа.`,
+      toastMagicLinkFailed: `Не удалось отправить magic-ссылку`,
+      title: `С возвращением`,
+      subtitleMagicLink: `Введите email, чтобы получить ссылку для входа`,
+      subtitlePassword: `Введите данные для входа, чтобы продолжить`,
+      magicLinkConfirmPrefix: `Мы отправили magic-ссылку на`,
+      magicLinkConfirmSuffix: `Проверьте почту и нажмите на ссылку, чтобы войти.`,
+      backToLogin: `Назад ко входу`,
+      password: `Пароль`,
+      emailPlaceholder: `Введите email`,
+      passwordPlaceholder: `Введите пароль`,
+      sending: `Отправка...`,
+      sendMagicLink: `Отправить magic-ссылку`,
+      signIn: `Войти`,
+      usePasswordInstead: `Войти с помощью пароля`,
+      useMagicLinkInstead: `Войти по magic-ссылке`,
+      forgotPassword: `Забыли пароль?`,
+    },
+    registerPage: {
+      toastSuccessTitle: `Успешно`,
+      toastSuccessDesc: `Аккаунт успешно создан`,
+      toastErrorTitle: `Ошибка`,
+      toastOauthErrorTitle: `Ошибка OAuth`,
+      title: `Создать аккаунт`,
+      subtitle: `Введите свои данные, чтобы начать`,
+      password: `Пароль`,
+      emailPlaceholder: `Введите email`,
+      passwordPlaceholder: `Придумайте пароль`,
+      createAccount: `Создать аккаунт`,
+      signUpWithGoogle: `Зарегистрироваться через Google`,
+      signUpWithFacebook: `Зарегистрироваться через Facebook`,
+      haveAccount: `Уже есть аккаунт? Войти`,
+    },
+    notFound: {
+      seoTitle: `404 - Страница не найдена | Sandscape`,
+      seoDescription: `Запрашиваемая страница не существует. Вернитесь в Sandscape, чтобы создавать и играть в игры, созданные ИИ.`,
+      heading: `404 - Страница не найдена`,
+      message: `Запрашиваемая страница не существует.`,
+      goHome: `На главную`,
+    },
+    share: {
+      linkCopied: `Ссылка скопирована`,
+      copyPrompt: `Скопируйте эту ссылку:`,
+      instagramCopied: `Ссылка скопирована для Instagram`,
+      instagramCopyManual: `Скопируйте эту ссылку для Instagram`,
+      instagramDescription: `Вставьте её в историю, описание профиля или личное сообщение.`,
+      title: `Поделиться`,
+      copied: `Скопировано`,
+      copy: `Копировать`,
+      more: `Ещё`,
+    },
+    header: {
+      toggleMenu: `Переключить меню`,
+      yourProjects: `Ваши проекты`,
+      newProject: `Новый проект`,
+      myAccount: `Моя учётная запись`,
+      joinSandscape: `Присоединиться к Sandscape`,
+    },
+    followers: { empty: `Подписчики не найдены.`, title: `Подписчики` },
+    following: { empty: `Вы ни на кого не подписаны.`, title: `Подписки` },
+    history: {
+      title: `История`,
+      emptyTitle: `Вы ещё не играли в игры`,
+      emptyMessage: `Здесь появятся игры, в которые вы играли`,
+      browseGames: `Смотреть игры`,
+      seoTitle: `История | Sandscape`,
+      seoDescription: `Игры, в которые вы недавно играли в Sandscape.`,
+      unknownCreator: `Неизвестно`,
+      errorTitle: `Не удалось загрузить историю`,
+      errorMessage: `Что-то пошло не так. Пожалуйста, попробуйте еще раз.`,
+      retry: `Повторить`,
+    },
+    likes: {
+      browseGames: `Смотреть игры`,
+      emptyMessage: `Здесь появятся игры, которые вам понравились`,
+      emptyTitle: `Пока нет понравившихся игр`,
+      seoDescription: `Просмотрите все игры, которые вам понравились в Sandscape.`,
+      seoTitle: `Мои понравившиеся игры | Sandscape`,
+      title: `Понравившиеся игры`,
+      unknownCreator: `Неизвестно`,
+    },
+    notifications: {
+      accept: `Принять`,
+      browseGames: `Смотреть игры`,
+      decline: `Отклонить`,
+      emptyDescription: `Когда люди подпишутся на вас, оценят или прокомментируют ваши игры либо пригласят вас к совместной работе, вы увидите это здесь.`,
+      emptyTitle: `Пока нет уведомлений`,
+      markAllRead: `Отметить все как прочитанные`,
+      seoDescription: `Просмотрите свои уведомления Sandscape — подписки, отметки «нравится», комментарии, приглашения к совместной работе и упоминания.`,
+      seoTitle: `Уведомления | Sandscape`,
+      title: `Уведомления`,
+      someone: `Кто-то`,
+      aGame: `игра`,
+      msgNewFollower: `{{name}} подписался на вас`,
+      msgGameLike: `{{name}} оценил вашу игру "{{game}}"`,
+      msgGameComment: `{{name}} оставил комментарий к вашей игре "{{game}}"`,
+      msgCommentReply: `{{name}} ответил на ваш комментарий`,
+      msgCollabInvite: `{{name}} пригласил вас к совместной работе над проектом`,
+      msgChatMention: `{{name}} упомянул вас в чате`,
+      msgDefault: `У вас новое уведомление`,
+    },
+    profile: {
+      activity: `Активность`,
+      avatarUploadFailed: `Не удалось загрузить аватар: `,
+      bioPlaceholder: `О себе`,
+      createFirstGame: `Создайте свою первую игру`,
+      deleteProjectConfirm: `Вы уверены, что хотите удалить этот проект?`,
+      deleteProjectFailed: `Не удалось удалить проект`,
+      editProfile: `Редактировать профиль`,
+      follow: `Подписаться`,
+      followStatusFailed: `Не удалось обновить статус подписки.`,
+      followers: `Подписчики`,
+      following: `Подписки`,
+      goHome: `На главную`,
+      loadingProjects: `Загрузка проектов...`,
+      myProjects: `Мои проекты`,
+      noProjects: `Пока нет проектов`,
+      noPublishedGames: `Пока нет опубликованных игр`,
+      noRecentActivity: `Нет недавней активности`,
+      notFound: `Профиль не найден.`,
+      publishedGames: `Опубликованные игры`,
+      saving: `Сохранение...`,
+      seoDefaultCreator: `этот создатель`,
+      seoDefaultName: `Профиль пользователя`,
+      seoDescription: `Ознакомьтесь с играми и активностью {{name}} в Sandscape. Присоединяйтесь, чтобы подписываться, играть и работать вместе.`,
+      seoKeywords: `{{name}}, создатель игр, ИИ-игры, профиль игрока, портфолио игр, пользователь Sandscape`,
+      seoTitle: `{{name}} | Sandscape`,
+      statusInProgress: `В процессе`,
+      unfollow: `Отписаться`,
+      updateProfileFailed: `Ошибка при обновлении профиля: `,
+    },
+    publish: {
+      compatibility: `Совместимость`,
+      compatibilityBoth: `Компьютер и мобильные`,
+      compatibilityDesktop: `Только компьютер`,
+      compatibilityMobile: `Только мобильные`,
+      compatibilityHint: `На каких устройствах действительно работает ваше управление. Игроки видят это перед запуском.`,
+      distribution: `Распространение`,
+      distributionDesc: `Выберите, кто может найти вашу игру, затем опубликуйте её.`,
+      advancedSettings: `Расширенные настройки`,
+      advancedSettingsDesc: `Монетизация, возрастные рейтинги и настройки сообщества — пока недоступны, показаны здесь, чтобы вы знали, что впереди.`,
+      gameplayReplace: `Заменить`,
+      accessTier: `Уровень доступа`,
+      accessTierFree: `Бесплатная игра`,
+      ageRatingEveryone: `Для всех`,
+      allowRemixing: `Разрешить ремиксы`,
+      allowRemixingDesc: `Соавторы могут создавать варианты с указанием авторства.`,
+      comingSoon: `Скоро`,
+      coverAlt: `Обложка`,
+      coverArtPreviewAlt: `Предпросмотр обложки`,
+      enableComments: `Включить комментарии`,
+      enableCommentsDesc: `Откройте обсуждения с ветками на странице вашей игры.`,
+      enableTipping: `Включить чаевые`,
+      enableTippingDesc: `Позвольте фанатам оставлять Sand Coin после игровых сессий.`,
+      estimatedPlaytimeValue: `10–15 минут`,
+      gameplayEncouragement: `Можно опубликовать и без него, но в игры с геймплейным видео играют значительно чаще.`,
+      gameplayOptional: `Необязательно`,
+      leaderboard: `Таблица лидеров`,
+      leaderboardDesc: `Отслеживайте лучших игроков, чтобы повысить реиграбельность.`,
+      previewDescriptionPlaceholder: `Опишите, что обещает ваш мир, чтобы привлечь игроков.`,
+      sandCoinPrice: `Цена в Sand Coin`,
+      sandCoinPricePlaceholder: `Укажите цену входа`,
+      somethingWentWrong: `Что-то пошло не так`,
+      soonBadge: `Скоро`,
+      spectatorMode: `Режим зрителя`,
+      spectatorModeDesc: `Позвольте участникам сообщества смотреть живые сессии.`,
+      statusCompleted: `завершено`,
+      statusDraft: `черновик`,
+      updatedAgo: `Обновлено {{time}}`,
+      leaderboardEnableDesc: `Показывать рейтинги на странице игры и разрешить игре отправлять результаты.`,
+      leaderboardPublishFirst: `Опубликуйте игру один раз, чтобы настроить таблицы лидеров.`,
+      leaderboardLoading: `Загрузка настроек…`,
+      leaderboardNoManifest: `В этой сборке нет sandscape.leaderboard.json. Попросите ассистента «добавь таблицу лидеров» и опубликуйте снова.`,
+      leaderboardManifestInvalid: `Файл таблицы лидеров некорректен:`,
+      leaderboardManifestFound: `Эта сборка объявляет таблиц: {{count}}.`,
+      leaderboardBoards: `Таблицы`,
+      leaderboardAddBoard: `Добавить таблицу`,
+      leaderboardNoBoards: `Таблиц пока нет.`,
+      leaderboardBoardTitle: `Название таблицы`,
+      leaderboardBoardEnabled: `Показывать эту таблицу`,
+      leaderboardGroupBy: `Ранжировать`,
+      leaderboardByPlayer: `Игроков`,
+      leaderboardMetric: `Показатель`,
+      leaderboardAggregate: `Способ`,
+      leaderboardPeriod: `Период`,
+      leaderboardAggregate_max: `Лучший`,
+      leaderboardAggregate_min: `Наименьший`,
+      leaderboardAggregate_sum: `Сумма`,
+      leaderboardAggregate_count: `Количество`,
+      leaderboardAggregate_avg: `Среднее`,
+      leaderboardAggregate_latest: `Последний`,
+      leaderboardOriginManifest: `Из игры`,
+      leaderboardOriginCreator: `Ваша`,
+      leaderboardResetAction: `Сбросить`,
+      leaderboardReset: `Сбросить эту таблицу?`,
+      leaderboardResetConfirm: `Таблица начнётся с нуля. Результаты сохраняются.`,
+      leaderboardResetDone: `Таблица сброшена`,
+      leaderboardDeleteAction: `Удалить`,
+      leaderboardDelete: `Удалить эту таблицу?`,
+      leaderboardDeleteConfirm: `Таблица исчезнет со страницы игры. Результаты сохраняются.`,
+      leaderboardDeleted: `Таблица удалена`,
+      leaderboardCreate: `Создать`,
+      leaderboardCancel: `Отмена`,
+      leaderboardBoardAdded: `Таблица добавлена`,
+      leaderboardOn: `Таблицы лидеров включены`,
+      leaderboardOff: `Таблицы лидеров выключены`,
+      leaderboardSaveFailed: `Не удалось сохранить`,
+      leaderboardManifestOwned: `Эта таблица создана игрой. Любое изменение здесь — включая скрытие — делает её вашей, и будущие сборки перестанут её обновлять.`,
+    },
+    settings: {
+      accountDeleteFailed: `Не удалось удалить аккаунт`,
+      accountDeleted: `Ваш аккаунт удалён`,
+      accountDescription: `Управляйте данными для входа.`,
+      accountTitle: `Аккаунт`,
+      appearanceDescription: `Настройте внешний вид Sandscape.`,
+      appearanceTitle: `Внешний вид`,
+      avatarHint: `JPG или PNG. Сохраняется при нажатии «Сохранить изменения».`,
+      bioLabel: `О себе`,
+      bioPlaceholder: `Расскажите сообществу о себе`,
+      changeAvatar: `Изменить аватар`,
+      changeEmail: `Изменить email`,
+      changeEmailHint: `Мы отправим ссылку для подтверждения на новый адрес. Ваш email изменится только после подтверждения.`,
+      changePasswordHint: `Выберите новый пароль (не менее 8 символов).`,
+      changePasswordTitle: `Изменить пароль`,
+      confirmPasswordLabel: `Подтвердите новый пароль`,
+      confirmPasswordPlaceholder: `Подтвердите новый пароль`,
+      deleteAccountAction: `Удалить аккаунт`,
+      deleteAccountConfirmDesc: `Это навсегда удалит ваш профиль, отметки «нравится», комментарии, подписки, уведомления и проекты. Ваши опубликованные игры останутся доступными, но станут анонимными. Это действие нельзя отменить.`,
+      deleteAccountConfirmTitle: `Удалить ваш аккаунт?`,
+      deleteAccountHint: `Навсегда удалить ваш аккаунт. Это нельзя отменить. Опубликованные вами игры останутся доступными, но больше не будут связаны с вами.`,
+      deleteAccountTitle: `Удалить аккаунт`,
+      deleteMyAccount: `Удалить мой аккаунт`,
+      emailAlreadyYours: `Это уже ваш email`,
+      emailConfirmationDesc: `Проверьте {{email}}, чтобы подтвердить изменение.`,
+      emailConfirmationSent: `Письмо с подтверждением отправлено`,
+      emailInvalid: `Введите корректный адрес email`,
+      emailPlaceholder: `you@example.com`,
+      emailUpdateFailed: `Не удалось обновить email`,
+      newPasswordLabel: `Новый пароль`,
+      newPasswordPlaceholder: `Новый пароль`,
+      notifCommentRepliesDesc: `Когда кто-то отвечает на ваш комментарий`,
+      notifCommentRepliesLabel: `Ответы на комментарии`,
+      notifGameCommentsDesc: `Когда кто-то комментирует вашу игру`,
+      notifGameCommentsLabel: `Комментарии к игре`,
+      notifGameLikesDesc: `Когда кому-то нравится ваша игра`,
+      notifGameLikesLabel: `Отметки «нравится» к игре`,
+      notifMentionsDesc: `Когда кто-то упоминает вас в чате`,
+      notifMentionsLabel: `Упоминания`,
+      notifNewFollowersDesc: `Когда кто-то подписывается на вас`,
+      notifNewFollowersLabel: `Новые подписчики`,
+      notificationsDescription: `Выберите, какие уведомления вы хотите получать. Приглашения к совместной работе доставляются всегда.`,
+      notificationsTitle: `Уведомления`,
+      passwordTooShort: `Пароль должен содержать не менее 8 символов`,
+      passwordUpdateFailed: `Не удалось обновить пароль`,
+      passwordUpdated: `Пароль обновлён`,
+      passwordsDontMatch: `Пароли не совпадают`,
+      prefUpdateFailed: `Не удалось обновить настройку`,
+      profileDescription: `Обновите то, как вас видят другие пользователи Sandscape.`,
+      profileTitle: `Профиль`,
+      profileUpdateFailed: `Не удалось обновить профиль`,
+      profileUpdated: `Профиль обновлён`,
+      saveChanges: `Сохранить изменения`,
+      seoDescription: `Управляйте своим аккаунтом, профилем и настройками Sandscape.`,
+      seoTitle: `Настройки | Sandscape`,
+      tabAccount: `Аккаунт`,
+      tabAppearance: `Внешний вид`,
+      tabNotifications: `Уведомления`,
+      tabProfile: `Профиль`,
+      themeDark: `Тёмная`,
+      themeLabel: `Тема`,
+      themeLight: `Светлая`,
+      themeSystem: `Системная`,
+      updatePassword: `Обновить пароль`,
+      usernameEmpty: `Имя пользователя не может быть пустым`,
+      usernameLabel: `Имя пользователя`,
+      usernamePlaceholder: `Ваше имя пользователя`,
+    },
+    createPrompt: {
+      recentProjects: `Недавние проекты`,
+      noPreview: `Нет превью`,
+      title: `Что вы создадите?`,
+      tagline: `Игры, рождённые вашим воображением`,
+      placeholder: `Опишите идею вашей игры...`,
+      removeTag: `Убрать {{tag}}`,
+      genresMore: `Ещё`,
+      genresLess: `Свернуть`,
+      viewAll: `Смотреть все`,
+      genres: {
+        action: `Экшен`,
+        adventure: `Приключение`,
+        fps: `FPS`,
+        tps: `TPS`,
+        simulation: `Симулятор`,
+        puzzle: `Головоломка`,
+        rpg: `RPG`,
+        racing: `Гонки`,
+        strategy: `Стратегия`,
+        survival: `Выживание`,
+        horror: `Хоррор`,
+      },
+    },
+    authPage: {
+      title: `Войдите или создайте аккаунт`,
+      signInTitle: `Вход`,
+      description: `Продолжите через сервис или электронную почту. Создать аккаунт может каждый.`,
+      createAccount: `Создать аккаунт`,
+      signIn: `Войти`,
+      codeTitle: `Введите код`,
+      codeDescription: `Введите отправленный код подтверждения. Процесс одинаков для новых и существующих аккаунтов.`,
+      updatePasswordTitle: `Задайте новый пароль`,
+      updatePasswordDescription: `Выберите надёжный пароль для аккаунта Sandscape.`,
+      recoveryTitle: `Сброс пароля`,
+      recoveryDescription: `Мы отправим безопасную ссылку, если адрес может её получить.`,
+      checkEmailTitle: `Проверьте почту`,
+      confirmRecoveryDescription: `Если адрес может получить письмо для сброса, оно скоро придёт.`,
+      continueWith: {
+        google: `Продолжить с Google`,
+        github: `Продолжить с GitHub`,
+        apple: `Продолжить с Apple`,
+        facebook: `Продолжить с Facebook`,
+      },
+      or: `или`,
+      emailPlaceholder: `you@example.com`,
+      continueWithEmail: `Продолжить с почтой`,
+      usePassword: `Войти с паролем`,
+      codeLabel: `Код подтверждения`,
+      verifyCode: `Подтвердить код`,
+      resendCountdown: `Повторить через {{seconds}} с`,
+      resendCode: `Отправить код снова`,
+      changeEmail: `Изменить почту`,
+      password: `Пароль`,
+      signInWithPassword: `Войти с паролем`,
+      passwordSigninNewAccountHint: `Впервые в Sandscape? Вернитесь и продолжите с электронной почтой. Пароль можно задать при настройке аккаунта.`,
+      forgotPassword: `Забыли пароль?`,
+      backToOptions: `Назад к способам входа`,
+      sendRecovery: `Отправить ссылку`,
+      newPassword: `Новый пароль`,
+      confirmPassword: `Подтвердите пароль`,
+      updatePassword: `Обновить пароль`,
+      genericEmailNotice: `Для защиты конфиденциальности сообщение одинаково независимо от наличия аккаунта.`,
+      legal: `Продолжая, вы соглашаетесь с <terms>Условиями Sandscape</terms> и <privacy>Политикой конфиденциальности</privacy>.`,
+      callbackFailedTitle: `Не удалось завершить вход`,
+      tryAgain: `Повторить`,
+      finishing: `Завершаем вход...`,
+      errors: {
+        generic: `Что-то пошло не так. Повторите попытку.`,
+        usernameTaken: `Это имя пользователя уже занято.`,
+        invalidCode: `Код недействителен или истёк. Запросите новый.`,
+        rateLimited: `Слишком много попыток. Немного подождите.`,
+        captcha: `Проверка безопасности не пройдена.`,
+        captchaRequired: `Пройдите проверку безопасности.`,
+        invalidCredentials: `Неверная почта или пароль либо аккаунт ещё не поддерживает вход по паролю.`,
+        network: `Не удалось связаться со службой входа. Проверьте соединение.`,
+        validation: `Проверьте введённые данные.`,
+        providerDenied: `Доступ через сервис отменён или отклонён.`,
+        callback: `Ответ входа недействителен или истёк.`,
+        emailRequired: `Введите действительный адрес почты.`,
+        codeRequired: `Введите полный код подтверждения.`,
+        credentialsRequired: `Введите почту и пароль.`,
+        passwordTooShort: `Используйте не менее 8 символов.`,
+        passwordMismatch: `Пароли не совпадают.`,
+        recoverySession: `Запросите новую ссылку для сброса.`,
+      },
+    },
+    onboarding: {
+      title: `Выберите публичное имя`,
+      description: `Публичное имя пользователя обязательно. Остальное можно добавить позже.`,
+      completedTitle: `Аккаунт готов`,
+      optionalRetryDescription: `Публичное имя сохранено. Повторите необязательные шаги или продолжите.`,
+      username: `Публичное имя пользователя`,
+      usernameRules: `Используйте 3–30 латинских букв, цифр, подчёркиваний или дефисов. Имя публично и не должно быть адресом почты.`,
+      avatar: `Аватар (необязательно)`,
+      chooseAvatar: `Выбрать изображение`,
+      password: `Задать пароль (необязательно)`,
+      passwordHint: `Можно продолжать использовать коды из писем и задать пароль позже в разделе безопасности.`,
+      creatorEnabled: `Доступ автора включён`,
+      creatorEnabledHint: `Теперь вы можете создавать и публиковать игры.`,
+      subscribeForCreation: `Присоединиться к альфе (необязательно)`,
+      subscribeForCreationHint: `Альфа открыта для всех. После настройки мы покажем вам тарифы, чтобы вы сразу начали создавать.`,
+      finish: `Завершить настройку`,
+      continueWithoutOptional: `Продолжить без необязательных шагов`,
+      retryOptional: `Повторить необязательные шаги`,
+      optionalFailedTitle: `Некоторые необязательные шаги требуют внимания`,
+      optionalFailures: {
+        avatar: `Не удалось сохранить аватар.`,
+        password: `Не удалось задать пароль.`,
+      },
+    },
+    accountSecurity: {
+      signInMethodsTitle: `Активные способы входа`,
+      signInMethodsHint: `Подтверждённые способы доступа к аккаунту.`,
+      methodEmailCode: `Код по почте`,
+      methodPassword: `Пароль`,
+      setPasswordTitle: `Задать пароль`,
+      setPassword: `Задать пароль`,
+    },
+    mailingList: {
+      title: `Подписаться на рассылку`,
+      message: `Получайте редкие новости Sandscape. Это не создаёт аккаунт и не запрашивает доступ автора.`,
+      successTitle: `Подписка оформлена`,
+      successMessage: `Вы подписаны на рассылку.`,
+      alreadyRegisteredTitle: `Уже подписаны`,
+      alreadyRegisteredMessage: `Этот адрес уже в списке.`,
+      errorTitle: `Не удалось подписаться`,
+      errorMessage: `Не удалось добавить адрес в рассылку. Повторите попытку.`,
+      emailPlaceholder: `you@example.com`,
+      join: `Подписаться на рассылку`,
+    },
+    leaderboard: {
+      title: `Таблица лидеров`,
+      periodLabel: `Период`,
+      period: {
+        all: `За всё время`,
+        daily: `Сегодня`,
+        weekly: `На этой неделе`,
+        monthly: `В этом месяце`,
+        default: `По умолчанию`,
+      },
+      rank: `#`,
+      player: `Игрок`,
+      entries: `Игры`,
+      you: `Вы`,
+      yourRank: `Ваше место`,
+      empty: `Пока нет результатов — сыграйте первым.`,
+      error: `Не удалось загрузить таблицу лидеров.`,
+      refresh: `Обновить`,
+      unknownPlayer: `Игрок`,
+    },
+  },
+  Z = [
+    { code: `en`, name: `English` },
+    { code: `es`, name: `Español` },
+    { code: `fr`, name: `Français` },
+    { code: `de`, name: `Deutsch` },
+    { code: `ja`, name: `日本語` },
+    { code: `zh`, name: `中文` },
+    { code: `ar`, name: `العربية` },
+    { code: `ru`, name: `Русский` },
+  ],
+  Q =
+    typeof document < `u` &&
+    document.getElementById(`root`)?.dataset.prerenderedHome === `true` &&
+    window.location.pathname === `/`;
+function ze() {
+  if (typeof window > `u`) return;
+  let e = null;
+  try {
+    e = window.localStorage.getItem(`sandscape-language`);
+  } catch {}
+  ((e ??= window.navigator.languages?.[0] || window.navigator.language),
+    (e ??= new URLSearchParams(window.location.search).get(`lang`)));
+  let t = e?.split(`-`)[0];
+  return Z.some((e) => e.code === t) ? t : void 0;
+}
+var $ = Q ? ze() : void 0;
+G.use(n)
+  .use(Ae)
+  .init({
+    ...(Q ? { lng: `en` } : {}),
+    fallbackLng: `en`,
+    supportedLngs: Z.map((e) => e.code),
+    resources: {
+      en: { common: je },
+      es: { common: Me },
+      fr: { common: Ne },
+      de: { common: Pe },
+      ja: { common: Fe },
+      zh: { common: Ie },
+      ar: { common: Le },
+      ru: { common: Re },
+    },
+    ns: [`common`],
+    defaultNS: `common`,
+    interpolation: { escapeValue: !1 },
+    react: { useSuspense: !0 },
+    detection: {
+      order: [`localStorage`, `navigator`, `querystring`],
+      lookupQuerystring: `lang`,
+      lookupLocalStorage: `sandscape-language`,
+      caches: Q ? [] : [`localStorage`],
+    },
+  });
+async function Be() {
+  if (!(!$ || $ === G.resolvedLanguage)) {
+    await G.changeLanguage($);
+    try {
+      window.localStorage.setItem(`sandscape-language`, $);
+    } catch {}
+  }
+}
+var Ve = [`ar`];
+function He(e) {
+  if (typeof document > `u`) return;
+  let t = (e || G.resolvedLanguage || `en`).split(`-`)[0];
+  ((document.documentElement.lang = t),
+    (document.documentElement.dir = Ve.includes(t) ? `rtl` : `ltr`));
+}
+(G.on(`languageChanged`, He), He());
+export { Be as n, Z as t };

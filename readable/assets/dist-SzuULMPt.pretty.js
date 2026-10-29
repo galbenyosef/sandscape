@@ -1,0 +1,19 @@
+import { a as e } from "./rolldown-runtime-CNC7AqOf.js";
+import { n as t, t as n } from "./jsx-runtime-BtyjnKZj.js";
+import { t as r } from "./react-dom-CWn-H0Rd.js";
+import { n as i } from "./dist-CA4uZW3H.js";
+import { t as a } from "./dist-ByN-1XKv.js";
+var o = e(t(), 1),
+  s = e(r(), 1),
+  c = n(),
+  l = Object.defineProperty,
+  u = o.forwardRef(
+    ((e, t) => l(e, `name`, { value: t, configurable: !0 }))(function (e, t) {
+      let { container: n, ...r } = e,
+        [l, u] = o.useState(!1);
+      i(() => u(!0), []);
+      let d = n || (l && globalThis?.document?.body);
+      return d ? s.createPortal((0, c.jsx)(a.div, { ...r, ref: t }), d) : null;
+    }, `Portal`),
+  );
+export { u as t };

@@ -25,7 +25,7 @@ Source: https://sandscape.app/play?g=3UpDloEh
 ## Stack
 
 - **Vite/rolldown production build** — one ~50-chunk runtime graph under
-  `assets/`: the entry chunk (`index-BKDksszn.js`), the rolldown runtime, the
+  `assets/`: the entry chunk (`index-CBcimEr9.js`), the rolldown runtime, the
   React 19 runtime (`react-dom`, `jsx-runtime`), the Vite preload helper and
   per-route/per-widget chunks loaded at runtime (`Game-…`, `Auth-…`,
   `Profile-…`, `Create-…`, `History-…`, `ShareMenu-…`, the `dist-…` UI kit
@@ -48,7 +48,8 @@ pins the **play view for the short code `3UpDloEh`** — the game page of
 machines, five stages, rockets, drift boosts) — and captures the app shell that
 renders it, byte-exact: the entry document plus the whole same-origin chunk
 graph the runtime actually loads (runtime network log + static scan to
-fixpoint). **124 files, ≈11.5 MB** (`.upstream/manifest.json`).
+fixpoint). **129 files, ≈11.0 MB** (`.upstream/manifest.json`, refresh
+2026-10-29).
 
 External at runtime (never captured, never backfilled — documented gaps):
 
@@ -74,8 +75,8 @@ the fleet rule is that external dependencies stay external.
 ## Layout
 
 - `index.html` — the entry document as served for `/play` (Vercel rewrites the
-  route onto the built `spa.html`; 8,807 B, byte-exact)
-- `assets/` — the full same-origin chunk graph (112 JS chunks + 2 stylesheets)
+  route onto the built `spa.html`; 8,814 B, byte-exact)
+- `assets/` — the full same-origin chunk graph (117 JS chunks + 2 stylesheets)
   and the icons/OG images the app loads
 - `.upstream/manifest.json` — sha256 for every captured file
 - `.upstream/runtime-network.json` — every request the live browser session
@@ -84,15 +85,18 @@ the fleet rule is that external dependencies stay external.
 - `.upstream/unreachable.json` — probed paths the origin does not serve (the
   SPA rewrite answers them with the SPA document; recorded, never captured)
 - `readable/assets/` — prettified derived layer (pinned prettier 3.9.6), the
-  served path mirrored: 112 JS pretties + 2 CSS pretties, plus 2 inline twins
+  served path mirrored: 118 JS pretties + 2 CSS pretties, plus 2 inline twins
   from `index.html` at the `readable/` root; vendor bundles are whole-file
   entries
-- `src/assets/` + `split-spec.json` — 524 statement-aligned slices of the 102
+- `src/assets/` + `split-spec.json` — 658 statement-aligned slices of the 109
   app chunks, served filenames (hash included) kept with the `-NN` slice
   suffix, with the recorded derivation spec
-- `rename-map.json` + `tools/names.json` — the closed identifier-rename
-  campaign: the reviewed semantic list and the mechanically recovered map that
-  `src/` is re-cut through on every derivation
+- `rename-map.json` + `tools/names.json` — the identifier-rename campaign: the
+  reviewed semantic list and the mechanically recovered map that `src/` is
+  re-cut through on every derivation. The 2026-10-29 refresh replaced the whole
+  chunk graph (94 new hashed names), so the map was regenerated empty
+  (0 renames) — the campaign awaits re-review against the new capture; its
+  pre-refresh state is archived under `legacy/2026-10-29/`
 - `tools/capture.mjs` — the capture crawler (entry + runtime log seeds →
   closure to fixpoint; SPA-rewrite fallbacks detected and rejected)
 - `tools/derive.mjs` — rebuild `readable/` + `src/` + `split-spec.json`
@@ -118,8 +122,8 @@ the fleet rule is that external dependencies stay external.
   boot test (SPA rewrite, asset paths 404 honestly)
 - `_mirror-report.json` — capture record (method, 404s, origin variants,
   external hosts, the game closure's URL family)
-- `docs/cover.png`, `docs/boot-2026-10-13.png` — gameplay cover and mirror boot
-  evidence
+- `docs/cover.png`, `docs/boot-2026-10-13.png`, `docs/boot-2026-10-27.png`,
+  `docs/boot-2026-10-29-refresh.png` — gameplay cover and mirror boot evidence
 
 ## Assets
 
@@ -221,7 +225,26 @@ captured files identical upstream`. Serve probe (`tools/serve.mjs`, loopback
 127.0.0.1:4326): `/play?g=3UpDloEh` and `/` → 200 (8,807 B shell), the entry
 chunk, the stylesheet, a route chunk (`Game-…`), `manifest.webmanifest` and
 `favicon.png` → 200; listener killed (`taskkill`), `netstat` shows no
-LISTENING socket and curl refuses the port.
+LISTENING socket and curl refuses the port. (Historical: that state describes
+the 2026-10-13 capture, superseded by the refresh below.)
+
+State as of 2026-10-29 (refresh): `verify.mjs` → `129 files checked, 0
+problems`; `record-manifest.mjs --check` → `PASS — 129 capture file(s)
+recorded, walk agrees byte-for-byte, no derived path leaked`; `audit.js` →
+`AUDIT PASS — 779 spec sections (658/658 src↔pretty round-trips byte-exact,
+121/121 pretty sources tiled contiguously, 109/109 skipped export-table
+sections re-verified textually, 658/658 src slices + 118/118
+readable/*.pretty.js parse standalone, 121/121 pretties provably distinct from
+their capture source, 121/121 sources provenanced, 723/723 imports resolve
+inside the capture, 121/121 pretties re-render byte-exact under pinned prettier
+3.9.6, capture manifest free of derived layers)`; `derive.mjs --check` → `PASS
+— a fresh render matches the committed derived layers byte-for-byte`;
+`check-exports.mjs` → `117 export table(s) checked, no public export name
+lost`; `check-links.mjs` → `109 scopes, 109 export tables checked — every
+export table names a binding the layer declares: YES`; `check-chunk.mjs --all`
+→ `109 chunk(s), 658 slice body(ies) substituted — all cross-slice calls
+resolve`; `verify-rename.mjs --all` → `658/658 slice(s) reproduce byte-exact, 0
+renamed slice(s), 109/109 chunk(s) references+bindings YES`.
 
 ## Boot test (2026-10-27)
 
@@ -241,6 +264,26 @@ LISTENING socket and curl refuses the port.
   worker, not captured). The mirror's documented claim is confirmed: the app
   shell renders offline; the published game record and embed are external and
   cannot render from a loopback origin.
+
+## Boot test (2026-10-29 refresh)
+
+- Entry: `http://127.0.0.1:4729/play?g=3UpDloEh` served by `tools/serve.mjs`
+  with the network blocked (`MAP * 127.0.0.1`), session `boot-sandscape-refresh`.
+- Outcome: **rendered** — the refreshed shell painted (sidebar
+  Home/History/Likes/Publish/Subscription, search + Create, cookie notice,
+  footer "© 2026 Sandscape") and the play route showed its "Game not found"
+  state, because the `?g=` record is fetched from the external Supabase
+  backend, which the offline rule blocks.
+- Evidence: body 416 chars; canvas none; 2 console errors (PWA service-worker
+  registration 404, `Error fetching game: Failed to fetch`); 70 same-origin
+  requests with 1 failure, 10 blocked cross-origin requests across 3 hosts
+  (Supabase ×8, Google Fonts ×1, GTM ×1); screenshot
+  `docs/boot-2026-10-29-refresh.png` (read back: non-blank, full shell painted).
+- Gaps seen: same-origin 404 for `/_vercel/insights/script.js` (telemetry,
+  excluded from the capture) and `/sw.js` (PWA service worker, not captured).
+  The documented claim is confirmed: the app shell renders offline; the
+  published game record and embed are external and cannot render from a
+  loopback origin.
 
 ## Updating from upstream
 
@@ -375,6 +418,87 @@ refreshed bundle renames its chunks, re-run the rename campaign
   derivation record, not capture content — `record-manifest.mjs` and
   `audit.js` both prove no `rename-map.json` / `split-spec.json` /
   `index-inline-map.json` / derived path leaks into the capture sums.
+
+### 2026-10-29 refresh (drift probe → capture → re-derive)
+
+The 2026-10-29 fleet drift probe found the origin had shipped a new build:
+**95 of 124 captured files differed** (`update.mjs`: `DRIFT: 95 changed, 0
+live-missing`). The build renamed 94 of its 124 files (new content hashes), so
+the probe reported the old names as changed — the origin now answers them with
+the SPA document (HTTP 200 `text/html`) — and only `index.html` changed in
+place (8,807 → 8,814 B, still the canonical `<!--app-html-->` shell).
+
+- **Before:** 124 files, 11,501,000 B (10.97 MB). **After:** 129 files,
+  11,482,806 B (10.95 MB) — 99 added, 94 dropped, 29 unchanged, `index.html`
+  replaced in place. Replaced capture files were copied to
+  `legacy/2026-10-29/` (95 files) before the capture; the dropped paths are
+  recorded here, never invented.
+- **Capture:** `node tools/capture.mjs` (documented command, no flags). It
+  saved 129 files and rejected 51 probes as SPA-rewrite fallbacks (49 old chunk
+  names, `assets/videos/Sandscape_trailer_thumbnail.jpg`,
+  `avatar_placeholder/default.png`), recorded in `.upstream/unreachable.json`.
+- **Re-derive:** `tools/derive.mjs` re-cut `readable/` (122 files) and `src/`
+  (658 slices from 109 app chunks; 109 skipped, 12 wholeFile, 10 notRendered),
+  archiving the superseded layers to `legacy/2026-10-29/` (594 files) and
+  pruning 594 orphans. `tools/derive.mjs`'s `TODAY` archive stamp was moved to
+  2026-10-29 for this pass.
+- **Rename campaign:** the whole graph carries new hashed names, so the
+  committed map no longer applies (`rename: 0 slice(s)`); the pre-refresh
+  `rename-map.json` is archived and the map was regenerated mechanically by
+  `node tools/recover-scoped-map.mjs` (**0 renamed slices**) so `split-spec` and
+  the map agree. Re-running the semantic campaign (`apply-names.mjs` →
+  `recover-scoped-map.mjs`) against the new capture is the documented
+  follow-up, not a claimed result of this refresh.
+- **Dropped upstream (94; gone from the capture, copies kept only under
+  `legacy/2026-10-29/assets/`):**
+
+```
+  Activate-BF9W00Ke.js AnalyticsService-BMBbF9S-.js Auth-D5wV77IC.js
+  AuthCallback-DqVxfP13.js AuthService-CQeU_0bQ.js ChatInput-Bh7UOK0U.js
+  CoinDisplay-iWoR0BMU.js Combination-CJArERGX.js Create-ea24k1TY.js
+  CreatePrompt-BAYFUPVf.js ErrorBoundary-CNubh4T-.js
+  Followers-CGbahiF2.js Following-D9N5_ADL.js Game-QkGXRHTR.js
+  GameStoryFeed-DptcNIuk.js History-DjQFohPA.js Invite-Bw1qGwCU.js
+  LevelDesignKitPanel-BowZ7mTP.js LevelKitTest-CAElO1wd.js
+  Likes-CUnV8XDg.js Notifications-CLactyWV.js Onboarding-CO_SgZrN.js
+  Profile-CWWm0is0.js Publish-CkHGQXkk.js SceneEditor-BPEsa1Sn.js
+  SceneEditorTest-CsA4EpZw.js Search-D4S3eGXN.js Settings-B2DmZABB.js
+  ShareMenu-DgMG0s-m.js StandaloneAuthPathRedirect-WcSzz1pk.js
+  TourClaim-CJ-HokaR.js TourWrapper-BBwg2sIi.js
+  actionsCatalog-BOqBt5wy.js alert-dialog-BwlBTuHq.js
+  apiConfig-cGsbt6Be.js arrow-left-CDrX27jn.js avatar-ixs41cq5.js
+  avatarUtils-CBd99uWq.js badge-B4-vVyqh.js button-Ap3ysi5G.js
+  card-DLIi0Qe8.js check-DVcwwxJi.js checkbox-BdSkwnAQ.js
+  chevron-left-wlBcTn-9.js circle-check-BVtsIJ9N.js
+  clipboard-D18mYxSs.js confirm-dialog-B_bgaQuk.js creators-BdQ0Kqzc.js
+  crown-NMNJ6-VK.js dialog-B1UXjCvB.js dist-7AcSgfoz.js dist-BKqz_oOH.js
+  dist-BWh9CVbU.js dist-Bhx37s1t.js dist-C4TAXPHx.js dist-DAUR33jS.js
+  dist-DkIQBCKf.js dist-IS-98_QU.js dist-p2cW4AiE.js dnd-DMxeXGsh.js
+  external-link-CNayFVCy.js follow-CUqA0aWI.js gameCreation-7QUnbwLk.js
+  gameLikes-CVeS3kbw.js gameUtils-hllMGYPh.js history-BgFRjxWz.js
+  i18n-Ddyvvowz.js index-BKDksszn.js index-CCVDdtPC.css
+  key-round-C8uAJKQY.js leaderboards-Bl1Xg4fx.js
+  loader-circle-DBFTFT2k.js lock-CAG5RccF.js mail-D0O-liE7.js
+  party-popper-Bs8HHRWI.js play-BHRX8EkG.js publish-IuClGqz5.js
+  refresh-cw-CkwJF4P8.js rotate-ccw-FK7vjwP0.js send-Bx2TrLH3.js
+  serviceProxy-CZRpABZv.js settings-2-Clz1ZubR.js share-2-B1vEkEyU.js
+  shield-check-CAJ-dFVb.js switch-DR7KWk3q.js tabs-Gm5XRVor.js
+  terminal-L5JMdm_r.js textarea-D_1TMYK2.js thumbs-up-3xlfzfdY.js
+  triangle-alert-D-SEZi4r.js upload-DLWSp9LN.js user-DD-5DUVW.js
+  wand-sparkles-DuaVuhfE.js zap-OaMDwI_w.js
+```
+  (all under `assets/`; only the `…-<hash>.js` filename changed upstream —
+  the chunks themselves are the renamed successors of the 94, plus the new
+  `Offer`, `marketing`, `coinService`, `copy`, `useActionPrice`,
+  `useCodingModelsChoice` chunks and `index-Bn9uEp5C.css`.)
+- **Gates:** `verify.mjs` 129/129; `record-manifest.mjs --check` PASS;
+  `audit.js` `AUDIT PASS` (779 sections); `derive.mjs --check` byte-identical;
+  `check-exports.mjs` 117 tables, no public name lost; `check-links.mjs` 109
+  scopes, YES; `check-chunk.mjs --all` 109 chunks / 658 slices, all cross-slice
+  calls resolve; `verify-rename.mjs --all` 658/658 byte-exact.
+- **Boot:** rendered offline on `127.0.0.1:4729` (`MAP * 127.0.0.1`), shell
+  painted, play route "Game not found" (external Supabase record blocked);
+  `docs/boot-2026-10-29-refresh.png`. Details in the boot section above.
 
 ## Mirror conventions
 

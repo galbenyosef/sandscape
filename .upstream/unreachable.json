@@ -1,6 +1,251 @@
 [
   {
     "status": 200,
+    "path": "/assets/index-BKDksszn.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/AuthService-CQeU_0bQ.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-DAUR33jS.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-p2cW4AiE.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-C4TAXPHx.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-BWh9CVbU.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/Combination-CJArERGX.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-DkIQBCKf.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-7AcSgfoz.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/button-Ap3ysi5G.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/check-DVcwwxJi.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dnd-DMxeXGsh.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/refresh-cw-CkwJF4P8.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/triangle-alert-D-SEZi4r.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/apiConfig-cGsbt6Be.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/serviceProxy-CZRpABZv.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-IS-98_QU.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/CoinDisplay-iWoR0BMU.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/crown-NMNJ6-VK.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/lock-CAG5RccF.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/user-DD-5DUVW.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/avatar-ixs41cq5.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-BKqz_oOH.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/gameCreation-7QUnbwLk.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/ErrorBoundary-CNubh4T-.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/actionsCatalog-BOqBt5wy.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/AnalyticsService-BMBbF9S-.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/i18n-Ddyvvowz.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/avatarUtils-CBd99uWq.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/gameUtils-hllMGYPh.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/creators-BdQ0Kqzc.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/index-CCVDdtPC.css",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/Game-QkGXRHTR.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/wand-sparkles-DuaVuhfE.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/thumbs-up-3xlfzfdY.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/ShareMenu-DgMG0s-m.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/clipboard-D18mYxSs.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/mail-D0O-liE7.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/share-2-B1vEkEyU.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/leaderboards-Bl1Xg4fx.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/gameLikes-CVeS3kbw.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/follow-CUqA0aWI.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/textarea-D_1TMYK2.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/card-DLIi0Qe8.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/confirm-dialog-B_bgaQuk.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/alert-dialog-BwlBTuHq.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/dist-Bhx37s1t.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/tabs-Gm5XRVor.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
+    "path": "/assets/history-BgFRjxWz.js",
+    "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
+  },
+  {
+    "status": 200,
     "path": "/assets/videos/Sandscape_trailer_thumbnail.jpg",
     "reason": "SPA rewrite fallback (text/html for a non-HTML path)"
   },

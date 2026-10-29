@@ -80,7 +80,7 @@ const proj = path.resolve(here, "..");
 const PINNED = "3.9.6";
 const MIN_WINDOW = 250;
 const MAX_WINDOW = 350;
-const TODAY = "2026-10-14"; // structure/rename pass: superseded layers archive to legacy/<date>/
+const TODAY = "2026-10-29"; // refresh pass: superseded layers archive to legacy/<date>/
 const checkOnly = process.argv.includes("--check");
 const problems = [];
 const problem = (msg) => problems.push(msg);

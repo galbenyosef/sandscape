@@ -1,0 +1,172 @@
+<!doctype html>
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030407" />
+
+    <!--
+      Set the theme class BEFORE first paint. `class="dark"` above is the default
+      the document ships with; React cannot correct it until it mounts, which
+      measured ~120ms of dark on every cold load for a light-mode user. Keep the
+      storage key and the accepted values in sync with ThemeProvider — this is
+      the one place outside it that touches either.
+    -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("sandscape-theme");
+          var resolved =
+            saved === "system" || (!saved && false)
+              ? window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light"
+              : saved === "light"
+                ? "light"
+                : "dark";
+          document.documentElement.classList.remove("light", "dark");
+          document.documentElement.classList.add(resolved);
+        } catch (e) {
+          /* Blocked storage: the class already on <html> stands. */
+        }
+      })();
+    </script>
+
+    <title>Sandscape</title>
+    <meta
+      name="description"
+      content="Sandscape turns your idea into a playable browser game you can refine with visual tools or code, then publish and share."
+    />
+    <meta
+      name="keywords"
+      content="AI game creator, make games with AI, AI game generator, create games without coding, mobile game maker, game creation platform, collaborative game development, AI game development, no-code game creation, game design AI"
+    />
+    <meta name="author" content="Sandscape" />
+
+    <link rel="canonical" href="https://sandscape.app" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sandscape.app" />
+    <meta property="og:title" content="Sandscape" />
+    <meta
+      property="og:description"
+      content="Sandscape turns your idea into a playable browser game you can refine with visual tools or code, then publish and share."
+    />
+    <meta property="og:image" content="https://sandscape.app/assets/videos/Sandscape_trailer_thumbnail.jpg" />
+    <meta property="og:image:alt" content="Sandscape creative game studio" />
+    <meta property="og:site_name" content="Sandscape" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@SandscapeAI" />
+    <meta name="twitter:title" content="Sandscape" />
+    <meta
+      name="twitter:description"
+      content="Turn an idea into a playable browser game, refine it, then publish and share it."
+    />
+    <meta name="twitter:image" content="https://sandscape.app/assets/videos/Sandscape_trailer_thumbnail.jpg" />
+    <meta name="twitter:image:alt" content="Sandscape creative game studio" />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Sandscape" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Sandscape",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web, Android, iOS",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Sandscape turns your idea into a playable browser game you can refine with visual tools or code, then publish and share.",
+        "url": "https://sandscape.app"
+      }
+    </script>
+
+    <style>
+      /* Pre-mount paint, so the first frame is not a white flash. The theme
+         provider puts `light`/`dark` on <html>, and this follows it: because
+         <html> carries a background of its own, the CANVAS behind the whole
+         page takes that colour, not body's. Left dark-only, a light-mode page
+         showed the dark canvas through as a black band wherever the document
+         scrolled past body's box — and as a grey wash behind the translucent
+         sidebar. The `html.light` selector outranks any later element rule, so
+         the app cannot lose this race whichever order the stylesheets land in. */
+      html,
+      body {
+        margin: 0;
+        background: hsl(225 33% 2%);
+        color: hsl(0 0% 98%);
+      }
+      html.light,
+      html.light body {
+        background: hsl(0 0% 100%);
+        color: hsl(0 0% 3.9%);
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-BKDksszn.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-CNC7AqOf.js">
+    <link rel="modulepreload" crossorigin href="/assets/jsx-runtime-BtyjnKZj.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-dom-CWn-H0Rd.js">
+    <link rel="modulepreload" crossorigin href="/assets/preload-helper-Czpn1I53.js">
+    <link rel="modulepreload" crossorigin href="/assets/chunk-KS7C4IRE-CgpSK45w.js">
+    <link rel="modulepreload" crossorigin href="/assets/useToast-QK0Q4gGT.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-CA4uZW3H.js">
+    <link rel="modulepreload" crossorigin href="/assets/AuthService-CQeU_0bQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-DAUR33jS.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-p2cW4AiE.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-C4TAXPHx.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-BWh9CVbU.js">
+    <link rel="modulepreload" crossorigin href="/assets/Combination-CJArERGX.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-DkIQBCKf.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-7AcSgfoz.js">
+    <link rel="modulepreload" crossorigin href="/assets/button-Ap3ysi5G.js">
+    <link rel="modulepreload" crossorigin href="/assets/check-DVcwwxJi.js">
+    <link rel="modulepreload" crossorigin href="/assets/dnd-DMxeXGsh.js">
+    <link rel="modulepreload" crossorigin href="/assets/refresh-cw-CkwJF4P8.js">
+    <link rel="modulepreload" crossorigin href="/assets/triangle-alert-D-SEZi4r.js">
+    <link rel="modulepreload" crossorigin href="/assets/apiConfig-cGsbt6Be.js">
+    <link rel="modulepreload" crossorigin href="/assets/serviceProxy-CZRpABZv.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-IS-98_QU.js">
+    <link rel="modulepreload" crossorigin href="/assets/CoinDisplay-iWoR0BMU.js">
+    <link rel="modulepreload" crossorigin href="/assets/crown-NMNJ6-VK.js">
+    <link rel="modulepreload" crossorigin href="/assets/lock-CAG5RccF.js">
+    <link rel="modulepreload" crossorigin href="/assets/user-DD-5DUVW.js">
+    <link rel="modulepreload" crossorigin href="/assets/avatar-ixs41cq5.js">
+    <link rel="modulepreload" crossorigin href="/assets/proxy-gbdormya.js">
+    <link rel="modulepreload" crossorigin href="/assets/tour-D03BMTEP.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-C7e-qgX5.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-BKqz_oOH.js">
+    <link rel="modulepreload" crossorigin href="/assets/gameCreation-7QUnbwLk.js">
+    <link rel="modulepreload" crossorigin href="/assets/ErrorBoundary-CNubh4T-.js">
+    <link rel="modulepreload" crossorigin href="/assets/actionsCatalog-BOqBt5wy.js">
+    <link rel="modulepreload" crossorigin href="/assets/AnalyticsService-BMBbF9S-.js">
+    <link rel="modulepreload" crossorigin href="/assets/useTranslation-BdauNPOZ.js">
+    <link rel="modulepreload" crossorigin href="/assets/i18n-Ddyvvowz.js">
+    <link rel="modulepreload" crossorigin href="/assets/avatarUtils-CBd99uWq.js">
+    <link rel="modulepreload" crossorigin href="/assets/gameUtils-hllMGYPh.js">
+    <link rel="modulepreload" crossorigin href="/assets/creators-BdQ0Kqzc.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-D8Wfxh48.js">
+    <link rel="modulepreload" crossorigin href="/assets/formatDistanceToNow-DhpKhUbk.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CCVDdtPC.css">
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+import { n as e } from "./AuthService-C8NFtVWb.js";
+async function t(t) {
+  let n = await e.auth.getUser();
+  if (!n.data.user || n.data.user.id === t) return !1;
+  let { data: r, error: i } = await e
+    .from(`followers`)
+    .select(`following_user_id`)
+    .eq(`following_user_id`, n.data.user.id)
+    .eq(`followed_user_id`, t)
+    .maybeSingle();
+  if (i) throw i;
+  return !!r;
+}
+async function n(t) {
+  let n = await e.auth.getUser();
+  if (!n.data.user) throw Error(`Not authenticated`);
+  if (n.data.user.id === t) throw Error(`Cannot follow yourself`);
+  let { data: r, error: i } = await e
+    .from(`followers`)
+    .select(`*`)
+    .eq(`following_user_id`, n.data.user.id)
+    .eq(`followed_user_id`, t)
+    .maybeSingle();
+  if (i) throw i;
+  if (r) throw Error(`Already following`);
+  let { error: a } = await e.from(`followers`).insert([
+    {
+      following_user_id: n.data.user.id,
+      followed_user_id: t,
+      created_at: new Date().toISOString(),
+    },
+  ]);
+  if (a) throw a;
+}
+async function r(t) {
+  let n = await e.auth.getUser();
+  if (!n.data.user) throw Error(`Not authenticated`);
+  let { error: r } = await e
+    .from(`followers`)
+    .delete()
+    .eq(`following_user_id`, n.data.user.id)
+    .eq(`followed_user_id`, t);
+  if (r) throw r;
+}
+async function i(t) {
+  let { data: n, error: r } = await e
+    .from(`followers`)
+    .select(`following_user_id`)
+    .eq(`followed_user_id`, t);
+  if (r) throw r;
+  let i = (n || []).map((e) => e.following_user_id);
+  if (i.length === 0) return [];
+  let { data: a, error: o } = await e
+    .from(`profiles`)
+    .select(`user_id,username,avatar_url`)
+    .in(`user_id`, i);
+  if (o) throw o;
+  return (a || []).map((e) => ({
+    id: e.user_id,
+    username: e.username,
+    avatar_url: e.avatar_url,
+  }));
+}
+async function a(t) {
+  let { data: n, error: r } = await e
+    .from(`followers`)
+    .select(`followed_user_id`)
+    .eq(`following_user_id`, t);
+  if (r) throw r;
+  let i = (n || []).map((e) => e.followed_user_id);
+  if (i.length === 0) return [];
+  let { data: a, error: o } = await e
+    .from(`profiles`)
+    .select(`user_id,username,avatar_url`)
+    .in(`user_id`, i);
+  if (o) throw o;
+  return (a || []).map((e) => ({
+    id: e.user_id,
+    username: e.username,
+    avatar_url: e.avatar_url,
+  }));
+}
+export { r as a, t as i, i as n, a as r, n as t };

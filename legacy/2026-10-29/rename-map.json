@@ -1,0 +1,193 @@
+{
+  "note": "Semantic rename map for src/, recovered mechanically by anchor alignment from the committed slices (tools/recover-scoped-map.mjs): the token streams of a slice and its readable range must be identical in every non-identifier position, so every differing identifier pair is a proven rename, not a guess. `files` is a word-boundary map, used only where a name means the same thing everywhere in the slice and is never a property or object key; `scoped` addresses the rest by exact token index as { name: [[i, target], …] }. tools/derive.mjs re-applies this map when it re-cuts src/ (index-validated), tools/verify-rename.mjs and tools/audit.js re-prove every slice from it, and tools/check-chunk.mjs proves cross-slice references still resolve. Regenerate with `node tools/recover-scoped-map.mjs` after any rename batch.",
+  "files": {
+    "assets/Game-QkGXRHTR-01.js": {
+      "B": "formatMetricValue",
+      "He": "formatDurationMs",
+      "V": "formatRank",
+      "ot": "LEADERBOARD_LIMIT",
+      "st": "DEFAULT_PERIOD"
+    },
+    "assets/Game-QkGXRHTR-02.js": {
+      "B": "formatMetricValue",
+      "V": "formatRank",
+      "ct": "LeaderboardSection",
+      "lt": "LeaderboardTable",
+      "ot": "LEADERBOARD_LIMIT",
+      "st": "DEFAULT_PERIOD",
+      "ut": "LeaderboardRow"
+    },
+    "assets/Game-QkGXRHTR-03.js": {
+      "$": "cachedViewerId",
+      "Ct": "postGameView",
+      "St": "getViewerId",
+      "Tt": "buildAssetUrl",
+      "_t": "canPlayFree",
+      "bt": "UUID_RE",
+      "dt": "PlayGateModal",
+      "ft": "PLAYED_GAMES_WINDOW_MS",
+      "gt": "hasPlayedGame",
+      "ht": "writePlayedGames",
+      "mt": "readPlayedGames",
+      "pt": "PLAYED_GAMES_KEY",
+      "vt": "recordPlayedGame",
+      "wt": "playTokenCache",
+      "xt": "generateUuid",
+      "yt": "VIEWER_ID_KEY"
+    },
+    "assets/Game-QkGXRHTR-04.js": {
+      "Ct": "postGameView",
+      "Dt": "PlatformCompatNotice",
+      "Et": "GamePage",
+      "Ot": "CommentComposer",
+      "St": "getViewerId",
+      "Tt": "buildAssetUrl",
+      "_t": "canPlayFree",
+      "ct": "LeaderboardSection",
+      "dt": "PlayGateModal",
+      "gt": "hasPlayedGame",
+      "kt": "CommentThread",
+      "vt": "recordPlayedGame",
+      "wt": "playTokenCache"
+    },
+    "assets/Game-QkGXRHTR-05.js": {
+      "Dt": "PlatformCompatNotice",
+      "Ot": "CommentComposer"
+    },
+    "assets/Game-QkGXRHTR-06.js": {
+      "Ot": "CommentComposer",
+      "kt": "CommentThread"
+    },
+    "assets/apiConfig-cGsbt6Be-01.js": {
+      "i": "authHeaders",
+      "r": "tourApiBase"
+    },
+    "assets/gameUtils-hllMGYPh-01.js": {
+      "a": "gamePreviewUrl"
+    }
+  },
+  "scoped": {
+    "assets/apiConfig-cGsbt6Be-01.js": {
+      "a": [
+        [
+          222,
+          "getAccessToken"
+        ]
+      ],
+      "n": [
+        [
+          14,
+          "apiConfig"
+        ]
+      ]
+    },
+    "assets/follow-CUqA0aWI-01.js": {
+      "a": [
+        [
+          579,
+          "listFollowing"
+        ]
+      ],
+      "i": [
+        [
+          406,
+          "listFollowers"
+        ]
+      ],
+      "n": [
+        [
+          125,
+          "followUser"
+        ]
+      ],
+      "r": [
+        [
+          317,
+          "unfollowUser"
+        ]
+      ],
+      "t": [
+        [
+          11,
+          "isFollowing"
+        ]
+      ]
+    },
+    "assets/gameLikes-CVeS3kbw-01.js": {
+      "a": [
+        [
+          378,
+          "countGameLikes"
+        ]
+      ],
+      "i": [
+        [
+          277,
+          "hasLikedGame"
+        ]
+      ],
+      "n": [
+        [
+          18,
+          "likeGame"
+        ]
+      ],
+      "o": [
+        [
+          449,
+          "listLikedGames"
+        ]
+      ],
+      "r": [
+        [
+          188,
+          "unlikeGame"
+        ]
+      ]
+    },
+    "assets/gameUtils-hllMGYPh-01.js": {
+      "i": [
+        [
+          190,
+          "gameThumbnailUrl"
+        ]
+      ],
+      "n": [
+        [
+          95,
+          "GAME_MEDIA_BASE"
+        ],
+        [
+          220,
+          "GAME_MEDIA_BASE"
+        ],
+        [
+          235,
+          "GAME_MEDIA_BASE"
+        ],
+        [
+          306,
+          "GAME_MEDIA_BASE"
+        ],
+        [
+          321,
+          "GAME_MEDIA_BASE"
+        ]
+      ],
+      "r": [
+        [
+          109,
+          "extractStoragePath"
+        ],
+        [
+          210,
+          "extractStoragePath"
+        ],
+        [
+          296,
+          "extractStoragePath"
+        ]
+      ]
+    }
+  }
+}

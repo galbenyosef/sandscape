@@ -1,0 +1,25 @@
+// wand-sparkles-DLOrZ2hn 01 — key
+// Lines 1-23 of readable/assets/wand-sparkles-DLOrZ2hn.pretty.js (statement-aligned).
+import { r as e } from "./button-gyaE5cND.js";
+var t = e(`Maximize2`, [
+    [`polyline`, { points: `15 3 21 3 21 9`, key: `mznyad` }],
+    [`polyline`, { points: `9 21 3 21 3 15`, key: `1avn1i` }],
+    [`line`, { x1: `21`, x2: `14`, y1: `3`, y2: `10`, key: `ota7mn` }],
+    [`line`, { x1: `3`, x2: `10`, y1: `21`, y2: `14`, key: `1atl0r` }],
+  ]),
+  n = e(`WandSparkles`, [
+    [
+      `path`,
+      {
+        d: `m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72`,
+        key: `ul74o6`,
+      },
+    ],
+    [`path`, { d: `m14 7 3 3`, key: `1r5n42` }],
+    [`path`, { d: `M5 6v4`, key: `ilb8ba` }],
+    [`path`, { d: `M19 14v4`, key: `blhpug` }],
+    [`path`, { d: `M10 2v2`, key: `7u0qdc` }],
+    [`path`, { d: `M7 8H3`, key: `zfb6yr` }],
+    [`path`, { d: `M21 16h-4`, key: `1cnmox` }],
+    [`path`, { d: `M11 3H9`, key: `1obp7u` }],
+  ]);
